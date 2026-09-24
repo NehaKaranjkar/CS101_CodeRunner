@@ -1,0 +1,780 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab2",
+ "encrypted": false,
+ "source_xml": "Lab2.xml",
+ "built_at": "2026-09-24T19:42:39",
+ "settings": {
+  "title": "Practice: Lab 2",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "All questions",
+    "start": 1,
+    "count": 20
+   }
+  ]
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L02_001_Comment And Print",
+   "display_name": "Comment And Print",
+   "questiontext_html": "<p>In Python, we can add little notes to our code called <b>comments</b>. A comment starts with a <code>#</code> symbol, and Python completely ignores everything after the <code>#</code> on that line. Comments are just for humans reading the code - they don't affect the program's output at all.</p>\n<p>For example:</p>\n<pre># This program prints a greeting\nprint(\"Good Morning\")  # this line displays the greeting</pre>\n<p>This still only prints:</p>\n<pre>Good Morning</pre>\n<p>(the comments are invisible to Python)</p>\n<p><b>Your task:</b> Write a program that prints exactly the word <code>Hello</code>. Somewhere in your code, include at least one comment (starting with <code>#</code>) explaining what your code does. The comment will not affect your output.</p>\n<p><b>Expected Output:</b></p>\n<pre>Hello</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "",
+     "expected": "Hello",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L02_002_Store And Reuse An Int",
+   "display_name": "Store And Reuse An Int",
+   "questiontext_html": "<p>An <b>int</b> (short for \"integer\") is Python's type for whole numbers, like <code>5</code>, <code>-3</code>, or <code>0</code> (no decimal point).</p>\n<p>We can store a whole number in a <b>variable</b> - think of a variable as a labelled box that holds a value we can use later. For example:</p>\n<pre>age = 20\nprint(age)\nprint(age + 5)</pre>\n<p>This stores 20 in a variable called <code>age</code>, and then reuses that same variable twice: once to print it as-is, and once to print it after adding 5.</p>\n<p><b>Your task:</b> Read one whole number from the user and store it in a variable. First, print the value exactly as read. Then, on the next line, print the value plus 10.</p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>5</pre>\n<p>Output:</p>\n<pre>5\n15</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "5\n15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "0\n10",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-3",
+     "expected": "-3\n7",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L02_003_Total Marks In Three Subjects",
+   "display_name": "Total Marks In Three Subjects",
+   "questiontext_html": "<p>Let's practice storing several whole numbers in clearly-named variables and combining them.</p>\n<p>Imagine a student has marks in three subjects: Physics, Chemistry, and Maths. We can store each in its own <b>int</b> variable, and then add them together to get the total.</p>\n<pre>physics = 80\nchemistry = 75\nmaths = 90\ntotal = physics + chemistry + maths\nprint(total)</pre>\n<p><b>Your task:</b> Read three whole numbers (one per line), representing marks in Physics, Chemistry, and Maths in that order. Store each in a sensibly-named variable, and print the total marks.</p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>80\n75\n90</pre>\n<p>Output:</p>\n<pre>245</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "80\n75\n90",
+     "expected": "245",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0\n0\n0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100\n100\n100",
+     "expected": "300",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L02_004_Price After Tax",
+   "display_name": "Price After Tax",
+   "questiontext_html": "<p>Not all numbers are whole numbers! A <b>float</b> is Python's type for numbers with a decimal point, like <code>3.14</code> or <code>99.5</code>. Just as <code>int()</code> converts text into a whole number, <code>float()</code> converts text into a decimal number.</p>\n<pre>price = float(input())\nprint(price)</pre>\n<p>If the user types <code>50.0</code>, this reads it as the decimal number <code>50.0</code>.</p>\n<p><b>Your task:</b> Read the price of an item (a decimal number) and print the final price after adding 5% tax. The formula is:</p>\n<pre>final price = price + (price * 5 / 100)</pre>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>100.0</pre>\n<p>Output:</p>\n<pre>105.0</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "100.0",
+     "expected": "105.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "200.0",
+     "expected": "210.0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "40.0",
+     "expected": "42.0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L02_005_Circle Circumference",
+   "display_name": "Circle Circumference",
+   "questiontext_html": "<p>Let's use the <strong>float</strong> type for another classic geometry problem: finding the <strong>circumference</strong> (the distance around the edge) of a circle.</p>\n<p>The formula for circumference, given radius <code>r</code>, is:</p>\n<pre>circumference = 2 * 3.14 * r</pre>\n<p><strong>Your task:</strong> Read the radius of a circle as a decimal number (use <code>float(input())</code>) and print its circumference using the formula above. Round your answer to two decimal places before printing, using <code>round(circumference,2)</code></p>\n<p><strong>Example:</strong></p>\n<p>Input:</p>\n<pre>5.0</pre>\n<p>Output:</p>\n<pre>31.4</pre>\n<p>(because 2 * 3.14 * 5.0 = 31.4)</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5.0",
+     "expected": "31.4\n",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "628.0\n",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L02_006_Store And Print A Message",
+   "display_name": "Store And Print A Message",
+   "questiontext_html": "<p>Text in Python is called a <b>string</b>. Strings are sequences of characters, written between quotes when we type them directly, like <code>\"Hello\"</code>. When read with <code>input()</code>, the result is always a string automatically - no conversion function needed!</p>\n<pre>message = input()\nprint(\"You said: \" + message)</pre>\n<p>Here, <code>+</code> between two strings doesn't add numbers, it <b>joins (concatenates)</b> them together into one longer string.</p>\n<p><b>Your task:</b> Read a single line of text from the user and store it in a variable called <code>message</code>. Print it in the exact format <code>You said: &lt;message&gt;</code></p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>Python is fun</pre>\n<p>Output:</p>\n<pre>You said: Python is fun</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "Python is fun",
+     "expected": "You said: Python is fun",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Hi there",
+     "expected": "You said: Hi there",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Loops",
+     "expected": "You said: Loops",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L02_007_Concatenate Two Names",
+   "display_name": "Concatenate Two Names",
+   "questiontext_html": "<p>We just saw that <code>+</code> joins two strings together. Let's use this to build a full name out of a first name and a last name!</p>\n<pre>first = input()\nlast = input()\nfull_name = first + \" \" + last\nprint(full_name)</pre>\n<p>Notice we add <code>\" \"</code> (a single space, in quotes) between the two names, otherwise they would be joined with no space at all, like <code>JohnSmith</code>.</p>\n<p><b>Your task:</b> Read a first name and a last name (one per line). Concatenate them using <code>+</code>, with a single space in between, and print the full name.</p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>John\nSmith</pre>\n<p>Output:</p>\n<pre>John Smith</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "John\nSmith",
+     "expected": "John Smith",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Ada\nLovelace",
+     "expected": "Ada Lovelace",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Grace\nHopper",
+     "expected": "Grace Hopper",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L02_008_Name And Age Sentence",
+   "display_name": "Name And Age Sentence",
+   "questiontext_html": "<p>Here's a tricky but very common situation: what if we want to join a <b>string</b> and a <b>number</b> together using <code>+</code>?</p>\n<p>Python will NOT let you directly add a string and an int with <code>+</code> - it will give an error! You must first convert the number into a string using <code>str()</code>.</p>\n<pre>name = input()\nage = int(input())\nsentence = name + \" is \" + str(age) + \" years old\"\nprint(sentence)</pre>\n<p>Here, <code>str(age)</code> converts the whole number stored in <code>age</code> into a string, so it can be joined with the other pieces of text using <code>+</code>.</p>\n<p><b>Your task:</b> Read a name (text) and then an age (a whole number), one per line. Print a sentence in the exact format: <code>&lt;name&gt; is &lt;age&gt; years old</code></p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>Alice\n20</pre>\n<p>Output:</p>\n<pre>Alice is 20 years old</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "Alice\n20",
+     "expected": "Alice is 20 years old",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Bob\n15",
+     "expected": "Bob is 15 years old",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Zara\n99",
+     "expected": "Zara is 99 years old",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L02_009_Simple Interest Then Total",
+   "display_name": "Simple Interest Then Total",
+   "questiontext_html": "<p>A Python program runs <strong>line by line, from top to bottom</strong> - this is called <strong>sequence</strong>. Each line can use the results calculated by earlier lines, because those variables already exist by the time we reach a later line.</p>\n<p>Let's see this in action using a two-step calculation: first we calculate the Simple Interest (SI), and then we use that result to calculate the Total Amount.</p>\n<pre>SI = (Principal * Rate * Time) / 100\nTotal Amount = Principal + SI</pre>\n<p><strong>Your task:</strong> Read the principal, rate, and time (three whole numbers, one per line, in that order). First calculate and print the simple interest. Then, using that value, calculate and print the total amount (principal + interest) on the next line.</p>\n<p><strong>Example:</strong></p>\n<p>Input:</p>\n<pre>1000\n5\n2</pre>\n<p>Output:</p>\n<pre>100.0\n1100.0</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "1000\n5\n2",
+     "expected": "100.0\n1100.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5000\n10\n3",
+     "expected": "1500.0\n6500.0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2000\n4\n5",
+     "expected": "400.0\n2400.0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L02_010_Positive Or Negative",
+   "display_name": "Positive Or Negative",
+   "questiontext_html": "<p>So far, every program you've written has run every single line, in order, from top to bottom. But real programs need to <b>make decisions</b> too - a game needs to decide if you won or lost, a shop needs to decide if you get a discount, a login page needs to decide if your password is correct. Python lets us make these decisions using <code>if</code> and <code>else</code>.</p>\n<p><b>The basic idea:</b> \"if some condition is true, do this; otherwise, do that instead.\" In Python, this looks like:</p>\n<pre>if condition:\n    # runs only when the condition is True\nelse:\n    # runs only when the condition is False</pre>\n<p>A \"condition\" is just a question with a yes/no (True/False) answer, usually built using <b>comparison operators</b>:</p>\n<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n<tr><th>Operator</th><th>Meaning</th><th>Example</th></tr>\n<tr><td><code>&gt;</code></td><td>greater than</td><td><code>n &gt; 0</code></td></tr>\n<tr><td><code>&lt;</code></td><td>less than</td><td><code>n &lt; 100</code></td></tr>\n<tr><td><code>&gt;=</code></td><td>greater than or equal to</td><td><code>marks &gt;= 40</code></td></tr>\n<tr><td><code>&lt;=</code></td><td>less than or equal to</td><td><code>age &lt;= 18</code></td></tr>\n<tr><td><code>==</code></td><td>equal to (note: two equals signs!)</td><td><code>n == 0</code></td></tr>\n<tr><td><code>!=</code></td><td>not equal to</td><td><code>n != 0</code></td></tr>\n</table>\n<p><b>Example A - checking if it's raining:</b></p>\n<pre>rainfall = 5\nif rainfall > 0:\n    print(\"Take an umbrella\")\nelse:\n    print(\"No umbrella needed\")</pre>\n<p>Since <code>rainfall</code> is 5, and <code>5 &gt; 0</code> is True, this prints <code>Take an umbrella</code>.</p>\n<p><b>Example B - checking voting eligibility:</b></p>\n<pre>age = 16\nif age >= 18:\n    print(\"Can vote\")\nelse:\n    print(\"Cannot vote yet\")</pre>\n<p>Since <code>16 &gt;= 18</code> is False, this prints <code>Cannot vote yet</code>.</p>\n<p><b>Now let's see the exact pattern you'll use for this question - checking if a number is positive:</b></p>\n<pre>n = int(input())\nif n > 0:\n    print(\"Positive\")\nelse:\n    print(\"Not Positive\")</pre>\n<p>Let's trace through this with three different inputs:</p>\n<ul>\n<li>If <code>n = 5</code>: <code>5 &gt; 0</code> is True, so we print <code>Positive</code>.</li>\n<li>If <code>n = -3</code>: <code>-3 &gt; 0</code> is False, so we skip the <code>if</code> block and print <code>Not Positive</code> instead.</li>\n<li>If <code>n = 0</code>: <code>0 &gt; 0</code> is False (zero is not greater than zero!), so we print <code>Not Positive</code>.</li>\n</ul>\n<p><b>About indentation:</b> notice that the lines <code>print(\"Positive\")</code> and <code>print(\"Not Positive\")</code> both start with some blank space (usually 4 spaces) before the code begins - this is called <b>leading whitespace</b>, or indentation.</p>\n<p><b>This leading whitespace is not just for looks - it is how Python knows which lines belong inside the <code>if</code>, and which belong inside the <code>else</code>.</b> Get the indentation wrong or inconsistent, and your program will either misbehave or crash with an <code>IndentationError</code>. (Don't worry about extra spaces elsewhere on a line, like around a <code>+</code> or <code>&gt;</code> sign in the middle of a line - only the leading whitespace at the very start of a line matters.)</p>\n<p><b>Your task:</b> Read a whole number. If it is greater than 0, print <code>Positive</code>. Otherwise (zero or negative), print <code>Not Positive</code>.</p>\n<p><b>Example 1:</b></p>\n<p>Input: <pre>5</pre> Output: <pre>Positive</pre></p>\n<p><b>Example 2:</b></p>\n<p>Input: <pre>-3</pre> Output: <pre>Not Positive</pre></p>\n<p><b>Example 3 (tricky edge case - zero):</b></p>\n<p>Input: <pre>0</pre> Output: <pre>Not Positive</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "Positive",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-3",
+     "expected": "Not Positive",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Not Positive",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L02_011_Even Or Odd",
+   "display_name": "Even Or Odd",
+   "questiontext_html": "<p>Let's use <code>if</code>-<code>else</code> together with something you already know: the <code>%</code> (modulus) operator, which gives the remainder after division.</p>\n<p>A number is <b>even</b> if it leaves no remainder when divided by 2 (i.e. <code>n % 2</code> equals <code>0</code>), and <b>odd</b> otherwise (the remainder is 1). This works for any whole number, even negative ones!</p>\n<pre>n = int(input())\nif n % 2 == 0:\n    print(\"Even\")\nelse:\n    print(\"Odd\")</pre>\n<p><b>Very important:</b> notice we use <code>==</code> (two equals signs) to <b>check</b> if two things are equal, inside the condition. This is completely different from a single <code>=</code>, which is used to <b>assign</b> a value to a variable, like <code>n = 4</code>. Mixing these up is one of the most common beginner mistakes!</p>\n<p><b>Let's trace through several examples:</b></p>\n<ul>\n<li><code>n = 4</code>: <code>4 % 2</code> is <code>0</code>, and <code>0 == 0</code> is True, so we print <code>Even</code>.</li>\n<li><code>n = 7</code>: <code>7 % 2</code> is <code>1</code>, and <code>1 == 0</code> is False, so we print <code>Odd</code>.</li>\n<li><code>n = 10</code>: <code>10 % 2</code> is <code>0</code>, so we print <code>Even</code>.</li>\n<li><code>n = 0</code>: <code>0 % 2</code> is <code>0</code> (zero counts as even!), so we print <code>Even</code>.</li>\n</ul>\n<p>Here's another everyday example of the same idea - deciding if a year is a \"leap year candidate\" (simplified, just checking divisibility by 4):</p>\n<pre>year = 2024\nif year % 4 == 0:\n    print(\"Possibly a leap year\")\nelse:\n    print(\"Not a leap year\")</pre>\n<p><b>Your task:</b> Read a whole number and print <code>Even</code> if it is even, or <code>Odd</code> if it is odd.</p>\n<p><b>Example 1:</b></p>\n<p>Input: <pre>4</pre> Output: <pre>Even</pre></p>\n<p><b>Example 2:</b></p>\n<p>Input: <pre>7</pre> Output: <pre>Odd</pre></p>\n<p><b>Example 3 (edge case - zero):</b></p>\n<p>Input: <pre>0</pre> Output: <pre>Even</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "Even",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "Odd",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Even",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L02_012_Pass Or Fail",
+   "display_name": "Pass Or Fail",
+   "questiontext_html": "<p>Let's use <code>if</code>-<code>else</code> for a very common real-world scenario: deciding whether a student passes or fails an exam based on their marks.</p>\n<p>Suppose the passing threshold is 40 marks (out of 100). If a student scores 40 or more, they pass; otherwise, they fail. Notice this needs <code>&gt;=</code> (greater than <b>or equal to</b>), not just <code>&gt;</code>, because scoring exactly 40 should still count as a pass!</p>\n<pre>marks = int(input())\nif marks >= 40:\n    print(\"Pass\")\nelse:\n    print(\"Fail\")</pre>\n<p><b>Choosing the right comparison operator matters a lot here.</b> Compare these two versions:</p>\n<pre># Version 1: uses >= (correct for this problem)\nif marks >= 40:\n    print(\"Pass\")\n\n# Version 2: uses > (WRONG here - unfairly fails a student who scored exactly 40!)\nif marks > 40:\n    print(\"Pass\")</pre>\n<p><b>Let's trace through a few examples with the correct <code>&gt;=</code> version:</b></p>\n<ul>\n<li><code>marks = 65</code>: <code>65 &gt;= 40</code> is True, so <code>Pass</code>.</li>\n<li><code>marks = 30</code>: <code>30 &gt;= 40</code> is False, so <code>Fail</code>.</li>\n<li><code>marks = 40</code>: <code>40 &gt;= 40</code> is True (equal counts!), so <code>Pass</code>.</li>\n<li><code>marks = 39</code>: <code>39 &gt;= 40</code> is False, so <code>Fail</code> - just one mark short!</li>\n</ul>\n<p>The same pattern appears everywhere - for example, checking if you're old enough to drive:</p>\n<pre>age = 18\nif age >= 18:\n    print(\"Eligible to drive\")\nelse:\n    print(\"Not eligible yet\")</pre>\n<p><b>Your task:</b> Read the marks scored by a student (a whole number). If the marks are 40 or more, print <code>Pass</code>. Otherwise, print <code>Fail</code>.</p>\n<p><b>Example 1:</b></p>\n<p>Input: <pre>65</pre> Output: <pre>Pass</pre></p>\n<p><b>Example 2:</b></p>\n<p>Input: <pre>30</pre> Output: <pre>Fail</pre></p>\n<p><b>Example 3 (edge case - exactly the threshold):</b></p>\n<p>Input: <pre>40</pre> Output: <pre>Pass</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "65",
+     "expected": "Pass",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "30",
+     "expected": "Fail",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "40",
+     "expected": "Pass",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L02_013_Larger Of Two Numbers",
+   "display_name": "Larger Of Two Numbers",
+   "questiontext_html": "<p>So far, our conditions have compared a variable to a fixed number, like <code>n &gt; 0</code> or <code>marks &gt;= 40</code>. But we can just as easily compare <b>two variables</b> to each other!</p>\n<pre>a = int(input())\nb = int(input())\nif a > b:\n    print(a)\nelse:\n    print(b)</pre>\n<p><b>Let's trace through a few examples:</b></p>\n<ul>\n<li><code>a = 8, b = 3</code>: <code>8 &gt; 3</code> is True, so we print <code>a</code>, which is <code>8</code>.</li>\n<li><code>a = 3, b = 8</code>: <code>3 &gt; 8</code> is False, so we print <code>b</code>, which is <code>8</code>.</li>\n<li><code>a = 5, b = 5</code>: <code>5 &gt; 5</code> is False (a number is never strictly greater than itself!), so we fall into the <code>else</code> branch and print <code>b</code>, which is <code>5</code>. This is still correct, since <code>a</code> and <code>b</code> are equal anyway - it doesn't matter which one we print!</li>\n</ul>\n<p>This same two-variable comparison pattern is everywhere in real programs - for example, picking the cheaper of two prices:</p>\n<pre>price1 = 250\nprice2 = 180\nif price1 < price2:\n    print(price1)\nelse:\n    print(price2)</pre>\n<p>Here we use <code>&lt;</code> instead of <code>&gt;</code> because we want the <b>smaller</b> value this time - always think about which direction of comparison your problem actually needs!</p>\n<p><b>Your task:</b> Read two whole numbers (one per line) and print the larger of the two. If they are equal, print either one (they're the same value anyway).</p>\n<p><b>Example 1:</b></p>\n<p>Input: <pre>8\n3</pre> Output: <pre>8</pre></p>\n<p><b>Example 2:</b></p>\n<p>Input: <pre>3\n8</pre> Output: <pre>8</pre></p>\n<p><b>Example 3 (edge case - equal numbers):</b></p>\n<p>Input: <pre>5\n5</pre> Output: <pre>5</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "8\n3",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3\n8",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5\n5",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L02_014_Print One To Ten",
+   "display_name": "Print One To Ten",
+   "questiontext_html": "<p>Now for something new and powerful: <b>loops</b>! A loop lets us repeat a block of code multiple times, without copy-pasting it over and over.</p>\n<p>The <code>while</code> loop repeats its indented block <b>as long as</b> a condition stays true. We usually need a <b>counter</b> variable that we update on every repeat, so that eventually the condition becomes false and the loop stops.</p>\n<pre>i = 1\nwhile i <= 10:\n    print(i)\n    i = i + 1</pre>\n<p>Let's trace through this: <code>i</code> starts at 1. Since <code>1 &lt;= 10</code> is true, we print <code>1</code> and then increase <code>i</code> to 2. We check the condition again: <code>2 &lt;= 10</code> is still true, so we print <code>2</code>, and so on... The loop finally stops once <code>i</code> becomes 11, because <code>11 &lt;= 10</code> is false.</p>\n<p>Just like with <code>if</code>, the lines inside the loop (here, the <code>print(i)</code> and <code>i = i + 1</code>) must be indented consistently, so Python knows they belong inside the loop.</p>\n<p><b>Your task:</b> Using a <code>while</code> loop with a counter starting at 1, print the numbers 1 to 10, each on its own line.</p>\n<p><b>Expected Output:</b></p>\n<pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "",
+     "expected": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L02_015_Print One To N",
+   "display_name": "Print One To N",
+   "questiontext_html": "<p>Let's make our loop from the previous question more flexible, by reading the upper limit <code>N</code> from the user instead of always stopping at 10.</p>\n<pre>n = int(input())\ni = 1\nwhile i <= n:\n    print(i)\n    i = i + 1</pre>\n<p><b>Your task:</b> Read a whole number <code>N</code>, then use a <code>while</code> loop with a counter starting at 1 to print all numbers from 1 to <code>N</code>, each on its own line.</p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>4</pre>\n<p>Output:</p>\n<pre>1\n2\n3\n4</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "1\n2\n3\n4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "1\n2\n3\n4\n5\n6",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "L02_016_Sum Of First N Numbers",
+   "display_name": "Sum Of First N Numbers",
+   "questiontext_html": "<p>Loops become really useful when we combine them with an <b>accumulator</b> variable - a variable that keeps a running total as the loop repeats.</p>\n<pre>n = int(input())\ntotal = 0\ni = 1\nwhile i <= n:\n    total = total + i\n    i = i + 1\nprint(total)</pre>\n<p>Here, <code>total</code> starts at 0. Every time through the loop, we add the current value of <code>i</code> into <code>total</code>. By the time the loop finishes, <code>total</code> holds the sum of every number the loop visited!</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>while</code> loop and an accumulator variable, compute and print the sum of all whole numbers from 1 to <code>N</code> (inclusive).</p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>5</pre>\n<p>Output:</p>\n<pre>15</pre>\n<p>(because 1+2+3+4+5 = 15)</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "L02_017_Countdown From N",
+   "display_name": "Countdown From N",
+   "questiontext_html": "<p>Counters don't always have to count upward! We can also make a counter <b>decrease</b> on every repeat, to count downward instead.</p>\n<pre>i = n\nwhile i >= 1:\n    print(i)\n    i = i - 1</pre>\n<p>Here, <code>i</code> starts at <code>n</code> and <b>decreases by 1</b> each time, and the loop keeps going as long as <code>i</code> is still at least 1.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>while</code> loop, print the numbers from <code>N</code> down to 1, each on its own line.</p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>5</pre>\n<p>Output:</p>\n<pre>5\n4\n3\n2\n1</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "L02_018_Even Numbers Up To N",
+   "display_name": "Even Numbers Up To N",
+   "questiontext_html": "<p>Let's combine what you learned about <code>if</code> with what you just learned about <code>while</code> loops! We can put an <code>if</code> statement <b>inside</b> a loop, so that only some of the loop's repeats do something.</p>\n<pre>n = int(input())\ni = 1\nwhile i <= n:\n    if i % 2 == 0:\n        print(i)\n    i = i + 1</pre>\n<p>Notice the loop still runs from 1 up to <code>n</code> every time, but the <code>print(i)</code> line is now doubly indented - once for being inside the <code>while</code> loop, and again for being inside the <code>if</code>. This is why it only executes for the numbers where the condition <code>i % 2 == 0</code> is true.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>while</code> loop combined with an <code>if</code>, print all the even numbers from 1 to <code>N</code> (inclusive), each on its own line.</p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>10</pre>\n<p>Output:</p>\n<pre>2\n4\n6\n8\n10</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "2\n4\n6\n8\n10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "2\n4\n6",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "L02_019_Sum Of Squares",
+   "display_name": "Sum Of Squares",
+   "questiontext_html": "<p>Let's combine a loop, a counter, and some arithmetic to compute something a bit more interesting: the sum of squares from 1 to <code>N</code>.</p>\n<p>For example, the sum of squares from 1 to 3 is <code>1*1 + 2*2 + 3*3 = 1 + 4 + 9 = 14</code>.</p>\n<pre>n = int(input())\ntotal = 0\ni = 1\nwhile i <= n:\n    total = total + (i * i)\n    i = i + 1\nprint(total)</pre>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>while</code> loop and an accumulator variable, compute and print the sum of the squares of all whole numbers from 1 to <code>N</code> (inclusive).</p>\n<p><b>Example:</b></p>\n<p>Input:</p>\n<pre>3</pre>\n<p>Output:</p>\n<pre>14</pre>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "L02_020_Multiplication Table",
+   "display_name": "Multiplication Table",
+   "questiontext_html": "<p>Time for the grand finale of Lab 2! Let's write a program every one of us has done by hand in school: printing a <strong>multiplication table</strong>.</p>\n<p>Given a number <code>n</code>, we want to print its table from 1 to 10, in the exact format <code>n x i = result</code> (with no spaces around the <code>x</code> and <code>=</code> symbols), one line per multiplication.</p>\n<p>For example, if <code>n = 2</code>, the table looks like:</p>\n<pre>2x1=2\n2x2=4\n2x3=6\n2x4=8\n2x5=10\n2x6=12\n2x7=14\n2x8=16\n2x9=18\n2x10=20</pre>\n<p>You will need a <code>while</code> loop with a counter <code>i</code> going from 1 to 10, and inside the loop, use string concatenation (with <code>str()</code> to convert numbers to strings) to build and print each line in the exact required format.</p>\n<p><strong>Your task:</strong> Read a whole number <code>n</code> and print its multiplication table from 1 to 10, in the exact format shown above.</p>\n<p><strong>Example:</strong></p>\n<p>Input:</p>\n<pre>2</pre>\n<p>Output: (as shown above, 10 lines)</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "2x1=2\n2x2=4\n2x3=6\n2x4=8\n2x5=10\n2x6=12\n2x7=14\n2x8=16\n2x9=18\n2x10=20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "5x1=5\n5x2=10\n5x3=15\n5x4=20\n5x5=25\n5x6=30\n5x7=35\n5x8=40\n5x9=45\n5x10=50",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "7x1=7\n7x2=14\n7x3=21\n7x4=28\n7x5=35\n7x6=42\n7x7=49\n7x8=56\n7x9=63\n7x10=70",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "0efb4cdefb5e52c3"
+}

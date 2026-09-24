@@ -1,0 +1,510 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab4B",
+ "encrypted": false,
+ "source_xml": "Lab4B.xml",
+ "built_at": "2026-09-24T19:42:39",
+ "settings": {
+  "title": "Practice: Lab 4B",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "All questions",
+    "start": 1,
+    "count": 12
+   }
+  ]
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L04B_001_Square With Type Hints",
+   "display_name": "Square With Type Hints",
+   "questiontext_html": "<p>So far, when you defined a function, you never said what <b>type</b> of value each parameter should be, or what type the function returns. Python doesn't force you to say this - but it's very good practice to do so anyway, using <b>type hints</b>.</p>\n<pre>def square_it(a: int) -> int:\n    return a * a</pre>\n<p>Here, <code>a: int</code> tells anyone reading the code (including you, later!) that <code>a</code> is meant to be an <code>int</code>. The <code>-&gt; int</code> after the parentheses tells us the function is meant to <b>return</b> an <code>int</code>.</p>\n<p><b>Important:</b> type hints are just documentation - Python does <b>not</b> actually enforce them at runtime. If you passed in a string by mistake, Python wouldn't stop you. But they make your code far easier to understand at a glance, and many code editors use them to catch mistakes before you even run your code.</p>\n<p><b>Your task:</b> Complete the function <code>square_it</code> below (its type-hinted signature is already provided) so that it returns the square of <code>a</code>.</p>\n<p><b>Example:</b> <code>square_it(5)</code> should return <code>25</code>.</p>",
+   "answerpreload": "def square_it(a: int) -> int:\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(square_it(5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(square_it(5))",
+     "stdin": "",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(square_it(0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(square_it(-3))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L04B_002_Add With Type Hints",
+   "display_name": "Add With Type Hints",
+   "questiontext_html": "<p>A function with more than one parameter simply repeats the same <code>name: type</code> pattern for each one, separated by commas.</p>\n<pre>def add(a: int, b: int) -> int:\n    return a + b</pre>\n<p>This tells us <code>add</code> expects two <code>int</code> arguments, and returns an <code>int</code>.</p>\n<p><b>Your task:</b> Complete the function <code>add</code> below (its type-hinted signature is already provided) so that it returns the sum of <code>a</code> and <code>b</code>.</p>\n<p><b>Example:</b> <code>add(3, 4)</code> should return <code>7</code>.</p>",
+   "answerpreload": "def add(a: int, b: int) -> int:\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(add(3, 4))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(add(3, 4))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(add(-5, 10))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(add(0, 0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L04B_003_Average With Float Hints",
+   "display_name": "Average With Float Hints",
+   "questiontext_html": "<p>Type hints work the same way for <code>float</code> parameters and return types.</p>\n<pre>def average_of_two(a: float, b: float) -> float:\n    return (a + b) / 2</pre>\n<p><b>Reminder:</b> since this returns a float, round it with <code>round(value, 2)</code> before returning, to avoid tiny floating-point mismatches.</p>\n<p><b>Your task:</b> Complete the function <code>average_of_two</code> below (its type-hinted signature is already provided) so that it returns the average of <code>a</code> and <code>b</code>, rounded to 2 decimal places.</p>\n<p><b>Example:</b> <code>average_of_two(3.0, 4.0)</code> should return <code>3.5</code>.</p>",
+   "answerpreload": "def average_of_two(a: float, b: float) -> float:\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(average_of_two(3.0, 4.0))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(average_of_two(3.0, 4.0))",
+     "stdin": "",
+     "expected": "3.5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(average_of_two(10.0, 20.0))",
+     "stdin": "",
+     "expected": "15.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(average_of_two(1.0, 2.0))",
+     "stdin": "",
+     "expected": "1.5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L04B_004_Greet With String Hints",
+   "display_name": "Greet With String Hints",
+   "questiontext_html": "<p>Type hints work for <code>str</code> too - and here's a good chance to remember the difference between a function that <b>returns</b> a value and one that <b>prints</b> it.</p>\n<pre>def greet(name: str) -> str:\n    return \"Hello, \" + name + \"!\"</pre>\n<p>Notice this function <b>returns</b> a string - it does <b>not</b> call <code>print()</code> itself. The caller decides what to do with the returned value, including printing it if they want to.</p>\n<p><b>Your task:</b> Complete the function <code>greet</code> below (its type-hinted signature is already provided) so that it <b>returns</b> the string <code>Hello, &lt;name&gt;!</code> (do not print inside the function).</p>\n<p><b>Example:</b> <code>greet(\"Alice\")</code> should return <code>\"Hello, Alice!\"</code>.</p>",
+   "answerpreload": "def greet(name: str) -> str:\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(greet(\"Alice\"))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(greet(\"Alice\"))",
+     "stdin": "",
+     "expected": "Hello, Alice!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(greet(\"Bob\"))",
+     "stdin": "",
+     "expected": "Hello, Bob!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(greet(\"Zoe\"))",
+     "stdin": "",
+     "expected": "Hello, Zoe!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L04B_005_Is Even With Bool Hint",
+   "display_name": "Is Even With Bool Hint",
+   "questiontext_html": "<p>Python also has a <code>bool</code> type, for values that are either <code>True</code> or <code>False</code> - exactly what a condition like <code>n % 2 == 0</code> evaluates to. Type hints can use <code>bool</code> just like any other type.</p>\n<pre>def is_even(n: int) -> bool:\n    return n % 2 == 0</pre>\n<p>Here, the return type <code>-&gt; bool</code> tells us this function always returns <code>True</code> or <code>False</code>, never a number or string.</p>\n<p><b>Your task:</b> Complete the function <code>is_even</code> below (its type-hinted signature is already provided) so that it returns <code>True</code> if <code>n</code> is even, or <code>False</code> if it is odd.</p>\n<p><b>Example:</b> <code>is_even(4)</code> should return <code>True</code>. <code>is_even(7)</code> should return <code>False</code>.</p>",
+   "answerpreload": "def is_even(n: int) -> bool:\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(is_even(4))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_even(4))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_even(7))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_even(0))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L04B_006_List Sum With List Hint",
+   "display_name": "List Sum With List Hint",
+   "questiontext_html": "<p>A parameter that's meant to be a list can be hinted with <code>list</code>, the same way you'd hint <code>int</code> or <code>str</code>.</p>\n<pre>def list_sum(lst: list) -> int:\n    total = 0\n    for value in lst:\n        total = total + value\n    return total</pre>\n<p>This tells us <code>list_sum</code> expects a <code>list</code> argument, and returns an <code>int</code> (the sum).</p>\n<p><b>Your task:</b> Complete the function <code>list_sum</code> below (its type-hinted signature is already provided) so that it returns the sum of the elements of <code>lst</code>, using a loop.</p>\n<p><b>Example:</b> <code>list_sum([4, 8, 15, 16, 23])</code> should return <code>66</code>.</p>",
+   "answerpreload": "def list_sum(lst: list) -> int:\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_sum([4, 8, 15, 16, 23]))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(list_sum([4, 8, 15, 16, 23]))",
+     "stdin": "",
+     "expected": "66",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([1, 1, 1, 1]))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_sum(lst))",
+     "stdin": "10 20 30",
+     "expected": "60",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L04B_007_Cube It From Scratch",
+   "display_name": "Cube It From Scratch",
+   "questiontext_html": "<p>Now let's write a whole function ourselves, signature and all - including its type hints. Nothing is pre-filled this time.</p>\n<p><b>Your task:</b> Define a function named <code>cube_it</code> that takes one parameter <code>a</code> (an <code>int</code>) and returns its cube (<code>a * a * a</code>), also an <code>int</code>. Write the full <code>def</code> line yourself, with the correct type hints for the parameter and the return value.</p>\n<p><b>Example:</b> <code>cube_it(3)</code> should return <code>27</code>.</p>",
+   "answerpreload": "# Define a function named cube_it that takes one int parameter: a\n# It should return a cubed (a * a * a), also an int\n# Remember to write the full function definition yourself, including type hints\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(cube_it(3))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(cube_it(3))",
+     "stdin": "",
+     "expected": "27",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(cube_it(0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(cube_it(-2))",
+     "stdin": "",
+     "expected": "-8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L04B_008_Is Positive From Scratch",
+   "display_name": "Is Positive From Scratch",
+   "questiontext_html": "<p><b>Your task:</b> Define a function named <code>is_positive</code> that takes one parameter <code>n</code> (an <code>int</code>) and returns <code>True</code> if <code>n</code> is greater than 0, or <code>False</code> otherwise. Write the full <code>def</code> line yourself, with the correct type hints (the return type here is <code>bool</code>).</p>\n<p><b>Example:</b> <code>is_positive(5)</code> should return <code>True</code>. <code>is_positive(-2)</code> should return <code>False</code>. <code>is_positive(0)</code> should return <code>False</code>.</p>",
+   "answerpreload": "# Define a function named is_positive that takes one int parameter: n\n# It should return True if n is greater than 0, or False otherwise (return type bool)\n# Remember to write the full function definition yourself, including type hints\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(is_positive(5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_positive(5))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_positive(-2))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_positive(0))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L04B_009_List Max From Scratch",
+   "display_name": "List Max From Scratch",
+   "questiontext_html": "<p><b>Your task:</b> Define a function named <code>list_max</code> that takes one parameter <code>lst</code> (a <code>list</code>) and returns its largest element (an <code>int</code>), using a loop. Write the full <code>def</code> line yourself, with the correct type hints.</p>\n<p><b>Example:</b> <code>list_max([7, 23, 4, 19, 31, 8])</code> should return <code>31</code>.</p>",
+   "answerpreload": "# Define a function named list_max that takes one list parameter: lst\n# It should return the largest element of lst (an int)\n# Remember to write the full function definition yourself, including type hints\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_max([7, 23, 4, 19, 31, 8]))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(list_max([7, 23, 4, 19, 31, 8]))",
+     "stdin": "",
+     "expected": "31",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_max([5, 5, 5]))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_max(lst))",
+     "stdin": "3 90 12 45",
+     "expected": "90",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L04B_010_Add Hints To Multiply",
+   "display_name": "Add Hints To Multiply",
+   "questiontext_html": "<p>Below is a function that already works correctly, but its signature has <b>no type hints</b> at all.</p>\n<pre>def multiply(a, b):\n    return a * b</pre>\n<p><b>Your task:</b> Rewrite the signature of <code>multiply</code> to add the correct type hints - both parameters are meant to be <code>int</code>, and the function returns an <code>int</code>. <b>Do not change the function's logic</b> - only add the type hints to the <code>def</code> line.</p>\n<p><b>Example:</b> <code>multiply(3, 4)</code> should still return <code>12</code>.</p>",
+   "answerpreload": "def multiply(a, b):\n    return a * b\n\n# ---- Your task: rewrite the def line above to add type hints, then keep the same body ----\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(multiply(3, 4))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(multiply(3, 4))",
+     "stdin": "",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(multiply(0, 5))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(multiply(-2, 6))",
+     "stdin": "",
+     "expected": "-12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L04B_011_Add Hints To Is Odd",
+   "display_name": "Add Hints To Is Odd",
+   "questiontext_html": "<p>Below is a function that already works correctly, but its signature has <b>no type hints</b> at all.</p>\n<pre>def is_odd(n):\n    return n % 2 != 0</pre>\n<p><b>Your task:</b> Rewrite the signature of <code>is_odd</code> to add the correct type hints - the parameter is meant to be <code>int</code>, and the function returns a <code>bool</code>. <b>Do not change the function's logic</b> - only add the type hints to the <code>def</code> line.</p>\n<p><b>Example:</b> <code>is_odd(7)</code> should still return <code>True</code>.</p>",
+   "answerpreload": "def is_odd(n):\n    return n % 2 != 0\n\n# ---- Your task: rewrite the def line above to add type hints, then keep the same body ----\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(is_odd(7))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_odd(7))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_odd(4))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_odd(0))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L04B_012_Add Hints To Upper Greeting",
+   "display_name": "Add Hints To Upper Greeting",
+   "questiontext_html": "<p>Below is a function that already works correctly, but its signature has <b>no type hints</b> at all.</p>\n<pre>def upper_greeting(name):\n    return \"HELLO \" + name.upper()</pre>\n<p>(Here, <code>.upper()</code> is a small built-in string tool that converts text to uppercase - e.g. <code>\"bob\".upper()</code> gives <code>\"BOB\"</code>.)</p>\n<p><b>Your task:</b> Rewrite the signature of <code>upper_greeting</code> to add the correct type hints - the parameter is meant to be <code>str</code>, and the function returns a <code>str</code>. <b>Do not change the function's logic</b> - only add the type hints to the <code>def</code> line.</p>\n<p><b>Example:</b> <code>upper_greeting(\"bob\")</code> should still return <code>\"HELLO BOB\"</code>.</p>",
+   "answerpreload": "def upper_greeting(name):\n    return \"HELLO \" + name.upper()\n\n# ---- Your task: rewrite the def line above to add type hints, then keep the same body ----\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(upper_greeting(\"bob\"))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(upper_greeting(\"bob\"))",
+     "stdin": "",
+     "expected": "HELLO BOB",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(upper_greeting(\"alice\"))",
+     "stdin": "",
+     "expected": "HELLO ALICE",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(upper_greeting(\"Zoe\"))",
+     "stdin": "",
+     "expected": "HELLO ZOE",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "2a383f14bad6ba96"
+}

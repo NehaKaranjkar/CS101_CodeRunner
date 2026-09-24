@@ -1,0 +1,930 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab5",
+ "encrypted": false,
+ "source_xml": "Lab5.xml",
+ "built_at": "2026-09-24T19:42:39",
+ "settings": {
+  "title": "Practice: Lab 5",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "All questions",
+    "start": 1,
+    "count": 15
+   }
+  ]
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L05_001_Sum One To N Recursive",
+   "display_name": "Sum One To N Recursive",
+   "questiontext_html": "<p>Welcome to Lab 5! In Lab 4 you saw a first taste of <b>recursion</b> - a function that calls itself. In this lab, we'll practice recursion properly, on a whole series of classic problems.</p>\n<p><b>The most important habit to build with recursion:</b> before writing any code, always ask yourself two questions:</p>\n<ol>\n<li><b>What is the simplest possible case, where I can answer directly without recursing at all?</b> This is the <b>base case</b> (or \"termination condition\") - without it, your function would call itself forever and crash with an error.</li>\n<li><b>How can I express the answer to a bigger case in terms of a smaller, similar case?</b> This is the <b>recursive case</b> - it should always move <i>closer</i> to the base case.</li>\n</ol>\n<p>Let's practice this on a problem you've solved before with loops: summing all positive integers from 1 to <code>n</code>.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>sum_upto(n) = n + sum_upto(n - 1)</pre>\n<p>This says: the sum from 1 to <code>n</code> is <code>n</code> itself, plus the sum from 1 to <code>n-1</code> (a smaller version of the same problem).</p>\n<p><b>Termination condition (base case):</b> we can't keep subtracting 1 forever - we need a point where we stop recursing and answer directly. Here, that point is <code>n == 1</code>: the sum from 1 to 1 is just <code>1</code>, with no need to recurse further.</p>\n<p><b>Your task:</b> Define a recursive function named <code>sum_upto</code> that takes one parameter <code>n</code>, a <b>positive integer (int &gt; 0)</b>, and returns the sum of all positive integers from 1 to <code>n</code> (inclusive), using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>sum_upto(5)</code> should return <code>15</code> (1+2+3+4+5).</p>\n<p><b>Base case example:</b> <code>sum_upto(1)</code> should return <code>1</code> directly (no recursion needed).</p>",
+   "answerpreload": "def sum_upto(n):\n    # write your code here (remember: base case first, then the recursive case)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(sum_upto(5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_upto(5))",
+     "stdin": "",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_upto(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_upto(10))",
+     "stdin": "",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_upto(20))",
+     "stdin": "",
+     "expected": "210",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_upto(7))",
+     "stdin": "",
+     "expected": "28",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L05_002_Factorial Recursive",
+   "display_name": "Factorial Recursive",
+   "questiontext_html": "<p>The <b>factorial</b> of a non-negative integer <code>n</code>, written <code>n!</code>, is the product of every positive integer from 1 to <code>n</code>. For example, <code>4! = 4 * 3 * 2 * 1 = 24</code>. By definition, <code>0! = 1</code>.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>factorial(n) = n * factorial(n - 1)</pre>\n<p>This says: <code>n!</code> is <code>n</code> multiplied by <code>(n-1)!</code> - a smaller version of the same problem.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>n == 0</code>, since <code>0!</code> is defined directly as <code>1</code> - there's nothing smaller left to multiply.</p>\n<p><b>Your task:</b> Define a recursive function named <code>factorial</code> that takes one parameter <code>n</code>, a <b>non-negative integer (int &gt;= 0)</b>, and returns <code>n!</code>, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>factorial(4)</code> should return <code>24</code>.</p>\n<p><b>Base case example:</b> <code>factorial(0)</code> should return <code>1</code> directly (no recursion needed).</p>",
+   "answerpreload": "def factorial(n):\n    # write your code here (remember: base case first, then the recursive case)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(factorial(4))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(factorial(4))",
+     "stdin": "",
+     "expected": "24",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(factorial(0))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(factorial(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(factorial(6))",
+     "stdin": "",
+     "expected": "720",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(factorial(8))",
+     "stdin": "",
+     "expected": "40320",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L05_003_Power Recursive",
+   "display_name": "Power Recursive",
+   "questiontext_html": "<p>Let's compute <code>base</code> raised to a non-negative integer power <code>exp</code>, without using Python's <code>**</code> operator.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>power(base, exp) = base * power(base, exp - 1)</pre>\n<p>This says: <code>base</code> raised to <code>exp</code> is <code>base</code> multiplied by <code>base</code> raised to <code>exp - 1</code> - each recursive call reduces the exponent by 1, moving closer to the base case.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>exp == 0</code>, since anything raised to the power 0 is <code>1</code>, by definition.</p>\n<p><b>Your task:</b> Define a recursive function named <code>power</code> that takes two parameters <code>base</code> and <code>exp</code> (a <b>non-negative integer, int &gt;= 0</b>) and returns <code>base</code> raised to the power <code>exp</code>, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>power(2, 5)</code> should return <code>32</code>.</p>\n<p><b>Base case example:</b> <code>power(7, 0)</code> should return <code>1</code> directly (no recursion needed).</p>",
+   "answerpreload": "def power(base, exp):\n    # write your code here (remember: base case first, then the recursive case)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(power(2, 5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(power(2, 5))",
+     "stdin": "",
+     "expected": "32",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(power(7, 0))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(power(3, 1))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(power(5, 3))",
+     "stdin": "",
+     "expected": "125",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(power(-2, 3))",
+     "stdin": "",
+     "expected": "-8",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L05_004_GCD Recursive",
+   "display_name": "GCD Recursive",
+   "questiontext_html": "<p>The <b>Greatest Common Divisor (GCD)</b> of two positive integers is the largest positive integer that divides <b>both</b> of them exactly, with no remainder. For example, the GCD of 12 and 18 is 6, since 6 is the biggest number that divides both exactly.</p>\n<p>Over 2000 years ago, the mathematician Euclid discovered a very elegant recursive way to compute this, now called the <b>Euclidean algorithm</b>.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>gcd(a, b) = gcd(b, a % b)</pre>\n<p>This says: the GCD of <code>a</code> and <code>b</code> is the same as the GCD of <code>b</code> and the remainder of <code>a</code> divided by <code>b</code> - a smaller pair of numbers, since a remainder is always less than the divisor.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>b == 0</code>. At that point, <code>a</code> itself is the answer - there's nothing left to divide by.</p>\n<p><b>Your task:</b> Define a recursive function named <code>gcd</code> that takes two parameters <code>a</code> and <code>b</code>, both <b>positive integers (int &gt; 0)</b>, and returns their greatest common divisor, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>gcd(12, 18)</code> should return <code>6</code>.</p>\n<p><b>Trace through (a=12, b=18):</b> <code>gcd(12, 18) = gcd(18, 12 % 18) = gcd(18, 12)</code>. Then <code>gcd(18, 12) = gcd(12, 18 % 12) = gcd(12, 6)</code>. Then <code>gcd(12, 6) = gcd(6, 12 % 6) = gcd(6, 0)</code>. Since <code>b == 0</code> now, we hit the base case and return <code>a</code>, which is <code>6</code>.</p>",
+   "answerpreload": "def gcd(a, b):\n    # write your code here (remember: base case first, then the recursive case)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(gcd(12, 18))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(gcd(12, 18))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(gcd(7, 7))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(gcd(17, 5))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(gcd(48, 18))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(gcd(100, 75))",
+     "stdin": "",
+     "expected": "25",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L05_005_Fibonacci Recursive",
+   "display_name": "Fibonacci Recursive",
+   "questiontext_html": "<p>The <b>Fibonacci sequence</b> is a famous sequence of numbers where each term is the sum of the two terms before it, starting with <code>0, 1, 1, 2, 3, 5, 8, 13, ...</code> (the 0th term is 0, the 1st term is 1, the 2nd term is <code>0+1=1</code>, the 3rd term is <code>1+1=2</code>, and so on).</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>fib(n) = fib(n - 1) + fib(n - 2)</pre>\n<p>This says: the <code>n</code>-th Fibonacci number is the sum of the two Fibonacci numbers before it. Notice this recursive case calls itself <b>twice</b>.</p>\n<p><b>Termination condition (base cases):</b> this problem needs <b>two</b> base cases, not just one - <code>fib(0)</code> is defined directly as <code>0</code>, and <code>fib(1)</code> is defined directly as <code>1</code>. Without both of these, the two-way recursion above wouldn't have a safe place to stop.</p>\n<p><b>Your task:</b> Define a recursive function named <code>fib</code> that takes one parameter <code>n</code>, a <b>non-negative integer (int &gt;= 0)</b>, and returns the <code>n</code>-th Fibonacci number (0-indexed), using the recursive breakup and base cases given above.</p>\n<p><b>Example:</b> <code>fib(6)</code> should return <code>8</code>.</p>\n<p><b>Base case examples:</b> <code>fib(0)</code> should return <code>0</code>, and <code>fib(1)</code> should return <code>1</code>, both directly (no recursion needed).</p>",
+   "answerpreload": "def fib(n):\n    # write your code here (remember: this problem needs TWO base cases)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(fib(6))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(fib(6))",
+     "stdin": "",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(fib(0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(fib(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(fib(10))",
+     "stdin": "",
+     "expected": "55",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(fib(12))",
+     "stdin": "",
+     "expected": "144",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L05_006_Sum Of Digits Recursive",
+   "display_name": "Sum Of Digits Recursive",
+   "questiontext_html": "<p>Let's write a recursive function that adds up the digits of a number. For example, the digits of <code>1234</code> are <code>1, 2, 3, 4</code>, which sum to <code>10</code>.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>sum_of_digits(n) = (n % 10) + sum_of_digits(n // 10)</pre>\n<p>This says: the digit sum of <code>n</code> is its <b>last</b> digit (<code>n % 10</code>) plus the digit sum of everything <i>except</i> the last digit (<code>n // 10</code>) - a number with one fewer digit, moving closer to the base case.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>n &lt; 10</code>, i.e. <code>n</code> is already a single digit - its digit sum is just itself, with no more digits to peel off.</p>\n<p><b>Your task:</b> Define a recursive function named <code>sum_of_digits</code> that takes one parameter <code>n</code>, a <b>positive integer (int &gt; 0)</b>, and returns the sum of its digits, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>sum_of_digits(1234)</code> should return <code>10</code>.</p>\n<p><b>Base case example:</b> <code>sum_of_digits(7)</code> should return <code>7</code> directly (no recursion needed).</p>",
+   "answerpreload": "def sum_of_digits(n):\n    # write your code here (remember: base case first, then the recursive case)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(sum_of_digits(1234))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_of_digits(1234))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_digits(7))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_digits(999))",
+     "stdin": "",
+     "expected": "27",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_digits(50))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_digits(80507))",
+     "stdin": "",
+     "expected": "20",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L05_007_Count Digits Recursive",
+   "display_name": "Count Digits Recursive",
+   "questiontext_html": "<p>Let's write a recursive function that counts how many digits a number has. For example, <code>305</code> has 3 digits.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>count_digits(n) = 1 + count_digits(n // 10)</pre>\n<p>This says: the digit count of <code>n</code> is <code>1</code> (for the digit we're \"using up\") plus the digit count of everything remaining after removing the last digit (<code>n // 10</code>).</p>\n<p><b>Termination condition (base case):</b> we stop when <code>n &lt; 10</code>, i.e. <code>n</code> is already a single digit - it has exactly 1 digit, with no more digits to peel off.</p>\n<p><b>Your task:</b> Define a recursive function named <code>count_digits</code> that takes one parameter <code>n</code>, a <b>positive integer (int &gt; 0)</b>, and returns how many digits it has, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>count_digits(305)</code> should return <code>3</code>.</p>\n<p><b>Base case example:</b> <code>count_digits(7)</code> should return <code>1</code> directly (no recursion needed).</p>",
+   "answerpreload": "def count_digits(n):\n    # write your code here (remember: base case first, then the recursive case)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(count_digits(305))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_digits(305))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(7))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(1000000))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(42))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(99999))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L05_008_Collatz Steps Recursive",
+   "display_name": "Collatz Steps Recursive",
+   "questiontext_html": "<p>The <b>Collatz conjecture</b> is a famous unsolved problem in mathematics. Starting from any positive integer <code>n</code>, repeat the following rule: if <code>n</code> is even, divide it by 2; if <code>n</code> is odd, multiply it by 3 and add 1. Keep repeating with the new value. It is conjectured (though not proven!) that no matter which positive integer you start with, you will always eventually reach <code>1</code>.</p>\n<p>For example, starting from <code>6</code>: <code>6 -&gt; 3 -&gt; 10 -&gt; 5 -&gt; 16 -&gt; 8 -&gt; 4 -&gt; 2 -&gt; 1</code>. That took <b>8 steps</b> to reach 1.</p>\n<p><b>Recursive breakup (the hint formula):</b> we want to count the number of steps needed to reach 1.</p>\n<pre>if n is even:\n    collatz_steps(n) = 1 + collatz_steps(n // 2)\nif n is odd:\n    collatz_steps(n) = 1 + collatz_steps(3 * n + 1)</pre>\n<p>Each recursive call performs one \"step\" of the Collatz rule, and adds 1 to the step count.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>n == 1</code> - we have already arrived, so it takes <code>0</code> further steps.</p>\n<p><b>Your task:</b> Define a recursive function named <code>collatz_steps</code> that takes one parameter <code>n</code>, a <b>positive integer (int &gt; 0)</b>, and returns the number of steps needed to reach 1 using the Collatz rule, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>collatz_steps(6)</code> should return <code>8</code>.</p>\n<p><b>Base case example:</b> <code>collatz_steps(1)</code> should return <code>0</code> directly (no recursion needed - we're already there).</p>",
+   "answerpreload": "def collatz_steps(n):\n    # write your code here (remember: base case first, then the two recursive cases)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(collatz_steps(6))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(collatz_steps(6))",
+     "stdin": "",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(collatz_steps(1))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(collatz_steps(7))",
+     "stdin": "",
+     "expected": "16",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(collatz_steps(27))",
+     "stdin": "",
+     "expected": "111",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(collatz_steps(10))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L05_009_List Sum Recursive",
+   "display_name": "List Sum Recursive",
+   "questiontext_html": "<p>Let's apply recursion to lists. Since we haven't covered how to build or shrink lists yet, we'll use a trick: instead of recursing on a smaller <b>list</b>, we recurse on a growing <b>index</b> - the same list is passed every time, but the index moves one step closer to the end with each call.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>list_sum(lst, index) = lst[index] + list_sum(lst, index + 1)</pre>\n<p>This says: the sum of the list from position <code>index</code> onward is the element at <code>index</code>, plus the sum of everything from <code>index + 1</code> onward.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>index == len(lst)</code> - we've walked off the end of the list, so there's nothing left to add, and we return <code>0</code>.</p>\n<p><b>Your task:</b> Define a recursive function named <code>list_sum</code> that takes a list <code>lst</code> and a starting index <code>index</code>, and returns the sum of all elements from position <code>index</code> to the end of the list, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>list_sum([4, 8, 15, 16, 23], 0)</code> should return <code>66</code> (the sum of the whole list, starting from index 0).</p>\n<p><b>Base case example:</b> <code>list_sum([5], 1)</code> should return <code>0</code> directly - index 1 is already past the end of a 1-element list.</p>",
+   "answerpreload": "def list_sum(lst, index):\n    # write your code here (remember: base case first, then the recursive case)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_sum([4, 8, 15, 16, 23], 0))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(list_sum([4, 8, 15, 16, 23], 0))",
+     "stdin": "",
+     "expected": "66",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([5], 1))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([1, 1, 1, 1], 0))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_sum(lst, 0))",
+     "stdin": "10 20 30",
+     "expected": "60",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([3, 7, 2, 9, 4], 2))",
+     "stdin": "",
+     "expected": "15",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L05_010_List Max Recursive",
+   "display_name": "List Max Recursive",
+   "questiontext_html": "<p>Let's find the largest element of a list recursively, using the same index-based trick from the previous question.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>list_max(lst, index) = the larger of: lst[index], and list_max(lst, index + 1)</pre>\n<p>This says: the largest element from position <code>index</code> onward is either the element at <code>index</code> itself, or the largest of everything <i>after</i> it - whichever is bigger.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>index</code> reaches the <b>last</b> valid position (<code>len(lst) - 1</code>) - at that point, there's only one element left to consider, so it must be the largest of what remains.</p>\n<p><b>Your task:</b> Define a recursive function named <code>list_max</code> that takes a list <code>lst</code> and a starting index <code>index</code>, and returns the largest element from position <code>index</code> to the end of the list, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>list_max([7, 23, 4, 19, 31, 8], 0)</code> should return <code>31</code>.</p>\n<p><b>Base case example:</b> <code>list_max([7, 23, 4], 2)</code> should return <code>4</code> directly - index 2 is the last position in this 3-element list.</p>",
+   "answerpreload": "def list_max(lst, index):\n    # write your code here (remember: base case first, then the recursive case)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_max([7, 23, 4, 19, 31, 8], 0))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(list_max([7, 23, 4, 19, 31, 8], 0))",
+     "stdin": "",
+     "expected": "31",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_max([7, 23, 4], 2))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_max([5, 5, 5], 0))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_max(lst, 0))",
+     "stdin": "3 90 12 45",
+     "expected": "90",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_max([-3, -8, -1, -20], 0))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L05_011_List Min Recursive",
+   "display_name": "List Min Recursive",
+   "questiontext_html": "<p>Now let's find the <b>smallest</b> element of a list recursively - the mirror image of the previous question, using the same index-based technique.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>list_min(lst, index) = the smaller of: lst[index], and list_min(lst, index + 1)</pre>\n<p>This says: the smallest element from position <code>index</code> onward is either the element at <code>index</code> itself, or the smallest of everything <i>after</i> it - whichever is smaller.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>index</code> reaches the <b>last</b> valid position (<code>len(lst) - 1</code>) - at that point, there's only one element left to consider, so it must be the smallest of what remains.</p>\n<p><b>Your task:</b> Define a recursive function named <code>list_min</code> that takes a list <code>lst</code> and a starting index <code>index</code>, and returns the smallest element from position <code>index</code> to the end of the list, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>list_min([17, 3, 28, 9, 41, 6], 0)</code> should return <code>3</code>.</p>\n<p><b>Base case example:</b> <code>list_min([17, 3, 28], 2)</code> should return <code>28</code> directly - index 2 is the last position in this 3-element list.</p>",
+   "answerpreload": "def list_min(lst, index):\n    # write your code here (remember: base case first, then the recursive case)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_min([17, 3, 28, 9, 41, 6], 0))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(list_min([17, 3, 28, 9, 41, 6], 0))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_min([17, 3, 28], 2))",
+     "stdin": "",
+     "expected": "28",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_min([5, 5, 5], 0))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_min(lst, 0))",
+     "stdin": "30 9 45 3 12",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_min([-3, -8, -1, -20], 0))",
+     "stdin": "",
+     "expected": "-20",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L05_012_List Contains Recursive",
+   "display_name": "List Contains Recursive",
+   "questiontext_html": "<p>Let's write a recursive version of a membership search - checking if a value appears anywhere in a list, without using the <code>in</code> operator.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>list_contains(lst, index, target):\n    if lst[index] == target: return True\n    otherwise: list_contains(lst, index + 1, target)</pre>\n<p>This says: <code>target</code> is found from position <code>index</code> onward if it's sitting right at <code>index</code>, <b>or</b> if it's found somewhere from <code>index + 1</code> onward.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>index == len(lst)</code> - we've walked off the end of the list without finding a match, so we return <code>False</code>.</p>\n<p><b>Your task:</b> Define a recursive function named <code>list_contains</code> that takes a list <code>lst</code>, a starting index <code>index</code>, and a value <code>target</code>, and returns <code>True</code> if <code>target</code> appears anywhere from position <code>index</code> to the end of the list, or <code>False</code> otherwise. Write the full function definition yourself, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>list_contains([6, 19, 3, 27, 11, 8], 0, 27)</code> should return <code>True</code>.</p>\n<p><b>Base case example:</b> <code>list_contains([6, 19, 3, 27, 11, 8], 0, 100)</code> should return <code>False</code> (100 is not in the list at all).</p>",
+   "answerpreload": "# Define a recursive function named list_contains that takes:\n#   lst (a list), index (an int - the starting position), target (the value to search for)\n# It should return True if target appears anywhere from position index to the end of lst,\n# or False otherwise. Remember: base case first, then the recursive case.\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_contains([6, 19, 3, 27, 11, 8], 0, 27))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(list_contains([6, 19, 3, 27, 11, 8], 0, 27))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_contains([6, 19, 3, 27, 11, 8], 0, 100))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_contains([6, 19, 3, 27, 11, 8], 3, 3))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_contains(lst, 0, 9))",
+     "stdin": "3 90 12 45",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_contains([1, 2, 3], 0, 1))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L05_013_Count Occurrences Recursive",
+   "display_name": "Count Occurrences Recursive",
+   "questiontext_html": "<p>Let's extend the previous question: instead of just checking <b>whether</b> a value appears, let's count <b>how many times</b> it appears in the list, from a given starting position onward.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>count_occurrences(lst, index, target):\n    if lst[index] == target: 1 + count_occurrences(lst, index + 1, target)\n    otherwise: count_occurrences(lst, index + 1, target)</pre>\n<p>This says: the count from position <code>index</code> onward is <code>1</code> more than the count from <code>index + 1</code> onward, <i>if</i> the element at <code>index</code> matches <code>target</code> - otherwise, it's exactly the same as the count from <code>index + 1</code> onward.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>index == len(lst)</code> - we've walked off the end of the list, so there are <code>0</code> more matches to count.</p>\n<p><b>Your task:</b> Define a recursive function named <code>count_occurrences</code> that takes a list <code>lst</code>, a starting index <code>index</code>, and a value <code>target</code>, and returns how many times <code>target</code> appears from position <code>index</code> to the end of the list. Write the full function definition yourself, using the recursive breakup and base case given above.</p>\n<p><b>Example:</b> <code>count_occurrences([4, 7, 4, 2, 4, 9, 7], 0, 4)</code> should return <code>3</code>.</p>\n<p><b>Base case example:</b> <code>count_occurrences([4, 7, 4, 2, 4, 9, 7], 0, 100)</code> should return <code>0</code> (100 doesn't appear at all).</p>",
+   "answerpreload": "# Define a recursive function named count_occurrences that takes:\n#   lst (a list), index (an int - the starting position), target (the value to count)\n# It should return how many times target appears from position index to the end of lst.\n# Remember: base case first, then the recursive case.\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(count_occurrences([4, 7, 4, 2, 4, 9, 7], 0, 4))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_occurrences([4, 7, 4, 2, 4, 9, 7], 0, 4))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_occurrences([4, 7, 4, 2, 4, 9, 7], 0, 100))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_occurrences([4, 7, 4, 2, 4, 9, 7], 2, 4))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_occurrences(lst, 0, 5))",
+     "stdin": "5 3 5 5 1",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_occurrences([1, 1, 1, 1], 0, 1))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L05_014_Is Sorted Recursive",
+   "display_name": "Is Sorted Recursive",
+   "questiontext_html": "<p>Let's check whether a list's elements are arranged in increasing (ascending) order, by comparing each element to the one right after it - using the same index-based recursion technique from this lab.</p>\n<p><b>Recursive breakup (the hint formula):</b></p>\n<pre>is_sorted(lst, index):\n    if lst[index] > lst[index + 1]: False\n    otherwise: is_sorted(lst, index + 1)</pre>\n<p>This says: the list from position <code>index</code> onward is sorted only if <code>lst[index]</code> is not bigger than the very next element, <b>and</b> everything from <code>index + 1</code> onward is also sorted.</p>\n<p><b>Termination condition (base case):</b> we stop when <code>index == len(lst) - 1</code> - we've reached the last element, and with nothing after it left to compare, it can't violate the ordering, so we return <code>True</code>.</p>\n<p><b>Your task:</b> Define a recursive function named <code>is_sorted</code> that takes a list <code>lst</code> and a starting index <code>index</code>, and returns <code>True</code> if the elements from position <code>index</code> to the end of the list are in ascending order (equal neighbouring values still count as sorted), or <code>False</code> otherwise. Write the full function definition yourself, using the recursive breakup and base case given above.</p>\n<p><b>Example 1:</b> <code>is_sorted([3, 8, 15, 15, 22, 30], 0)</code> should return <code>True</code>.</p>\n<p><b>Example 2:</b> <code>is_sorted([5, 1, 9, 3, 7], 0)</code> should return <code>False</code>.</p>",
+   "answerpreload": "# Define a recursive function named is_sorted that takes:\n#   lst (a list), index (an int - the starting position)\n# It should return True if lst[index:] is in ascending order, or False otherwise.\n# Remember: base case first, then the recursive case.\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(is_sorted([3, 8, 15, 15, 22, 30], 0))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_sorted([3, 8, 15, 15, 22, 30], 0))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_sorted([5, 1, 9, 3, 7], 0))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_sorted([7], 0))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(is_sorted(lst, 0))",
+     "stdin": "1 2 3 4 5",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_sorted([10, 9, 8, 7], 0))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L05_015_Recursive Selection Sort",
+   "display_name": "Recursive Selection Sort",
+   "questiontext_html": "<p>For our final question, let's sort an entire list using recursion - a technique called <b>selection sort</b>. The idea: find the smallest element, put it at the very front, and then (here's the recursive part) sort <b>everything else</b> the exact same way.</p>\n<p>Since we haven't covered slicing lists yet, we need two small list tools to build the \"everything else\" part ourselves:</p>\n<ul>\n<li><code>lst.append(x)</code> adds the value <code>x</code> onto the <b>end</b> of the list <code>lst</code>. For example, if <code>lst = [1, 2]</code>, then <code>lst.append(9)</code> changes <code>lst</code> to <code>[1, 2, 9]</code>. This is how we'll build up a brand new list, one element at a time, inside a loop.</li>\n<li><code>lst.index(x)</code> returns the position (index) where the value <code>x</code> <b>first</b> appears in <code>lst</code>. For example, if <code>lst = [7, 3, 9]</code>, then <code>lst.index(9)</code> returns <code>2</code>. This lets us find <i>where</i> the smallest value is sitting, so we can move it to the front.</li>\n</ul>\n<p><b>The algorithm, step by step:</b></p>\n<ol>\n<li>If the list has 1 or 0 elements, it's already sorted - just return it as-is. <b>(This is our base case / termination condition.)</b></li>\n<li>Otherwise, find the smallest value in the list (you already know how to do this from an earlier question in this lab).</li>\n<li>Find the index of that smallest value using <code>lst.index(...)</code>.</li>\n<li>Swap it with whatever is currently at position 0, so the smallest value ends up at the front. A swap needs <b>two</b> assignments, in the right order: first remember the old value at position 0 (e.g. <code>old_first = lst[0]</code>), then set <code>lst[0] = smallest</code>, and finally put the remembered old value into the position the smallest value came from (e.g. <code>lst[smallest_index] = old_first</code>). If you only do one of these assignments, you will lose a value!</li>\n<li>Build a new list containing everything <b>except</b> the new first element, by looping from index 1 to the end and using <code>.append()</code> to copy each value across.</li>\n<li>Recursively sort that new \"remaining\" list - <b>this is the recursive case</b>, and it is a smaller problem (one element shorter) than what we started with.</li>\n<li>Build and return the final result: a new list starting with the smallest value, followed by every element of the (now sorted) remaining list - again built up with <code>.append()</code>.</li>\n</ol>\n<p><b>Your task:</b> Define a recursive function named <code>selection_sort</code> that takes one parameter <code>lst</code> (a list of numbers) and returns a <b>new list</b> containing the same numbers, sorted in ascending order, using the algorithm described above.</p>\n<p><b>Example:</b> <code>selection_sort([5, 3, 8, 1])</code> should return <code>[1, 3, 5, 8]</code>.</p>\n<p><b>Base case example:</b> <code>selection_sort([7])</code> should return <code>[7]</code> directly (already sorted, nothing to do).</p>",
+   "answerpreload": "# Define a recursive function named selection_sort that takes one parameter: lst (a list)\n# It should return a NEW list containing the same numbers, sorted in ascending order.\n# Follow the 7-step algorithm described in the question above.\n# Remember: base case first (a list of length 0 or 1 is already sorted), then the recursive case.\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(selection_sort([5, 3, 8, 1]))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(selection_sort([5, 3, 8, 1]))",
+     "stdin": "",
+     "expected": "[1, 3, 5, 8]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(selection_sort([7]))",
+     "stdin": "",
+     "expected": "[7]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(selection_sort([4, 4, 2, 2]))",
+     "stdin": "",
+     "expected": "[2, 2, 4, 4]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(selection_sort(lst))",
+     "stdin": "9 1 8 2 7 3",
+     "expected": "[1, 2, 3, 7, 8, 9]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(selection_sort([-3, 5, -8, 0, 2]))",
+     "stdin": "",
+     "expected": "[-8, -3, 0, 2, 5]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "46799a1d57a9a8f0"
+}

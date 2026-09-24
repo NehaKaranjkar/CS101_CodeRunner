@@ -1,0 +1,3490 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab3",
+ "encrypted": false,
+ "source_xml": "Lab3.xml",
+ "built_at": "2026-09-24T19:42:39",
+ "settings": {
+  "title": "Practice: Lab 3",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "All questions",
+    "start": 1,
+    "count": 40
+   }
+  ]
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L03_001_Print One To N While",
+   "display_name": "Print One To N While",
+   "questiontext_html": "<p>Welcome to Lab 3! So far, every program you've written has done each step exactly once. Now we'll learn <b>loops</b> - a way to repeat a block of code multiple times without writing it out again and again.</p>\n<p>The <code>while</code> loop repeats its indented block <b>as long as</b> a condition stays True. We need a <b>counter</b> variable that we update on every repeat, so that eventually the condition becomes False and the loop stops.</p>\n<pre>i = 1\nwhile i <= 10:\n    print(i)\n    i = i + 1</pre>\n<p>Let's trace through this: <code>i</code> starts at 1. Since <code>1 &lt;= 10</code> is True, we print <code>1</code> and then increase <code>i</code> to 2. We check the condition again: <code>2 &lt;= 10</code> is still True, so we print <code>2</code>, and so on... The loop finally stops once <code>i</code> becomes 11, because <code>11 &lt;= 10</code> is False.</p>\n<p><b>Indentation reminder:</b> just like with <code>if</code>, the lines inside the loop body (here, <code>print(i)</code> and <code>i = i + 1</code>) must be indented - press the <b>Tab</b> key once (or 4 spaces) - so Python knows they belong inside the loop. Get this wrong and your loop either won't run correctly or will crash with an <code>IndentationError</code>.</p>\n<p><b>A very common bug:</b> forgetting to update the counter (<code>i = i + 1</code>) inside the loop. If you forget it, <code>i</code> never changes, the condition is always True, and your program runs forever! Always double check your counter update is indented as part of the loop body.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>while</code> loop with a counter starting at 1, print every whole number from 1 to <code>N</code>, each on its own line.</p>\n<p><b>Example 1:</b> Input: <pre>4</pre> Output: <pre>1\n2\n3\n4</pre></p>\n<p><b>Example 2 (edge case - N is 1):</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "1\n2\n3\n4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1\n2\n3\n4\n5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "1\n2\n3\n4\n5\n6\n7",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "1\n2",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "1\n2\n3\n4\n5\n6\n7\n8",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1\n2\n3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L03_002_Countdown While",
+   "display_name": "Countdown While",
+   "questiontext_html": "<p>Counters don't always have to count upward! Let's make a counter <b>decrease</b> on every repeat instead, to count downward.</p>\n<pre>i = n\nwhile i >= 1:\n    print(i)\n    i = i - 1</pre>\n<p>Here, <code>i</code> starts at <code>n</code> and <b>decreases by 1</b> each time (<code>i = i - 1</code>), and the loop keeps going as long as <code>i</code> is still at least 1.</p>\n<p><b>Trace through:</b> if <code>n = 4</code>: <code>i</code> starts at 4, prints 4, then 3, then 2, then 1 (each time, <code>i &gt;= 1</code> is checked before printing). Once <code>i</code> becomes 0, <code>0 &gt;= 1</code> is False, so the loop stops.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>while</code> loop, print the numbers from <code>N</code> down to 1, each on its own line.</p>\n<p><b>Example:</b> Input: <pre>5</pre> Output: <pre>5\n4\n3\n2\n1</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "10\n9\n8\n7\n6\n5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "7\n6\n5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "2\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "6\n5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L03_003_Sum One To N While",
+   "display_name": "Sum One To N While",
+   "questiontext_html": "<p>Loops become really useful when combined with an <b>accumulator</b> variable - a variable that keeps a running total as the loop repeats.</p>\n<pre>n = int(input())\ntotal = 0\ni = 1\nwhile i <= n:\n    total = total + i\n    i = i + 1\nprint(total)</pre>\n<p>Here, <code>total</code> starts at 0. Every time through the loop, we add the current value of <code>i</code> into <code>total</code>. By the time the loop finishes, <code>total</code> holds the sum of every number the loop visited.</p>\n<p><b>Trace through:</b> if <code>n = 4</code>: <code>total</code> goes 0 -&gt; 1 (add 1) -&gt; 3 (add 2) -&gt; 6 (add 3) -&gt; 10 (add 4). Final answer: <code>10</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>while</code> loop and an accumulator, compute and print the sum of all whole numbers from 1 to <code>N</code> (inclusive).</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>10</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "28",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "36",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "210",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L03_004_Sum Of Evens While",
+   "display_name": "Sum Of Evens While",
+   "questiontext_html": "<p>Let's combine what you know about <code>if</code> with a <code>while</code> loop, by putting an <code>if</code> statement <b>inside</b> the loop body. This lets us skip some values while still visiting every number in sequence.</p>\n<pre>n = int(input())\ntotal = 0\ni = 1\nwhile i <= n:\n    if i % 2 == 0:\n        total = total + i\n    i = i + 1\nprint(total)</pre>\n<p>Notice the loop still checks every number from 1 to <code>n</code>, but <code>total = total + i</code> is now doubly indented - once for being inside the <code>while</code>, and again for being inside the <code>if</code> - so it only runs when <code>i</code> is even.</p>\n<p><b>Trace through:</b> if <code>n = 6</code>: we check 1 (odd, skip), 2 (even, add -&gt; total=2), 3 (skip), 4 (add -&gt; total=6), 5 (skip), 6 (add -&gt; total=12). Final answer: <code>12</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>while</code> loop combined with an <code>if</code>, compute and print the sum of all even numbers from 1 to <code>N</code> (inclusive).</p>\n<p><b>Example:</b> Input: <pre>6</pre> Output: <pre>12</pre></p>\n<p><b>Edge case (no even numbers at all):</b> Input: <pre>1</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "110",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "56",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "30",
+     "expected": "240",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L03_005_Sum Of Squares While",
+   "display_name": "Sum Of Squares While",
+   "questiontext_html": "<p>Let's practice one more accumulator pattern: summing the <b>squares</b> of numbers, using arithmetic you already know (<code>i * i</code>) inside a <code>while</code> loop.</p>\n<pre>n = int(input())\ntotal = 0\ni = 1\nwhile i <= n:\n    total = total + (i * i)\n    i = i + 1\nprint(total)</pre>\n<p><b>Trace through:</b> if <code>n = 3</code>: <code>total</code> goes 0 -&gt; 1 (add 1*1) -&gt; 5 (add 2*2=4) -&gt; 14 (add 3*3=9). Final answer: <code>14</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>while</code> loop and an accumulator, compute and print the sum of the squares of all whole numbers from 1 to <code>N</code> (inclusive).</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>14</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "91",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "385",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "140",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L03_006_Echo Until Quit",
+   "display_name": "Echo Until Quit",
+   "questiontext_html": "<p>Let's write a very different kind of <code>while</code> loop: one that keeps running <b>until the user tells it to stop</b>, rather than counting up or down a fixed number of times. This pattern is often called a <b>sentinel-controlled loop</b>, because a special value (the \"sentinel\", here the letter <code>q</code>) signals when to quit.</p>\n<pre>text = input()\nwhile text != \"q\":\n    print(\"You entered: \" + text)\n    text = input()</pre>\n<p>Let's trace through this: we read a line first, <i>before</i> the loop even starts. Then, as long as what we read is not <code>\"q\"</code>, we print it back and read another line. As soon as the user types exactly <code>q</code>, the condition <code>text != \"q\"</code> becomes False, and the loop stops immediately - notice we do <b>not</b> print anything for the <code>q</code> itself.</p>\n<p>This is a common and very useful pattern: read once before the loop (to have something to check), then read again as the very last step inside the loop body, so each pass through the loop always starts with a freshly-read value.</p>\n<p><b>Your task:</b> Repeatedly read a line of text. For each line that is not exactly <code>q</code>, print <code>You entered: &lt;text&gt;</code>. As soon as a line is exactly <code>q</code>, stop the loop (and print nothing for that final <code>q</code> line).</p>\n<p><b>Example:</b> Input: <pre>apple\nbanana\nq</pre> Output: <pre>You entered: apple\nYou entered: banana</pre></p>\n<p><b>Edge case (quit immediately):</b> Input: <pre>q</pre> Output: <i>(nothing printed)</i></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "apple\nbanana\nq",
+     "expected": "You entered: apple\nYou entered: banana",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "q",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "hello\nq",
+     "expected": "You entered: hello",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "cat\ndog\nfish\nq",
+     "expected": "You entered: cat\nYou entered: dog\nYou entered: fish",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "x\nq",
+     "expected": "You entered: x",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "one\ntwo\nthree\nq",
+     "expected": "You entered: one\nYou entered: two\nYou entered: three",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "zebra\nq",
+     "expected": "You entered: zebra",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "a\nb\nc\nd\nq",
+     "expected": "You entered: a\nYou entered: b\nYou entered: c\nYou entered: d",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L03_007_Print One To N For",
+   "display_name": "Print One To N For",
+   "questiontext_html": "<p>The <code>while</code> loop needs you to manually create a counter, check it, and update it every time. Python offers a simpler way to repeat something a fixed number of times: the <code>for</code> loop, used together with the <code>range()</code> function.</p>\n<pre>n = int(input())\nfor i in range(1, n + 1):\n    print(i)</pre>\n<p><code>range(1, n + 1)</code> produces the sequence of whole numbers starting at 1, up to (but <b>not including</b>) <code>n + 1</code> - in other words, exactly 1, 2, 3, ..., n. The <code>for</code> loop then takes each of these values, one at a time, and puts it into <code>i</code>, running the indented body once per value.</p>\n<p>Notice there's no manual counter to set up or update - <code>i</code> automatically takes each value from the <code>range()</code>, and the loop automatically stops once it runs out of values. This is simpler than <code>while</code>, but only works when you know in advance how many times (or over what sequence) you want to repeat.</p>\n<p><b>Indentation reminder:</b> exactly like with <code>while</code>, the body of a <code>for</code> loop must be indented with <b>Tab</b> (or 4 spaces).</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>for</code> loop with <code>range()</code>, print every whole number from 1 to <code>N</code>, each on its own line.</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>1\n2\n3\n4</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "1\n2\n3\n4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1\n2\n3\n4\n5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "1\n2\n3\n4\n5\n6\n7",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "1\n2",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "1\n2\n3\n4\n5\n6\n7\n8",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1\n2\n3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L03_008_Range Default Start",
+   "display_name": "Range Default Start",
+   "questiontext_html": "<p>When you call <code>range()</code> with just <b>one</b> argument, like <code>range(n)</code>, Python assumes you want to start counting from <b>0</b> by default, and stop just before <code>n</code>.</p>\n<pre>for i in range(5):\n    print(i)</pre>\n<p>This prints <code>0, 1, 2, 3, 4</code> - five numbers in total, starting at 0 and stopping right before 5. This is a very common pattern when you just want to repeat something <code>n</code> times and don't especially care what the counter values themselves represent.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using <code>for i in range(N):</code>, print every value of <code>i</code> that the loop takes, each on its own line (so, the numbers 0 to N-1).</p>\n<p><b>Example:</b> Input: <pre>5</pre> Output: <pre>0\n1\n2\n3\n4</pre></p>\n<p><b>Edge case (N is 1 - only one value, 0):</b> Input: <pre>1</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "0\n1\n2\n3\n4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "0\n1\n2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "0\n1\n2\n3\n4\n5\n6\n7\n8\n9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "0\n1\n2\n3\n4\n5\n6",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "0\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "0\n1\n2\n3\n4\n5",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "0\n1\n2\n3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L03_009_Range Start And Stop",
+   "display_name": "Range Start And Stop",
+   "questiontext_html": "<p><code>range()</code> can also take <b>two</b> arguments: <code>range(start, stop)</code>. This produces numbers beginning at <code>start</code>, and stopping just before <code>stop</code> (so <code>stop</code> itself is never included).</p>\n<pre>for i in range(3, 8):\n    print(i)</pre>\n<p>This prints <code>3, 4, 5, 6, 7</code> - it starts at 3, and stops right before 8.</p>\n<p><b>Your task:</b> Read two whole numbers <code>a</code> and <code>b</code> (one per line), where <code>a</code> is less than <code>b</code>. Using <code>range(a, b + 1)</code>, print every whole number from <code>a</code> to <code>b</code> (inclusive), each on its own line.</p>\n<p><b>Example:</b> Input: <pre>3\n7</pre> Output: <pre>3\n4\n5\n6\n7</pre></p>\n<p><b>Edge case (a and b are the same - just one number):</b> Input: <pre>5\n5</pre> Output: <pre>5</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3\n7",
+     "expected": "3\n4\n5\n6\n7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5\n5",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10\n12",
+     "expected": "10\n11\n12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-2\n2",
+     "expected": "-2\n-1\n0\n1\n2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1\n4",
+     "expected": "1\n2\n3\n4",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20\n20",
+     "expected": "20",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0\n3",
+     "expected": "0\n1\n2\n3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-3\n0",
+     "expected": "-3\n-2\n-1\n0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L03_010_Range With Step Up",
+   "display_name": "Range With Step Up",
+   "questiontext_html": "<p><code>range()</code> can also take a <b>third</b> argument: the <b>step</b> - how much to add each time, instead of always adding 1.</p>\n<pre>for i in range(0, 10, 2):\n    print(i)</pre>\n<p>This prints <code>0, 2, 4, 6, 8</code> - starting at 0, jumping by 2 each time, and stopping before 10. The step controls the \"jump size\" between consecutive values.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using <code>range()</code> with a step of 2, print every even number from 0 up to (and including, if it fits) <code>N</code>.</p>\n<p>Hint: since <code>range(0, N+1, 2)</code> stops just before <code>N+1</code>, it will correctly include <code>N</code> itself if <code>N</code> is even.</p>\n<p><b>Example:</b> Input: <pre>10</pre> Output: <pre>0\n2\n4\n6\n8\n10</pre></p>\n<p><b>Edge case (N is odd - last even number printed is one less):</b> Input: <pre>7</pre> Output: <pre>0\n2\n4\n6</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "0\n2\n4\n6\n8\n10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "0\n2\n4\n6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "0\n2\n4\n6\n8\n10\n12\n14\n16\n18\n20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "0\n2\n4\n6\n8\n10\n12\n14",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "0\n2\n4",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "0\n2\n4\n6\n8",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L03_011_Range With Step Down",
+   "display_name": "Range With Step Down",
+   "questiontext_html": "<p>A step can also be <b>negative</b>! This makes <code>range()</code> count <b>downward</b> instead of upward.</p>\n<pre>for i in range(10, 0, -1):\n    print(i)</pre>\n<p>This prints <code>10, 9, 8, ..., 1</code> - starting at 10, subtracting 1 each time (because the step is <code>-1</code>), and stopping just before 0 (so 0 itself is not printed).</p>\n<p><b>Important:</b> when counting down, <code>stop</code> must be <b>less</b> than <code>start</code>, and the step must be negative - otherwise <code>range()</code> produces no values at all!</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using <code>range()</code> with a step of <code>-1</code>, print every whole number from <code>N</code> down to 1 (inclusive).</p>\n<p><b>Example:</b> Input: <pre>5</pre> Output: <pre>5\n4\n3\n2\n1</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "10\n9\n8\n7\n6\n5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "7\n6\n5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "2\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "6\n5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L03_012_Range With Big Jump Down",
+   "display_name": "Range With Big Jump Down",
+   "questiontext_html": "<p>Let's combine a negative step with a jump size bigger than 1, counting down by more than one at a time.</p>\n<pre>for i in range(20, 0, -5):\n    print(i)</pre>\n<p>This prints <code>20, 15, 10, 5</code> - starting at 20, subtracting 5 each time, and stopping as soon as the next value would be 0 or below.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code> (a multiple of 3). Using <code>range()</code> with a step of <code>-3</code>, print every multiple of 3 from <code>N</code> down to 3 (inclusive), one per line.</p>\n<p><b>Example:</b> Input: <pre>15</pre> Output: <pre>15\n12\n9\n6\n3</pre></p>\n<p><b>Edge case (N is already 3 - just one number):</b> Input: <pre>3</pre> Output: <pre>3</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "15\n12\n9\n6\n3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "9\n6\n3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "30",
+     "expected": "30\n27\n24\n21\n18\n15\n12\n9\n6\n3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "6\n3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "21",
+     "expected": "21\n18\n15\n12\n9\n6\n3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "18",
+     "expected": "18\n15\n12\n9\n6\n3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "24",
+     "expected": "24\n21\n18\n15\n12\n9\n6\n3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L03_013_Sum One To N For",
+   "display_name": "Sum One To N For",
+   "questiontext_html": "<p>Just like with <code>while</code>, we can use an accumulator inside a <code>for</code> loop to build up a running total.</p>\n<pre>n = int(input())\ntotal = 0\nfor i in range(1, n + 1):\n    total = total + i\nprint(total)</pre>\n<p>This works exactly the same way as the <code>while</code> version you wrote earlier - <code>total</code> starts at 0, and each pass through the loop adds the current value of <code>i</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>for</code> loop and an accumulator, compute and print the sum of all whole numbers from 1 to <code>N</code> (inclusive).</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>10</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "28",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "36",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "210",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L03_014_Print Evens For",
+   "display_name": "Print Evens For",
+   "questiontext_html": "<p>Let's combine an <code>if</code> inside a <code>for</code> loop, the same way you did with <code>while</code> earlier.</p>\n<pre>n = int(input())\nfor i in range(1, n + 1):\n    if i % 2 == 0:\n        print(i)</pre>\n<p>The loop still visits every number from 1 to <code>n</code>, but the <code>print(i)</code> only runs when <code>i</code> is even, thanks to the nested <code>if</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>for</code> loop combined with an <code>if</code>, print all even numbers from 1 to <code>N</code> (inclusive), each on its own line.</p>\n<p><b>Example:</b> Input: <pre>8</pre> Output: <pre>2\n4\n6\n8</pre></p>\n<p><b>Edge case (no even numbers):</b> Input: <pre>1</pre> Output: <i>(nothing printed)</i></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "2\n4\n6\n8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "2\n4\n6\n8\n10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "2\n4\n6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "2\n4\n6",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "2\n4\n6\n8\n10\n12\n14",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "2\n4",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L03_015_Count Multiples Of K",
+   "display_name": "Count Multiples Of K",
+   "questiontext_html": "<p>Let's use a <code>for</code> loop with a counter variable (separate from the loop's own <code>i</code>) to count how many numbers satisfy a condition, rather than printing them.</p>\n<pre>n = int(input())\nk = int(input())\ncount = 0\nfor i in range(1, n + 1):\n    if i % k == 0:\n        count = count + 1\nprint(count)</pre>\n<p>Here, <code>count</code> is an accumulator too, just like <code>total</code> in earlier questions - except instead of adding <code>i</code> itself, we add exactly <code>1</code> every time the condition is True, effectively counting how many times it happened.</p>\n<p><b>Trace through:</b> if <code>n = 10, k = 3</code>: multiples of 3 up to 10 are 3, 6, 9 - that's 3 of them, so <code>count</code> ends at <code>3</code>.</p>\n<p><b>Your task:</b> Read two whole numbers <code>N</code> and <code>K</code> (one per line). Count and print how many numbers from 1 to <code>N</code> (inclusive) are multiples of <code>K</code>.</p>\n<p><b>Example:</b> Input: <pre>10\n3</pre> Output: <pre>3</pre></p>\n<p><b>Edge case (no multiples in range):</b> Input: <pre>2\n5</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "10\n3",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2\n5",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20\n4",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "15\n1",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9\n2",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100\n10",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1\n1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7\n7",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "L03_016_Sum Of Squares For",
+   "display_name": "Sum Of Squares For",
+   "questiontext_html": "<p>Let's revisit the sum-of-squares pattern, this time using a <code>for</code> loop instead of <code>while</code>.</p>\n<pre>n = int(input())\ntotal = 0\nfor i in range(1, n + 1):\n    total = total + (i * i)\nprint(total)</pre>\n<p><b>Your task:</b> Read a whole number <code>N</code>. Using a <code>for</code> loop and an accumulator, compute and print the sum of the squares of all whole numbers from 1 to <code>N</code> (inclusive).</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>14</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "91",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "385",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "140",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "L03_017_Average Of N Numbers",
+   "display_name": "Average Of N Numbers",
+   "questiontext_html": "<p>Let's use a <code>for</code> loop to read <b>several</b> numbers, one per line, and compute their average - a very common real-world pattern where the amount of input depends on a count given up front.</p>\n<p><b>Reminder:</b> since we're computing a float result, round it using <code>round(value, 2)</code> before printing, to avoid tiny floating-point mismatches.</p>\n<pre>n = int(input())\ntotal = 0\nfor i in range(n):\n    x = int(input())\n    total = total + x\naverage = total / n\nprint(round(average, 2))</pre>\n<p>Here, each pass through the loop reads <b>one more number</b> using <code>input()</code>, and immediately adds it to the running total - we don't need to store all the numbers, just their sum.</p>\n<p><b>Your task:</b> Read a whole number <code>N</code>, then read <code>N</code> more whole numbers (one per line). Print their average, rounded to 2 decimal places.</p>\n<p><b>Example:</b> Input: <pre>3\n10\n20\n30</pre> Output: <pre>20.0</pre></p>\n<p><b>Edge case (only one number - average is itself):</b> Input: <pre>1\n7</pre> Output: <pre>7.0</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3\n10\n20\n30",
+     "expected": "20.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1\n7",
+     "expected": "7.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4\n1\n2\n3\n4",
+     "expected": "2.5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2\n5\n6",
+     "expected": "5.5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5\n1\n2\n3\n4\n5",
+     "expected": "3.0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3\n0\n0\n0",
+     "expected": "0.0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2\n-4\n4",
+     "expected": "0.0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6\n1\n1\n1\n1\n1\n1",
+     "expected": "1.0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "L03_018_Multiplication Table For",
+   "display_name": "Multiplication Table For",
+   "questiontext_html": "<p>Let's revisit the multiplication table from earlier labs, this time built with a <code>for</code> loop instead of <code>while</code>.</p>\n<pre>n = int(input())\nfor i in range(1, 11):\n    print(str(n) + \"x\" + str(i) + \"=\" + str(n * i))</pre>\n<p><b>Your task:</b> Read a whole number <code>n</code> and print its multiplication table from 1 to 10, in the exact format <code>n x i = result</code> (no spaces around <code>x</code> and <code>=</code>), one line per multiplication.</p>\n<p><b>Example (n=2):</b> Output: <pre>2x1=2\n2x2=4\n2x3=6\n2x4=8\n2x5=10\n2x6=12\n2x7=14\n2x8=16\n2x9=18\n2x10=20</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "2x1=2\n2x2=4\n2x3=6\n2x4=8\n2x5=10\n2x6=12\n2x7=14\n2x8=16\n2x9=18\n2x10=20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "5x1=5\n5x2=10\n5x3=15\n5x4=20\n5x5=25\n5x6=30\n5x7=35\n5x8=40\n5x9=45\n5x10=50",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "7x1=7\n7x2=14\n7x3=21\n7x4=28\n7x5=35\n7x6=42\n7x7=49\n7x8=56\n7x9=63\n7x10=70",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "9x1=9\n9x2=18\n9x3=27\n9x4=36\n9x5=45\n9x6=54\n9x7=63\n9x8=72\n9x9=81\n9x10=90",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "3x1=3\n3x2=6\n3x3=9\n3x4=12\n3x5=15\n3x6=18\n3x7=21\n3x8=24\n3x9=27\n3x10=30",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "6x1=6\n6x2=12\n6x3=18\n6x4=24\n6x5=30\n6x6=36\n6x7=42\n6x8=48\n6x9=54\n6x10=60",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1x1=1\n1x2=2\n1x3=3\n1x4=4\n1x5=5\n1x6=6\n1x7=7\n1x8=8\n1x9=9\n1x10=10",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "12",
+     "expected": "12x1=12\n12x2=24\n12x3=36\n12x4=48\n12x5=60\n12x6=72\n12x7=84\n12x8=96\n12x9=108\n12x10=120",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "L03_019_Simple N By N Square",
+   "display_name": "Simple N By N Square",
+   "questiontext_html": "<p>You can put one <code>for</code> loop <b>inside</b> another - this is called a <b>nested loop</b>, and it's how we print two-dimensional patterns like grids and shapes.</p>\n<pre>n = int(input())\nfor row in range(n):\n    for col in range(n):\n        print(\"*\", end=\"\")\n    print()</pre>\n<p>The <b>outer</b> loop runs once per row. For <b>each</b> row, the <b>inner</b> loop runs completely, printing <code>n</code> stars in a row. Notice <code>print(\"*\", end=\"\")</code> - the <code>end=\"\"</code> tells Python not to move to a new line after each star (its normal behavior), so all the stars in one row appear next to each other. Then, after the inner loop finishes, a plain <code>print()</code> (with nothing in it) moves us to a new line, ready for the next row.</p>\n<p><b>Indentation with nesting:</b> the inner <code>for</code> is indented once inside the outer <code>for</code>, and the inner loop's own body is indented <i>again</i> relative to that. The final <code>print()</code> that starts a new line is indented only <b>once</b> (aligned with the inner <code>for</code>), so it runs once per row, after the inner loop completes - not once per star!</p>\n<p><b>Trace through (n=3):</b> Row 0: inner loop prints <code>*</code> three times -&gt; <code>***</code>, then newline. Same for rows 1 and 2. Result: three rows of <code>***</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Print an <code>n</code> by <code>n</code> square made of stars, with <code>n</code> stars on each of <code>n</code> rows.</p>\n<p><b>Example (n=3):</b> Output: <pre>***\n***\n***</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>*</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "***\n***\n***",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*****\n*****\n*****\n*****\n*****",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "**\n**",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "****\n****\n****\n****",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "***\n***\n***",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*****\n*****\n*****\n*****\n*****",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "**\n**",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "L03_020_Right Angle Triangle",
+   "display_name": "Right Angle Triangle",
+   "questiontext_html": "<p>Let's build a classic pattern: a right-angle triangle of stars, where row <code>r</code> (counting from 1) has exactly <code>r</code> stars.</p>\n<pre>n = int(input())\nfor row in range(1, n + 1):\n    for col in range(row):\n        print(\"*\", end=\"\")\n    print()</pre>\n<p>The key idea: the <b>inner</b> loop's range depends on the <b>outer</b> loop's current value! On row 1, the inner loop runs <code>range(1)</code> - just 1 star. On row 2, it runs <code>range(2)</code> - 2 stars. And so on, up to row <code>n</code>, which prints <code>n</code> stars.</p>\n<p><b>Trace through (n=3):</b> Row 1: 1 star -&gt; <code>*</code>. Row 2: 2 stars -&gt; <code>**</code>. Row 3: 3 stars -&gt; <code>***</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Print a right-angle triangle of stars with <code>n</code> rows, where row <code>r</code> has exactly <code>r</code> stars.</p>\n<p><b>Example (n=3):</b> Output: <pre>*\n**\n***</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>*</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "*\n**\n***",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*\n**\n***\n****\n*****",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "*\n**",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "*\n**\n***\n****",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "*\n**\n***",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*\n**\n***\n****\n*****",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "*\n**",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 21,
+   "xml_name": "L03_021_Horizontally Flipped Triangle",
+   "display_name": "Horizontally Flipped Triangle",
+   "questiontext_html": "<p>Let's flip the right-angle triangle from the previous question <b>horizontally</b> - so instead of the stars starting at the left edge, they end at the right edge, with spaces filling in the empty space on the left of each row.</p>\n<pre>n = int(input())\nfor row in range(1, n + 1):\n    for space in range(n - row):\n        print(\" \", end=\"\")\n    for col in range(row):\n        print(\"*\", end=\"\")\n    print()</pre>\n<p>Each row now has <b>two</b> inner loops run one after another: first, we print some spaces (<code>n - row</code> of them, so earlier rows get more padding), then we print the stars (<code>row</code> of them), then move to a new line.</p>\n<p><b>Trace through (n=3):</b> Row 1: <code>3-1=2</code> spaces, then 1 star -&gt; <code>\"  *\"</code>. Row 2: <code>3-2=1</code> space, then 2 stars -&gt; <code>\" **\"</code>. Row 3: <code>3-3=0</code> spaces, then 3 stars -&gt; <code>\"***\"</code>. Notice all rows line up on the <b>right</b> edge.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Print a right-aligned triangle of stars with <code>n</code> rows, as shown above.</p>\n<p><b>Example (n=3):</b> Output: <pre>  *\n **\n***</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>*</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "  *\n **\n***",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "    *\n   **\n  ***\n ****\n*****",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": " *\n**",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "   *\n  **\n ***\n****",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "  *\n **\n***",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "    *\n   **\n  ***\n ****\n*****",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": " *\n**",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 22,
+   "xml_name": "L03_022_Vertically Flipped Triangle",
+   "display_name": "Vertically Flipped Triangle",
+   "questiontext_html": "<p>Now let's flip the original right-angle triangle <b>vertically</b> (upside down) - the widest row comes first, and each row after that has one fewer star.</p>\n<pre>n = int(input())\nfor row in range(n, 0, -1):\n    for col in range(row):\n        print(\"*\", end=\"\")\n    print()</pre>\n<p>The only change from the original triangle is that the <b>outer</b> loop now counts <b>down</b> from <code>n</code> to 1 (using a step of <code>-1</code>), instead of up from 1 to <code>n</code>. The inner loop logic (printing <code>row</code> stars) stays exactly the same.</p>\n<p><b>Trace through (n=3):</b> Row (outer value) 3: 3 stars -&gt; <code>***</code>. Row 2: 2 stars -&gt; <code>**</code>. Row 1: 1 star -&gt; <code>*</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Print an upside-down right-angle triangle of stars with <code>n</code> rows, starting with <code>n</code> stars and ending with 1 star.</p>\n<p><b>Example (n=3):</b> Output: <pre>***\n**\n*</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>*</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "***\n**\n*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*****\n****\n***\n**\n*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "**\n*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "****\n***\n**\n*",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "***\n**\n*",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*****\n****\n***\n**\n*",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "**\n*",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 23,
+   "xml_name": "L03_023_Equilateral Pyramid",
+   "display_name": "Equilateral Pyramid",
+   "questiontext_html": "<p>Let's build a centered pyramid shape, where each row is padded with spaces on the left so the stars line up symmetrically, like a triangle with all sides equal.</p>\n<p>For a pyramid of <code>n</code> rows, row <code>r</code> (counting from 1) needs <code>n - r</code> spaces, followed by <code>2*r - 1</code> stars.</p>\n<pre>n = int(input())\nfor row in range(1, n + 1):\n    for space in range(n - row):\n        print(\" \", end=\"\")\n    for col in range(2 * row - 1):\n        print(\"*\", end=\"\")\n    print()</pre>\n<p><b>Trace through (n=3):</b> Row 1: <code>3-1=2</code> spaces, <code>2*1-1=1</code> star -&gt; <code>\"  *\"</code>. Row 2: <code>3-2=1</code> space, <code>2*2-1=3</code> stars -&gt; <code>\" ***\"</code>. Row 3: <code>3-3=0</code> spaces, <code>2*3-1=5</code> stars -&gt; <code>\"*****\"</code>. The result is a symmetric pyramid, one star wider on each side per row.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Print a centered pyramid of stars with <code>n</code> rows, as described above.</p>\n<p><b>Example (n=3):</b> Output: <pre>  *\n ***\n*****</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>*</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "  *\n ***\n*****",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "    *\n   ***\n  *****\n *******\n*********",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": " *\n***",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "   *\n  ***\n *****\n*******",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "  *\n ***\n*****",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "    *\n   ***\n  *****\n *******\n*********",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": " *\n***",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 24,
+   "xml_name": "L03_024_Inverted Pyramid",
+   "display_name": "Inverted Pyramid",
+   "questiontext_html": "<p>Let's flip the pyramid from the previous question upside down, exactly the same way we flipped the simple triangle earlier: just make the outer loop count <b>down</b> instead of up.</p>\n<pre>n = int(input())\nfor row in range(n, 0, -1):\n    for space in range(n - row):\n        print(\" \", end=\"\")\n    for col in range(2 * row - 1):\n        print(\"*\", end=\"\")\n    print()</pre>\n<p>The spacing and star-count formulas per row stay exactly the same as the pyramid - only the <b>order</b> in which the rows are visited has changed, from widest-last to widest-first.</p>\n<p><b>Trace through (n=3):</b> Row (outer value) 3: 0 spaces, 5 stars -&gt; <code>\"*****\"</code>. Row 2: 1 space, 3 stars -&gt; <code>\" ***\"</code>. Row 1: 2 spaces, 1 star -&gt; <code>\"  *\"</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Print an upside-down centered pyramid of stars with <code>n</code> rows, starting with the widest row.</p>\n<p><b>Example (n=3):</b> Output: <pre>*****\n ***\n  *</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>*</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "*****\n ***\n  *",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*********\n *******\n  *****\n   ***\n    *",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "***\n *",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "*******\n *****\n  ***\n   *",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "*****\n ***\n  *",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*********\n *******\n  *****\n   ***\n    *",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "***\n *",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 25,
+   "xml_name": "L03_025_Digit Repeat Rows",
+   "display_name": "Digit Repeat Rows",
+   "questiontext_html": "<p>Nested loops don't have to print stars - let's print a number pattern instead, where row <code>r</code> shows the digit <code>r</code> repeated <code>r</code> times.</p>\n<pre>n = int(input())\nfor row in range(1, n + 1):\n    for col in range(row):\n        print(row, end=\"\")\n    print()</pre>\n<p>The only change from the original right-angle triangle: instead of always printing <code>\"*\"</code>, we print <code>row</code> itself (converted to text automatically by <code>print</code>) each time through the inner loop.</p>\n<p><b>Trace through (n=3):</b> Row 1: print <code>1</code> once -&gt; <code>\"1\"</code>. Row 2: print <code>2</code> twice -&gt; <code>\"22\"</code>. Row 3: print <code>3</code> three times -&gt; <code>\"333\"</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Print <code>n</code> rows where row <code>r</code> contains the digit <code>r</code> repeated <code>r</code> times.</p>\n<p><b>Example (n=3):</b> Output: <pre>1\n22\n333</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1\n22\n333",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1\n22\n333\n4444\n55555",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "1\n22",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "1\n22\n333\n4444",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1\n22\n333",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1\n22\n333\n4444\n55555",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "1\n22",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 26,
+   "xml_name": "L03_026_Growing Number Triangle",
+   "display_name": "Growing Number Triangle",
+   "questiontext_html": "<p>Let's try one more number pattern: row <code>r</code> shows the digits 1 through <code>r</code> written next to each other (not repeated - counting up each time).</p>\n<pre>n = int(input())\nfor row in range(1, n + 1):\n    for col in range(1, row + 1):\n        print(col, end=\"\")\n    print()</pre>\n<p>Here the <b>inner</b> loop variable <code>col</code> itself counts from 1 up to <code>row</code>, and we print <code>col</code> at each step - so row 3 prints <code>1</code>, then <code>2</code>, then <code>3</code>, giving <code>\"123\"</code>.</p>\n<p><b>Trace through (n=3):</b> Row 1: just <code>1</code> -&gt; <code>\"1\"</code>. Row 2: <code>1</code> then <code>2</code> -&gt; <code>\"12\"</code>. Row 3: <code>1</code>, <code>2</code>, <code>3</code> -&gt; <code>\"123\"</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Print <code>n</code> rows where row <code>r</code> contains the digits 1 through <code>r</code> written next to each other, with no spaces.</p>\n<p><b>Example (n=3):</b> Output: <pre>1\n12\n123</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1\n12\n123",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1\n12\n123\n1234\n12345",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "1\n12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "1\n12\n123\n1234",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1\n12\n123",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1\n12\n123\n1234\n12345",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "1\n12",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 27,
+   "xml_name": "L03_027_Multiplication Grid",
+   "display_name": "Multiplication Grid",
+   "questiontext_html": "<p>Let's use a nested loop to print a full multiplication grid, rather than just a single number's table - every row is a different number's table, giving a proper 2D grid of results.</p>\n<pre>n = int(input())\nfor row in range(1, n + 1):\n    for col in range(1, n + 1):\n        print(row * col, end=\" \")\n    print()</pre>\n<p>The <b>outer</b> loop picks which row (multiplier) we're on; the <b>inner</b> loop goes across that row, computing <code>row * col</code> for each column. We use <code>end=\" \"</code> this time (a space, not nothing) so consecutive numbers on a row don't run together.</p>\n<p><b>Trace through (n=3):</b> Row 1: <code>1*1=1</code>, <code>1*2=2</code>, <code>1*3=3</code> -&gt; <code>\"1 2 3 \"</code>. Row 2: <code>2*1=2</code>, <code>2*2=4</code>, <code>2*3=6</code> -&gt; <code>\"2 4 6 \"</code>. Row 3: <code>3 6 9</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Print an <code>n</code> by <code>n</code> multiplication grid, where the entry in row <code>r</code>, column <code>c</code> is <code>r * c</code>, with a space after each number (including the last one on each row), and each row on its own line.</p>\n<p><b>Example (n=3):</b> Output: <pre>1 2 3 \n2 4 6 \n3 6 9 </pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>1 </pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1 2 3 \n2 4 6 \n3 6 9 ",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1 ",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "1 2 3 4 \n2 4 6 8 \n3 6 9 12 \n4 8 12 16 ",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "1 2 \n2 4 ",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1 2 3 4 5 \n2 4 6 8 10 \n3 6 9 12 15 \n4 8 12 16 20 \n5 10 15 20 25 ",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1 2 3 \n2 4 6 \n3 6 9 ",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "1 2 3 4 \n2 4 6 8 \n3 6 9 12 \n4 8 12 16 ",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "1 2 \n2 4 ",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 28,
+   "xml_name": "L03_028_Sum Of Grid Entries",
+   "display_name": "Sum Of Grid Entries",
+   "questiontext_html": "<p>Let's finish the nested-loop section by combining a grid with an accumulator: instead of printing every value in a grid, add them all up into a single total.</p>\n<pre>n = int(input())\ntotal = 0\nfor row in range(1, n + 1):\n    for col in range(1, n + 1):\n        total = total + (row * col)\nprint(total)</pre>\n<p>This uses the exact same nested structure as the multiplication grid, but instead of printing each <code>row * col</code>, we add it into <code>total</code>. The accumulator pattern works the same way inside nested loops as it did inside a single loop - it just gets updated more often (once per grid cell, rather than once per row).</p>\n<p><b>Trace through (n=2):</b> Cells visited: <code>1*1=1</code>, <code>1*2=2</code>, <code>2*1=2</code>, <code>2*2=4</code>. Sum: <code>1+2+2+4 = 9</code>.</p>\n<p><b>Your task:</b> Read a whole number <code>n</code> (between 1 and 5). Compute and print the sum of every entry in the <code>n</code> by <code>n</code> multiplication grid (where the entry at row <code>r</code>, column <code>c</code> is <code>r * c</code>).</p>\n<p><b>Example:</b> Input: <pre>2</pre> Output: <pre>9</pre></p>\n<p><b>Edge case (n=1 - grid is just the single cell 1*1):</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "36",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "100",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "225",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "36",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "100",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "225",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 29,
+   "xml_name": "L03_029_List Indexing Positive",
+   "display_name": "List Indexing Positive",
+   "questiontext_html": "<p>We briefly saw lists in class: a <b>list</b> is a single variable that holds a whole sequence of values, written between square brackets and separated by commas.</p>\n<pre>Lst = [10, 20, 30, 40, 50]</pre>\n<p>Each value in a list has a <b>position</b>, called its <b>index</b>. Indexing in Python starts at <b>0</b>, not 1! So <code>Lst[0]</code> is the first element (<code>10</code>), <code>Lst[1]</code> is the second (<code>20</code>), and so on, up to <code>Lst[4]</code> which is the last element (<code>50</code>) in this 5-element list.</p>\n<pre>Lst = [10, 20, 30, 40, 50]\ni = int(input())\nprint(Lst[i])</pre>\n<p><b>Trace through:</b> if the user enters <code>2</code>, we print <code>Lst[2]</code>, which is <code>30</code> (the <i>third</i> element, since counting starts at 0).</p>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [10, 20, 30, 40, 50]</code>, read a whole number index <code>i</code> (between 0 and 4) and print the element at that position.</p>\n<p><b>Example 1:</b> Input: <pre>2</pre> Output: <pre>30</pre></p>\n<p><b>Example 2 (edge case - first element, index 0):</b> Input: <pre>0</pre> Output: <pre>10</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "50",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "40",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "50",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 30,
+   "xml_name": "L03_030_List Indexing Negative",
+   "display_name": "List Indexing Negative",
+   "questiontext_html": "<p>Python also lets you index a list from the <b>end</b>, using <b>negative</b> indices. <code>Lst[-1]</code> is always the <b>last</b> element, <code>Lst[-2]</code> is the second-to-last, and so on.</p>\n<pre>Lst = [10, 20, 30, 40, 50]\nprint(Lst[-1])  # 50 (last element)\nprint(Lst[-2])  # 40 (second-to-last)</pre>\n<p>This is very handy when you want \"the last item\" or \"the second-to-last item\" without needing to know exactly how long the list is.</p>\n<pre>Lst = [10, 20, 30, 40, 50]\ni = int(input())\nprint(Lst[i])</pre>\n<p><b>Trace through:</b> if the user enters <code>-3</code>, we print <code>Lst[-3]</code>. Counting from the end: -1 is 50, -2 is 40, -3 is 30. So the output is <code>30</code>.</p>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [10, 20, 30, 40, 50]</code>, read a whole number index <code>i</code> (a negative number, from -5 to -1) and print the element at that position.</p>\n<p><b>Example 1:</b> Input: <pre>-3</pre> Output: <pre>30</pre></p>\n<p><b>Example 2 (edge case - last element):</b> Input: <pre>-1</pre> Output: <pre>50</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "-3",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-1",
+     "expected": "50",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-5",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-2",
+     "expected": "40",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-4",
+     "expected": "20",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-1",
+     "expected": "50",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-5",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-3",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 31,
+   "xml_name": "L03_031_List Membership In Operator",
+   "display_name": "List Membership In Operator",
+   "questiontext_html": "<p>Python's <code>in</code> operator lets you check whether a value exists <b>anywhere</b> inside a list, without needing to know its position.</p>\n<pre>Lst = [3, 7, 2, 9, 4]\nif 7 in Lst:\n    print(\"Found\")\nelse:\n    print(\"Not Found\")</pre>\n<p><code>7 in Lst</code> is a condition, just like <code>n &gt; 0</code> was - it evaluates to True if <code>7</code> appears somewhere in <code>Lst</code>, and False otherwise. Here, since <code>7</code> is indeed in the list, this prints <code>Found</code>.</p>\n<pre>Lst = [3, 7, 2, 9, 4]\nx = int(input())\nif x in Lst:\n    print(\"Found\")\nelse:\n    print(\"Not Found\")</pre>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [3, 7, 2, 9, 4]</code>, read a whole number <code>x</code> and print <code>Found</code> if it appears in the list, or <code>Not Found</code> otherwise.</p>\n<p><b>Example 1:</b> Input: <pre>9</pre> Output: <pre>Found</pre></p>\n<p><b>Example 2:</b> Input: <pre>100</pre> Output: <pre>Not Found</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "Not Found",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Not Found",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-1",
+     "expected": "Not Found",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 32,
+   "xml_name": "L03_032_Sum Of Two Indexed Elements",
+   "display_name": "Sum Of Two Indexed Elements",
+   "questiontext_html": "<p>You can index the same list more than once and combine the results with ordinary arithmetic, just like any other variable.</p>\n<pre>Lst = [5, 10, 15, 20, 25]\na = int(input())\nb = int(input())\nprint(Lst[a] + Lst[b])</pre>\n<p><b>Trace through:</b> if the user enters <code>1</code> then <code>3</code>, we compute <code>Lst[1] + Lst[3]</code>, which is <code>10 + 20 = 30</code>.</p>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [5, 10, 15, 20, 25]</code>, read two whole number indices <code>a</code> and <code>b</code> (each between 0 and 4, one per line) and print the sum of the elements at those two positions.</p>\n<p><b>Example 1:</b> Input: <pre>1\n3</pre> Output: <pre>30</pre></p>\n<p><b>Example 2 (edge case - same index twice):</b> Input: <pre>0\n0</pre> Output: <pre>10</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "1\n3",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0\n0",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4\n4",
+     "expected": "50",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0\n4",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2\n2",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1\n1",
+     "expected": "20",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3\n0",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4\n0",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 33,
+   "xml_name": "L03_033_Print Elements Greater Than X",
+   "display_name": "Print Elements Greater Than X",
+   "questiontext_html": "<p>Let's use a <code>for</code> loop to visit every element in a list, one at a time - this is one of the most common things you'll do with lists.</p>\n<pre>Lst = [4, 15, 8, 23, 6, 19]\nfor value in Lst:\n    print(value)</pre>\n<p>Notice something different here: <code>for value in Lst</code> doesn't use <code>range()</code> at all! It directly walks through the list, putting each element (not each index) into <code>value</code>, one at a time. This is Python's most natural way to process every item in a list.</p>\n<p>Let's combine this with an <code>if</code>, to only print elements that satisfy a condition:</p>\n<pre>Lst = [4, 15, 8, 23, 6, 19]\nx = int(input())\nfor value in Lst:\n    if value > x:\n        print(value)</pre>\n<p><b>Trace through:</b> if <code>x = 10</code>, we check each element: 4 (skip), 15 (print), 8 (skip), 23 (print), 6 (skip), 19 (print). Output: <code>15, 23, 19</code>, each on its own line, in their original list order.</p>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [4, 15, 8, 23, 6, 19]</code>, read a whole number <code>x</code> and print every element of the list that is greater than <code>x</code>, each on its own line, in their original order.</p>\n<p><b>Example:</b> Input: <pre>10</pre> Output: <pre>15\n23\n19</pre></p>\n<p><b>Edge case (x bigger than everything - nothing printed):</b> Input: <pre>100</pre> Output: <i>(nothing printed)</i></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "15\n23\n19",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "4\n15\n8\n23\n6\n19",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "22",
+     "expected": "23",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "15\n8\n23\n6\n19",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "23",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "15\n8\n23\n19",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "18",
+     "expected": "23\n19",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 34,
+   "xml_name": "L03_034_Print From Index Using While",
+   "display_name": "Print From Index Using While",
+   "questiontext_html": "<p>Lists can also be walked through with a <code>while</code> loop, using indices explicitly - this is more work than <code>for value in Lst</code>, but gives you full control over exactly where to start and stop.</p>\n<pre>Lst = [2, 4, 6, 8, 10, 12]\nstart = int(input())\ni = start\nwhile i < len(Lst):\n    print(Lst[i])\n    i = i + 1</pre>\n<p>Here, <code>len(Lst)</code> is a new function - it tells us how many elements are in the list (here, <code>6</code>). We start our index <code>i</code> at whatever position the user gives us, and keep printing and incrementing until <code>i</code> reaches <code>len(Lst)</code> (at which point there are no more valid positions left).</p>\n<p><b>Trace through:</b> if <code>start = 3</code>: we print <code>Lst[3]=8</code>, then <code>Lst[4]=10</code>, then <code>Lst[5]=12</code>, then stop since <code>i=6</code> is no longer less than <code>len(Lst)=6</code>.</p>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [2, 4, 6, 8, 10, 12]</code>, read a whole number <code>start</code> (between 0 and 5) and print every element from that index to the end of the list, each on its own line.</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>8\n10\n12</pre></p>\n<p><b>Edge case (start at the very last index - only one element):</b> Input: <pre>5</pre> Output: <pre>12</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "8\n10\n12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "2\n4\n6\n8\n10\n12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "6\n8\n10\n12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "4\n6\n8\n10\n12",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "10\n12",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "2\n4\n6\n8\n10\n12",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "10\n12",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 35,
+   "xml_name": "L03_035_Sum Of Elements Greater Than X",
+   "display_name": "Sum Of Elements Greater Than X",
+   "questiontext_html": "<p>Let's combine iterating over a list with an accumulator, just like you did with ranges of numbers earlier.</p>\n<pre>Lst = [3, 12, 7, 20, 5, 16]\nx = int(input())\ntotal = 0\nfor value in Lst:\n    if value > x:\n        total = total + value\nprint(total)</pre>\n<p>This works exactly like the \"sum of evens\" pattern from before, except now we're looping over the list's actual elements (using <code>for value in Lst</code>) instead of a range of numbers.</p>\n<p><b>Trace through:</b> if <code>x = 10</code>: elements greater than 10 are 12, 20, 16. Sum: <code>12 + 20 + 16 = 48</code>.</p>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [3, 12, 7, 20, 5, 16]</code>, read a whole number <code>x</code> and print the sum of all elements greater than <code>x</code>.</p>\n<p><b>Example:</b> Input: <pre>10</pre> Output: <pre>48</pre></p>\n<p><b>Edge case (nothing qualifies - sum is 0):</b> Input: <pre>100</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "48",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "63",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "19",
+     "expected": "20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "36",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "60",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 36,
+   "xml_name": "L03_036_Sum Of List Using While And Len",
+   "display_name": "Sum Of List Using While And Len",
+   "questiontext_html": "<p>Let's compute the sum of an <strong>entire</strong> list using a <code>while</code> loop with an explicit index and the <code>len()</code> function you just saw - this is the classic pattern for \"process every element of a list\" when you specifically need to track positions.</p>\n<pre>Lst = [8, 3, 15, 6, 12, 9, 4]\ntotal = 0\ni = 0\nwhile i &lt; len(Lst):\n    total = total + Lst[i]\n    i = i + 1\nprint(total)</pre>\n<p>Here, <code>i</code> starts at 0 (the first valid index) and the loop continues as long as <code>i</code> is a valid index, i.e. less than <code>len(Lst)</code>. Each pass adds <code>Lst[i]</code> into the total, then moves to the next index.</p>\n<p><strong>Your task:</strong> Using the fixed list <code>Lst = [8, 3, 15, 6, 12, 9, 4]</code>, compute and print the sum of all its elements using a <code>while</code> loop and <code>len()</code>, exactly as shown above.</p>\n<p><strong>Example:</strong> Output:</p>\n<pre>57</pre>\n<p></p>",
+   "answerpreload": "# Do not change this list\nLst = [8, 3, 15, 6, 12, 9, 4]\n# write your code here to find the sum using a while loop:",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "",
+     "expected": "57",
+     "extra": "",
+     "show": false,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 37,
+   "xml_name": "L03_037_Count Occurrences Of Value",
+   "display_name": "Count Occurrences Of Value",
+   "questiontext_html": "<p>Lists can contain <b>repeated</b> values. Let's count how many times a particular value appears, using a loop and a counter (the <code>in</code> operator alone can only tell us whether a value appears - not how many times).</p>\n<pre>Lst = [4, 7, 4, 2, 4, 9, 7]\nx = int(input())\ncount = 0\nfor value in Lst:\n    if value == x:\n        count = count + 1\nprint(count)</pre>\n<p><b>Trace through:</b> if <code>x = 4</code>: we scan the list and find <code>4</code> at three positions. So <code>count</code> ends at <code>3</code>.</p>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [4, 7, 4, 2, 4, 9, 7]</code>, read a whole number <code>x</code> and print how many times it appears in the list.</p>\n<p><b>Example 1:</b> Input: <pre>4</pre> Output: <pre>3</pre></p>\n<p><b>Example 2 (edge case - value not in list at all):</b> Input: <pre>100</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 38,
+   "xml_name": "L03_038_Count Elements Greater Than X",
+   "display_name": "Count Elements Greater Than X",
+   "questiontext_html": "<p>Let's combine a loop-based counter with a comparison, instead of an exact match.</p>\n<pre>Lst = [11, 4, 18, 7, 25, 2, 14]\nx = int(input())\ncount = 0\nfor value in Lst:\n    if value > x:\n        count = count + 1\nprint(count)</pre>\n<p><b>Trace through:</b> if <code>x = 10</code>: elements greater than 10 are 11, 18, 25, 14 - that's 4 of them, so <code>count</code> ends at <code>4</code>.</p>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [11, 4, 18, 7, 25, 2, 14]</code>, read a whole number <code>x</code> and print how many elements of the list are greater than <code>x</code>.</p>\n<p><b>Example 1:</b> Input: <pre>10</pre> Output: <pre>4</pre></p>\n<p><b>Example 2 (edge case - nothing qualifies):</b> Input: <pre>100</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "17",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "24",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "13",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 39,
+   "xml_name": "L03_039_Maximum Element In List",
+   "display_name": "Maximum Element In List",
+   "questiontext_html": "<p>Let's find the <strong>largest</strong> value in a list using a loop - a very classic and useful pattern. The idea: keep a \"best so far\" variable, initialize it with the list's first element, then compare every other element against it, updating whenever we find something bigger.</p>\n<pre>Lst = [7, 23, 4, 19, 31, 8, 15]\nlargest = Lst[0]\nfor value in Lst:\n    if value &gt; largest:\n        largest = value\nprint(largest)</pre>\n<p>We start by assuming the first element (<code>Lst[0]</code>) is the largest we've seen so far. Then, as we scan through <strong>every</strong> element (including that first one again - which is harmless, since it can't be greater than itself), we update <code>largest</code> whenever we find something bigger.</p>\n<p><strong>Trace through:</strong> starting with <code>largest = 7</code>. We check 7 (no change), 23 (update to 23), 4 (no change), 19 (no change, 19&lt;23), 31 (update to 31), 8 (no change), 15 (no change). Final answer: <code>31</code>.</p>\n<p><strong>Your task:</strong> Using the fixed list <code>Lst = [7, 23, 4, 19, 31, 8, 15]</code>, find and print the largest element using a loop, exactly as shown above.</p>\n<p><strong>Example:</strong> Output:</p>\n<pre>31</pre>\n<p></p>",
+   "answerpreload": "# Do not change this list\nLst = [7, 23, 4, 19, 31, 8, 15]\n# write your code below to find and print the largets value, using a while loop",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "",
+     "expected": "31",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 40,
+   "xml_name": "L03_040_Manual Membership Search Using Loop",
+   "display_name": "Manual Membership Search Using Loop",
+   "questiontext_html": "<p>For our final question, let's write our own version of the <code>in</code> operator using a loop, to see exactly how Python must be checking membership behind the scenes. This ties together everything from this lab: a loop, a flag variable, and a comparison.</p>\n<pre>Lst = [6, 19, 3, 27, 11, 8]\nx = int(input())\nfound = False\nfor value in Lst:\n    if value == x:\n        found = True\nif found:\n    print(\"Found\")\nelse:\n    print(\"Not Found\")</pre>\n<p>We start by assuming <code>x</code> has <b>not</b> been found (<code>found = False</code>). As we scan through every element, if we ever spot a match, we set <code>found = True</code> - and we keep scanning the rest of the list anyway (there's no way to \"stop early\" yet, since we haven't learned <code>break</code>). After the loop finishes, <code>found</code> tells us the final answer.</p>\n<p>This produces exactly the same result as writing <code>if x in Lst:</code>, just spelled out step by step.</p>\n<p><b>Your task:</b> Using the fixed list <code>Lst = [6, 19, 3, 27, 11, 8]</code>, read a whole number <code>x</code> and print <code>Found</code> or <code>Not Found</code> using the manual loop-and-flag technique shown above (do not use the <code>in</code> operator directly).</p>\n<p><b>Example 1:</b> Input: <pre>27</pre> Output: <pre>Found</pre></p>\n<p><b>Example 2 (edge case - value not present):</b> Input: <pre>100</pre> Output: <pre>Not Found</pre></p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "27",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "Not Found",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "19",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "11",
+     "expected": "Found",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Not Found",
+     "extra": "",
+     "show": true,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "b7a4e14bb1b994bd"
+}

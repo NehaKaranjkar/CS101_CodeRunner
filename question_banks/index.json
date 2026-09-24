@@ -1,6 +1,48 @@
 {
  "banks": [
   {
+   "file": "Lab1.qbank",
+   "title": "Practice: Lab 1",
+   "questions": 20,
+   "marks": 20.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Lab2.qbank",
+   "title": "Practice: Lab 2",
+   "questions": 20,
+   "marks": 20.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Lab3.qbank",
+   "title": "Practice: Lab 3",
+   "questions": 40,
+   "marks": 40.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Lab4.qbank",
+   "title": "Practice: Lab 4",
+   "questions": 40,
+   "marks": 40.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Lab4B.qbank",
+   "title": "Practice: Lab 4B",
+   "questions": 12,
+   "marks": 12.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Lab5.qbank",
+   "title": "Practice: Lab 5",
+   "questions": 15,
+   "marks": 15.0,
+   "duration_minutes": null
+  },
+  {
    "file": "Practice_Set_1.qbank",
    "title": "Practice: Practice Set 1",
    "questions": 60,

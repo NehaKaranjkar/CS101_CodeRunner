@@ -1,0 +1,1700 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab4",
+ "encrypted": false,
+ "source_xml": "Lab4.xml",
+ "built_at": "2026-09-24T19:42:39",
+ "settings": {
+  "title": "Practice: Lab 4",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "All questions",
+    "start": 1,
+    "count": 40
+   }
+  ]
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L04_001_Define And Call A Function",
+   "display_name": "Define And Call A Function",
+   "questiontext_html": "<p>Welcome to Lab 4! So far, every program you've written has been one flat sequence of steps. Now we'll learn <b>functions</b> - named, reusable blocks of code that you define once and can run (\"call\") whenever you need them.</p>\n<p>A function is defined with the <code>def</code> keyword, a name, parentheses, and a colon. Everything indented underneath is the function's <b>body</b> - the code that runs each time the function is called.</p>\n<pre>def say_hi():\n    print(\"Hi there!\")\n\nsay_hi()</pre>\n<p><code>def say_hi():</code> just <b>defines</b> the function - it does <b>not</b> run the body yet! The body only runs when we <b>call</b> the function later, by writing its name followed by parentheses: <code>say_hi()</code>. This prints <code>Hi there!</code>.</p>\n<p><b>Indentation reminder:</b> exactly like <code>if</code> and loops, the function body must be indented with <b>Tab</b> (or 4 spaces), so Python knows which lines belong inside the function.</p>\n<p><b>Your task:</b> Define a function named <code>greet</code> that takes no arguments and prints exactly <code>Hello</code>. Then call it once.</p>\n<p><b>Expected Output:</b></p>\n<pre>Hello</pre>",
+   "answerpreload": "def greet():\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# greet()",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "greet()",
+     "stdin": "",
+     "expected": "Hello",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L04_002_Call A Function Multiple Times",
+   "display_name": "Call A Function Multiple Times",
+   "questiontext_html": "<p>The whole point of a function is that once it's defined, you can call it as many times as you like, without rewriting its body.</p>\n<pre>def say_hi():\n    print(\"Hi there!\")\n\nsay_hi()\nsay_hi()\nsay_hi()</pre>\n<p>This prints <code>Hi there!</code> three times - once for each call - even though we only wrote the body once.</p>\n<p><strong>Your task:</strong> Define a function named <code>greet</code> that prints exactly <code>Hello</code>. Then call it exactly <strong>three</strong> times.</p>\n<p><strong>Expected Output:</strong></p>\n<pre>Hello\nHello\nHello</pre>",
+   "answerpreload": "def greet():\n    # write your code here\n\n\n# ---- Use this space below to call your function 3 times ----\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "",
+     "expected": "Hello\nHello\nHello",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L04_003_Function With A Parameter",
+   "display_name": "With A Parameter",
+   "questiontext_html": "<p>Functions become much more useful when they can take <b>input</b>, in the form of <b>parameters</b> - variables listed inside the parentheses, which receive whatever values are passed in when the function is called.</p>\n<pre>def greet(name):\n    print(\"Hello, \" + name + \"!\")\n\ngreet(\"Alice\")\ngreet(\"Bob\")</pre>\n<p>Here, <code>name</code> is a parameter. When we call <code>greet(\"Alice\")</code>, the text <code>\"Alice\"</code> is passed in and becomes the value of <code>name</code> inside the function body for that call. Calling <code>greet(\"Bob\")</code> right after uses a completely different value of <code>name</code>.</p>\n<p><b>Your task:</b> Define a function named <code>greet</code> that takes one parameter <code>name</code> and prints <code>Hello, &lt;name&gt;!</code>. Then call it once with the argument <code>\"Alice\"</code>.</p>\n<p><b>Expected Output:</b></p>\n<pre>Hello, Alice!</pre>",
+   "answerpreload": "def greet(name):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# greet(\"Alice\")",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "greet(\"Alice\")",
+     "stdin": "",
+     "expected": "Hello, Alice!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L04_004_Call Function With Different Arguments",
+   "display_name": "Call Function With Different Arguments",
+   "questiontext_html": "<p>Let's call the same function several times, passing a <b>different</b> argument each time - this is exactly why parameters exist.</p>\n<pre>def greet(name):\n    print(\"Hello, \" + name + \"!\")\n\ngreet(\"Alice\")\ngreet(\"Bob\")\ngreet(\"Charlie\")</pre>\n<p>Each call uses the same function body, but <code>name</code> takes on a different value each time - producing three different greetings from one function definition.</p>\n<p><b>Your task:</b> Define a function named <code>greet</code> that takes one parameter <code>name</code> and prints <code>Hello, &lt;name&gt;!</code>. Then read three names (one per line) and call <code>greet</code> once for each.</p>\n<p><b>Example:</b> Input: <pre>Alice\nBob\nCharlie</pre> Output: <pre>Hello, Alice!\nHello, Bob!\nHello, Charlie!</pre></p>",
+   "answerpreload": "def greet(name):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# greet(\"Alice\")",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n1 = input()\nn2 = input()\nn3 = input()\ngreet(n1)\ngreet(n2)\ngreet(n3)",
+     "stdin": "Alice\nBob\nCharlie",
+     "expected": "Hello, Alice!\nHello, Bob!\nHello, Charlie!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n1 = input()\nn2 = input()\nn3 = input()\ngreet(n1)\ngreet(n2)\ngreet(n3)",
+     "stdin": "Zoe\nSam\nMax",
+     "expected": "Hello, Zoe!\nHello, Sam!\nHello, Max!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L04_005_Function That Returns A Value",
+   "display_name": "That Returns A Value",
+   "questiontext_html": "<p>So far our functions have only <code>print()</code>ed things directly. Often, we instead want a function to <b>compute</b> a value and hand it back to whoever called it - this is what <code>return</code> is for.</p>\n<pre>def square_it(a):\n    return a * a\n\nresult = square_it(5)\nprint(result)</pre>\n<p><code>return a * a</code> sends the computed value <b>back</b> to the caller. Unlike <code>print()</code>, which just displays something and is done, <code>return</code> makes the function call itself <i>become</i> that value - which is why we can store it in a variable (<code>result</code>) and use it later, like any other value.</p>\n<p><b>Your task:</b> Define a function named <code>square_it</code> that takes one parameter <code>a</code> and <b>returns</b> its square (not print it). Then call <code>square_it(5)</code>, store the result in a variable, and print that variable.</p>\n<p><b>Expected Output:</b></p>\n<pre>25</pre>",
+   "answerpreload": "def square_it(a):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(square_it(5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(square_it(5))",
+     "stdin": "",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L04_006_Function With Two Parameters Returning Sum",
+   "display_name": "With Two Parameters Returning Sum",
+   "questiontext_html": "<p>Functions can take more than one parameter, separated by commas. Let's write one that returns the sum of two numbers.</p>\n<pre>def add(a, b):\n    return a + b\n\nprint(add(3, 4))</pre>\n<p>This prints <code>7</code>. Notice the order matters when calling: <code>add(3, 4)</code> passes <code>3</code> as <code>a</code> and <code>4</code> as <code>b</code>, matching the order they were listed in the <code>def</code> line.</p>\n<p><b>Your task:</b> Define a function named <code>add</code> that takes two parameters <code>a</code> and <code>b</code> and returns their sum. Then read two whole numbers (one per line), call <code>add</code> with them, and print the result.</p>\n<p><b>Example:</b> Input: <pre>3\n4</pre> Output: <pre>7</pre></p>",
+   "answerpreload": "def add(a, b):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(add(3, 4))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(add(a, b))",
+     "stdin": "3\n4",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(add(a, b))",
+     "stdin": "-5\n10",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(add(a, b))",
+     "stdin": "0\n0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L04_007_Store Function Result In A Variable",
+   "display_name": "Store Function Result In A Variable",
+   "questiontext_html": "<p>A returned value doesn't have to be printed immediately - it can be stored in a variable and used later, just like any other computed value, including being passed straight into more arithmetic.</p>\n<pre>def square_it(a):\n    return a * a\n\ns = square_it(4)\ntotal = s + 10\nprint(total)</pre>\n<p>Here, <code>s</code> holds the returned value (<code>16</code>), and we then use <code>s</code> in further arithmetic before printing the final result.</p>\n<p><b>Your task:</b> Define a function named <code>square_it</code> that returns the square of its argument. Read a whole number <code>n</code>, call <code>square_it(n)</code> and store the result, then print that result <b>plus 10</b>.</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>26</pre></p>\n<p>(4 squared is 16, plus 10 is 26)</p>",
+   "answerpreload": "def square_it(a):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(square_it(5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\ns = square_it(n)\nprint(s + 10)",
+     "stdin": "4",
+     "expected": "26",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\ns = square_it(n)\nprint(s + 10)",
+     "stdin": "0",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\ns = square_it(n)\nprint(s + 10)",
+     "stdin": "-3",
+     "expected": "19",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L04_008_Function Returning Based On If Else",
+   "display_name": "Returning Based On If Else",
+   "questiontext_html": "<p>A function's body can contain anything you've already learned, including <code>if</code>-<code>else</code>. This lets a function's return value depend on a condition.</p>\n<pre>def parity(n):\n    if n % 2 == 0:\n        return \"Even\"\n    else:\n        return \"Odd\"\n\nprint(parity(7))</pre>\n<p>Notice there are <b>two</b> <code>return</code> statements here - one inside each branch. Only one of them actually runs for any given call, depending on which branch the condition takes. As soon as a <code>return</code> runs, the function immediately hands back that value and stops - it never reaches the other branch.</p>\n<p><b>Your task:</b> Define a function named <code>parity</code> that takes one parameter <code>n</code> and returns the string <code>\"Even\"</code> if <code>n</code> is even, or <code>\"Odd\"</code> if it's odd. Read a whole number, call <code>parity</code>, and print the result.</p>\n<p><b>Example 1:</b> Input: <pre>7</pre> Output: <pre>Odd</pre></p>\n<p><b>Example 2:</b> Input: <pre>4</pre> Output: <pre>Even</pre></p>",
+   "answerpreload": "def parity(n):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(parity(7))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(parity(n))",
+     "stdin": "7",
+     "expected": "Odd",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(parity(n))",
+     "stdin": "4",
+     "expected": "Even",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(parity(n))",
+     "stdin": "0",
+     "expected": "Even",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L04_009_Function Using A While Loop Inside",
+   "display_name": "Using A While Loop Inside",
+   "questiontext_html": "<p>A function's body can also contain a loop - everything you've learned about loops works exactly the same way inside a function.</p>\n<pre>def sum_upto(n):\n    total = 0\n    i = 1\n    while i <= n:\n        total = total + i\n        i = i + 1\n    return total\n\nprint(sum_upto(5))</pre>\n<p>This is the exact same <code>while</code>-loop accumulator pattern from Lab 3, just wrapped in a function so it can be reused and given a meaningful name. Notice the <code>return total</code> comes <b>after</b> the loop has fully finished - we want the final total, not an intermediate one.</p>\n<p><b>Your task:</b> Define a function named <code>sum_upto</code> that takes one parameter <code>n</code> and returns the sum of all whole numbers from 1 to <code>n</code> (inclusive), using a <code>while</code> loop. Read a whole number, call <code>sum_upto</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>5</pre> Output: <pre>15</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "def sum_upto(n):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(sum_upto(5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(sum_upto(n))",
+     "stdin": "5",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(sum_upto(n))",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(sum_upto(n))",
+     "stdin": "10",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L04_010_Function Using A For Loop Inside",
+   "display_name": "Using A For Loop Inside",
+   "questiontext_html": "<p>Let's do the same thing with a <code>for</code> loop instead, writing a function that computes a factorial.</p>\n<pre>def factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result = result * i\n    return result\n\nprint(factorial(4))</pre>\n<p>This is the same factorial pattern from Lab 3, now wrapped in a reusable function.</p>\n<p><b>Your task:</b> Define a function named <code>factorial</code> that takes one parameter <code>n</code> and returns <code>n!</code> (n factorial), using a <code>for</code> loop. Read a whole number, call <code>factorial</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>24</pre></p>\n<p><b>Edge case (0! is 1):</b> Input: <pre>0</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "def factorial(n):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(factorial(4))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(factorial(n))",
+     "stdin": "4",
+     "expected": "24",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(factorial(n))",
+     "stdin": "0",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(factorial(n))",
+     "stdin": "6",
+     "expected": "720",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L04_011_Two Independent Functions",
+   "display_name": "Two Independent Functions",
+   "questiontext_html": "<p>A program can define as many functions as it needs. They don't need to know about each other unless you explicitly make one call the other.</p>\n<pre>def square_it(a):\n    return a * a\n\ndef cube_it(a):\n    return a * a * a\n\nprint(square_it(3))\nprint(cube_it(3))</pre>\n<p>Here we define two completely separate functions, and call each of them independently.</p>\n<p><b>Your task:</b> Define two functions: <code>square_it(a)</code> returning <code>a squared</code>, and <code>cube_it(a)</code> returning <code>a cubed</code>. Read a whole number <code>n</code>, then print <code>square_it(n)</code> followed by <code>cube_it(n)</code>, each on its own line.</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>9\n27</pre></p>",
+   "answerpreload": "def square_it(a):\n    # write your code here\n\n\ndef cube_it(a):\n    # write your code here\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# print(square_it(3))\n# print(cube_it(3))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(square_it(n))\nprint(cube_it(n))",
+     "stdin": "3",
+     "expected": "9\n27",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(square_it(n))\nprint(cube_it(n))",
+     "stdin": "0",
+     "expected": "0\n0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(square_it(n))\nprint(cube_it(n))",
+     "stdin": "-2",
+     "expected": "4\n-8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L04_012_Function Calling Another Function",
+   "display_name": "Calling Another Function",
+   "questiontext_html": "<p>Here's something new: one function's body can call <b>another</b> function, exactly the same way your main code calls functions.</p>\n<pre>def square_it(a):\n    return a * a\n\ndef sum_of_squares(a, b):\n    return square_it(a) + square_it(b)\n\nprint(sum_of_squares(3, 4))</pre>\n<p>Inside <code>sum_of_squares</code>, we call <code>square_it</code> twice, once for each parameter, and add the two results together. As far as <code>sum_of_squares</code> is concerned, <code>square_it</code> is just another tool it can use - it doesn't matter that <code>square_it</code> happens to be a function we wrote ourselves rather than a built-in one.</p>\n<p><b>Your task:</b> Define <code>square_it(a)</code> returning <code>a squared</code>, then define <code>sum_of_squares(a, b)</code> which calls <code>square_it</code> internally and returns the sum of the two squares. Read two whole numbers (one per line), call <code>sum_of_squares</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>3\n4</pre> Output: <pre>25</pre></p>\n<p>(3 squared is 9, 4 squared is 16, sum is 25)</p>",
+   "answerpreload": "def square_it(a):\n    # write your code here\n\n\ndef sum_of_squares(a, b):\n    # write your code here (call square_it inside this function)\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# print(sum_of_squares(3, 4))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(sum_of_squares(a, b))",
+     "stdin": "3\n4",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(sum_of_squares(a, b))",
+     "stdin": "0\n5",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(sum_of_squares(a, b))",
+     "stdin": "-2\n2",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L04_013_Compute F Of G Of X",
+   "display_name": "Compute F Of G Of X",
+   "questiontext_html": "<p>Let's practice <b>composing</b> two functions explicitly from the caller's side: taking the output of one function and feeding it directly as the input to another - often written mathematically as <code>f(g(x))</code>.</p>\n<pre>def double_it(a):\n    return a * 2\n\ndef add_ten(a):\n    return a + 10\n\nx = 5\nresult = add_ten(double_it(x))\nprint(result)</pre>\n<p>Here, <code>double_it(x)</code> runs <b>first</b> (Python always evaluates the innermost parentheses first), producing <code>10</code>. That result is then passed straight into <code>add_ten(...)</code>, giving <code>20</code>. We never needed to store the intermediate result in its own variable - though we could have, for clarity.</p>\n<p><b>Your task:</b> Define <code>double_it(a)</code> returning <code>a * 2</code>, and <code>add_ten(a)</code> returning <code>a + 10</code>. Read a whole number <code>x</code> and print <code>add_ten(double_it(x))</code>.</p>\n<p><b>Example:</b> Input: <pre>5</pre> Output: <pre>20</pre></p>",
+   "answerpreload": "def double_it(a):\n    # write your code here\n\n\ndef add_ten(a):\n    # write your code here\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# print(add_ten(double_it(5)))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "x = int(input())\nprint(add_ten(double_it(x)))",
+     "stdin": "5",
+     "expected": "20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nprint(add_ten(double_it(x)))",
+     "stdin": "0",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nprint(add_ten(double_it(x)))",
+     "stdin": "-3",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L04_014_Chain Of Three Function Calls",
+   "display_name": "Chain Of Three Function Calls",
+   "questiontext_html": "<p>Composition isn't limited to two functions - you can chain as many as you like, feeding each result into the next.</p>\n<pre>def double_it(a):\n    return a * 2\n\ndef add_ten(a):\n    return a + 10\n\ndef square_it(a):\n    return a * a\n\nx = 3\nresult = square_it(add_ten(double_it(x)))\nprint(result)</pre>\n<p><b>Trace through:</b> <code>double_it(3) = 6</code>, then <code>add_ten(6) = 16</code>, then <code>square_it(16) = 256</code>. Each function's output becomes the next function's input, working from the innermost parentheses outward.</p>\n<p><b>Your task:</b> Define <code>double_it</code>, <code>add_ten</code>, and <code>square_it</code> as shown above. Read a whole number <code>x</code> and print <code>square_it(add_ten(double_it(x)))</code>.</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>256</pre></p>",
+   "answerpreload": "def double_it(a):\n    # write your code here\n\n\ndef add_ten(a):\n    # write your code here\n\n\ndef square_it(a):\n    # write your code here\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# print(square_it(add_ten(double_it(3))))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "x = int(input())\nprint(square_it(add_ten(double_it(x))))",
+     "stdin": "3",
+     "expected": "256",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nprint(square_it(add_ten(double_it(x))))",
+     "stdin": "0",
+     "expected": "100",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nprint(square_it(add_ten(double_it(x))))",
+     "stdin": "-1",
+     "expected": "64",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L04_015_Reusing A Function Twice Inside Another",
+   "display_name": "Reusing A Function Twice Inside Another",
+   "questiontext_html": "<p>Let's write another function that reuses a helper twice, just like <code>sum_of_squares</code> did earlier - but this time, using the shared helper's result to compute something new.</p>\n<pre>def square_it(a):\n    return a * a\n\ndef distance_squared(x1, y1, x2, y2):\n    dx = x2 - x1\n    dy = y2 - y1\n    return square_it(dx) + square_it(dy)\n\nprint(distance_squared(1, 1, 4, 5))</pre>\n<p>This computes the squared distance between two points, reusing <code>square_it</code> for both the horizontal and vertical differences.</p>\n<p><b>Trace through:</b> <code>dx = 4 - 1 = 3</code>, <code>dy = 5 - 1 = 4</code>. <code>square_it(3) + square_it(4) = 9 + 16 = 25</code>.</p>\n<p><b>Your task:</b> Define <code>square_it(a)</code> returning <code>a squared</code>, and <code>distance_squared(x1, y1, x2, y2)</code> which uses <code>square_it</code> to compute the squared distance between points <code>(x1, y1)</code> and <code>(x2, y2)</code>, as shown above. Read four whole numbers <code>x1, y1, x2, y2</code> (one per line), call <code>distance_squared</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>1\n1\n4\n5</pre> Output: <pre>25</pre></p>",
+   "answerpreload": "def square_it(a):\n    # write your code here\n\n\ndef distance_squared(x1, y1, x2, y2):\n    # write your code here (call square_it inside this function)\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# print(distance_squared(1, 1, 4, 5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "x1=int(input())\ny1=int(input())\nx2=int(input())\ny2=int(input())\nprint(distance_squared(x1,y1,x2,y2))",
+     "stdin": "1\n1\n4\n5",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "x1=int(input())\ny1=int(input())\nx2=int(input())\ny2=int(input())\nprint(distance_squared(x1,y1,x2,y2))",
+     "stdin": "0\n0\n0\n0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "x1=int(input())\ny1=int(input())\nx2=int(input())\ny2=int(input())\nprint(distance_squared(x1,y1,x2,y2))",
+     "stdin": "0\n0\n3\n4",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "L04_016_Helper Function For Area",
+   "display_name": "Helper Function For Area",
+   "questiontext_html": "<p>Let's use a very simple helper function inside a more meaningful one, showing how small reusable pieces can build up bigger calculations.</p>\n<pre>def multiply(a, b):\n    return a * b\n\ndef rectangle_area(length, breadth):\n    return multiply(length, breadth)\n\nprint(rectangle_area(5, 3))</pre>\n<p>This is a bit of a toy example (you could just write <code>length * breadth</code> directly!), but it demonstrates the idea: <code>rectangle_area</code> doesn't need to know <i>how</i> multiplication works - it just delegates that step to <code>multiply</code>.</p>\n<p><b>Your task:</b> Define <code>multiply(a, b)</code> returning <code>a * b</code>, and <code>rectangle_area(length, breadth)</code> which calls <code>multiply</code> to compute and return the area. Read two whole numbers (length, then breadth), call <code>rectangle_area</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>5\n3</pre> Output: <pre>15</pre></p>",
+   "answerpreload": "def multiply(a, b):\n    # write your code here\n\n\ndef rectangle_area(length, breadth):\n    # write your code here (call multiply inside this function)\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# print(rectangle_area(5, 3))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "l=int(input())\nb=int(input())\nprint(rectangle_area(l,b))",
+     "stdin": "5\n3",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "l=int(input())\nb=int(input())\nprint(rectangle_area(l,b))",
+     "stdin": "1\n1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "l=int(input())\nb=int(input())\nprint(rectangle_area(l,b))",
+     "stdin": "10\n7",
+     "expected": "70",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "L04_017_Compare Results Of Two Functions",
+   "display_name": "Compare Results Of Two Functions",
+   "questiontext_html": "<p>Let's use two functions' return values together in an <code>if</code>-<code>else</code> comparison, right in the caller's code.</p>\n<pre>def square_it(a):\n    return a * a\n\ndef cube_it(a):\n    return a * a * a\n\nn = 2\nif cube_it(n) > square_it(n):\n    print(\"Cube is bigger\")\nelse:\n    print(\"Square is bigger or equal\")</pre>\n<p>Both <code>cube_it(n)</code> and <code>square_it(n)</code> are computed and compared, exactly like comparing any two values with <code>&gt;</code>.</p>\n<p><b>Your task:</b> Define <code>square_it(a)</code> and <code>cube_it(a)</code> as shown above. Read a whole number <code>n</code>. Print <code>Cube is bigger</code> if <code>cube_it(n)</code> is greater than <code>square_it(n)</code>, otherwise print <code>Square is bigger or equal</code>.</p>\n<p><b>Example 1:</b> Input: <pre>2</pre> Output: <pre>Cube is bigger</pre></p>\n<p><b>Example 2 (edge case - equal, n=1):</b> Input: <pre>1</pre> Output: <pre>Square is bigger or equal</pre></p>",
+   "answerpreload": "def square_it(a):\n    # write your code here\n\n\ndef cube_it(a):\n    # write your code here\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# print(square_it(2), cube_it(2))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nif cube_it(n) > square_it(n):\n    print(\"Cube is bigger\")\nelse:\n    print(\"Square is bigger or equal\")",
+     "stdin": "2",
+     "expected": "Cube is bigger",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nif cube_it(n) > square_it(n):\n    print(\"Cube is bigger\")\nelse:\n    print(\"Square is bigger or equal\")",
+     "stdin": "1",
+     "expected": "Square is bigger or equal",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nif cube_it(n) > square_it(n):\n    print(\"Cube is bigger\")\nelse:\n    print(\"Square is bigger or equal\")",
+     "stdin": "0",
+     "expected": "Square is bigger or equal",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "L04_018_Loop Calling A Function Each Iteration",
+   "display_name": "Loop Calling A Function Each Iteration",
+   "questiontext_html": "<p>Loops and functions combine very naturally: a loop can call the same function once per iteration, with a different argument each time.</p>\n<pre>def square_it(a):\n    return a * a\n\nn = 5\nfor i in range(1, n + 1):\n    print(square_it(i))</pre>\n<p>Each pass through the loop calls <code>square_it</code> with the current value of <code>i</code>, printing the squares of 1 through <code>n</code> one by one.</p>\n<p><b>Your task:</b> Define <code>square_it(a)</code> returning <code>a squared</code>. Read a whole number <code>n</code> and, using a <code>for</code> loop, print the squares of every whole number from 1 to <code>n</code> (inclusive), each on its own line, by calling <code>square_it</code> each time.</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>1\n4\n9\n16</pre></p>",
+   "answerpreload": "def square_it(a):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(square_it(5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nfor i in range(1, n + 1):\n    print(square_it(i))",
+     "stdin": "4",
+     "expected": "1\n4\n9\n16",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nfor i in range(1, n + 1):\n    print(square_it(i))",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nfor i in range(1, n + 1):\n    print(square_it(i))",
+     "stdin": "6",
+     "expected": "1\n4\n9\n16\n25\n36",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "L04_019_Three Step Function Pipeline",
+   "display_name": "Three Step Function Pipeline",
+   "questiontext_html": "<p>Let's write three small functions that are meant to be used together in sequence, each one processing the previous step's result - a very common real-world pattern (sometimes called a \"pipeline\").</p>\n<pre>def get_discounted_price(price):\n    return price - (price * 10 / 100)\n\ndef add_tax(price):\n    return price + (price * 5 / 100)\n\ndef round_price(price):\n    return round(price, 2)\n\noriginal = 100\nfinal = round_price(add_tax(get_discounted_price(original)))\nprint(final)</pre>\n<p>Each function does one clear step: apply a discount, then add tax, then round for display. Composing them (innermost first) gives the final price in one expression.</p>\n<p><b>Reminder:</b> since these compute floats, we round the final result with <code>round(price, 2)</code>, done here inside <code>round_price</code> itself.</p>\n<p><b>Your task:</b> Define <code>get_discounted_price</code>, <code>add_tax</code>, and <code>round_price</code> exactly as shown above. Read a whole number <code>original</code> price and print <code>round_price(add_tax(get_discounted_price(original)))</code>.</p>\n<p><b>Example:</b> Input: <pre>100</pre> Output: <pre>94.5</pre></p>",
+   "answerpreload": "def get_discounted_price(price):\n    # write your code here\n\n\ndef add_tax(price):\n    # write your code here\n\n\ndef round_price(price):\n    # write your code here\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# print(round_price(add_tax(get_discounted_price(100))))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "original = int(input())\nprint(round_price(add_tax(get_discounted_price(original))))",
+     "stdin": "100",
+     "expected": "94.5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "original = int(input())\nprint(round_price(add_tax(get_discounted_price(original))))",
+     "stdin": "200",
+     "expected": "189.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "original = int(input())\nprint(round_price(add_tax(get_discounted_price(original))))",
+     "stdin": "50",
+     "expected": "47.25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "L04_020_Function Returning Boolean Used In Caller If",
+   "display_name": "Returning Boolean Used In Caller If",
+   "questiontext_html": "<p>A function can return <code>True</code> or <code>False</code> directly - Python's own boolean values, the same kind a comparison like <code>n &gt; 0</code> produces. The caller can then use that returned value directly inside an <code>if</code>.</p>\n<pre>def is_prime_candidate(n):\n    return n > 1 and n % 2 != 0\n\nx = 7\nif is_prime_candidate(x):\n    print(\"Might be prime\")\nelse:\n    print(\"Definitely not prime\")</pre>\n<p>Notice <code>is_prime_candidate</code> doesn't need its own <code>if</code>-<code>else</code> at all here - the condition <code>n &gt; 1 and n % 2 != 0</code> already evaluates to <code>True</code> or <code>False</code>, so we can just <code>return</code> it directly. The caller then uses that True/False value exactly like any other condition.</p>\n<p><b>Your task:</b> Define a function named <code>is_prime_candidate</code> that takes one parameter <code>n</code> and returns <code>True</code> if <code>n</code> is greater than 1 <b>and</b> odd, or <code>False</code> otherwise. Read a whole number <code>x</code>; if <code>is_prime_candidate(x)</code> is True, print <code>Might be prime</code>, else print <code>Definitely not prime</code>.</p>\n<p><b>Example 1:</b> Input: <pre>7</pre> Output: <pre>Might be prime</pre></p>\n<p><b>Example 2 (edge case - fails the &gt;1 check):</b> Input: <pre>1</pre> Output: <pre>Definitely not prime</pre></p>",
+   "answerpreload": "def is_prime_candidate(n):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(is_prime_candidate(7))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "x = int(input())\nif is_prime_candidate(x):\n    print(\"Might be prime\")\nelse:\n    print(\"Definitely not prime\")",
+     "stdin": "7",
+     "expected": "Might be prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nif is_prime_candidate(x):\n    print(\"Might be prime\")\nelse:\n    print(\"Definitely not prime\")",
+     "stdin": "1",
+     "expected": "Definitely not prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nif is_prime_candidate(x):\n    print(\"Might be prime\")\nelse:\n    print(\"Definitely not prime\")",
+     "stdin": "8",
+     "expected": "Definitely not prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nif is_prime_candidate(x):\n    print(\"Might be prime\")\nelse:\n    print(\"Definitely not prime\")",
+     "stdin": "0",
+     "expected": "Definitely not prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 21,
+   "xml_name": "L04_021_Multiple Return Values Quotient And Remainder",
+   "display_name": "Multiple Return Values Quotient And Remainder",
+   "questiontext_html": "<p>A function isn't limited to returning just one value! Python lets you <code>return</code> several values at once, separated by commas, and the caller can \"unpack\" them into several variables in a single line.</p>\n<pre>def divide(a, b):\n    q = a // b\n    r = a % b\n    return q, r\n\nquotient, remainder = divide(17, 5)\nprint(quotient)\nprint(remainder)</pre>\n<p><code>return q, r</code> packages both values together. On the caller's side, <code>quotient, remainder = divide(17, 5)</code> unpacks them straight into two separate variables, in the same order they were returned.</p>\n<p><b>Your task:</b> Define a function named <code>divide</code> that takes two parameters <code>a</code> and <code>b</code>, and returns both the quotient (<code>a // b</code>) and the remainder (<code>a % b</code>). Read two whole numbers, call <code>divide</code>, unpack the results into two variables, and print the quotient then the remainder, each on its own line.</p>\n<p><b>Example:</b> Input: <pre>17\n5</pre> Output: <pre>3\n2</pre></p>",
+   "answerpreload": "def divide(a, b):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# q, r = divide(17, 5)\n# print(q, r)",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a = int(input())\nb = int(input())\nq, r = divide(a, b)\nprint(q)\nprint(r)",
+     "stdin": "17\n5",
+     "expected": "3\n2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nq, r = divide(a, b)\nprint(q)\nprint(r)",
+     "stdin": "20\n4",
+     "expected": "5\n0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nq, r = divide(a, b)\nprint(q)\nprint(r)",
+     "stdin": "9\n1",
+     "expected": "9\n0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 22,
+   "xml_name": "L04_022_Multiple Return Values Smaller And Larger",
+   "display_name": "Multiple Return Values Smaller And Larger",
+   "questiontext_html": "<p>Let's practice multiple return values with a comparison: given two numbers, return both the smaller and larger of the two, in that order.</p>\n<pre>def order(a, b):\n    if a < b:\n        return a, b\n    else:\n        return b, a\n\nsmaller, larger = order(8, 3)\nprint(smaller)\nprint(larger)</pre>\n<p>Notice both <code>return</code> statements return a pair - just in a different order depending on which branch runs, so the caller can always rely on the first unpacked variable being the smaller one.</p>\n<p><b>Your task:</b> Define a function named <code>order</code> that takes two parameters <code>a</code> and <code>b</code>, and returns them as <code>(smaller, larger)</code>. Read two whole numbers, call <code>order</code>, unpack the results, and print the smaller value then the larger value, each on its own line.</p>\n<p><b>Example:</b> Input: <pre>8\n3</pre> Output: <pre>3\n8</pre></p>\n<p><b>Edge case (equal values):</b> Input: <pre>5\n5</pre> Output: <pre>5\n5</pre></p>",
+   "answerpreload": "def order(a, b):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# smaller, larger = order(8, 3)\n# print(smaller, larger)",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a = int(input())\nb = int(input())\ns, l = order(a, b)\nprint(s)\nprint(l)",
+     "stdin": "8\n3",
+     "expected": "3\n8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\ns, l = order(a, b)\nprint(s)\nprint(l)",
+     "stdin": "5\n5",
+     "expected": "5\n5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\ns, l = order(a, b)\nprint(s)\nprint(l)",
+     "stdin": "3\n8",
+     "expected": "3\n8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 23,
+   "xml_name": "L04_023_Multiple Return Values Area And Perimeter",
+   "display_name": "Multiple Return Values Area And Perimeter",
+   "questiontext_html": "<p>Let's use multiple return values for a familiar geometry problem: computing both the area and perimeter of a rectangle in one function call.</p>\n<pre>def rectangle_stats(length, breadth):\n    area = length * breadth\n    perimeter = 2 * (length + breadth)\n    return area, perimeter\n\na, p = rectangle_stats(5, 3)\nprint(a)\nprint(p)</pre>\n<p><b>Your task:</b> Define a function named <code>rectangle_stats</code> that takes <code>length</code> and <code>breadth</code>, and returns both the area and the perimeter. Read length and breadth (one per line), call <code>rectangle_stats</code>, unpack the results, and print the area then the perimeter, each on its own line.</p>\n<p><b>Example:</b> Input: <pre>5\n3</pre> Output: <pre>15\n16</pre></p>",
+   "answerpreload": "def rectangle_stats(length, breadth):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# a, p = rectangle_stats(5, 3)\n# print(a, p)",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "l = int(input())\nb = int(input())\na, p = rectangle_stats(l, b)\nprint(a)\nprint(p)",
+     "stdin": "5\n3",
+     "expected": "15\n16",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "l = int(input())\nb = int(input())\na, p = rectangle_stats(l, b)\nprint(a)\nprint(p)",
+     "stdin": "1\n1",
+     "expected": "1\n4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "l = int(input())\nb = int(input())\na, p = rectangle_stats(l, b)\nprint(a)\nprint(p)",
+     "stdin": "10\n2",
+     "expected": "20\n24",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 24,
+   "xml_name": "L04_024_Multiple Return Values Three Stats",
+   "display_name": "Multiple Return Values Three Stats",
+   "questiontext_html": "<p>You can return more than two values too - just separate them all with commas, and unpack the same number of variables on the caller's side.</p>\n<p><b>Reminder:</b> since the average involves division, round it with <code>round(value, 2)</code> before returning it, to avoid floating-point mismatches.</p>\n<pre>def stats(a, b, c):\n    total = a + b + c\n    average = round(total / 3, 2)\n    if a >= b and a >= c:\n        largest = a\n    elif b >= c:\n        largest = b\n    else:\n        largest = c\n    return total, average, largest\n\nt, avg, m = stats(3, 7, 5)\nprint(t)\nprint(avg)\nprint(m)</pre>\n<p><b>Your task:</b> Define a function named <code>stats</code> that takes three whole numbers <code>a</code>, <code>b</code>, <code>c</code> and returns their sum, their average (rounded to 2 decimal places), and the largest of the three. Read three whole numbers (one per line), call <code>stats</code>, unpack the three results, and print each on its own line (sum, then average, then largest).</p>\n<p><b>Example:</b> Input: <pre>3\n7\n5</pre> Output: <pre>15\n5.0\n7</pre></p>",
+   "answerpreload": "def stats(a, b, c):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# t, avg, m = stats(3, 7, 5)\n# print(t, avg, m)",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a=int(input())\nb=int(input())\nc=int(input())\nt,avg,m=stats(a,b,c)\nprint(t)\nprint(avg)\nprint(m)",
+     "stdin": "3\n7\n5",
+     "expected": "15\n5.0\n7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a=int(input())\nb=int(input())\nc=int(input())\nt,avg,m=stats(a,b,c)\nprint(t)\nprint(avg)\nprint(m)",
+     "stdin": "5\n5\n5",
+     "expected": "15\n5.0\n5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a=int(input())\nb=int(input())\nc=int(input())\nt,avg,m=stats(a,b,c)\nprint(t)\nprint(avg)\nprint(m)",
+     "stdin": "1\n2\n3",
+     "expected": "6\n2.0\n3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 25,
+   "xml_name": "L04_025_Chaining Multiple Return Values",
+   "display_name": "Chaining Multiple Return Values",
+   "questiontext_html": "<p>Let's use a multiple-return function's unpacked results as arguments to <b>another</b> function - combining everything you've learned about composition and multiple returns.</p>\n<pre>def divide(a, b):\n    return a // b, a % b\n\ndef describe(q, r):\n    if r == 0:\n        return \"Divides evenly, quotient \" + str(q)\n    else:\n        return \"Does not divide evenly, remainder \" + str(r)\n\nq, r = divide(20, 4)\nprint(describe(q, r))</pre>\n<p>We first unpack <code>divide</code>'s two return values into <code>q</code> and <code>r</code>, then pass <b>both</b> of them as separate arguments into <code>describe</code>.</p>\n<p><b>Your task:</b> Define <code>divide(a, b)</code> and <code>describe(q, r)</code> exactly as shown above. Read two whole numbers, call <code>divide</code>, unpack the results, then call <code>describe</code> with them and print its return value.</p>\n<p><b>Example 1:</b> Input: <pre>20\n4</pre> Output: <pre>Divides evenly, quotient 5</pre></p>\n<p><b>Example 2:</b> Input: <pre>17\n5</pre> Output: <pre>Does not divide evenly, remainder 2</pre></p>",
+   "answerpreload": "def divide(a, b):\n    # write your code here\n\n\ndef describe(q, r):\n    # write your code here\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# q, r = divide(20, 4)\n# print(describe(q, r))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a=int(input())\nb=int(input())\nq,r=divide(a,b)\nprint(describe(q,r))",
+     "stdin": "20\n4",
+     "expected": "Divides evenly, quotient 5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a=int(input())\nb=int(input())\nq,r=divide(a,b)\nprint(describe(q,r))",
+     "stdin": "17\n5",
+     "expected": "Does not divide evenly, remainder 2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a=int(input())\nb=int(input())\nq,r=divide(a,b)\nprint(describe(q,r))",
+     "stdin": "9\n3",
+     "expected": "Divides evenly, quotient 3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 26,
+   "xml_name": "L04_026_Function Taking A List Returning Sum",
+   "display_name": "Taking A List Returning Sum",
+   "questiontext_html": "<p>A list can be passed into a function just like any other value - the parameter simply becomes a name for the whole list inside the function body.</p>\n<pre>def list_sum(lst):\n    total = 0\n    for value in lst:\n        total = total + value\n    return total\n\nnumbers = [4, 8, 15, 16, 23]\nprint(list_sum(numbers))</pre>\n<p><b>Your task:</b> Define a function named <code>list_sum</code> that takes one parameter <code>lst</code> (a list of numbers) and returns the sum of its elements, using a loop. Call it with the fixed list <code>[4, 8, 15, 16, 23]</code> and print the result.</p>\n<p><b>Expected Output:</b></p>\n<pre>66</pre>",
+   "answerpreload": "def list_sum(lst):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_sum([4, 8, 15, 16, 23]))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "l = [4, 8, 15, 16, 23]\nresult = list_sum(l)\nprint(result)",
+     "stdin": "",
+     "expected": "66",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "l = [1, 1, 1, 1, 1]\nresult = list_sum(l)\nprint(result)",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "l = list(map(int, input().split()))\nresult = list_sum(l)\nprint(result)",
+     "stdin": "10 20 30",
+     "expected": "60",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 27,
+   "xml_name": "L04_027_Function Taking A List Returning Max",
+   "display_name": "Taking A List Returning Max",
+   "questiontext_html": "<p>Recall the \"largest so far\" pattern from Lab 3. Let's wrap it in a function that takes any list and returns its maximum.</p>\n<pre>def list_max(lst):\n    largest = lst[0]\n    for value in lst:\n        if value > largest:\n            largest = value\n    return largest\n\nnumbers = [7, 23, 4, 19, 31, 8]\nprint(list_max(numbers))</pre>\n<p><b>Your task:</b> Define a function named <code>list_max</code> that takes one parameter <code>lst</code> and returns its largest element, using the technique shown above. Call it with the fixed list <code>[7, 23, 4, 19, 31, 8]</code> and print the result.</p>\n<p><b>Expected Output:</b></p>\n<pre>31</pre>",
+   "answerpreload": "def list_max(lst):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_max([7, 23, 4, 19, 31, 8]))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "l = [7, 23, 4, 19, 31, 8]\nresult = list_max(l)\nprint(result)",
+     "stdin": "",
+     "expected": "31",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "l = [5, 5, 5]\nresult = list_max(l)\nprint(result)",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "l = list(map(int, input().split()))\nresult = list_max(l)\nprint(result)",
+     "stdin": "3 90 12 45",
+     "expected": "90",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 28,
+   "xml_name": "L04_028_Function Taking List And Value Checking Membership",
+   "display_name": "Taking List And Value Checking Membership",
+   "questiontext_html": "<p>A function can take more than one parameter even when one of them is a list - let's combine a list parameter with a value to search for, reusing the manual search technique from Lab 3.</p>\n<pre>def contains(lst, x):\n    found = False\n    for value in lst:\n        if value == x:\n            found = True\n    return found\n\nnumbers = [6, 19, 3, 27, 11, 8]\nprint(contains(numbers, 27))</pre>\n<p><b>Your task:</b> Define a function named <code>contains</code> that takes a list <code>lst</code> and a value <code>x</code>, and returns <code>True</code> if <code>x</code> appears in <code>lst</code>, or <code>False</code> otherwise, using the technique shown above (do not use the <code>in</code> operator directly). Call it with the fixed list <code>[6, 19, 3, 27, 11, 8]</code> and read a whole number <code>x</code> to search for, then print the result.</p>\n<p><b>Example 1:</b> Input: <pre>27</pre> Output: <pre>True</pre></p>\n<p><b>Example 2 (edge case - not present):</b> Input: <pre>100</pre> Output: <pre>False</pre></p>",
+   "answerpreload": "def contains(lst, x):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(contains([6, 19, 3, 27, 11, 8], 27))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "x = int(input())\nl = [6, 19, 3, 27, 11, 8]\nprint(contains(l, x))",
+     "stdin": "27",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nl = [6, 19, 3, 27, 11, 8]\nprint(contains(l, x))",
+     "stdin": "100",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nl = [6, 19, 3, 27, 11, 8]\nprint(contains(l, x))",
+     "stdin": "6",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 29,
+   "xml_name": "L04_029_Function Taking A List Returning Count Even",
+   "display_name": "Taking A List Returning Count Even",
+   "questiontext_html": "<p>Let's write a function that combines a loop, an <code>if</code>, and a counter, wrapped up so it can be reused on any list.</p>\n<pre>def count_evens(lst):\n    count = 0\n    for value in lst:\n        if value % 2 == 0:\n            count = count + 1\n    return count\n\nnumbers = [3, 8, 15, 6, 21, 4]\nprint(count_evens(numbers))</pre>\n<p><b>Your task:</b> Define a function named <code>count_evens</code> that takes one parameter <code>lst</code> and returns how many of its elements are even, using the technique shown above. Call it with the fixed list <code>[3, 8, 15, 6, 21, 4]</code> and print the result.</p>\n<p><b>Expected Output:</b></p>\n<pre>3</pre>",
+   "answerpreload": "def count_evens(lst):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(count_evens([3, 8, 15, 6, 21, 4]))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "l = [3, 8, 15, 6, 21, 4]\nresult = count_evens(l)\nprint(result)",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "l = [1, 3, 5, 7]\nresult = count_evens(l)\nprint(result)",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "l = list(map(int, input().split()))\nresult = count_evens(l)\nprint(result)",
+     "stdin": "2 4 6 8 10",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 30,
+   "xml_name": "L04_030_Function Combining List And Loop Filtered Count",
+   "display_name": "Combining List And Loop Filtered Count",
+   "questiontext_html": "<p>Let's combine a list parameter with a second, ordinary parameter - a threshold value to compare against.</p>\n<pre>def count_greater_than(lst, x):\n    count = 0\n    for value in lst:\n        if value > x:\n            count = count + 1\n    return count\n\nnumbers = [11, 4, 18, 7, 25, 2, 14]\nprint(count_greater_than(numbers, 10))</pre>\n<p>This is our last \"simple\" list question before we start mixing in some truly hidden tests for the rest of the lab - by now you've seen every building block needed: functions, parameters (including list parameters), loops, and accumulators, all working together.</p>\n<p><b>Your task:</b> Define a function named <code>count_greater_than</code> that takes a list <code>lst</code> and a value <code>x</code>, and returns how many elements of <code>lst</code> are greater than <code>x</code>. Call it with the fixed list <code>[11, 4, 18, 7, 25, 2, 14]</code>, read a whole number <code>x</code>, and print the result.</p>\n<p><b>Example 1:</b> Input: <pre>10</pre> Output: <pre>4</pre></p>\n<p><b>Example 2 (edge case - nothing qualifies):</b> Input: <pre>100</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "def count_greater_than(lst, x):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(count_greater_than([11, 4, 18, 7, 25, 2, 14], 10))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "x = int(input())\nl = [11, 4, 18, 7, 25, 2, 14]\nprint(count_greater_than(l, x))",
+     "stdin": "10",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nl = [11, 4, 18, 7, 25, 2, 14]\nprint(count_greater_than(l, x))",
+     "stdin": "100",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nl = [11, 4, 18, 7, 25, 2, 14]\nprint(count_greater_than(l, x))",
+     "stdin": "0",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "x = int(input())\nl = [11, 4, 18, 7, 25, 2, 14]\nprint(count_greater_than(l, x))",
+     "stdin": "17",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 31,
+   "xml_name": "L04_031_Function With Nested Loop Printing A Square",
+   "display_name": "With Nested Loop Printing A Square",
+   "questiontext_html": "<p>A function's body can contain a full nested loop too - here, a function that <b>prints</b> a pattern (no return value needed, since printing is itself the \"output\").</p>\n<pre>def print_square(n):\n    for row in range(n):\n        for col in range(n):\n            print(\"*\", end=\"\")\n        print()\n\nprint_square(4)</pre>\n<p>This is exactly the nested-loop square pattern from Lab 3, wrapped in a function so we can print a square of any size just by calling <code>print_square</code> with a different argument.</p>\n<p><b>Your task:</b> Define a function named <code>print_square</code> that takes one parameter <code>n</code> and prints an <code>n</code> by <code>n</code> square of stars (no return value needed). Read a whole number and call <code>print_square</code> with it.</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>***\n***\n***</pre></p>",
+   "answerpreload": "# Define a function named print_square that takes one int parameter: n\n# It should print an n by n square of stars (no return value needed)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print_square(4)",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint_square(n)",
+     "stdin": "3",
+     "expected": "***\n***\n***",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint_square(n)",
+     "stdin": "1",
+     "expected": "*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint_square(n)",
+     "stdin": "5",
+     "expected": "*****\n*****\n*****\n*****\n*****",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 32,
+   "xml_name": "L04_032_Function Computing Grid Sum Using Nested Loop",
+   "display_name": "Computing Grid Sum Using Nested Loop",
+   "questiontext_html": "<p>Let's write a function that <b>returns</b> a value computed by a nested loop, rather than printing a pattern - reusing the grid-sum idea from Lab 3.</p>\n<pre>def grid_sum(n):\n    total = 0\n    for row in range(1, n + 1):\n        for col in range(1, n + 1):\n            total = total + (row * col)\n    return total\n\nprint(grid_sum(3))</pre>\n<p><b>Your task:</b> Define a function named <code>grid_sum</code> that takes one parameter <code>n</code> and returns the sum of every entry in the <code>n</code> by <code>n</code> multiplication grid (entry at row <code>r</code>, column <code>c</code> is <code>r * c</code>), using the technique shown above. Read a whole number, call <code>grid_sum</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>36</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "# Define a function named grid_sum that takes one int parameter: n\n# It should return the sum of every entry in the n by n multiplication grid\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(grid_sum(3))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(grid_sum(n))",
+     "stdin": "3",
+     "expected": "36",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(grid_sum(n))",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(grid_sum(n))",
+     "stdin": "4",
+     "expected": "100",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(grid_sum(n))",
+     "stdin": "2",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 33,
+   "xml_name": "L04_033_Loop Calling Function To Accumulate",
+   "display_name": "Loop Calling Function To Accumulate",
+   "questiontext_html": "<p>Let's combine a loop-calling-a-function pattern (like question 18) with an accumulator, to sum up the results of many function calls.</p>\n<pre>def square_it(a):\n    return a * a\n\ndef sum_of_squares_upto(n):\n    total = 0\n    for i in range(1, n + 1):\n        total = total + square_it(i)\n    return total\n\nprint(sum_of_squares_upto(3))</pre>\n<p>Here, <code>sum_of_squares_upto</code> is itself a function, and its body calls <code>square_it</code> once per loop iteration, adding each result into a running total - combining composition, loops, and accumulators all in one.</p>\n<p><b>Your task:</b> Define <code>square_it(a)</code> returning <code>a squared</code>, and <code>sum_of_squares_upto(n)</code> which uses a <code>for</code> loop calling <code>square_it</code> to compute the sum of squares from 1 to <code>n</code>. Read a whole number, call <code>sum_of_squares_upto</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>14</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "# Define a function named square_it that takes one int parameter: a (returns a squared)\n# Define a function named sum_of_squares_upto that takes one int parameter: n\n\n\n# ---- Use this space to test your functions; comment it out before Check ----\n# print(sum_of_squares_upto(3))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(sum_of_squares_upto(n))",
+     "stdin": "3",
+     "expected": "14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(sum_of_squares_upto(n))",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(sum_of_squares_upto(n))",
+     "stdin": "5",
+     "expected": "55",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(sum_of_squares_upto(n))",
+     "stdin": "10",
+     "expected": "385",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 34,
+   "xml_name": "L04_034_Loop With Multiple Return Values",
+   "display_name": "Loop With Multiple Return Values",
+   "questiontext_html": "<p>Let's call a multiple-return function repeatedly inside a loop, unpacking fresh results on every pass.</p>\n<pre>def divide(a, b):\n    return a // b, a % b\n\nn = 3\nfor i in range(n):\n    a = int(input())\n    b = int(input())\n    q, r = divide(a, b)\n    print(q, r)</pre>\n<p>Each pass through the loop reads a new pair of numbers, calls <code>divide</code>, unpacks the two results into <code>q</code> and <code>r</code>, and prints them - the unpacking works exactly the same way inside a loop as it does outside one.</p>\n<p><b>Your task:</b> Define a function named <code>divide</code> that returns the quotient and remainder of <code>a // b</code> and <code>a % b</code>. Read a whole number <code>n</code>, then read <code>n</code> pairs of whole numbers (two per pair, one per line). For each pair, call <code>divide</code>, unpack the results, and print them space-separated on one line (quotient then remainder).</p>\n<p><b>Example:</b> Input: <pre>2\n17\n5\n9\n3</pre> Output: <pre>3 2\n3 0</pre></p>",
+   "answerpreload": "# Define a function named divide that takes two int parameters: a, b\n# It should return two values: the quotient (a // b) and the remainder (a % b)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# q, r = divide(17, 5)\n# print(q, r)",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nfor i in range(n):\n    a = int(input())\n    b = int(input())\n    q, r = divide(a, b)\n    print(q, r)",
+     "stdin": "2\n17\n5\n9\n3",
+     "expected": "3 2\n3 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nfor i in range(n):\n    a = int(input())\n    b = int(input())\n    q, r = divide(a, b)\n    print(q, r)",
+     "stdin": "1\n10\n2",
+     "expected": "5 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nfor i in range(n):\n    a = int(input())\n    b = int(input())\n    q, r = divide(a, b)\n    print(q, r)",
+     "stdin": "3\n7\n2\n20\n6\n1\n1",
+     "expected": "3 1\n3 2\n1 0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 35,
+   "xml_name": "L04_035_Recursion Sum Of Digits",
+   "display_name": "Recursion Sum Of Digits",
+   "questiontext_html": "<p>Every function you've written so far has called <i>other</i> functions, or none at all. Now let's meet <b>recursion</b>: a function that calls <b>itself</b>.</p>\n<p>Every recursive function needs two parts: a <b>base case</b> (a simple situation where the function can answer directly, with no further recursive call - this is what stops the recursion from running forever), and a <b>recursive case</b> (where the function calls itself on a \"smaller\" version of the problem, and combines that result with something to get the final answer).</p>\n<pre>def sum_of_digits(n):\n    if n < 10:\n        return n\n    else:\n        return n % 10 + sum_of_digits(n // 10)\n\nprint(sum_of_digits(1234))</pre>\n<p><b>Base case:</b> if <code>n</code> is already a single digit (less than 10), its digit sum is just itself - no need to recurse further.</p>\n<p><b>Recursive case:</b> otherwise, take the last digit (<code>n % 10</code>) and add it to the digit sum of everything <i>except</i> the last digit (<code>sum_of_digits(n // 10)</code>) - a smaller version of the same problem.</p>\n<p><b>Trace through (n=1234):</b> <code>1234</code> is not &lt;10, so we compute <code>4 + sum_of_digits(123)</code>. <code>123</code> is not &lt;10, so that's <code>3 + sum_of_digits(12)</code>. <code>12</code> is not &lt;10, so that's <code>2 + sum_of_digits(1)</code>. <code>1</code> <b>is</b> &lt;10 - base case! - returns <code>1</code> directly. Unwinding: <code>2+1=3</code>, then <code>3+3=6</code>, then <code>4+6=10</code>. Final answer: <code>10</code>.</p>\n<p><b>Your task:</b> Define a recursive function named <code>sum_of_digits</code> that takes one parameter <code>n</code> (a non-negative whole number) and returns the sum of its digits, using the technique shown above. Read a whole number, call <code>sum_of_digits</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>1234</pre> Output: <pre>10</pre></p>\n<p><b>Edge case (single digit - base case only):</b> Input: <pre>7</pre> Output: <pre>7</pre></p>",
+   "answerpreload": "# Define a recursive function named sum_of_digits that takes one int parameter: n\n# It should return the sum of n's digits. Remember: it needs a base case and a recursive case.\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(sum_of_digits(1234))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(sum_of_digits(n))",
+     "stdin": "1234",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(sum_of_digits(n))",
+     "stdin": "7",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(sum_of_digits(n))",
+     "stdin": "999",
+     "expected": "27",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(sum_of_digits(n))",
+     "stdin": "50",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(sum_of_digits(n))",
+     "stdin": "80507",
+     "expected": "20",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 36,
+   "xml_name": "L04_036_Recursion Fibonacci",
+   "display_name": "Recursion Fibonacci",
+   "questiontext_html": "<p>Let's write a classic recursive function: computing the <code>n</code>-th Fibonacci number, where each term is the sum of the two before it (starting 0, 1).</p>\n<pre>def fib(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fib(n - 1) + fib(n - 2)\n\nprint(fib(6))</pre>\n<p><b>Base cases:</b> <code>fib(0)</code> is defined as <code>0</code>, and <code>fib(1)</code> is defined as <code>1</code> - both answered directly, no recursion needed.</p>\n<p><b>Recursive case:</b> for any <code>n</code> above 1, <code>fib(n)</code> is the sum of the two <b>previous</b> Fibonacci numbers - which we compute by calling <code>fib</code> on <code>n-1</code> and <code>n-2</code>, and adding the results. Notice this function calls itself <b>twice</b> per recursive call!</p>\n<p><b>Your task:</b> Define a recursive function named <code>fib</code> that takes one parameter <code>n</code> (0 or above) and returns the <code>n</code>-th Fibonacci number (0-indexed: fib(0)=0, fib(1)=1), using the technique shown above. Read a whole number, call <code>fib</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>6</pre> Output: <pre>8</pre></p>\n<p><b>Edge case (base case, n=0):</b> Input: <pre>0</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "# Define a recursive function named fib that takes one int parameter: n\n# It should return the n-th Fibonacci number (0-indexed: fib(0)=0, fib(1)=1)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(fib(6))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(fib(n))",
+     "stdin": "6",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(fib(n))",
+     "stdin": "0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(fib(n))",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(fib(n))",
+     "stdin": "10",
+     "expected": "55",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(fib(n))",
+     "stdin": "12",
+     "expected": "144",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 37,
+   "xml_name": "L04_037_Recursion Factorial",
+   "display_name": "Recursion Factorial",
+   "questiontext_html": "<p>Let's write the factorial function recursively, and compare it in your mind to the iterative version you wrote back in Lab 4's very first questions.</p>\n<pre>def factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n - 1)\n\nprint(factorial(4))</pre>\n<p><b>Base case:</b> <code>factorial(0)</code> is defined as <code>1</code>.</p>\n<p><b>Recursive case:</b> for <code>n</code> above 0, <code>factorial(n)</code> is <code>n</code> multiplied by <code>factorial(n - 1)</code> - a smaller version of the same problem.</p>\n<p><b>Trace through (n=4):</b> <code>factorial(4) = 4 * factorial(3)</code>, which needs <code>factorial(3) = 3 * factorial(2)</code>, which needs <code>factorial(2) = 2 * factorial(1)</code>, which needs <code>factorial(1) = 1 * factorial(0)</code>, and <code>factorial(0) = 1</code> (base case). Unwinding: <code>1*1=1</code>, <code>2*1=2</code>, <code>3*2=6</code>, <code>4*6=24</code>.</p>\n<p><b>Your task:</b> Define a recursive function named <code>factorial</code> that takes one parameter <code>n</code> (0 or above) and returns <code>n!</code>, using the technique shown above. Read a whole number, call <code>factorial</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>24</pre></p>\n<p><b>Edge case (base case):</b> Input: <pre>0</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "# Define a recursive function named factorial that takes one int parameter: n\n# It should return n! (n factorial)\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(factorial(4))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(factorial(n))",
+     "stdin": "4",
+     "expected": "24",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(factorial(n))",
+     "stdin": "0",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(factorial(n))",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(factorial(n))",
+     "stdin": "6",
+     "expected": "720",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(factorial(n))",
+     "stdin": "8",
+     "expected": "40320",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 38,
+   "xml_name": "L04_038_Recursion Power",
+   "display_name": "Recursion Power",
+   "questiontext_html": "<p>Let's write a recursive function to compute <code>base</code> raised to a whole-number <code>exp</code>onent, without using Python's built-in <code>**</code> operator.</p>\n<pre>def power(base, exp):\n    if exp == 0:\n        return 1\n    else:\n        return base * power(base, exp - 1)\n\nprint(power(2, 5))</pre>\n<p><b>Base case:</b> anything raised to the power 0 is <code>1</code>.</p>\n<p><b>Recursive case:</b> <code>base</code> raised to <code>exp</code> is <code>base</code> multiplied by <code>base</code> raised to <code>exp - 1</code> - each recursive call reduces the exponent by 1, moving closer to the base case.</p>\n<p><b>Trace through (base=2, exp=3):</b> <code>power(2,3) = 2 * power(2,2) = 2 * (2 * power(2,1)) = 2 * (2 * (2 * power(2,0))) = 2 * (2 * (2 * 1)) = 8</code>.</p>\n<p><b>Your task:</b> Define a recursive function named <code>power</code> that takes <code>base</code> and <code>exp</code> (exp is 0 or above) and returns <code>base</code> raised to the power <code>exp</code>, using the technique shown above. Read two whole numbers <code>base</code> and <code>exp</code>, call <code>power</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>2\n5</pre> Output: <pre>32</pre></p>\n<p><b>Edge case (exponent 0):</b> Input: <pre>7\n0</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "# Define a recursive function named power that takes two int parameters: base, exp\n# It should return base raised to the power exp, without using **\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(power(2, 5))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "b = int(input())\ne = int(input())\nprint(power(b, e))",
+     "stdin": "2\n5",
+     "expected": "32",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "b = int(input())\ne = int(input())\nprint(power(b, e))",
+     "stdin": "7\n0",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "b = int(input())\ne = int(input())\nprint(power(b, e))",
+     "stdin": "3\n1",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "b = int(input())\ne = int(input())\nprint(power(b, e))",
+     "stdin": "5\n3",
+     "expected": "125",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "b = int(input())\ne = int(input())\nprint(power(b, e))",
+     "stdin": "-2\n3",
+     "expected": "-8",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 39,
+   "xml_name": "L04_039_Recursion Count Digits",
+   "display_name": "Recursion Count Digits",
+   "questiontext_html": "<p>Let's write the digit-counting function from Lab3_part2 recursively, instead of with a <code>while</code> loop.</p>\n<pre>def count_digits(n):\n    if n < 10:\n        return 1\n    else:\n        return 1 + count_digits(n // 10)\n\nprint(count_digits(305))</pre>\n<p><b>Base case:</b> a single-digit number (less than 10) has exactly 1 digit.</p>\n<p><b>Recursive case:</b> otherwise, the digit count is <code>1</code> (for the last digit we're \"using up\") plus the digit count of everything remaining after removing the last digit (<code>n // 10</code>).</p>\n<p><b>Your task:</b> Define a recursive function named <code>count_digits</code> that takes one parameter <code>n</code> (a positive whole number) and returns how many digits it has, using the technique shown above. Read a whole number, call <code>count_digits</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>305</pre> Output: <pre>3</pre></p>\n<p><b>Edge case (single digit - base case only):</b> Input: <pre>7</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "# Define a recursive function named count_digits that takes one int parameter: n\n# It should return how many digits n has\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(count_digits(305))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(count_digits(n))",
+     "stdin": "305",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(count_digits(n))",
+     "stdin": "7",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(count_digits(n))",
+     "stdin": "1000000",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(count_digits(n))",
+     "stdin": "42",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(count_digits(n))",
+     "stdin": "99999",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 40,
+   "xml_name": "L04_040_Capstone Sum Of Squares Of Digits",
+   "display_name": "Capstone Sum Of Squares Of Digits",
+   "questiontext_html": "<p>For our final question, let's combine everything from this lab: a recursive helper function, called from inside another function, to compute something new - the sum of the <b>squares</b> of a number's digits.</p>\n<pre>def digit_sum_of_squares(n):\n    if n < 10:\n        return n * n\n    else:\n        return (n % 10) * (n % 10) + digit_sum_of_squares(n // 10)\n\nprint(digit_sum_of_squares(123))</pre>\n<p>This follows the exact same recursive pattern as <code>sum_of_digits</code> from earlier in this lab, except each digit is <b>squared</b> before being added in, both in the base case and the recursive case.</p>\n<p><b>Trace through (n=123):</b> <code>123</code>: <code>3*3=9</code> plus <code>digit_sum_of_squares(12)</code>. <code>12</code>: <code>2*2=4</code> plus <code>digit_sum_of_squares(1)</code>. <code>1</code> is &lt;10 (base case): returns <code>1*1=1</code>. Unwinding: <code>4+1=5</code>, then <code>9+5=14</code>. Final answer: <code>14</code>.</p>\n<p><b>Your task:</b> Define a recursive function named <code>digit_sum_of_squares</code> that takes one parameter <code>n</code> (a positive whole number) and returns the sum of the squares of its digits, using the technique shown above. Read a whole number, call <code>digit_sum_of_squares</code>, and print the result.</p>\n<p><b>Example:</b> Input: <pre>123</pre> Output: <pre>14</pre></p>\n<p>(1*1 + 2*2 + 3*3 = 1 + 4 + 9 = 14)</p>\n<p><b>Edge case (single digit):</b> Input: <pre>7</pre> Output: <pre>49</pre></p>",
+   "answerpreload": "# Define a recursive function named digit_sum_of_squares that takes one int parameter: n\n# It should return the sum of the squares of n's digits\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(digit_sum_of_squares(123))",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "n = int(input())\nprint(digit_sum_of_squares(n))",
+     "stdin": "123",
+     "expected": "14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(digit_sum_of_squares(n))",
+     "stdin": "7",
+     "expected": "49",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(digit_sum_of_squares(n))",
+     "stdin": "10",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(digit_sum_of_squares(n))",
+     "stdin": "999",
+     "expected": "243",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "n = int(input())\nprint(digit_sum_of_squares(n))",
+     "stdin": "4056",
+     "expected": "77",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "184bf2c0463da130"
+}
