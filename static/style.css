@@ -143,11 +143,6 @@ table.summary td.r-correct { color: var(--correct); font-weight: 500; }
 table.summary td.r-wrong { color: var(--wrong); font-weight: 500; }
 table.summary td.r-not_attempted { color: var(--ink-soft); }
 
-@media (max-width: 900px) {
-  nav { width: 200px; }
-  main { padding: 16px; }
-  .topbar { flex-wrap: wrap; gap: 10px 20px; }
-}
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
 /* ---------- v2 additions ---------- */
@@ -173,3 +168,67 @@ nav .nav-heading:first-child { border-top: none; margin-top: 0; padding-top: 6px
 .bank-title { font-weight: 500; }
 .done-actions { display: flex; gap: 10px; margin-top: 16px; }
 button.fill { margin-left: auto; border-style: dashed; color: #8a3b12; }
+
+/* ---------- question list toggle, current question, prev/next ---------- */
+.navtoggle { white-space: nowrap; }
+.mb-current { font-weight: 500; color: var(--ink); min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.nav-collapsed nav { display: none; }
+.nav-backdrop { display: none; }
+.res, #q-examples, .qtext { overflow-x: auto; }
+.qnav { display: flex; align-items: center; gap: 12px; margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.qnav button { max-width: 42%; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 8px 14px; }
+.qnav .qnext { margin-left: auto; }
+.qnav-pos { color: var(--ink-soft); font-size: 13px; white-space: nowrap; }
+.qnav button:disabled { visibility: hidden; }
+
+button.more { display: none; }
+.modebar { position: relative; }
+
+/* ---------- phones and narrow windows ---------- */
+@media (max-width: 800px) {
+  .tb-stats .lbl { display: none; }                  /* counts keep their coloured dots */
+  #mb-penalty:not(.penalty-on) { display: none; }    /* only show the line when a penalty applies */
+  button.more:not([hidden]) { display: inline-block; margin-left: auto; }
+  .mb-tools {
+    display: none; position: absolute; right: 12px; top: 100%; z-index: 12; flex-direction: column;
+    background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; padding: 6px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+  }
+  body.tools-open .mb-tools { display: flex; }
+  .mb-tools button { text-align: left; padding: 8px 12px; }
+  body { font-size: 15px; }
+  .topbar { flex-wrap: wrap; gap: 4px 12px; padding: 8px 12px; }
+  .tb-who { order: 1; flex: 1; }
+  .tb-who span { font-size: 12px; }
+  #tb-student, #tb-start-wrap { display: none; }
+  .tb-clock { order: 2; }
+  .tb-clock-label { font-size: 11px; }
+  #tb-left { font-size: 20px; }
+  #tb-left.nolimit { font-size: 15px; }
+  #btn-submit { order: 3; padding: 5px 10px; font-size: 14px; }
+  .tb-stats { order: 4; flex-basis: 100%; font-size: 13px; gap: 2px 14px; flex-wrap: nowrap; }
+  .modebar { flex-wrap: wrap; gap: 6px 10px; padding: 6px 12px; }
+  .mb-current { flex: 1; }
+  #mb-penalty { order: 5; flex-basis: 100%; font-size: 12px; }
+  /* question list becomes a slide-in drawer */
+  nav {
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 15; width: min(86vw, 330px);
+    transform: translateX(-105%); transition: transform .2s ease; box-shadow: 4px 0 18px rgba(0, 0, 0, .18);
+  }
+  body.nav-collapsed nav { display: block; }
+  body.nav-open nav { transform: none; }
+  body.nav-open .nav-backdrop { display: block; position: fixed; inset: 0; z-index: 14; background: rgba(22, 32, 43, .45); }
+  nav a { padding: 9px 14px; }
+  main { padding: 14px 14px 40px; }
+  .q-head { flex-wrap: wrap; gap: 4px 12px; }
+  .q-head h2 { font-size: 19px; margin-bottom: 4px; }
+  #editor .CodeMirror { height: 300px; font-size: 15px; }
+  .actions { flex-wrap: wrap; }
+  .actions button { padding: 9px 14px; }
+  button.fill { margin-left: 0; }
+  .hint { display: none; }
+  .qnav button { max-width: 44%; padding: 10px 12px; }
+  .gate { padding: 5vh 12px; }
+  .gate-box { padding: 20px 18px; }
+  .modal-box { padding: 18px; }
+}

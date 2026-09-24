@@ -204,7 +204,19 @@ function buildTools() {
   } else if (EXAM.mode === "preview") {
     t.append(el("button", { class: "small", text: "Open another bank", onclick: backToChoose }));
   }
+  $("btn-more").hidden = t.childElementCount === 0;   // phones show the tools behind "More"
 }
+$("btn-more").addEventListener("click", (e) => {
+  e.stopPropagation();
+  const open = document.body.classList.toggle("tools-open");
+  $("btn-more").setAttribute("aria-expanded", String(open));
+});
+document.addEventListener("click", (e) => {
+  if (document.body.classList.contains("tools-open") && !e.target.closest("#mb-tools")) {
+    document.body.classList.remove("tools-open");
+    $("btn-more").setAttribute("aria-expanded", "false");
+  }
+});
 
 function isDirty(no) { return docs[no] && docs[no].getValue() !== serverCode[no]; }
 
@@ -262,6 +274,33 @@ function showWorth(no) {
     : `After ${q.failed_checks} failed Check${q.failed_checks === 1 ? "" : "s"}, your next Check can earn at most ${fmt(q.next_worth_pct)}% (${fmt(q.max_marks * q.next_worth_pct / 100)} of ${fmt(q.max_marks)} marks).`;
 }
 
+/* ---------- question list: collapsible (desktop), drawer (phones) ---------- */
+const narrow = () => window.matchMedia("(max-width: 800px)").matches;
+let desktopNavOpen = true, mobileNavOpen = false;
+try { desktopNavOpen = localStorage.getItem("cr-nav-collapsed") !== "1"; } catch (e) { /* storage unavailable */ }
+function applyNav() {
+  const open = narrow() ? mobileNavOpen : desktopNavOpen;
+  document.body.classList.toggle("nav-open", narrow() && open);
+  document.body.classList.toggle("nav-collapsed", !narrow() && !open);
+  $("btn-nav").setAttribute("aria-expanded", String(open));
+}
+function toggleNav(force) {
+  if (narrow()) mobileNavOpen = force === undefined ? !mobileNavOpen : force;
+  else {
+    desktopNavOpen = force === undefined ? !desktopNavOpen : force;
+    try { localStorage.setItem("cr-nav-collapsed", desktopNavOpen ? "0" : "1"); } catch (e) { /* ignore */ }
+  }
+  applyNav();
+  if (cm) cm.refresh();
+}
+$("btn-nav").addEventListener("click", () => toggleNav());
+$("nav-backdrop").addEventListener("click", () => toggleNav(false));
+window.addEventListener("resize", applyNav);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && document.body.classList.contains("nav-open")) toggleNav(false);
+});
+applyNav();
+
 /* ---------- editor ---------- */
 const DEDENT_OPENERS = {
   else: ["if", "elif", "for", "while", "try", "except"],
@@ -315,6 +354,14 @@ function openQuestion(no) {
   current = no;
   const q = EXAM.questions[no - 1];
   $("q-title").textContent = `Question ${q.no}: ${q.title}`;
+  const n = EXAM.questions.length;
+  $("mb-current").textContent = `Q${q.no} of ${n}: ${q.title}`;
+  $("qnav-pos").textContent = `${q.no} / ${n}`;
+  $("btn-prev").disabled = q.no <= 1;
+  $("btn-next").disabled = q.no >= n;
+  $("prev-label").textContent = q.no > 1 ? `${q.no - 1}. ${EXAM.questions[q.no - 2].title}` : "Previous";
+  $("next-label").textContent = q.no < n ? `${q.no + 1}. ${EXAM.questions[q.no].title}` : "Next";
+  if (narrow()) toggleNav(false);
   $("q-mark").textContent = `${fmt(q.mark)} mark${q.mark === 1 ? "" : "s"}`;
   $("q-text").innerHTML = q.html;        // written by the instructor
   renderExamples(q.examples);
@@ -327,7 +374,7 @@ function openQuestion(no) {
   if (prev) refreshNavItem(prev);
   refreshNavItem(no);
   $("main").scrollTop = 0;
-  cm.focus();
+  if (!narrow()) cm.focus();              // on phones this would pop up the keyboard
 }
 
 function pre(text) { return el("pre", { text: text }); }
@@ -417,6 +464,8 @@ async function doAction(kind, no = current, quiet = false) {
   }
 }
 $("btn-precheck").addEventListener("click", () => doAction("precheck"));
+$("btn-prev").addEventListener("click", () => { if (current > 1) openQuestion(current - 1); });
+$("btn-next").addEventListener("click", () => { if (current < EXAM.questions.length) openQuestion(current + 1); });
 $("btn-check").addEventListener("click", () => doAction("check"));
 $("btn-save").addEventListener("click", () => doAction("save"));
 $("btn-fill").addEventListener("click", () => {

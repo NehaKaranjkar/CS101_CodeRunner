@@ -71,9 +71,9 @@
     <div class="tb-stats">
       <span id="tb-start-wrap">Started <b id="tb-start"></b></span>
       <span>Marks <b id="tb-marks"></b></span>
-      <span class="count correct"><i></i><b id="tb-correct"></b> correct</span>
-      <span class="count wrong"><i></i><b id="tb-wrong"></b> wrong</span>
-      <span class="count idle"><i></i><b id="tb-idle"></b> not attempted</span>
+      <span class="count correct" title="correct"><i></i><b id="tb-correct"></b><span class="lbl"> correct</span></span>
+      <span class="count wrong" title="wrong"><i></i><b id="tb-wrong"></b><span class="lbl"> wrong</span></span>
+      <span class="count idle" title="not attempted"><i></i><b id="tb-idle"></b><span class="lbl"> not attempted</span></span>
     </div>
     <div class="tb-clock">
       <span class="tb-clock-label" id="tb-clock-label">Time left</span>
@@ -82,11 +82,15 @@
     <button id="btn-submit" class="submit">Final submit</button>
   </header>
   <div class="modebar">
+    <button id="btn-nav" class="small navtoggle" aria-controls="nav" aria-expanded="true" title="Show or hide the question list">&#9776; Questions</button>
+    <span id="mb-current" class="mb-current"></span>
     <span id="mb-penalty"></span>
+    <button id="btn-more" class="small more" aria-expanded="false" hidden>More &#9662;</button>
     <span class="mb-tools" id="mb-tools"></span>
   </div>
 
   <div class="body">
+    <div id="nav-backdrop" class="nav-backdrop"></div>
     <nav id="nav" aria-label="Questions"></nav>
 
     <main id="main">
@@ -109,6 +113,11 @@
       </div>
       <p class="hint">Pre-check runs the example test only and is not graded. Check runs all tests and records your marks. Ctrl+S saves.</p>
       <div id="result" aria-live="polite"></div>
+      <div class="qnav">
+        <button id="btn-prev" class="qprev">&larr; <span id="prev-label">Previous</span></button>
+        <span id="qnav-pos" class="qnav-pos"></span>
+        <button id="btn-next" class="qnext"><span id="next-label">Next</span> &rarr;</button>
+      </div>
     </main>
   </div>
 </section>
