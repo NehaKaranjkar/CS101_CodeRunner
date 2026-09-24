@@ -1,0 +1,11 @@
+{
+ "banks": [
+  {
+   "file": "Practice_Set_2.qbank",
+   "title": "Practice: Practice Set 2",
+   "questions": 50,
+   "marks": 50.0,
+   "duration_minutes": null
+  }
+ ]
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python programming practice and exams</title>
+<link rel="stylesheet" href="vendor/codemirror/codemirror.css">
+<link rel="stylesheet" href="static/style.css">
+<script src="config.js"></script>
+<script src="vendor/codemirror/codemirror.js"></script>
+<script src="vendor/codemirror/python.js"></script>
+<script src="vendor/codemirror/matchbrackets.js"></script>
+</head>
+<body>
+
+<!-- 1. Choose a question bank (and password for exams) -->
+<section id="screen-bank" class="gate" hidden>
+  <div class="gate-box">
+    <div id="choose-part">
+      <h1 id="choose-title">Programming exam</h1>
+      <div id="bank-list-wrap" hidden>
+        <p class="gate-help">Choose a question set to practise.</p>
+        <ul id="bank-list" class="bank-list"></ul>
+        <p id="bank-list-empty" class="muted" hidden>No question sets are published yet.</p>
+        <p class="gate-help or">Or open a question set file you were given:</p>
+      </div>
+      <p id="file-help" class="gate-help">Open the question file given by your instructor.</p>
+      <label class="field">Question file
+        <input type="file" id="bank-file" accept=".qbank,.json">
+      </label>
+    </div>
+    <div id="password-part" hidden>
+      <h1 id="password-title"></h1>
+      <p class="muted" id="password-file"></p>
+      <label class="field">Exam password
+        <input type="password" id="password" autocomplete="off">
+      </label>
+      <button id="btn-unlock" class="primary">Unlock</button>
+      <button id="btn-back-pw" class="plain">Use a different question file</button>
+    </div>
+    <p id="bank-error" class="error" role="alert"></p>
+  </div>
+</section>
+
+<!-- 2. Roll number and name (exams only) -->
+<section id="screen-login" class="gate" hidden>
+  <div class="gate-box">
+    <h1 id="login-title"></h1>
+    <p id="login-opens" class="notice" hidden></p>
+    <label class="field">Roll number
+      <input type="text" id="roll" autocomplete="off" spellcheck="false">
+    </label>
+    <label class="field">Full name, as on Google Classroom
+      <input type="text" id="name" autocomplete="off" spellcheck="false">
+    </label>
+    <p class="gate-help">If you already started this exam on this computer, you will continue where you left off.</p>
+    <button id="btn-login" class="primary">Start exam</button>
+    <button id="btn-back" class="plain">Use a different question file</button>
+    <p id="login-error" class="error" role="alert"></p>
+  </div>
+</section>
+
+<!-- 3. Questions -->
+<section id="screen-exam" hidden>
+  <header class="topbar">
+    <div class="tb-who">
+      <strong id="tb-mode"></strong>
+      <span id="tb-title"></span>
+      <span id="tb-student"></span>
+    </div>
+    <div class="tb-stats">
+      <span id="tb-start-wrap">Started <b id="tb-start"></b></span>
+      <span>Marks <b id="tb-marks"></b></span>
+      <span class="count correct"><i></i><b id="tb-correct"></b> correct</span>
+      <span class="count wrong"><i></i><b id="tb-wrong"></b> wrong</span>
+      <span class="count idle"><i></i><b id="tb-idle"></b> not attempted</span>
+    </div>
+    <div class="tb-clock">
+      <span class="tb-clock-label" id="tb-clock-label">Time left</span>
+      <span id="tb-left">--:--:--</span>
+    </div>
+    <button id="btn-submit" class="submit">Final submit</button>
+  </header>
+  <div class="modebar">
+    <span id="mb-penalty"></span>
+    <span class="mb-tools" id="mb-tools"></span>
+  </div>
+
+  <div class="body">
+    <nav id="nav" aria-label="Questions"></nav>
+
+    <main id="main">
+      <div class="q-head">
+        <h2 id="q-title"></h2>
+        <span id="q-mark" class="muted"></span>
+      </div>
+      <p id="q-worth" class="worth" hidden></p>
+      <div id="q-text" class="qtext"></div>
+      <div id="q-examples"></div>
+
+      <h3 class="answer-label">Your answer</h3>
+      <div id="editor"></div>
+      <div class="actions">
+        <button id="btn-precheck">Pre-check</button>
+        <button id="btn-check" class="primary">Check</button>
+        <button id="btn-save">Save</button>
+        <button id="btn-fill" class="fill" hidden title="Instructor preview only">Fill correct answer</button>
+        <span id="save-state" class="muted"></span>
+      </div>
+      <p class="hint">Pre-check runs the example test only and is not graded. Check runs all tests and records your marks. Ctrl+S saves.</p>
+      <div id="result" aria-live="polite"></div>
+    </main>
+  </div>
+</section>
+
+<!-- 4. Submitted -->
+<section id="screen-done" class="gate" hidden>
+  <div class="gate-box wide">
+    <h1 id="done-heading">Exam submitted</h1>
+    <p id="done-who"></p>
+    <p id="done-reason" class="muted"></p>
+    <p class="done-total"><span id="done-marks"></span></p>
+    <table class="summary">
+      <thead><tr><th>#</th><th>Question</th><th>Result</th><th>Marks</th></tr></thead>
+      <tbody id="done-rows"></tbody>
+    </table>
+    <p id="done-path" class="muted"></p>
+    <div id="done-actions" class="done-actions"></div>
+  </div>
+</section>
+
+<!-- Confirmation dialog -->
+<div id="modal" class="modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <h2 id="modal-title"></h2>
+    <div id="modal-body"></div>
+    <div class="modal-actions">
+      <button id="modal-cancel">Keep working</button>
+      <button id="modal-ok" class="submit"></button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="progress-file" accept=".json" hidden>
+<script src="static/web_backend.js"></script>
+<script src="static/app.js"></script>
+</body>
+</html>
