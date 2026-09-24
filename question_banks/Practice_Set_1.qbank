@@ -1,0 +1,3445 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Practice_Set_1",
+ "encrypted": false,
+ "source_xml": "Practice_Set_1.xml",
+ "built_at": "2026-09-24T18:53:36",
+ "settings": {
+  "title": "Practice: Practice Set 1",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Easy",
+    "start": 1,
+    "count": 10
+   },
+   {
+    "heading": "Medium",
+    "start": 11,
+    "count": 36
+   },
+   {
+    "heading": "Functions",
+    "start": 47,
+    "count": 4
+   },
+   {
+    "heading": "Difficult",
+    "start": 51,
+    "count": 10
+   }
+  ]
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "PS1_001_MON_Sum Of Two Numbers",
+   "display_name": "MON_Sum Of Two Numbers",
+   "questiontext_html": "<p>Write a Python program that reads two integers (one per line) and prints their sum.</p>\n<p><b>Example:</b> Input: <pre>3\n5</pre> Output: <pre>8</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3\n5",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-2\n7",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0\n0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "PS1_002_MON_Greet A Person",
+   "display_name": "MON_Greet A Person",
+   "questiontext_html": "<p>Write a Python program that reads a person's name (a single line of text) and prints a greeting in the exact format <code>Hello, &lt;name&gt;!</code></p>\n<p><b>Example:</b> Input: <pre>Harry</pre> Output: <pre>Hello, Harry!</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "Harry",
+     "expected": "Hello, Harry!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Hermione",
+     "expected": "Hello, Hermione!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Ron",
+     "expected": "Hello, Ron!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "PS1_003_MON_Double A Number",
+   "display_name": "MON_Double A Number",
+   "questiontext_html": "<p>Write a Python program that reads an integer and prints double its value.</p>\n<p><b>Example:</b> Input: <pre>7</pre> Output: <pre>14</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-4",
+     "expected": "-8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "PS1_004_MON_Area Of A Rectangle",
+   "display_name": "MON_Area Of A Rectangle",
+   "questiontext_html": "<p>Write a Python program that reads the length and breadth of a rectangle (two positive integers, one per line) and prints its area (length multiplied by breadth).</p>\n<p><b>Example:</b> Input: <pre>5\n3</pre> Output: <pre>15</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5\n3",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1\n1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10\n7",
+     "expected": "70",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "PS1_005_MON_Celsius To Fahrenheit",
+   "display_name": "MON_Celsius To Fahrenheit",
+   "questiontext_html": "<p>Write a Python program that reads a temperature in Celsius (an integer) and prints the equivalent temperature in Fahrenheit, using the formula <code>F = C * 9 / 5 + 32</code>.</p>\n<p>Print the answer rounded to 2 decimal places using <code>round(value, 2)</code>. For example, <code>print(round(3.14159, 2))</code> prints <code>3.14</code>.</p>\n<p><b>Example:</b> Input: <pre>0</pre> Output: <pre>32.0</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "32.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "212.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "37",
+     "expected": "98.6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "PS1_006_TUE_Difference Of Two Numbers",
+   "display_name": "TUE_Difference Of Two Numbers",
+   "questiontext_html": "<p>Write a Python program that reads two integers (one per line) and prints the result of subtracting the second from the first.</p>\n<p><b>Example:</b> Input: <pre>10\n3</pre> Output: <pre>7</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "10\n3",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-2\n7",
+     "expected": "-9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0\n0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "PS1_007_TUE_Welcome A Person",
+   "display_name": "TUE_Welcome A Person",
+   "questiontext_html": "<p>Write a Python program that reads a person's name (a single line of text) and prints a welcome message in the exact format <code>Welcome, &lt;name&gt;!</code></p>\n<p><b>Example:</b> Input: <pre>Luffy</pre> Output: <pre>Welcome, Luffy!</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "Luffy",
+     "expected": "Welcome, Luffy!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Zoro",
+     "expected": "Welcome, Zoro!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Nami",
+     "expected": "Welcome, Nami!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "PS1_008_TUE_Triple A Number",
+   "display_name": "TUE_Triple A Number",
+   "questiontext_html": "<p>Write a Python program that reads an integer and prints triple (3 times) its value.</p>\n<p><b>Example:</b> Input: <pre>7</pre> Output: <pre>21</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "21",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-4",
+     "expected": "-12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "PS1_009_TUE_Perimeter Of A Rectangle",
+   "display_name": "TUE_Perimeter Of A Rectangle",
+   "questiontext_html": "<p>Write a Python program that reads the length and breadth of a rectangle (two positive integers, one per line) and prints its perimeter, using the formula <code>2 * (length + breadth)</code>.</p>\n<p><b>Example:</b> Input: <pre>5\n3</pre> Output: <pre>16</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5\n3",
+     "expected": "16",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1\n1",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10\n7",
+     "expected": "34",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "PS1_010_TUE_Fahrenheit To Celsius",
+   "display_name": "TUE_Fahrenheit To Celsius",
+   "questiontext_html": "<p>Write a Python program that reads a temperature in Fahrenheit (an integer) and prints the equivalent temperature in Celsius, using the formula <code>C = (F - 32) * 5 / 9</code>.</p>\n<p>Print the answer rounded to 2 decimal places using <code>round(value, 2)</code>. For example, <code>print(round(3.14159, 2))</code> prints <code>3.14</code>.</p>\n<p><b>Example:</b> Input: <pre>32</pre> Output: <pre>0.0</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "32",
+     "expected": "0.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "212",
+     "expected": "100.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "98",
+     "expected": "36.67",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "PS1_011_MON_Even Or Odd",
+   "display_name": "MON_Even Or Odd",
+   "questiontext_html": "<p>An integer is <b>even</b> if it is exactly divisible by 2 (no remainder), and <b>odd</b> otherwise.</p>\n<p>Write a Python program that reads an integer and prints <code>Even</code> if it is even, or <code>Odd</code> if it is odd.</p>\n<p><b>Example 1:</b> Input: <pre>4</pre> Output: <pre>Even</pre></p>\n<p><b>Example 2:</b> Input: <pre>7</pre> Output: <pre>Odd</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "Even",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "Odd",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Even",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-4",
+     "expected": "Even",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-7",
+     "expected": "Odd",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "PS1_012_MON_Pass Or Fail",
+   "display_name": "MON_Pass Or Fail",
+   "questiontext_html": "<p>In an exam, a student passes if their marks are 40 or above (out of 100), and fails otherwise.</p>\n<p>Write a Python program that reads a student's marks (an integer from 0 to 100) and prints <code>Pass</code> if the marks are 40 or above, or <code>Fail</code> if they are below 40.</p>\n<p><b>Example 1:</b> Input: <pre>65</pre> Output: <pre>Pass</pre></p>\n<p><b>Example 2:</b> Input: <pre>35</pre> Output: <pre>Fail</pre></p>\n<p><b>Example 3 (the exact boundary):</b> Input: <pre>40</pre> Output: <pre>Pass</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "65",
+     "expected": "Pass",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "35",
+     "expected": "Fail",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "40",
+     "expected": "Pass",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "39",
+     "expected": "Fail",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Fail",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "PS1_013_MON_Leap Year Check",
+   "display_name": "MON_Leap Year Check",
+   "questiontext_html": "<p>Every 4 years, an extra day (29th February) is added to the calendar to keep it lined up with the Earth's orbit - a year with this extra day is called a <b>leap year</b>.</p>\n<p>The exact rule to check if a year is a leap year is:</p>\n<ul>\n<li>The year must be divisible by 4, <b>AND</b></li>\n<li>if the year is also divisible by 100, it is <b>only</b> a leap year if it is <b>also</b> divisible by 400.</li>\n</ul>\n<p>In other words: 2024 is a leap year (divisible by 4, not by 100). 1900 is <b>not</b> a leap year (divisible by 4 and 100, but not by 400). 2000 <b>is</b> a leap year (divisible by 4, 100, and 400).</p>\n<p>Write a Python program that reads a year (a positive integer) and prints <code>Leap Year</code> or <code>Not a Leap Year</code>, using the exact rule above.</p>\n<p><b>Example 1:</b> Input: <pre>2024</pre> Output: <pre>Leap Year</pre></p>\n<p><b>Example 2:</b> Input: <pre>1900</pre> Output: <pre>Not a Leap Year</pre></p>\n<p><b>Example 3:</b> Input: <pre>2000</pre> Output: <pre>Leap Year</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "2024",
+     "expected": "Leap Year",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1900",
+     "expected": "Not a Leap Year",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2000",
+     "expected": "Leap Year",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2023",
+     "expected": "Not a Leap Year",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2400",
+     "expected": "Leap Year",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "PS1_014_MON_Grade From Marks",
+   "display_name": "MON_Grade From Marks",
+   "questiontext_html": "<p>Write a Python program that reads exam marks (an integer from 0 to 100) and prints a letter grade using this scheme: <code>A</code> for 90 and above, <code>B</code> for 75 up to 89, <code>C</code> for 40 up to 74, and <code>F</code> for anything below 40.</p>\n<p><b>Example 1:</b> Input: <pre>82</pre> Output: <pre>B</pre></p>\n<p><b>Example 2:</b> Input: <pre>35</pre> Output: <pre>F</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "82",
+     "expected": "B",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "35",
+     "expected": "F",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "90",
+     "expected": "A",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "75",
+     "expected": "B",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "40",
+     "expected": "C",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "PS1_015_MON_Largest Of Three Numbers",
+   "display_name": "MON_Largest Of Three Numbers",
+   "questiontext_html": "<p>Write a Python program that reads three integers (one per line) and prints the largest of the three.</p>\n<p><b>Example:</b> Input: <pre>7\n3\n9</pre> Output: <pre>9</pre></p>\n<p><b>Edge case (all three the same):</b> Input: <pre>5\n5\n5</pre> Output: <pre>5</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "7\n3\n9",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5\n5\n5",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10\n5\n2",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-1\n-5\n-2",
+     "expected": "-1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9\n9\n3",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "PS1_016_MON_Sum One To N While",
+   "display_name": "MON_Sum One To N While",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>N</code> and prints the sum of all integers from 1 to <code>N</code> (inclusive), using a <code>while</code> loop.</p>\n<p><b>Example:</b> Input: <pre>5</pre> Output: <pre>15</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "55",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "210",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "28",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "PS1_017_MON_Sum Of Squares For",
+   "display_name": "MON_Sum Of Squares For",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>N</code> and prints the sum of the squares of all integers from 1 to <code>N</code> (inclusive), using a <code>for</code> loop. (For example, the square of 3 is <code>3*3=9</code>.)</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>14</pre></p>\n<p>(1*1 + 2*2 + 3*3 = 1 + 4 + 9 = 14)</p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "55",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "PS1_018_MON_Multiplication Table",
+   "display_name": "MON_Multiplication Table",
+   "questiontext_html": "<p>Write a Python program that reads an integer <code>n</code> and prints its multiplication table from 1 to 10, with no spaces anywhere in the line, in the exact format <code>2x3=6</code> (number, then <code>x</code>, then i, then <code>=</code>, then the result), one line per multiplication, using a loop.</p>\n<p><b>Example (n=2):</b> Output: <pre>2x1=2\n2x2=4\n2x3=6\n2x4=8\n2x5=10\n2x6=12\n2x7=14\n2x8=16\n2x9=18\n2x10=20</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "2x1=2\n2x2=4\n2x3=6\n2x4=8\n2x5=10\n2x6=12\n2x7=14\n2x8=16\n2x9=18\n2x10=20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "5x1=5\n5x2=10\n5x3=15\n5x4=20\n5x5=25\n5x6=30\n5x7=35\n5x8=40\n5x9=45\n5x10=50",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "7x1=7\n7x2=14\n7x3=21\n7x4=28\n7x5=35\n7x6=42\n7x7=49\n7x8=56\n7x9=63\n7x10=70",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "9x1=9\n9x2=18\n9x3=27\n9x4=36\n9x5=45\n9x6=54\n9x7=63\n9x8=72\n9x9=81\n9x10=90",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "PS1_019_MON_Print Evens Up To N",
+   "display_name": "MON_Print Evens Up To N",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>N</code> and prints every even number from 1 to <code>N</code> (inclusive), each on its own line, using a loop combined with an <code>if</code>.</p>\n<p><b>Example:</b> Input: <pre>8</pre> Output: <pre>2\n4\n6\n8</pre></p>\n<p><b>Edge case (no even numbers):</b> Input: <pre>1</pre> Output: <i>(nothing printed)</i></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "2\n4\n6\n8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "2\n4\n6\n8\n10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "2\n4\n6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "2\n4\n6\n8\n10\n12\n14",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "PS1_020_MON_Count Multiples Of Three Or Five",
+   "display_name": "MON_Count Multiples Of Three Or Five",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>N</code> and counts and prints how many numbers from 1 to <code>N</code> (inclusive) are multiples of 3 <b>or</b> 5 (or both).</p>\n<p><b>Example:</b> Input: <pre>10</pre> Output: <pre>5</pre></p>\n<p>(the numbers 3, 5, 6, 9, 10 are multiples of 3 or 5, in the range 1 to 10)</p>\n<p><b>Edge case:</b> Input: <pre>2</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "30",
+     "expected": "14",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 21,
+   "xml_name": "PS1_021_MON_Reverse Digits Of A Number",
+   "display_name": "MON_Reverse Digits Of A Number",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer and prints it with its digits reversed. For example, reversing <code>512</code> gives <code>215</code>.</p>\n<p><b>Hint:</b> you can peel off the last digit of a number using <code>n % 10</code>, and remove that last digit using <code>n // 10</code>. Repeating this in a loop, building up a new number as you go, lets you reverse the digits one at a time.</p>\n<p><b>Example:</b> Input: <pre>512</pre> Output: <pre>215</pre></p>\n<p><b>Edge case (single digit - reverse of itself):</b> Input: <pre>7</pre> Output: <pre>7</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "512",
+     "expected": "215",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1000",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4321",
+     "expected": "1234",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 22,
+   "xml_name": "PS1_022_MON_Sum Of A List",
+   "display_name": "MON_Sum Of A List",
+   "questiontext_html": "<p>Write a function <code>list_sum(lst)</code> that takes a list of integers <code>lst</code> and <b>returns</b> the sum of all its elements, using a loop. For an empty list, the sum is 0.</p>\n<p><i>Python facts you may use:</i> <code>len(lst)</code> gives the number of elements in a list, <code>lst[i]</code> gives the element at position <code>i</code> (positions start from 0), and <code>for value in lst:</code> goes through the list one element at a time.</p>\n<p><b>Examples:</b> <code>list_sum([12, 45, 3, 27, 19, 8])</code> returns <code>114</code>. <code>list_sum([5])</code> returns <code>5</code>. <code>list_sum([])</code> returns <code>0</code>.</p>",
+   "answerpreload": "def list_sum(lst):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_sum([12, 45, 3, 27, 19, 8]))",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "print(list_sum([12, 45, 3, 27, 19, 8]))",
+     "stdin": "",
+     "expected": "114",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([5]))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_sum(lst))",
+     "stdin": "10 -4 7 0 22",
+     "expected": "35",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_sum(lst))",
+     "stdin": "-1 -2 -3",
+     "expected": "-6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 23,
+   "xml_name": "PS1_023_MON_Max Of A List",
+   "display_name": "MON_Max Of A List",
+   "questiontext_html": "<p>Write a function <code>list_max(lst)</code> that takes a non-empty list of integers <code>lst</code> and <b>returns</b> its largest element, using a loop (do not use Python's built-in <code>max()</code>).</p>\n<p>Hint: keep a variable holding the \"largest value seen so far\", starting with the first element, and update it whenever you find something bigger while looping through the list.</p>\n<p><i>Python facts you may use:</i> <code>len(lst)</code> gives the number of elements in a list, <code>lst[i]</code> gives the element at position <code>i</code> (positions start from 0), and <code>for value in lst:</code> goes through the list one element at a time.</p>\n<p><b>Examples:</b> <code>list_max([7, 23, 4, 19, 31, 8, 15])</code> returns <code>31</code>. <code>list_max([-3, -8, -1])</code> returns <code>-1</code>. <code>list_max([42])</code> returns <code>42</code>.</p>",
+   "answerpreload": "def list_max(lst):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_max([7, 23, 4, 19, 31, 8, 15]))",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "print(list_max([7, 23, 4, 19, 31, 8, 15]))",
+     "stdin": "",
+     "expected": "31",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_max([-3, -8, -1]))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_max([42]))",
+     "stdin": "",
+     "expected": "42",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_max([5, 5, 5]))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_max(lst))",
+     "stdin": "3 90 12 45",
+     "expected": "90",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_max(lst))",
+     "stdin": "100 2 99",
+     "expected": "100",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 24,
+   "xml_name": "PS1_024_MON_Print List Elements Greater Than X",
+   "display_name": "MON_Print List Elements Greater Than X",
+   "questiontext_html": "<p>Write a function <code>print_greater(lst, x)</code> that takes a list of integers <code>lst</code> and an integer <code>x</code>, and <b>prints</b> every element of the list that is greater than <code>x</code>, each on its own line, in their original order. If no element is greater than <code>x</code>, it prints nothing. (This function prints; it does not need to return anything.)</p>\n<p><i>Python facts you may use:</i> <code>len(lst)</code> gives the number of elements in a list, <code>lst[i]</code> gives the element at position <code>i</code> (positions start from 0), and <code>for value in lst:</code> goes through the list one element at a time.</p>\n<p><b>Example 1:</b> <code>print_greater([4, 15, 8, 23, 6, 19], 10)</code> prints:</p>\n<pre>15\n23\n19</pre>\n<p><b>Example 2 (x bigger than everything):</b> <code>print_greater([4, 15, 8], 100)</code> prints nothing.</p>",
+   "answerpreload": "def print_greater(lst, x):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print_greater([4, 15, 8, 23, 6, 19], 10)",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "print_greater([4, 15, 8, 23, 6, 19], 10)",
+     "stdin": "",
+     "expected": "15\n23\n19",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print_greater([4, 15, 8], 100)",
+     "stdin": "",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print_greater([-5, 0, 5], -10)",
+     "stdin": "",
+     "expected": "-5\n0\n5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nx = int(input())\nprint_greater(lst, x)",
+     "stdin": "3 30 12 -5 7\n6",
+     "expected": "30\n12\n7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nx = int(input())\nprint_greater(lst, x)",
+     "stdin": "9 9 1\n9",
+     "expected": "",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 25,
+   "xml_name": "PS1_025_MON_Generation From Birth Year",
+   "display_name": "MON_Generation From Birth Year",
+   "questiontext_html": "<p>People are often grouped into \"generations\" based on the year they were born. A commonly used (simplified) scheme is:</p>\n<ul>\n<li><b>Millennial</b>: born from 1981 to 1996 (inclusive)</li>\n<li><b>Gen Z</b>: born from 1997 to 2012 (inclusive)</li>\n<li><b>Gen Alpha</b>: born from 2013 to 2025 (inclusive)</li>\n<li>Anything else (born 1980 or earlier, or 2026 or later): print <code>Other</code></li>\n</ul>\n<p>Write a Python program that reads a birth year (a positive integer) and prints the correct generation name using the scheme above.</p>\n<p><b>Example 1:</b> Input: <pre>2005</pre> Output: <pre>Gen Z</pre></p>\n<p><b>Example 2:</b> Input: <pre>2018</pre> Output: <pre>Gen Alpha</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "2005",
+     "expected": "Gen Z",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2018",
+     "expected": "Gen Alpha",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1990",
+     "expected": "Millennial",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1970",
+     "expected": "Other",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2012",
+     "expected": "Gen Z",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 26,
+   "xml_name": "PS1_026_MON_Right Angle Triangle",
+   "display_name": "MON_Right Angle Triangle",
+   "questiontext_html": "<p>Write a Python program that reads an integer <code>n</code> (between 1 and 5) and prints a right-angle triangle of stars with <code>n</code> rows, where row <code>r</code> (counting from 1) has exactly <code>r</code> stars, using a nested loop.</p>\n<p><b>Example (n=3):</b> Output: <pre>*\n**\n***</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>*</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "*\n**\n***",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*\n**\n***\n****\n*****",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "*\n**\n***\n****",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "*\n**",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 27,
+   "xml_name": "PS1_027_MON_Bounty Rank",
+   "display_name": "MON_Bounty Rank",
+   "questiontext_html": "<p>In the world of pirates, a captain's danger level is often judged by their <b>bounty</b> - a reward offered for their capture. Let's write a program to classify a pirate's rank based on their bounty (in millions):</p>\n<ul>\n<li><b>Rookie</b>: bounty below 100 million</li>\n<li><b>Notable</b>: bounty from 100 up to (but not including) 500 million</li>\n<li><b>Supernova</b>: bounty from 500 up to (but not including) 1000 million</li>\n<li><b>Yonko-level</b>: bounty 1000 million or above</li>\n</ul>\n<p>Write a Python program that reads a bounty in millions (a non-negative integer) and prints the correct rank using the scheme above.</p>\n<p><b>Example 1:</b> Input: <pre>300</pre> Output: <pre>Notable</pre></p>\n<p><b>Example 2:</b> Input: <pre>1500</pre> Output: <pre>Yonko-level</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "300",
+     "expected": "Notable",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1500",
+     "expected": "Yonko-level",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "50",
+     "expected": "Rookie",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "Notable",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "999",
+     "expected": "Supernova",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 28,
+   "xml_name": "PS1_028_MON_Countdown While",
+   "display_name": "MON_Countdown While",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>N</code> and prints the numbers from <code>N</code> down to 1 (inclusive), each on its own line, using a <code>while</code> loop.</p>\n<p><b>Example:</b> Input: <pre>5</pre> Output: <pre>5\n4\n3\n2\n1</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "5\n4\n3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "3\n2\n1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "10\n9\n8\n7\n6\n5\n4\n3\n2\n1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "7\n6\n5\n4\n3\n2\n1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 29,
+   "xml_name": "PS1_029_TUE_Multiple Of Three",
+   "display_name": "TUE_Multiple Of Three",
+   "questiontext_html": "<p>An integer is a <b>multiple of 3</b> if it is exactly divisible by 3 (no remainder).</p>\n<p>Write a Python program that reads an integer and prints <code>Yes</code> if it is a multiple of 3, or <code>No</code> if it is not.</p>\n<p><b>Example 1:</b> Input: <pre>9</pre> Output: <pre>Yes</pre></p>\n<p><b>Example 2:</b> Input: <pre>10</pre> Output: <pre>No</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "Yes",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "No",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Yes",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-9",
+     "expected": "Yes",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-10",
+     "expected": "No",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 30,
+   "xml_name": "PS1_030_TUE_Eligible To Vote",
+   "display_name": "TUE_Eligible To Vote",
+   "questiontext_html": "<p>A person is eligible to vote if their age is 18 or above.</p>\n<p>Write a Python program that reads a person's age (a non-negative integer) and prints <code>Eligible</code> if the age is 18 or above, or <code>Not Eligible</code> if it is below 18.</p>\n<p><b>Example 1:</b> Input: <pre>25</pre> Output: <pre>Eligible</pre></p>\n<p><b>Example 2:</b> Input: <pre>15</pre> Output: <pre>Not Eligible</pre></p>\n<p><b>Example 3 (the exact boundary):</b> Input: <pre>18</pre> Output: <pre>Eligible</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "25",
+     "expected": "Eligible",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "Not Eligible",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "18",
+     "expected": "Eligible",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "17",
+     "expected": "Not Eligible",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Not Eligible",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 31,
+   "xml_name": "PS1_031_TUE_Leap Year Check",
+   "display_name": "TUE_Leap Year Check",
+   "questiontext_html": "<p>Every 4 years, an extra day (29th February) is added to the calendar to keep it lined up with the Earth's orbit - a year with this extra day is called a <b>leap year</b>.</p>\n<p>The exact rule to check if a year is a leap year is:</p>\n<ul>\n<li>The year must be divisible by 4, <b>AND</b></li>\n<li>if the year is also divisible by 100, it is <b>only</b> a leap year if it is <b>also</b> divisible by 400.</li>\n</ul>\n<p>In other words: 2028 is a leap year (divisible by 4, not by 100). 1800 is <b>not</b> a leap year (divisible by 4 and 100, but not by 400). 2400 <b>is</b> a leap year (divisible by 4, 100, and 400).</p>\n<p>Write a Python program that reads a year (a positive integer) and prints <code>Leap Year</code> or <code>Not a Leap Year</code>, using the exact rule above.</p>\n<p><b>Example 1:</b> Input: <pre>2028</pre> Output: <pre>Leap Year</pre></p>\n<p><b>Example 2:</b> Input: <pre>1800</pre> Output: <pre>Not a Leap Year</pre></p>\n<p><b>Example 3:</b> Input: <pre>2400</pre> Output: <pre>Leap Year</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "2028",
+     "expected": "Leap Year",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1800",
+     "expected": "Not a Leap Year",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2400",
+     "expected": "Leap Year",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2021",
+     "expected": "Not a Leap Year",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2000",
+     "expected": "Leap Year",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 32,
+   "xml_name": "PS1_032_TUE_Ticket Price By Age",
+   "display_name": "TUE_Ticket Price By Age",
+   "questiontext_html": "<p>A cinema charges different ticket prices depending on the customer's age: <code>100</code> for anyone under 12, <code>250</code> for anyone from 12 up to 59, and <code>150</code> for anyone 60 or above.</p>\n<p>Write a Python program that reads an age (a non-negative integer) and prints the ticket price using the scheme above.</p>\n<p><b>Example 1:</b> Input: <pre>8</pre> Output: <pre>100</pre></p>\n<p><b>Example 2:</b> Input: <pre>70</pre> Output: <pre>150</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "100",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "70",
+     "expected": "150",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "12",
+     "expected": "250",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "59",
+     "expected": "250",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "60",
+     "expected": "150",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 33,
+   "xml_name": "PS1_033_TUE_Smallest Of Three Numbers",
+   "display_name": "TUE_Smallest Of Three Numbers",
+   "questiontext_html": "<p>Write a Python program that reads three integers (one per line) and prints the smallest of the three.</p>\n<p><b>Example:</b> Input: <pre>7\n3\n9</pre> Output: <pre>3</pre></p>\n<p><b>Edge case (all three the same):</b> Input: <pre>5\n5\n5</pre> Output: <pre>5</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "7\n3\n9",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5\n5\n5",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10\n5\n2",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-1\n-5\n-2",
+     "expected": "-5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3\n3\n9",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 34,
+   "xml_name": "PS1_034_TUE_Product One To N While",
+   "display_name": "TUE_Product One To N While",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>N</code> and prints the product (multiplication) of all integers from 1 to <code>N</code> (inclusive), using a <code>while</code> loop. (This is known as the <b>factorial</b> of <code>N</code>.)</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>24</pre></p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "24",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "120",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "720",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 35,
+   "xml_name": "PS1_035_TUE_Sum Of Cubes For",
+   "display_name": "TUE_Sum Of Cubes For",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>N</code> and prints the sum of the cubes of all integers from 1 to <code>N</code> (inclusive), using a <code>for</code> loop. (For example, the cube of 3 is <code>3*3*3=27</code>.)</p>\n<p><b>Example:</b> Input: <pre>3</pre> Output: <pre>36</pre></p>\n<p>(1*1*1 + 2*2*2 + 3*3*3 = 1 + 8 + 27 = 36)</p>\n<p><b>Edge case:</b> Input: <pre>1</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "36",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "100",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "225",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 36,
+   "xml_name": "PS1_036_TUE_Squares Table",
+   "display_name": "TUE_Squares Table",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>n</code> and prints the squares of every integer from 1 to <code>n</code>, in the exact format <code>i^2=result</code> (no spaces around <code>^</code> and <code>=</code>), one line per number, using a loop.</p>\n<p><b>Example (n=5):</b> Output: <pre>1^2=1\n2^2=4\n3^2=9\n4^2=16\n5^2=25</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1^2=1\n2^2=4\n3^2=9\n4^2=16\n5^2=25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1^2=1\n2^2=4\n3^2=9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "1^2=1\n2^2=4\n3^2=9\n4^2=16\n5^2=25\n6^2=36\n7^2=49\n8^2=64",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1^2=1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 37,
+   "xml_name": "PS1_037_TUE_Print Odds Up To N",
+   "display_name": "TUE_Print Odds Up To N",
+   "questiontext_html": "<p>Write a Python program that reads a non-negative integer <code>N</code> and prints every odd number from 1 to <code>N</code> (inclusive), each on its own line, using a loop combined with an <code>if</code>.</p>\n<p><b>Example:</b> Input: <pre>8</pre> Output: <pre>1\n3\n5\n7</pre></p>\n<p><b>Edge case (no odd numbers up to 0):</b> Input: <pre>0</pre> Output: <i>(nothing printed)</i></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "1\n3\n5\n7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "1\n3\n5\n7\n9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "1\n3\n5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "1\n3\n5\n7\n9\n11\n13\n15",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 38,
+   "xml_name": "PS1_038_TUE_Count Multiples Of Four Or Six",
+   "display_name": "TUE_Count Multiples Of Four Or Six",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>N</code> and counts and prints how many numbers from 1 to <code>N</code> (inclusive) are multiples of 4 <b>or</b> 6 (or both).</p>\n<p><b>Example:</b> Input: <pre>12</pre> Output: <pre>4</pre></p>\n<p>(the numbers 4, 6, 8, 12 are multiples of 4 or 6, in the range 1 to 12)</p>\n<p><b>Edge case:</b> Input: <pre>3</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "12",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "24",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "30",
+     "expected": "10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 39,
+   "xml_name": "PS1_039_TUE_Count Digits Of A Number",
+   "display_name": "TUE_Count Digits Of A Number",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer and prints how many digits it has. For example, <code>305</code> has 3 digits.</p>\n<p><b>Hint:</b> you can remove the last digit of a number using <code>n // 10</code>. If you repeat this in a loop, counting how many times you do it before the number becomes 0, you get the digit count.</p>\n<p><b>Example:</b> Input: <pre>305</pre> Output: <pre>3</pre></p>\n<p><b>Edge case (single digit):</b> Input: <pre>7</pre> Output: <pre>1</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "305",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1000000",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "42",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "99999",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 40,
+   "xml_name": "PS1_040_TUE_Sum Of A List",
+   "display_name": "TUE_Sum Of A List",
+   "questiontext_html": "<p>Write a function <code>list_sum(lst)</code> that takes a list of integers <code>lst</code> and <b>returns</b> the sum of all its elements, using a loop. For an empty list, the sum is 0.</p>\n<p><i>Python facts you may use:</i> <code>len(lst)</code> gives the number of elements in a list, <code>lst[i]</code> gives the element at position <code>i</code> (positions start from 0), and <code>for value in lst:</code> goes through the list one element at a time.</p>\n<p><b>Examples:</b> <code>list_sum([8, 34, 5, 21, 16, 9])</code> returns <code>93</code>. <code>list_sum([-4, 4])</code> returns <code>0</code>. <code>list_sum([])</code> returns <code>0</code>.</p>",
+   "answerpreload": "def list_sum(lst):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_sum([8, 34, 5, 21, 16, 9]))",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "print(list_sum([8, 34, 5, 21, 16, 9]))",
+     "stdin": "",
+     "expected": "93",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([-4, 4]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_sum(lst))",
+     "stdin": "1 2 3 4 5 6 7",
+     "expected": "28",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_sum(lst))",
+     "stdin": "-10 25",
+     "expected": "15",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 41,
+   "xml_name": "PS1_041_TUE_Min Of A List",
+   "display_name": "TUE_Min Of A List",
+   "questiontext_html": "<p>Write a function <code>list_min(lst)</code> that takes a non-empty list of integers <code>lst</code> and <b>returns</b> its smallest element, using a loop (do not use Python's built-in <code>min()</code>).</p>\n<p>Hint: keep a variable holding the \"smallest value seen so far\", starting with the first element, and update it whenever you find something smaller while looping through the list.</p>\n<p><i>Python facts you may use:</i> <code>len(lst)</code> gives the number of elements in a list, <code>lst[i]</code> gives the element at position <code>i</code> (positions start from 0), and <code>for value in lst:</code> goes through the list one element at a time.</p>\n<p><b>Examples:</b> <code>list_min([17, 3, 28, 9, 41, 6, 12])</code> returns <code>3</code>. <code>list_min([-3, -8, -1])</code> returns <code>-8</code>. <code>list_min([42])</code> returns <code>42</code>.</p>",
+   "answerpreload": "def list_min(lst):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(list_min([17, 3, 28, 9, 41, 6, 12]))",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "print(list_min([17, 3, 28, 9, 41, 6, 12]))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_min([-3, -8, -1]))",
+     "stdin": "",
+     "expected": "-8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_min([42]))",
+     "stdin": "",
+     "expected": "42",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_min([5, 5, 5]))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_min(lst))",
+     "stdin": "30 9 45 3 12",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_min(lst))",
+     "stdin": "0 -1 100",
+     "expected": "-1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 42,
+   "xml_name": "PS1_042_TUE_Print List Elements Less Than X",
+   "display_name": "TUE_Print List Elements Less Than X",
+   "questiontext_html": "<p>Write a function <code>print_less(lst, x)</code> that takes a list of integers <code>lst</code> and an integer <code>x</code>, and <b>prints</b> every element of the list that is less than <code>x</code>, each on its own line, in their original order. If no element is less than <code>x</code>, it prints nothing. (This function prints; it does not need to return anything.)</p>\n<p><i>Python facts you may use:</i> <code>len(lst)</code> gives the number of elements in a list, <code>lst[i]</code> gives the element at position <code>i</code> (positions start from 0), and <code>for value in lst:</code> goes through the list one element at a time.</p>\n<p><b>Example 1:</b> <code>print_less([11, 4, 18, 7, 25, 2, 14], 10)</code> prints:</p>\n<pre>4\n7\n2</pre>\n<p><b>Example 2 (x smaller than everything):</b> <code>print_less([11, 4, 18], 0)</code> prints nothing.</p>",
+   "answerpreload": "def print_less(lst, x):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print_less([11, 4, 18, 7, 25, 2, 14], 10)",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "print_less([11, 4, 18, 7, 25, 2, 14], 10)",
+     "stdin": "",
+     "expected": "4\n7\n2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print_less([11, 4, 18], 0)",
+     "stdin": "",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print_less([-5, 0, 5], 10)",
+     "stdin": "",
+     "expected": "-5\n0\n5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nx = int(input())\nprint_less(lst, x)",
+     "stdin": "3 30 12 -5 7\n8",
+     "expected": "3\n-5\n7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nx = int(input())\nprint_less(lst, x)",
+     "stdin": "9 9 1\n9",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 43,
+   "xml_name": "PS1_043_TUE_Age Group From Age",
+   "display_name": "TUE_Age Group From Age",
+   "questiontext_html": "<p>Fitness apps often group people into age brackets. A commonly used (simplified) scheme is:</p>\n<ul>\n<li><b>Child</b>: age below 13</li>\n<li><b>Teen</b>: age 13 to 19 (inclusive)</li>\n<li><b>Adult</b>: age 20 to 59 (inclusive)</li>\n<li><b>Senior</b>: age 60 or above</li>\n</ul>\n<p>Write a Python program that reads an age (a non-negative integer) and prints the correct age group using the scheme above.</p>\n<p><b>Example 1:</b> Input: <pre>15</pre> Output: <pre>Teen</pre></p>\n<p><b>Example 2:</b> Input: <pre>65</pre> Output: <pre>Senior</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "Teen",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "65",
+     "expected": "Senior",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "30",
+     "expected": "Adult",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "12",
+     "expected": "Child",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "59",
+     "expected": "Adult",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 44,
+   "xml_name": "PS1_044_TUE_Inverted Right Angle Triangle",
+   "display_name": "TUE_Inverted Right Angle Triangle",
+   "questiontext_html": "<p>Write a Python program that reads an integer <code>n</code> (between 1 and 5) and prints an upside-down right-angle triangle of stars with <code>n</code> rows, starting with <code>n</code> stars in the first row and ending with 1 star in the last row, using a nested loop.</p>\n<p><b>Example (n=3):</b> Output: <pre>***\n**\n*</pre></p>\n<p><b>Edge case (n=1):</b> Output: <pre>*</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "***\n**\n*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "*****\n****\n***\n**\n*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "****\n***\n**\n*",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "**\n*",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 45,
+   "xml_name": "PS1_045_TUE_Spell Mastery Level",
+   "display_name": "TUE_Spell Mastery Level",
+   "questiontext_html": "<p>At a school of magic, a student's spellcasting ability is measured with a <b>mastery score</b> earned through practice and exams. Let's write a program to classify a student's mastery level based on their score:</p>\n<ul>\n<li><b>Beginner</b>: score below 40</li>\n<li><b>Apprentice</b>: score from 40 up to (but not including) 70</li>\n<li><b>Adept</b>: score from 70 up to (but not including) 90</li>\n<li><b>Master</b>: score 90 or above</li>\n</ul>\n<p>Write a Python program that reads a mastery score (a non-negative integer) and prints the correct level using the scheme above.</p>\n<p><b>Example 1:</b> Input: <pre>55</pre> Output: <pre>Apprentice</pre></p>\n<p><b>Example 2:</b> Input: <pre>95</pre> Output: <pre>Master</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "55",
+     "expected": "Apprentice",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "95",
+     "expected": "Master",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "Beginner",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "40",
+     "expected": "Apprentice",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "89",
+     "expected": "Adept",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 46,
+   "xml_name": "PS1_046_TUE_Countdown By Twos",
+   "display_name": "TUE_Countdown By Twos",
+   "questiontext_html": "<p>Write a Python program that reads a positive even integer <code>N</code> and prints every even number from <code>N</code> down to 2 (inclusive), each on its own line, using a <code>while</code> loop.</p>\n<p><b>Example:</b> Input: <pre>10</pre> Output: <pre>10\n8\n6\n4\n2</pre></p>\n<p><b>Edge case:</b> Input: <pre>2</pre> Output: <pre>2</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "10\n8\n6\n4\n2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "6\n4\n2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "20\n18\n16\n14\n12\n10\n8\n6\n4\n2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "14",
+     "expected": "14\n12\n10\n8\n6\n4\n2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 47,
+   "xml_name": "PS1_047_MON_Function Max Of Two Numbers",
+   "display_name": "MON_Function Max Of Two Numbers",
+   "questiontext_html": "<p>Write a Python <b>function</b> named <code>find_max</code> that takes two integers <code>a</code> and <code>b</code> as parameters, and <b>returns</b> the larger of the two (do not print inside the function - use <code>return</code>).</p>\n<p><b>Example:</b> <code>find_max(3, 7)</code> should return <code>7</code>.</p>\n<p><b>Edge case:</b> if the two numbers are equal, return either one (they're the same value anyway) - e.g. <code>find_max(5, 5)</code> should return <code>5</code>.</p>",
+   "answerpreload": "def find_max(a, b):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(find_max(3, 7))",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_max(a, b))",
+     "stdin": "3\n7",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_max(a, b))",
+     "stdin": "5\n5",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_max(a, b))",
+     "stdin": "-2\n-8",
+     "expected": "-2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_max(a, b))",
+     "stdin": "0\n1",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_max(a, b))",
+     "stdin": "100\n99",
+     "expected": "100",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 48,
+   "xml_name": "PS1_048_MON_Function Sum And Difference",
+   "display_name": "MON_Function Sum And Difference",
+   "questiontext_html": "<p>Write a Python <b>function</b> named <code>sum_and_diff</code> that takes two integers <code>a</code> and <code>b</code> as parameters, and <b>returns two values</b>: their sum, and their difference (<code>a - b</code>), in that order.</p>\n<p><b>Reminder:</b> to return two values from a function, separate them with a comma after <code>return</code>, e.g. <code>return x, y</code>. The caller can then unpack both at once, e.g. <code>s, d = sum_and_diff(a, b)</code>.</p>\n<p><b>Example:</b> <code>sum_and_diff(10, 3)</code> should return <code>13</code> and <code>7</code>.</p>",
+   "answerpreload": "def sum_and_diff(a, b):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# s, d = sum_and_diff(10, 3)\n# print(s, d)",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "a = int(input())\nb = int(input())\ns, d = sum_and_diff(a, b)\nprint(s)\nprint(d)",
+     "stdin": "10\n3",
+     "expected": "13\n7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\ns, d = sum_and_diff(a, b)\nprint(s)\nprint(d)",
+     "stdin": "0\n0",
+     "expected": "0\n0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\ns, d = sum_and_diff(a, b)\nprint(s)\nprint(d)",
+     "stdin": "-4\n6",
+     "expected": "2\n-10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\ns, d = sum_and_diff(a, b)\nprint(s)\nprint(d)",
+     "stdin": "5\n5",
+     "expected": "10\n0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\ns, d = sum_and_diff(a, b)\nprint(s)\nprint(d)",
+     "stdin": "20\n7",
+     "expected": "27\n13",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 49,
+   "xml_name": "PS1_049_TUE_Function Quotient And Remainder",
+   "display_name": "TUE_Function Quotient And Remainder",
+   "questiontext_html": "<p>Write a Python <b>function</b> named <code>divide</code> that takes two positive integers <code>a</code> and <code>b</code> as parameters, and <b>returns two values</b>: the quotient (<code>a // b</code>), and the remainder (<code>a % b</code>), in that order.</p>\n<p><b>Reminder:</b> to return two values from a function, separate them with a comma after <code>return</code>, e.g. <code>return x, y</code>. The caller can then unpack both at once, e.g. <code>q, r = divide(a, b)</code>.</p>\n<p><b>Example:</b> <code>divide(17, 5)</code> should return <code>3</code> and <code>2</code>.</p>",
+   "answerpreload": "def divide(a, b):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# q, r = divide(17, 5)\n# print(q, r)",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "a = int(input())\nb = int(input())\nq, r = divide(a, b)\nprint(q)\nprint(r)",
+     "stdin": "17\n5",
+     "expected": "3\n2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nq, r = divide(a, b)\nprint(q)\nprint(r)",
+     "stdin": "20\n4",
+     "expected": "5\n0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nq, r = divide(a, b)\nprint(q)\nprint(r)",
+     "stdin": "9\n1",
+     "expected": "9\n0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nq, r = divide(a, b)\nprint(q)\nprint(r)",
+     "stdin": "7\n2",
+     "expected": "3\n1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nq, r = divide(a, b)\nprint(q)\nprint(r)",
+     "stdin": "100\n9",
+     "expected": "11\n1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 50,
+   "xml_name": "PS1_050_TUE_Function Smaller Of Two Numbers",
+   "display_name": "TUE_Function Smaller Of Two Numbers",
+   "questiontext_html": "<p>Write a Python <b>function</b> named <code>find_min</code> that takes two integers <code>a</code> and <code>b</code> as parameters, and <b>returns</b> the smaller of the two (do not print inside the function - use <code>return</code>).</p>\n<p><b>Example:</b> <code>find_min(3, 7)</code> should return <code>3</code>.</p>\n<p><b>Edge case:</b> if the two numbers are equal, return either one (they're the same value anyway) - e.g. <code>find_min(5, 5)</code> should return <code>5</code>.</p>",
+   "answerpreload": "def find_min(a, b):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(find_min(3, 7))",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_min(a, b))",
+     "stdin": "3\n7",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_min(a, b))",
+     "stdin": "5\n5",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_min(a, b))",
+     "stdin": "-2\n-8",
+     "expected": "-8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_min(a, b))",
+     "stdin": "0\n1",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = int(input())\nb = int(input())\nprint(find_min(a, b))",
+     "stdin": "100\n99",
+     "expected": "99",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 51,
+   "xml_name": "PS1_051_MON_Co Prime Check",
+   "display_name": "MON_Co Prime Check",
+   "questiontext_html": "<p>Two positive integers are called <b>co-prime</b> (or \"relatively prime\") if the <b>only</b> positive integer that divides both of them exactly is 1. In other words, they share no common factor bigger than 1.</p>\n<p>For example, 8 and 15 are co-prime: the factors of 8 are 1, 2, 4, 8, and the factors of 15 are 1, 3, 5, 15 - the only number in both lists is 1. But 8 and 12 are <b>not</b> co-prime, because both are divisible by 4 (and by 2).</p>\n<p><b>Hint:</b> you can check every integer from 2 up to the smaller of the two numbers, and see if it divides <b>both</b> numbers exactly (remainder 0 for both). If you find even one such number, they are not co-prime.</p>\n<p>Write a Python program that reads two integers (one per line, each greater than 1) and prints <code>Co-prime</code> if they are co-prime, or <code>Not Co-prime</code> if they are not.</p>\n<p><b>Example 1:</b> Input: <pre>8\n15</pre> Output: <pre>Co-prime</pre></p>\n<p><b>Example 2:</b> Input: <pre>8\n12</pre> Output: <pre>Not Co-prime</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "8\n15",
+     "expected": "Co-prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "8\n12",
+     "expected": "Not Co-prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "17\n19",
+     "expected": "Co-prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9\n16",
+     "expected": "Co-prime",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6\n9",
+     "expected": "Not Co-prime",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 52,
+   "xml_name": "PS1_052_MON_Palindrome Number Check",
+   "display_name": "MON_Palindrome Number Check",
+   "questiontext_html": "<p>A number is called a <b>palindrome</b> if it reads the same forwards and backwards. For example, <code>121</code> is a palindrome (reversing its digits gives <code>121</code> again), but <code>123</code> is not (reversed, it becomes <code>321</code>, which is different).</p>\n<p><b>Hint:</b> you can reverse a number's digits the same way you may have practiced before, using <code>% 10</code> to peel off the last digit and <code>// 10</code> to remove it, building up the reversed number in a loop. Then simply compare the reversed number to the original.</p>\n<p>Write a Python program that reads a positive integer and prints <code>Palindrome</code> if it is a palindrome, or <code>Not a Palindrome</code> if it is not.</p>\n<p><b>Example 1:</b> Input: <pre>121</pre> Output: <pre>Palindrome</pre></p>\n<p><b>Example 2:</b> Input: <pre>123</pre> Output: <pre>Not a Palindrome</pre></p>\n<p><b>Edge case (single digit is always a palindrome):</b> Input: <pre>7</pre> Output: <pre>Palindrome</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "121",
+     "expected": "Palindrome",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "123",
+     "expected": "Not a Palindrome",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "Palindrome",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1331",
+     "expected": "Palindrome",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1234",
+     "expected": "Not a Palindrome",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 53,
+   "xml_name": "PS1_053_MON_Perfect Number Check",
+   "display_name": "MON_Perfect Number Check",
+   "questiontext_html": "<p>A positive integer is called a <b>perfect number</b> if it is exactly equal to the sum of its <b>proper divisors</b> - that is, all the positive integers smaller than it that divide it exactly (not counting the number itself).</p>\n<p>For example, <code>6</code> is a perfect number: its proper divisors are <code>1</code>, <code>2</code>, and <code>3</code>, and <code>1 + 2 + 3 = 6</code>. Another example is <code>28</code>: its proper divisors are <code>1, 2, 4, 7, 14</code>, and they add up to <code>28</code>. Most numbers are <b>not</b> perfect - for example, the proper divisors of <code>10</code> are <code>1, 2, 5</code>, which sum to <code>8</code>, not <code>10</code>.</p>\n<p><b>Hint:</b> loop through every integer from 1 up to (but not including) the number itself, check if each one divides the number exactly (remainder 0), and if so add it to a running total. Then compare that total to the original number.</p>\n<p>Write a Python program that reads an integer (greater than 1) and prints <code>Perfect Number</code> if it is a perfect number, or <code>Not a Perfect Number</code> if it is not.</p>\n<p><b>Example 1:</b> Input: <pre>6</pre> Output: <pre>Perfect Number</pre></p>\n<p><b>Example 2:</b> Input: <pre>10</pre> Output: <pre>Not a Perfect Number</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "Perfect Number",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "Not a Perfect Number",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "28",
+     "expected": "Perfect Number",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "12",
+     "expected": "Not a Perfect Number",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2",
+     "expected": "Not a Perfect Number",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 54,
+   "xml_name": "PS1_054_MON_Count Even Digits",
+   "display_name": "MON_Count Even Digits",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer and counts and prints how many of its digits are <b>even</b> (0, 2, 4, 6, or 8).</p>\n<p><b>Hint:</b> use the same digit-peeling technique from earlier questions (<code>% 10</code> to get the last digit, <code>// 10</code> to remove it), and check each digit as you peel it off, counting the even ones.</p>\n<p><b>Example:</b> Input: <pre>123456</pre> Output: <pre>3</pre></p>\n<p>(the digits are 1,2,3,4,5,6 - of these, 2, 4, and 6 are even, so the count is 3)</p>\n<p><b>Edge case (no even digits):</b> Input: <pre>13579</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "123456",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "13579",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2468",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "70507",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 55,
+   "xml_name": "PS1_055_MON_Second Largest In A List",
+   "display_name": "MON_Second Largest In A List",
+   "questiontext_html": "<p>You are given the <b>outline</b> of a Python function that takes a list as input and returns the <b>second largest</b> element in the list. Fill in the missing logic of the function.</p>\n<p>The outline already sets up two variables, <code>largest</code> and <code>second</code>, by comparing the first two elements of the list. Your job is to complete the loop that goes through the <b>rest</b> of the list (from index 2 onwards) and correctly updates <code>largest</code> and <code>second</code> as it goes.</p>\n<p><b>The rule to update them:</b> for each remaining value, if it is bigger than the current <code>largest</code>, then the old <code>largest</code> becomes the new <code>second</code>, and this value becomes the new <code>largest</code>. Otherwise, if it is merely bigger than the current <code>second</code> (but not bigger than <code>largest</code>), it becomes the new <code>second</code>.</p>\n<p>You may assume the list passed in always has at least two elements.</p>\n<p><b>Example:</b> <code>second_largest([12, 45, 3, 27, 45, 19, 8])</code> should return <code>45</code> (45 is both the largest and, from its second occurrence, correctly the second largest too).</p>\n<p><b>Example 2 (edge case - only two elements):</b> <code>second_largest([10, 20])</code> should return <code>10</code>.</p>",
+   "answerpreload": "def second_largest(lst):\n    # lst is guaranteed to have at least two elements\n    if lst[0] > lst[1]:\n        largest = lst[0]\n        second = lst[1]\n    else:\n        largest = lst[1]\n        second = lst[0]\n\n    # TODO: loop through the rest of the list (from index 2 onwards)\n    # and update 'largest' and 'second' correctly.\n    # write your code here\n\n\n    return second\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(second_largest([12, 45, 3, 27, 45, 19, 8]))",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "print(second_largest([12, 45, 3, 27, 45, 19, 8]))",
+     "stdin": "",
+     "expected": "45",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(second_largest([10, 20]))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(second_largest([5, 1, 9, 3, 7]))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(second_largest(lst))",
+     "stdin": "3 1 4 1 5 9 2 6",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(second_largest(lst))",
+     "stdin": "-5 10 -3 8 0",
+     "expected": "8",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 56,
+   "xml_name": "PS1_056_TUE_Co Prime Check",
+   "display_name": "TUE_Co Prime Check",
+   "questiontext_html": "<p>Two positive integers are called <b>co-prime</b> (or \"relatively prime\") if the <b>only</b> positive integer that divides both of them exactly is 1. In other words, they share no common factor bigger than 1.</p>\n<p>For example, 9 and 16 are co-prime: the factors of 9 are 1, 3, 9, and the factors of 16 are 1, 2, 4, 8, 16 - the only number in both lists is 1. But 6 and 9 are <b>not</b> co-prime, because both are divisible by 3.</p>\n<p><b>Hint:</b> you can check every integer from 2 up to the smaller of the two numbers, and see if it divides <b>both</b> numbers exactly (remainder 0 for both). If you find even one such number, they are not co-prime.</p>\n<p>Write a Python program that reads two integers (one per line, each greater than 1) and prints <code>Co-prime</code> if they are co-prime, or <code>Not Co-prime</code> if they are not.</p>\n<p><b>Example 1:</b> Input: <pre>9\n16</pre> Output: <pre>Co-prime</pre></p>\n<p><b>Example 2:</b> Input: <pre>6\n9</pre> Output: <pre>Not Co-prime</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "9\n16",
+     "expected": "Co-prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6\n9",
+     "expected": "Not Co-prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "13\n17",
+     "expected": "Co-prime",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "8\n15",
+     "expected": "Co-prime",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10\n15",
+     "expected": "Not Co-prime",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 57,
+   "xml_name": "PS1_057_TUE_Palindrome Number Check",
+   "display_name": "TUE_Palindrome Number Check",
+   "questiontext_html": "<p>A number is called a <b>palindrome</b> if it reads the same forwards and backwards. For example, <code>1331</code> is a palindrome (reversing its digits gives <code>1331</code> again), but <code>1234</code> is not (reversed, it becomes <code>4321</code>, which is different).</p>\n<p><b>Hint:</b> you can reverse a number's digits the same way you may have practiced before, using <code>% 10</code> to peel off the last digit and <code>// 10</code> to remove it, building up the reversed number in a loop. Then simply compare the reversed number to the original.</p>\n<p>Write a Python program that reads a positive integer and prints <code>Palindrome</code> if it is a palindrome, or <code>Not a Palindrome</code> if it is not.</p>\n<p><b>Example 1:</b> Input: <pre>1331</pre> Output: <pre>Palindrome</pre></p>\n<p><b>Example 2:</b> Input: <pre>1234</pre> Output: <pre>Not a Palindrome</pre></p>\n<p><b>Edge case (single digit is always a palindrome):</b> Input: <pre>9</pre> Output: <pre>Palindrome</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "1331",
+     "expected": "Palindrome",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1234",
+     "expected": "Not a Palindrome",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "Palindrome",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "121",
+     "expected": "Palindrome",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4567",
+     "expected": "Not a Palindrome",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 58,
+   "xml_name": "PS1_058_TUE_Perfect Number Check",
+   "display_name": "TUE_Perfect Number Check",
+   "questiontext_html": "<p>A positive integer is called a <b>perfect number</b> if it is exactly equal to the sum of its <b>proper divisors</b> - that is, all the positive integers smaller than it that divide it exactly (not counting the number itself).</p>\n<p>For example, <code>28</code> is a perfect number: its proper divisors are <code>1, 2, 4, 7, 14</code>, and <code>1+2+4+7+14 = 28</code>. Another example is <code>6</code>: its proper divisors are <code>1, 2, 3</code>, and they add up to <code>6</code>. Most numbers are <b>not</b> perfect - for example, the proper divisors of <code>15</code> are <code>1, 3, 5</code>, which sum to <code>9</code>, not <code>15</code>.</p>\n<p><b>Hint:</b> loop through every integer from 1 up to (but not including) the number itself, check if each one divides the number exactly (remainder 0), and if so add it to a running total. Then compare that total to the original number.</p>\n<p>Write a Python program that reads an integer (greater than 1) and prints <code>Perfect Number</code> if it is a perfect number, or <code>Not a Perfect Number</code> if it is not.</p>\n<p><b>Example 1:</b> Input: <pre>28</pre> Output: <pre>Perfect Number</pre></p>\n<p><b>Example 2:</b> Input: <pre>15</pre> Output: <pre>Not a Perfect Number</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "28",
+     "expected": "Perfect Number",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "15",
+     "expected": "Not a Perfect Number",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "6",
+     "expected": "Perfect Number",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "Not a Perfect Number",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "Not a Perfect Number",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 59,
+   "xml_name": "PS1_059_TUE_Count Odd Digits",
+   "display_name": "TUE_Count Odd Digits",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer and counts and prints how many of its digits are <b>odd</b> (1, 3, 5, 7, or 9).</p>\n<p><b>Hint:</b> use the same digit-peeling technique from earlier questions (<code>% 10</code> to get the last digit, <code>// 10</code> to remove it), and check each digit as you peel it off, counting the odd ones.</p>\n<p><b>Example:</b> Input: <pre>123456</pre> Output: <pre>3</pre></p>\n<p>(the digits are 1,2,3,4,5,6 - of these, 1, 3, and 5 are odd, so the count is 3)</p>\n<p><b>Edge case (no odd digits):</b> Input: <pre>2468</pre> Output: <pre>0</pre></p>",
+   "answerpreload": "",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "123456",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "2468",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "13579",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "80604",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 60,
+   "xml_name": "PS1_060_TUE_Second Smallest In A List",
+   "display_name": "TUE_Second Smallest In A List",
+   "questiontext_html": "<p>You are given the <b>outline</b> of a Python function that takes a list as input and returns the <b>second smallest</b> element in the list. Fill in the missing logic of the function.</p>\n<p>The outline already sets up two variables, <code>smallest</code> and <code>second</code>, by comparing the first two elements of the list. Your job is to complete the loop that goes through the <b>rest</b> of the list (from index 2 onwards) and correctly updates <code>smallest</code> and <code>second</code> as it goes.</p>\n<p><b>The rule to update them:</b> for each remaining value, if it is smaller than the current <code>smallest</code>, then the old <code>smallest</code> becomes the new <code>second</code>, and this value becomes the new <code>smallest</code>. Otherwise, if it is merely smaller than the current <code>second</code> (but not smaller than <code>smallest</code>), it becomes the new <code>second</code>.</p>\n<p>You may assume the list passed in always has at least two elements.</p>\n<p><b>Example:</b> <code>second_smallest([17, 3, 28, 3, 41, 6, 12])</code> should return <code>3</code> (3 is both the smallest and, from its second occurrence, correctly the second smallest too).</p>\n<p><b>Example 2 (edge case - only two elements):</b> <code>second_smallest([20, 10])</code> should return <code>20</code>.</p>",
+   "answerpreload": "def second_smallest(lst):\n    # lst is guaranteed to have at least two elements\n    if lst[0] < lst[1]:\n        smallest = lst[0]\n        second = lst[1]\n    else:\n        smallest = lst[1]\n        second = lst[0]\n\n    # TODO: loop through the rest of the list (from index 2 onwards)\n    # and update 'smallest' and 'second' correctly.\n    # write your code here\n\n\n    return second\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(second_smallest([17, 3, 28, 3, 41, 6, 12]))",
+   "mark": 2.0,
+   "tests": [
+    {
+     "testcode": "print(second_smallest([17, 3, 28, 3, 41, 6, 12]))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(second_smallest([20, 10]))",
+     "stdin": "",
+     "expected": "20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(second_smallest([5, 1, 9, 3, 7]))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(second_smallest(lst))",
+     "stdin": "3 1 4 1 5 9 2 6",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(second_smallest(lst))",
+     "stdin": "-5 10 -3 8 0",
+     "expected": "-3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "7f61a0352ebc8225"
+}

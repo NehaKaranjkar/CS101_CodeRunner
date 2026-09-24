@@ -3,7 +3,7 @@
  "bank_name": "Practice_Set_2",
  "encrypted": false,
  "source_xml": "Practice_Set_2.xml",
- "built_at": "2026-09-24T18:35:28",
+ "built_at": "2026-09-24T18:53:36",
  "settings": {
   "title": "Practice: Practice Set 2",
   "time_limit": false,
@@ -69,7 +69,7 @@
    "xml_index": 2,
    "xml_name": "PS2_002_Sum Of Two Numbers",
    "display_name": "Sum Of Two Numbers",
-   "questiontext_html": "<p>Write a Python program that reads two whole numbers (one per line) and prints their sum.</p>\n<p><b>Example:</b> Input: <pre>3\n5</pre> Output: <pre>8</pre></p>",
+   "questiontext_html": "<p>Write a Python program that reads two integers (one per line) and prints their sum.</p>\n<p><b>Example:</b> Input: <pre>3\n5</pre> Output: <pre>8</pre></p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -149,7 +149,7 @@
    "xml_index": 4,
    "xml_name": "PS2_004_Area Of Rectangle",
    "display_name": "Area Of Rectangle",
-   "questiontext_html": "<p>Write a Python program that reads the length and breadth of a rectangle (two whole numbers, one per line) and prints its area (length multiplied by breadth).</p>\n<p><b>Example:</b> Input: <pre>5\n3</pre> Output: <pre>15</pre></p>",
+   "questiontext_html": "<p>Write a Python program that reads the length and breadth of a rectangle (two positive integers, one per line) and prints its area (length multiplied by breadth).</p>\n<p><b>Example:</b> Input: <pre>5\n3</pre> Output: <pre>15</pre></p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -189,7 +189,7 @@
    "xml_index": 5,
    "xml_name": "PS2_005_Square Of A Number",
    "display_name": "Square Of A Number",
-   "questiontext_html": "<p>Write a Python program that reads a whole number and prints its square (the number multiplied by itself).</p>\n<p><b>Example:</b> Input: <pre>6</pre> Output: <pre>36</pre></p>",
+   "questiontext_html": "<p>Write a Python program that reads an integer and prints its square (the number multiplied by itself).</p>\n<p><b>Example:</b> Input: <pre>6</pre> Output: <pre>36</pre></p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -229,7 +229,7 @@
    "xml_index": 6,
    "xml_name": "PS2_006_Even Or Odd",
    "display_name": "Even Or Odd",
-   "questiontext_html": "<p>A whole number is <b>even</b> if it is exactly divisible by 2, and <b>odd</b> otherwise. Write a Python program that reads a whole number and prints <code>Even</code> if it is even, or <code>Odd</code> if it is odd.</p>\n<p><b>Example 1:</b> Input: <pre>4</pre> Output: <pre>Even</pre></p>\n<p><b>Example 2:</b> Input: <pre>7</pre> Output: <pre>Odd</pre></p>",
+   "questiontext_html": "<p>An integer is <b>even</b> if it is exactly divisible by 2, and <b>odd</b> otherwise. Write a Python program that reads an integer and prints <code>Even</code> if it is even, or <code>Odd</code> if it is odd.</p>\n<p><b>Example 1:</b> Input: <pre>4</pre> Output: <pre>Even</pre></p>\n<p><b>Example 2:</b> Input: <pre>7</pre> Output: <pre>Odd</pre></p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -279,7 +279,7 @@
    "xml_index": 7,
    "xml_name": "PS2_007_Larger Of Two Numbers",
    "display_name": "Larger Of Two Numbers",
-   "questiontext_html": "<p>Write a Python program that reads two whole numbers (one per line) and prints the larger of the two. If they are equal, print either one.</p>\n<p><b>Example:</b> Input: <pre>8\n3</pre> Output: <pre>8</pre></p>",
+   "questiontext_html": "<p>Write a Python program that reads two integers (one per line) and prints the larger of the two. If they are equal, print either one.</p>\n<p><b>Example:</b> Input: <pre>8\n3</pre> Output: <pre>8</pre></p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -319,7 +319,7 @@
    "xml_index": 8,
    "xml_name": "PS2_008_Average Of Three",
    "display_name": "Average Of Three",
-   "questiontext_html": "<p>Write a Python program that reads three whole numbers (one per line) and prints their average.</p>\n<p><b>Note:</b> the average may be a decimal number. To avoid tiny floating-point mismatches, print your answer rounded to 2 decimal places using <code>round(value, 2)</code>. For example, <code>print(round(3.33333, 2))</code> prints <code>3.33</code>.</p>\n<p><b>Example:</b> Input: <pre>3\n6\n9</pre> Output: <pre>6.0</pre></p>",
+   "questiontext_html": "<p>Write a Python program that reads three integers (one per line) and prints their average.</p>\n<p><b>Note:</b> the average may be a decimal number. To avoid tiny floating-point mismatches, print your answer rounded to 2 decimal places using <code>round(value, 2)</code>. For example, <code>print(round(3.33333, 2))</code> prints <code>3.33</code>.</p>\n<p><b>Example:</b> Input: <pre>3\n6\n9</pre> Output: <pre>6.0</pre></p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -359,7 +359,7 @@
    "xml_index": 9,
    "xml_name": "PS2_009_Pass Or Fail",
    "display_name": "Pass Or Fail",
-   "questiontext_html": "<p>A student passes an exam if their marks are 40 or above (out of 100), and fails otherwise. Write a Python program that reads a student's marks (a whole number) and prints <code>Pass</code> or <code>Fail</code>.</p>\n<p><b>Example 1:</b> Input: <pre>65</pre> Output: <pre>Pass</pre></p>\n<p><b>Example 2:</b> Input: <pre>35</pre> Output: <pre>Fail</pre></p>",
+   "questiontext_html": "<p>A student passes an exam if their marks are 40 or above (out of 100), and fails otherwise. Write a Python program that reads a student's marks (an integer from 0 to 100) and prints <code>Pass</code> or <code>Fail</code>.</p>\n<p><b>Example 1:</b> Input: <pre>65</pre> Output: <pre>Pass</pre></p>\n<p><b>Example 2:</b> Input: <pre>35</pre> Output: <pre>Fail</pre></p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -399,7 +399,7 @@
    "xml_index": 10,
    "xml_name": "PS2_010_Print One To N",
    "display_name": "Print One To N",
-   "questiontext_html": "<p>Write a Python program that reads a whole number <code>N</code> and prints every whole number from 1 to <code>N</code> (inclusive), each on its own line, using a loop.</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>1\n2\n3\n4</pre></p>",
+   "questiontext_html": "<p>Write a Python program that reads a positive integer <code>N</code> and prints every integer from 1 to <code>N</code> (inclusive), each on its own line, using a loop.</p>\n<p><b>Example:</b> Input: <pre>4</pre> Output: <pre>1\n2\n3\n4</pre></p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -439,7 +439,7 @@
    "xml_index": 11,
    "xml_name": "PS2_011_Function Add Two",
    "display_name": "Add Two",
-   "questiontext_html": "<p>Write a function named <code>add</code> that takes two whole numbers <code>a</code> and <code>b</code> and <b>returns</b> their sum (do not print inside the function).</p>\n<p><b>Example:</b> <code>add(3, 4)</code> should return <code>7</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>add</code> that takes two integers <code>a</code> and <code>b</code> and <b>returns</b> their sum (do not print inside the function).</p>\n<p><b>Example:</b> <code>add(3, 4)</code> should return <code>7</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -489,7 +489,7 @@
    "xml_index": 12,
    "xml_name": "PS2_012_Function Max Of Two",
    "display_name": "Max Of Two",
-   "questiontext_html": "<p>Write a function named <code>find_max</code> that takes two whole numbers <code>a</code> and <code>b</code> and <b>returns</b> the larger of the two. If they are equal, return either one.</p>\n<p><b>Example:</b> <code>find_max(3, 7)</code> should return <code>7</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>find_max</code> that takes two integers <code>a</code> and <code>b</code> and <b>returns</b> the larger of the two. If they are equal, return either one.</p>\n<p><b>Example:</b> <code>find_max(3, 7)</code> should return <code>7</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -549,7 +549,7 @@
    "xml_index": 13,
    "xml_name": "PS2_013_Function Is Even",
    "display_name": "Is Even",
-   "questiontext_html": "<p>Write a function named <code>is_even</code> that takes a whole number <code>n</code> and <b>returns</b> <code>True</code> if <code>n</code> is even, or <code>False</code> if it is odd.</p>\n<p><b>Example:</b> <code>is_even(4)</code> should return <code>True</code>. <code>is_even(7)</code> should return <code>False</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>is_even</code> that takes an integer <code>n</code> and <b>returns</b> <code>True</code> if <code>n</code> is even, or <code>False</code> if it is odd.</p>\n<p><b>Example:</b> <code>is_even(4)</code> should return <code>True</code>. <code>is_even(7)</code> should return <code>False</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -609,7 +609,7 @@
    "xml_index": 14,
    "xml_name": "PS2_014_Function Quotient And Remainder",
    "display_name": "Quotient And Remainder",
-   "questiontext_html": "<p>Write a function named <code>divide</code> that takes two whole numbers <code>a</code> and <code>b</code> and <b>returns two values</b>: the quotient (<code>a // b</code>) and the remainder (<code>a % b</code>), in that order.</p>\n<p>You may assume <code>b</code> is always greater than 0.</p>\n<p><b>Example:</b> <code>divide(17, 5)</code> should return <code>3</code> and <code>2</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>divide</code> that takes two integers <code>a</code> and <code>b</code> and <b>returns two values</b>: the quotient (<code>a // b</code>) and the remainder (<code>a % b</code>), in that order.</p>\n<p>You may assume <code>b</code> is always greater than 0.</p>\n<p><b>Example:</b> <code>divide(17, 5)</code> should return <code>3</code> and <code>2</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -669,7 +669,7 @@
    "xml_index": 15,
    "xml_name": "PS2_015_Function Grade From Marks",
    "display_name": "Grade From Marks",
-   "questiontext_html": "<p>Write a function named <code>grade</code> that takes whole-number exam marks (out of 100) and <b>returns</b> a letter grade using this scheme: <code>\"A\"</code> for 90 and above, <code>\"B\"</code> for 75 up to 89, <code>\"C\"</code> for 40 up to 74, and <code>\"F\"</code> for anything below 40.</p>\n<p>You may assume marks are always between 0 and 100 (inclusive).</p>\n<p><b>Example:</b> <code>grade(82)</code> should return <code>\"B\"</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>grade</code> that takes exam marks (an integer from 0 to 100) and <b>returns</b> a letter grade using this scheme: <code>\"A\"</code> for 90 and above, <code>\"B\"</code> for 75 up to 89, <code>\"C\"</code> for 40 up to 74, and <code>\"F\"</code> for anything below 40.</p>\n<p>You may assume marks are always between 0 and 100 (inclusive).</p>\n<p><b>Example:</b> <code>grade(82)</code> should return <code>\"B\"</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -739,7 +739,7 @@
    "xml_index": 16,
    "xml_name": "PS2_016_Function Age Category",
    "display_name": "Age Category",
-   "questiontext_html": "<p>Write a function named <code>category</code> that takes a person's age (a whole number) and <b>returns</b> their age group: <code>\"Child\"</code> for age below 13, <code>\"Teen\"</code> for age 13 to 19 (inclusive), <code>\"Adult\"</code> for age 20 to 59 (inclusive), and <code>\"Senior\"</code> for age 60 or above.</p>\n<p>You may assume age is always 0 or above.</p>\n<p><b>Example:</b> <code>category(15)</code> should return <code>\"Teen\"</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>category</code> that takes a person's age (a non-negative integer) and <b>returns</b> their age group: <code>\"Child\"</code> for age below 13, <code>\"Teen\"</code> for age 13 to 19 (inclusive), <code>\"Adult\"</code> for age 20 to 59 (inclusive), and <code>\"Senior\"</code> for age 60 or above.</p>\n<p>You may assume age is always 0 or above.</p>\n<p><b>Example:</b> <code>category(15)</code> should return <code>\"Teen\"</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -809,7 +809,7 @@
    "xml_index": 17,
    "xml_name": "PS2_017_Function Leap Year",
    "display_name": "Leap Year",
-   "questiontext_html": "<p>A <b>leap year</b> is one with an extra day (29th February). The exact rule: a year is a leap year if it is divisible by 4, AND if it is also divisible by 100 then it must also be divisible by 400. So 2024 is a leap year, 1900 is not (divisible by 100 but not 400), and 2000 is (divisible by 400).</p>\n<p>Write a function named <code>is_leap</code> that takes a whole number year and <b>returns</b> <code>True</code> if it is a leap year, or <code>False</code> otherwise.</p>\n<p>You may assume the year is always a positive whole number.</p>\n<p><b>Example:</b> <code>is_leap(2024)</code> should return <code>True</code>. <code>is_leap(1900)</code> should return <code>False</code>.</p>",
+   "questiontext_html": "<p>A <b>leap year</b> is one with an extra day (29th February). The exact rule: a year is a leap year if it is divisible by 4, AND if it is also divisible by 100 then it must also be divisible by 400. So 2024 is a leap year, 1900 is not (divisible by 100 but not 400), and 2000 is (divisible by 400).</p>\n<p>Write a function named <code>is_leap</code> that takes a year (a positive integer) and <b>returns</b> <code>True</code> if it is a leap year, or <code>False</code> otherwise.</p>\n<p>You may assume the year is always a positive integer.</p>\n<p><b>Example:</b> <code>is_leap(2024)</code> should return <code>True</code>. <code>is_leap(1900)</code> should return <code>False</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -879,7 +879,7 @@
    "xml_index": 18,
    "xml_name": "PS2_018_Function Sum One To N",
    "display_name": "Sum One To N",
-   "questiontext_html": "<p>Write a function named <code>sum_upto</code> that takes a positive integer (int &gt; 0) <code>n</code> and <b>returns</b> the sum of all whole numbers from 1 to <code>n</code> (inclusive), using a loop.</p>\n<p><b>Example:</b> <code>sum_upto(5)</code> should return <code>15</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>sum_upto</code> that takes a positive integer (int &gt; 0) <code>n</code> and <b>returns</b> the sum of all integers from 1 to <code>n</code> (inclusive), using a loop.</p>\n<p><b>Example:</b> <code>sum_upto(5)</code> should return <code>15</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -939,7 +939,7 @@
    "xml_index": 19,
    "xml_name": "PS2_019_Function Factorial",
    "display_name": "Factorial",
-   "questiontext_html": "<p>The <b>factorial</b> of a non-negative integer <code>n</code>, written <code>n!</code>, is the product of every whole number from 1 to <code>n</code> (and <code>0!</code> is defined as 1). Write a function named <code>factorial</code> that takes a non-negative integer (int &gt;= 0) <code>n</code> and <b>returns</b> <code>n!</code>, using a loop.</p>\n<p><b>Example:</b> <code>factorial(4)</code> should return <code>24</code>.</p>",
+   "questiontext_html": "<p>The <b>factorial</b> of a non-negative integer <code>n</code>, written <code>n!</code>, is the product of every integer from 1 to <code>n</code> (and <code>0!</code> is defined as 1). Write a function named <code>factorial</code> that takes a non-negative integer (int &gt;= 0) <code>n</code> and <b>returns</b> <code>n!</code>, using a loop.</p>\n<p><b>Example:</b> <code>factorial(4)</code> should return <code>24</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1059,7 +1059,7 @@
    "xml_index": 21,
    "xml_name": "PS2_021_Function List Sum",
    "display_name": "List Sum",
-   "questiontext_html": "<p>Write a function named <code>list_sum</code> that takes a list of whole numbers <code>lst</code> and <b>returns</b> the sum of its elements, using a loop.</p>\n<p>You may assume the list contains only whole numbers, and may be empty (in which case the sum is 0).</p>\n<p><b>Example:</b> <code>list_sum([4, 8, 15, 16, 23])</code> should return <code>66</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>list_sum</code> that takes a list of integers <code>lst</code> and <b>returns</b> the sum of its elements, using a loop.</p>\n<p>You may assume the list contains only integers, and may be empty (in which case the sum is 0).</p>\n<p><b>Example:</b> <code>list_sum([4, 8, 15, 16, 23])</code> should return <code>66</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1119,7 +1119,7 @@
    "xml_index": 22,
    "xml_name": "PS2_022_Function List Max",
    "display_name": "List Max",
-   "questiontext_html": "<p>Write a function named <code>list_max</code> that takes a non-empty list of whole numbers <code>lst</code> and <b>returns</b> its largest element, using a loop.</p>\n<p>You may assume the list always has at least one element.</p>\n<p><b>Example:</b> <code>list_max([7, 23, 4, 19, 31, 8])</code> should return <code>31</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>list_max</code> that takes a non-empty list of integers <code>lst</code> and <b>returns</b> its largest element, using a loop.</p>\n<p>You may assume the list always has at least one element.</p>\n<p><b>Example:</b> <code>list_max([7, 23, 4, 19, 31, 8])</code> should return <code>31</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1179,7 +1179,7 @@
    "xml_index": 23,
    "xml_name": "PS2_023_Function Count Greater Than",
    "display_name": "Count Greater Than",
-   "questiontext_html": "<p>Write a function named <code>count_greater</code> that takes a list of whole numbers <code>lst</code> and a whole number <code>x</code>, and <b>returns</b> how many elements of <code>lst</code> are strictly greater than <code>x</code>.</p>\n<p>You may assume the list contains only whole numbers, and may be empty.</p>\n<p><b>Example:</b> <code>count_greater([11, 4, 18, 7, 25], 10)</code> should return <code>2</code> (18 and 25 are greater than 10).</p>",
+   "questiontext_html": "<p>Write a function named <code>count_greater</code> that takes a list of integers <code>lst</code> and an integer <code>x</code>, and <b>returns</b> how many elements of <code>lst</code> are strictly greater than <code>x</code>.</p>\n<p>You may assume the list contains only integers, and may be empty.</p>\n<p><b>Example:</b> <code>count_greater([11, 4, 18, 7, 25], 10)</code> should return <code>2</code> (18 and 25 are greater than 10).</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1239,7 +1239,7 @@
    "xml_index": 24,
    "xml_name": "PS2_024_Function Multiplication Table String",
    "display_name": "Multiplication Table String",
-   "questiontext_html": "<p>Write a function named <code>table_row</code> that takes two whole numbers <code>n</code> and <code>i</code> and <b>returns</b> a string in the exact format <code>n x i = result</code> (with single spaces around <code>x</code> and <code>=</code>), where result is <code>n * i</code>.</p>\n<p><b>Example:</b> <code>table_row(3, 4)</code> should return the string <code>\"3 x 4 = 12\"</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>table_row</code> that takes two integers <code>n</code> and <code>i</code> and <b>returns</b> a string in the exact format <code>n x i = result</code> (with single spaces around <code>x</code> and <code>=</code>), where result is <code>n * i</code>.</p>\n<p><b>Example:</b> <code>table_row(3, 4)</code> should return the string <code>\"3 x 4 = 12\"</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1299,7 +1299,7 @@
    "xml_index": 25,
    "xml_name": "PS2_025_Function Smaller And Larger",
    "display_name": "Smaller And Larger",
-   "questiontext_html": "<p>Write a function named <code>order</code> that takes two whole numbers <code>a</code> and <code>b</code> and <b>returns two values</b>: the smaller one first, then the larger one. If they are equal, return either order.</p>\n<p><b>Example:</b> <code>order(8, 3)</code> should return <code>3</code> and <code>8</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>order</code> that takes two integers <code>a</code> and <code>b</code> and <b>returns two values</b>: the smaller one first, then the larger one. If they are equal, return either order.</p>\n<p><b>Example:</b> <code>order(8, 3)</code> should return <code>3</code> and <code>8</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1479,7 +1479,7 @@
    "xml_index": 28,
    "xml_name": "PS2_028_Function Divisible By Both",
    "display_name": "Divisible By Both",
-   "questiontext_html": "<p>Write a function named <code>divisible_by_both</code> that takes three whole numbers <code>n</code>, <code>a</code>, and <code>b</code>, and <b>returns</b> <code>True</code> if <code>n</code> is divisible by both <code>a</code> and <code>b</code> (with no remainder in either case), or <code>False</code> otherwise.</p>\n<p>You may assume <code>a</code> and <code>b</code> are always greater than 0.</p>\n<p><b>Example:</b> <code>divisible_by_both(30, 5, 6)</code> should return <code>True</code>. <code>divisible_by_both(30, 5, 7)</code> should return <code>False</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>divisible_by_both</code> that takes three integers <code>n</code>, <code>a</code>, and <code>b</code>, and <b>returns</b> <code>True</code> if <code>n</code> is divisible by both <code>a</code> and <code>b</code> (with no remainder in either case), or <code>False</code> otherwise.</p>\n<p>You may assume <code>a</code> and <code>b</code> are always greater than 0.</p>\n<p><b>Example:</b> <code>divisible_by_both(30, 5, 6)</code> should return <code>True</code>. <code>divisible_by_both(30, 5, 7)</code> should return <code>False</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1539,7 +1539,7 @@
    "xml_index": 29,
    "xml_name": "PS2_029_Function Sum Of Evens In List",
    "display_name": "Sum Of Evens In List",
-   "questiontext_html": "<p>Write a function named <code>sum_evens</code> that takes a list of whole numbers <code>lst</code> and <b>returns</b> the sum of only the even numbers in it, using a loop.</p>\n<p>You may assume the list contains only whole numbers, and may be empty (in which case the sum is 0).</p>\n<p><b>Example:</b> <code>sum_evens([1, 2, 3, 4, 5, 6])</code> should return <code>12</code> (2 + 4 + 6).</p>",
+   "questiontext_html": "<p>Write a function named <code>sum_evens</code> that takes a list of integers <code>lst</code> and <b>returns</b> the sum of only the even numbers in it, using a loop.</p>\n<p>You may assume the list contains only integers, and may be empty (in which case the sum is 0).</p>\n<p><b>Example:</b> <code>sum_evens([1, 2, 3, 4, 5, 6])</code> should return <code>12</code> (2 + 4 + 6).</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1599,7 +1599,7 @@
    "xml_index": 30,
    "xml_name": "PS2_030_Function Contains Value",
    "display_name": "Contains Value",
-   "questiontext_html": "<p>Write a function named <code>contains</code> that takes a list <code>lst</code> and a value <code>x</code>, and <b>returns</b> <code>True</code> if <code>x</code> appears anywhere in the list, or <code>False</code> otherwise. Use a loop (do not use the <code>in</code> operator).</p>\n<p>You may assume the list contains only whole numbers, and may be empty.</p>\n<p><b>Example:</b> <code>contains([6, 19, 3, 27, 11], 27)</code> should return <code>True</code>. <code>contains([6, 19, 3], 100)</code> should return <code>False</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>contains</code> that takes a list <code>lst</code> and a value <code>x</code>, and <b>returns</b> <code>True</code> if <code>x</code> appears anywhere in the list, or <code>False</code> otherwise. Use a loop (do not use the <code>in</code> operator).</p>\n<p>You may assume the list contains only integers, and may be empty.</p>\n<p><b>Example:</b> <code>contains([6, 19, 3, 27, 11], 27)</code> should return <code>True</code>. <code>contains([6, 19, 3], 100)</code> should return <code>False</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1659,7 +1659,7 @@
    "xml_index": 31,
    "xml_name": "PS2_031_Function Is Prime",
    "display_name": "Is Prime",
-   "questiontext_html": "<p>A <b>prime number</b> is a whole number greater than 1 that has no divisors other than 1 and itself. For example, 7 is prime (nothing between 2 and 6 divides it evenly), but 8 is not (it is divisible by 2 and 4).</p>\n<p>Write a function named <code>is_prime</code> that takes a whole number <code>n</code> and <b>returns</b> <code>True</code> if <code>n</code> is prime, or <code>False</code> otherwise.</p>\n<p>You may assume <code>n</code> is always greater than 1.</p>\n<p><b>Example:</b> <code>is_prime(7)</code> should return <code>True</code>. <code>is_prime(8)</code> should return <code>False</code>.</p>",
+   "questiontext_html": "<p>A <b>prime number</b> is an integer greater than 1 that has no divisors other than 1 and itself. For example, 7 is prime (nothing between 2 and 6 divides it evenly), but 8 is not (it is divisible by 2 and 4).</p>\n<p>Write a function named <code>is_prime</code> that takes an integer <code>n</code> and <b>returns</b> <code>True</code> if <code>n</code> is prime, or <code>False</code> otherwise.</p>\n<p>You may assume <code>n</code> is always greater than 1.</p>\n<p><b>Example:</b> <code>is_prime(7)</code> should return <code>True</code>. <code>is_prime(8)</code> should return <code>False</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1799,7 +1799,7 @@
    "xml_index": 33,
    "xml_name": "PS2_033_Function Is Perfect Number",
    "display_name": "Is Perfect Number",
-   "questiontext_html": "<p>A <b>perfect number</b> is a whole number that is exactly equal to the sum of its <b>proper divisors</b> - all the whole numbers smaller than it that divide it evenly (not counting the number itself). For example, 6 is perfect because its proper divisors 1, 2, 3 add up to 6. And 28 is perfect (1+2+4+7+14 = 28). But 10 is not (1+2+5 = 8).</p>\n<p>Write a function named <code>is_perfect</code> that takes a whole number <code>n</code> and <b>returns</b> <code>True</code> if it is a perfect number, or <code>False</code> otherwise.</p>\n<p>You may assume <code>n</code> is always greater than 1.</p>\n<p><b>Example:</b> <code>is_perfect(6)</code> should return <code>True</code>. <code>is_perfect(10)</code> should return <code>False</code>.</p>",
+   "questiontext_html": "<p>A <b>perfect number</b> is a positive integer that is exactly equal to the sum of its <b>proper divisors</b> - all the positive integers smaller than it that divide it evenly (not counting the number itself). For example, 6 is perfect because its proper divisors 1, 2, 3 add up to 6. And 28 is perfect (1+2+4+7+14 = 28). But 10 is not (1+2+5 = 8).</p>\n<p>Write a function named <code>is_perfect</code> that takes an integer <code>n</code> and <b>returns</b> <code>True</code> if it is a perfect number, or <code>False</code> otherwise.</p>\n<p>You may assume <code>n</code> is always greater than 1.</p>\n<p><b>Example:</b> <code>is_perfect(6)</code> should return <code>True</code>. <code>is_perfect(10)</code> should return <code>False</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1869,7 +1869,7 @@
    "xml_index": 34,
    "xml_name": "PS2_034_Function Second Largest",
    "display_name": "Second Largest",
-   "questiontext_html": "<p>Write a function named <code>second_largest</code> that takes a list of whole numbers <code>lst</code> (with at least two elements) and <b>returns</b> the second largest value in it.</p>\n<p>Note: if the largest value appears more than once, it can also be the second largest. For example, in <code>[5, 9, 9, 2]</code> the largest is 9 and the second largest is also 9. In <code>[4, 1, 7, 3]</code> the second largest is 4.</p>\n<p>You may assume the list always has at least two elements.</p>\n<p><b>Example:</b> <code>second_largest([4, 1, 7, 3])</code> should return <code>4</code>.</p>",
+   "questiontext_html": "<p>Write a function named <code>second_largest</code> that takes a list of integers <code>lst</code> (with at least two elements) and <b>returns</b> the second largest value in it.</p>\n<p>Note: if the largest value appears more than once, it can also be the second largest. For example, in <code>[5, 9, 9, 2]</code> the largest is 9 and the second largest is also 9. In <code>[4, 1, 7, 3]</code> the second largest is 4.</p>\n<p>You may assume the list always has at least two elements.</p>\n<p><b>Example:</b> <code>second_largest([4, 1, 7, 3])</code> should return <code>4</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -1989,7 +1989,7 @@
    "xml_index": 36,
    "xml_name": "PS2_036_Function Recursive GCD",
    "display_name": "Recursive GCD",
-   "questiontext_html": "<p>The <b>Greatest Common Divisor (GCD)</b> of two positive integers is the largest whole number that divides both of them exactly. Euclid's method computes it like this: the GCD of <code>a</code> and <code>b</code> equals the GCD of <code>b</code> and <code>a % b</code>, and when the second number becomes 0, the first number is the answer.</p>\n<p>Write a <b>recursive</b> function named <code>gcd</code> that takes two positive integers (int &gt; 0) <code>a</code> and <code>b</code> and <b>returns</b> their GCD. Your function must be recursive (it must call itself), with a correct base case.</p>\n<p><b>Example:</b> <code>gcd(12, 18)</code> should return <code>6</code>.</p>",
+   "questiontext_html": "<p>The <b>Greatest Common Divisor (GCD)</b> of two positive integers is the largest positive integer that divides both of them exactly. Euclid's method computes it like this: the GCD of <code>a</code> and <code>b</code> equals the GCD of <code>b</code> and <code>a % b</code>, and when the second number becomes 0, the first number is the answer.</p>\n<p>Write a <b>recursive</b> function named <code>gcd</code> that takes two positive integers (int &gt; 0) <code>a</code> and <code>b</code> and <b>returns</b> their GCD. Your function must be recursive (it must call itself), with a correct base case.</p>\n<p><b>Example:</b> <code>gcd(12, 18)</code> should return <code>6</code>.</p>",
    "answerpreload": "",
    "mark": 1.0,
    "tests": [
@@ -2049,7 +2049,7 @@
    "xml_index": 37,
    "xml_name": "PS2_037_DEBUG Age Category",
    "display_name": "Age Category",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>category(age)</code> should take a person's age (a whole number, 0 or above) and <b>return</b> exactly one of these strings: <code>\"Child\"</code> for age below 13, <code>\"Teen\"</code> for age 13 to 19 (inclusive), <code>\"Adult\"</code> for age 20 to 59 (inclusive), or <code>\"Senior\"</code> for age 60 or above.</p>\n<p><b>Inputs your solution must work on:</b> any whole number <code>age</code> that is 0 or above.</p>\n<p><b>The single example test (already passes):</b> <code>category(70)</code> returns <code>\"Senior\"</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>category(age)</code> should take a person's age (a non-negative integer, int &gt;= 0) and <b>return</b> exactly one of these strings: <code>\"Child\"</code> for age below 13, <code>\"Teen\"</code> for age 13 to 19 (inclusive), <code>\"Adult\"</code> for age 20 to 59 (inclusive), or <code>\"Senior\"</code> for age 60 or above.</p>\n<p><b>Inputs your solution must work on:</b> any non-negative integer <code>age</code>.</p>\n<p><b>The single example test (already passes):</b> <code>category(70)</code> returns <code>\"Senior\"</code>.</p>",
    "answerpreload": "def category(age):\n    result = \"Senior\"\n    if age < 13:\n        result = \"Child\"\n    if age <= 19:\n        result = \"Teen\"\n    if age <= 59:\n        result = \"Adult\"\n    return result",
    "mark": 1.0,
    "tests": [
@@ -2062,6 +2062,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(category(8))",
+     "stdin": "",
+     "expected": "Child",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(category(5))",
+     "stdin": "",
+     "expected": "Child",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(category(15))",
+     "stdin": "",
+     "expected": "Teen",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2069,7 +2099,7 @@
    "xml_index": 38,
    "xml_name": "PS2_038_DEBUG Contains Value",
    "display_name": "Contains Value",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>contains(lst, x)</code> should take a list of whole numbers <code>lst</code> and a whole number <code>x</code>, and <b>return</b> <code>True</code> if <code>x</code> appears anywhere in the list, or <code>False</code> otherwise.</p>\n<p><b>Inputs your solution must work on:</b> any list of whole numbers <code>lst</code> (which may be empty), and any whole number <code>x</code>.</p>\n<p><b>The single example test (already passes):</b> <code>contains([7, 2, 9, 4], 7)</code> returns <code>True</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>contains(lst, x)</code> should take a list of integers <code>lst</code> and an integer <code>x</code>, and <b>return</b> <code>True</code> if <code>x</code> appears anywhere in the list, or <code>False</code> otherwise.</p>\n<p><b>Inputs your solution must work on:</b> any list of integers <code>lst</code> (which may be empty), and any integer <code>x</code>.</p>\n<p><b>The single example test (already passes):</b> <code>contains([7, 2, 9, 4], 7)</code> returns <code>True</code>.</p>",
    "answerpreload": "def contains(lst, x):\n    for value in lst:\n        if value == x:\n            return True\n        else:\n            return False",
    "mark": 1.0,
    "tests": [
@@ -2082,6 +2112,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(contains([7, 2, 9, 4], 9))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(contains([7, 2, 9, 4], 4))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(contains([1, 2, 3], 3))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2089,7 +2149,7 @@
    "xml_index": 39,
    "xml_name": "PS2_039_DEBUG Count Positives",
    "display_name": "Count Positives",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>count_positives(lst)</code> should take a list of whole numbers <code>lst</code> and <b>return</b> how many of them are strictly greater than 0 (positive).</p>\n<p><b>Inputs your solution must work on:</b> any list of whole numbers <code>lst</code> (positive, negative, or zero values), including an empty list.</p>\n<p><b>The single example test (already passes):</b> <code>count_positives([-3, -1, 5])</code> returns <code>1</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>count_positives(lst)</code> should take a list of integers <code>lst</code> and <b>return</b> how many of them are strictly greater than 0 (positive).</p>\n<p><b>Inputs your solution must work on:</b> any list of integers <code>lst</code> (positive, negative, or zero values), including an empty list.</p>\n<p><b>The single example test (already passes):</b> <code>count_positives([-3, -1, 5])</code> returns <code>1</code>.</p>",
    "answerpreload": "def count_positives(lst):\n    for value in lst:\n        count = 0\n        if value > 0:\n            count = count + 1\n    return count",
    "mark": 1.0,
    "tests": [
@@ -2102,6 +2162,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(count_positives([5, 3, 8, 1]))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_positives([5, -1, 8]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_positives([2, 4, -6]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2109,7 +2199,7 @@
    "xml_index": 40,
    "xml_name": "PS2_040_DEBUG Sum Of List",
    "display_name": "Sum Of List",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>list_sum(lst)</code> should take a list of whole numbers <code>lst</code> and <b>return</b> the sum of all its elements. For an empty list, it should return 0.</p>\n<p><b>Inputs your solution must work on:</b> any list of whole numbers <code>lst</code>, including an empty list.</p>\n<p><b>The single example test (already passes):</b> <code>list_sum([10, 20, 30, 0])</code> returns <code>60</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>list_sum(lst)</code> should take a list of integers <code>lst</code> and <b>return</b> the sum of all its elements. For an empty list, it should return 0.</p>\n<p><b>Inputs your solution must work on:</b> any list of integers <code>lst</code>, including an empty list.</p>\n<p><b>The single example test (already passes):</b> <code>list_sum([10, 20, 30, 0])</code> returns <code>60</code>.</p>",
    "answerpreload": "def list_sum(lst):\n    total = 0\n    for i in range(0, len(lst) - 1):\n        total = total + lst[i]\n    return total",
    "mark": 1.0,
    "tests": [
@@ -2122,6 +2212,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([10, 20, 30, 5]))",
+     "stdin": "",
+     "expected": "65",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([7]))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([1, 2, 3, 4, 5]))",
+     "stdin": "",
+     "expected": "15",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2129,7 +2249,7 @@
    "xml_index": 41,
    "xml_name": "PS2_041_DEBUG Largest In List",
    "display_name": "Largest In List",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>largest(lst)</code> should take a non-empty list of whole numbers <code>lst</code> and <b>return</b> its largest element.</p>\n<p><b>Inputs your solution must work on:</b> any non-empty list of whole numbers (positive, negative, or zero).</p>\n<p><b>The single example test (already passes):</b> <code>largest([4, 4, 4])</code> returns <code>4</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>largest(lst)</code> should take a non-empty list of integers <code>lst</code> and <b>return</b> its largest element.</p>\n<p><b>Inputs your solution must work on:</b> any non-empty list of integers (positive, negative, or zero).</p>\n<p><b>The single example test (already passes):</b> <code>largest([4, 4, 4])</code> returns <code>4</code>.</p>",
    "answerpreload": "def largest(lst):\n    best = lst[0]\n    for value in lst:\n        if value < best:\n            best = value\n    return best",
    "mark": 1.0,
    "tests": [
@@ -2142,6 +2262,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(largest([9, 2, 5, 1]))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest([1, 5, 2, 9]))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest([-3, -1, -8]))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2149,7 +2299,7 @@
    "xml_index": 42,
    "xml_name": "PS2_042_DEBUG Count Up To N",
    "display_name": "Count Up To N",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>count_multiples_of_three(n)</code> should take a positive integer (int &gt; 0) <code>n</code> and <b>return</b> how many numbers from 1 to <code>n</code> (inclusive) are multiples of 3. For example, from 1 to 9 the multiples of 3 are 3, 6, 9, so the answer is 3.</p>\n<p><b>Inputs your solution must work on:</b> any positive integer <code>n</code> (int &gt; 0).</p>\n<p><b>The single example test (already passes):</b> <code>count_multiples_of_three(7)</code> returns <code>2</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>count_multiples_of_three(n)</code> should take a positive integer (int &gt; 0) <code>n</code> and <b>return</b> how many numbers from 1 to <code>n</code> (inclusive) are multiples of 3. For example, from 1 to 9 the multiples of 3 are 3, 6, 9, so the answer is 3.</p>\n<p><b>Inputs your solution must work on:</b> any positive integer <code>n</code> (int &gt; 0).</p>\n<p><b>The single example test (already passes):</b> <code>count_multiples_of_three(7)</code> returns <code>2</code>.</p>",
    "answerpreload": "def count_multiples_of_three(n):\n    count = 0\n    for i in range(1, n):\n        if i % 3 == 0:\n            count = count + 1\n    return count",
    "mark": 1.0,
    "tests": [
@@ -2162,6 +2312,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(count_multiples_of_three(9))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_multiples_of_three(6))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_multiples_of_three(15))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2169,7 +2349,7 @@
    "xml_index": 43,
    "xml_name": "PS2_043_DEBUG Product Of List",
    "display_name": "Product Of List",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>product(lst)</code> should take a non-empty list of whole numbers <code>lst</code> and <b>return</b> the product (multiplication) of all its elements. For example, the product of [2, 3, 4] is 2*3*4 = 24.</p>\n<p><b>Inputs your solution must work on:</b> any non-empty list of whole numbers. (Note: some lists may contain a 0.)</p>\n<p><b>The single example test (already passes):</b> <code>product([5, 0, 2])</code> returns <code>0</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>product(lst)</code> should take a non-empty list of integers <code>lst</code> and <b>return</b> the product (multiplication) of all its elements. For example, the product of [2, 3, 4] is 2*3*4 = 24.</p>\n<p><b>Inputs your solution must work on:</b> any non-empty list of integers. (Note: some lists may contain a 0.)</p>\n<p><b>The single example test (already passes):</b> <code>product([5, 0, 2])</code> returns <code>0</code>.</p>",
    "answerpreload": "def product(lst):\n    result = 0\n    for value in lst:\n        result = result * value\n    return result",
    "mark": 1.0,
    "tests": [
@@ -2182,6 +2362,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(product([2, 3, 4]))",
+     "stdin": "",
+     "expected": "24",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(product([5, 1, 2]))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(product([7]))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2189,7 +2399,7 @@
    "xml_index": 44,
    "xml_name": "PS2_044_DEBUG FizzBuzz Label",
    "display_name": "FizzBuzz Label",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>label(n)</code> should take a positive integer (int &gt; 0) <code>n</code> and <b>return</b> a string: <code>\"FizzBuzz\"</code> if <code>n</code> is divisible by both 3 and 5, <code>\"Fizz\"</code> if divisible by only 3, <code>\"Buzz\"</code> if divisible by only 5, or the number itself as a string (e.g. <code>\"7\"</code>) if divisible by neither.</p>\n<p><b>Inputs your solution must work on:</b> any positive integer <code>n</code> (int &gt; 0).</p>\n<p><b>The single example test (already passes):</b> <code>label(9)</code> returns <code>\"Fizz\"</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>label(n)</code> should take a positive integer (int &gt; 0) <code>n</code> and <b>return</b> a string: <code>\"FizzBuzz\"</code> if <code>n</code> is divisible by both 3 and 5, <code>\"Fizz\"</code> if divisible by only 3, <code>\"Buzz\"</code> if divisible by only 5, or the number itself as a string (e.g. <code>\"7\"</code>) if divisible by neither.</p>\n<p><b>Inputs your solution must work on:</b> any positive integer <code>n</code> (int &gt; 0).</p>\n<p><b>The single example test (already passes):</b> <code>label(9)</code> returns <code>\"Fizz\"</code>.</p>",
    "answerpreload": "def label(n):\n    if n % 3 == 0:\n        return \"Fizz\"\n    elif n % 5 == 0:\n        return \"Buzz\"\n    elif n % 3 == 0 and n % 5 == 0:\n        return \"FizzBuzz\"\n    else:\n        return str(n)",
    "mark": 1.0,
    "tests": [
@@ -2202,6 +2412,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(label(15))",
+     "stdin": "",
+     "expected": "FizzBuzz",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(label(30))",
+     "stdin": "",
+     "expected": "FizzBuzz",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(label(45))",
+     "stdin": "",
+     "expected": "FizzBuzz",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2209,7 +2449,7 @@
    "xml_index": 45,
    "xml_name": "PS2_045_DEBUG All Positive",
    "display_name": "All Positive",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>all_positive(lst)</code> should take a non-empty list of whole numbers <code>lst</code> and <b>return</b> <code>True</code> if <b>every</b> element is strictly greater than 0, or <code>False</code> if even one element is 0 or negative.</p>\n<p><b>Inputs your solution must work on:</b> any non-empty list of whole numbers.</p>\n<p><b>The single example test (already passes):</b> <code>all_positive([3, 7, 2])</code> returns <code>True</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>all_positive(lst)</code> should take a non-empty list of integers <code>lst</code> and <b>return</b> <code>True</code> if <b>every</b> element is strictly greater than 0, or <code>False</code> if even one element is 0 or negative.</p>\n<p><b>Inputs your solution must work on:</b> any non-empty list of integers.</p>\n<p><b>The single example test (already passes):</b> <code>all_positive([3, 7, 2])</code> returns <code>True</code>.</p>",
    "answerpreload": "def all_positive(lst):\n    for value in lst:\n        if value <= 0:\n            return False\n        else:\n            return True",
    "mark": 1.0,
    "tests": [
@@ -2222,6 +2462,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(all_positive([3, -7, 2]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(all_positive([5, 6, 0]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(all_positive([1, 2, -3]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2229,7 +2499,7 @@
    "xml_index": 46,
    "xml_name": "PS2_046_DEBUG Recursive Factorial",
    "display_name": "Recursive Factorial",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>factorial(n)</code> should take a non-negative integer (int &gt;= 0) <code>n</code> and <b>return</b> <code>n!</code> (the product of all whole numbers from 1 to n). By definition <code>0! = 1</code> and <code>1! = 1</code>. This function is written recursively (it calls itself).</p>\n<p><b>Inputs your solution must work on:</b> any non-negative integer <code>n</code> (int &gt;= 0), including 0.</p>\n<p><b>The single example test (already passes):</b> <code>factorial(4)</code> returns <code>24</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>factorial(n)</code> should take a non-negative integer (int &gt;= 0) <code>n</code> and <b>return</b> <code>n!</code> (the product of all integers from 1 to n). By definition <code>0! = 1</code> and <code>1! = 1</code>. This function is written recursively (it calls itself).</p>\n<p><b>Inputs your solution must work on:</b> any non-negative integer <code>n</code> (int &gt;= 0), including 0.</p>\n<p><b>The single example test (already passes):</b> <code>factorial(4)</code> returns <code>24</code>.</p>",
    "answerpreload": "def factorial(n):\n    if n == 1:\n        return 1\n    else:\n        return n * factorial(n - 1)",
    "mark": 1.0,
    "tests": [
@@ -2242,6 +2512,16 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(factorial(0))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2249,7 +2529,7 @@
    "xml_index": 47,
    "xml_name": "PS2_047_DEBUG Shipping Cost",
    "display_name": "Shipping Cost",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>shipping(weight)</code> should take a package weight (a whole number of grams) and <b>return</b> the shipping cost: <code>50</code> if the weight is 1000 grams or less, or <code>100</code> if the weight is more than 1000 grams. Note: exactly 1000 grams costs 50.</p>\n<p><b>Inputs your solution must work on:</b> any positive integer <code>weight</code> (int &gt; 0).</p>\n<p><b>The single example test (already passes):</b> <code>shipping(500)</code> returns <code>50</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>shipping(weight)</code> should take a package weight (in grams, a positive integer) and <b>return</b> the shipping cost: <code>50</code> if the weight is 1000 grams or less, or <code>100</code> if the weight is more than 1000 grams. Note: exactly 1000 grams costs 50.</p>\n<p><b>Inputs your solution must work on:</b> any positive integer <code>weight</code> (int &gt; 0).</p>\n<p><b>The single example test (already passes):</b> <code>shipping(500)</code> returns <code>50</code>.</p>",
    "answerpreload": "def shipping(weight):\n    if weight < 1000:\n        return 50\n    else:\n        return 100",
    "mark": 1.0,
    "tests": [
@@ -2262,6 +2542,16 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(shipping(1000))",
+     "stdin": "",
+     "expected": "50",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2269,7 +2559,7 @@
    "xml_index": 48,
    "xml_name": "PS2_048_DEBUG Pass Or Fail",
    "display_name": "Pass Or Fail",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>result(marks)</code> should take whole-number exam marks and <b>return</b> <code>\"Pass\"</code> if the marks are 40 or above, or <code>\"Fail\"</code> if below 40. Note: exactly 40 counts as a Pass.</p>\n<p><b>Inputs your solution must work on:</b> any whole number marks from 0 to 100 (inclusive).</p>\n<p><b>The single example test (already passes):</b> <code>result(65)</code> returns <code>\"Pass\"</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>result(marks)</code> should take exam marks (an integer from 0 to 100) and <b>return</b> <code>\"Pass\"</code> if the marks are 40 or above, or <code>\"Fail\"</code> if below 40. Note: exactly 40 counts as a Pass.</p>\n<p><b>Inputs your solution must work on:</b> any integer marks from 0 to 100 (inclusive).</p>\n<p><b>The single example test (already passes):</b> <code>result(65)</code> returns <code>\"Pass\"</code>.</p>",
    "answerpreload": "def result(marks):\n    if marks > 40:\n        return \"Pass\"\n    else:\n        return \"Fail\"",
    "mark": 1.0,
    "tests": [
@@ -2282,6 +2572,16 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(result(40))",
+     "stdin": "",
+     "expected": "Pass",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2289,7 +2589,7 @@
    "xml_index": 49,
    "xml_name": "PS2_049_DEBUG Count Multiples",
    "display_name": "Count Multiples",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>count_multiples(n, k)</code> should take two positive integers (int &gt; 0) <code>n</code> and <code>k</code>, and <b>return</b> how many whole numbers from 1 to <code>n</code> (inclusive) are multiples of <code>k</code>. For example, from 1 to 10 the multiples of 3 are 3, 6, 9, so the answer is 3.</p>\n<p><b>Inputs your solution must work on:</b> any positive integers <code>n</code> and <code>k</code> (both int &gt; 0).</p>\n<p><b>The single example test (already passes):</b> <code>count_multiples(2, 5)</code> returns <code>0</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>count_multiples(n, k)</code> should take two positive integers (int &gt; 0) <code>n</code> and <code>k</code>, and <b>return</b> how many integers from 1 to <code>n</code> (inclusive) are multiples of <code>k</code>. For example, from 1 to 10 the multiples of 3 are 3, 6, 9, so the answer is 3.</p>\n<p><b>Inputs your solution must work on:</b> any positive integers <code>n</code> and <code>k</code> (both int &gt; 0).</p>\n<p><b>The single example test (already passes):</b> <code>count_multiples(2, 5)</code> returns <code>0</code>.</p>",
    "answerpreload": "def count_multiples(n, k):\n    count = 0\n    for i in range(1, n + 1):\n        if i % k == 0:\n            count = 1\n    return count",
    "mark": 1.0,
    "tests": [
@@ -2302,6 +2602,36 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(count_multiples(10, 3))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_multiples(20, 5))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_multiples(12, 4))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   },
@@ -2309,7 +2639,7 @@
    "xml_index": 50,
    "xml_name": "PS2_050_DEBUG Power",
    "display_name": "Power",
-   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. This solution runs without crashing on the single example test shown here, and produces the correct output for it. <b>However, it contains a logical bug</b> - it will give a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic <b>in your head</b> (there is no way to test against the hidden inputs right now - only the one shown example will run), figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why (this helps us understand your reasoning).</p>\n<p>After the exam, we will add extra hidden test inputs (the ones that expose the bug) and re-run every submission. To get full marks, your corrected function must pass on <b>all</b> of them.</p>\n<hr>\n<p><b>The function:</b> <code>power(base, exp)</code> should take a whole number <code>base</code> and a non-negative integer (int &gt;= 0) <code>exp</code>, and <b>return</b> <code>base</code> raised to the power <code>exp</code>, computed with a loop (not the <code>**</code> operator). By definition, anything to the power 0 is 1. For example, power(2, 5) = 32.</p>\n<p><b>Inputs your solution must work on:</b> any whole number <code>base</code> and any non-negative integer <code>exp</code> (int &gt;= 0), including exp = 0.</p>\n<p><b>The single example test (already passes):</b> <code>power(1, 4)</code> returns <code>1</code>.</p>",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question - please read carefully, it works differently from the others.</b></p>\n<p>The answer box below is <b>already filled in</b> with a solution. It gives the correct output for the single example test shown here. <b>However, it contains a logical bug</b>: it gives a wrong answer, or an error, for some other valid inputs that we have <b>not</b> shown you.</p>\n<p>Your job: work through the logic, figure out for which kinds of valid input the code fails, and <b>fix the bug</b> so the function works for <b>all</b> valid inputs described below. Also <b>add a short comment</b> in the code explaining what you changed and why.</p>\n<p>This question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, Moodle runs your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the bug correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>power(base, exp)</code> should take an integer <code>base</code> and a non-negative integer (int &gt;= 0) <code>exp</code>, and <b>return</b> <code>base</code> raised to the power <code>exp</code>, computed with a loop (not the <code>**</code> operator). By definition, anything to the power 0 is 1. For example, power(2, 5) = 32.</p>\n<p><b>Inputs your solution must work on:</b> any integer <code>base</code> and any non-negative integer <code>exp</code> (int &gt;= 0), including exp = 0.</p>\n<p><b>The single example test (already passes):</b> <code>power(1, 4)</code> returns <code>1</code>.</p>",
    "answerpreload": "def power(base, exp):\n    result = base\n    for i in range(exp):\n        result = result * base\n    return result",
    "mark": 1.0,
    "tests": [
@@ -2322,9 +2652,39 @@
      "example": true,
      "in_precheck": true,
      "in_check": true
+    },
+    {
+     "testcode": "print(power(2, 5))",
+     "stdin": "",
+     "expected": "32",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(power(3, 0))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(power(5, 2))",
+     "stdin": "",
+     "expected": "25",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
     }
    ]
   }
  ],
- "content_hash": "e032dc3c1c1843d0"
+ "content_hash": "46519ebdf9e63aee"
 }
