@@ -3,9 +3,10 @@
  "bank_name": "Lab4B",
  "encrypted": false,
  "source_xml": "Lab4B.xml",
- "built_at": "2026-09-24T19:42:39",
+ "built_at": "2026-09-26T23:07:52",
  "settings": {
-  "title": "Practice: Lab 4B",
+  "title": "Lab 4B: Functions with Type Hints",
+  "description": "Adding type hints (int, float, str, bool, list) to function parameters and return values, from filling in a hinted function to writing full hinted signatures yourself.",
   "time_limit": false,
   "duration_seconds": null,
   "start_time": null,
@@ -22,7 +23,8 @@
     "start": 1,
     "count": 12
    }
-  ]
+  ],
+  "extension": null
  },
  "questions": [
   {
@@ -506,5 +508,5 @@
    ]
   }
  ],
- "content_hash": "2a383f14bad6ba96"
+ "content_hash": "6922ceb10aa7a6f7"
 }

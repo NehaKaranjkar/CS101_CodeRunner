@@ -3,9 +3,10 @@
  "bank_name": "Practice_Set_2",
  "encrypted": false,
  "source_xml": "Practice_Set_2.xml",
- "built_at": "2026-09-24T18:53:36",
+ "built_at": "2026-09-26T23:07:53",
  "settings": {
-  "title": "Practice: Practice Set 2",
+  "title": "Practice Set 2: Mid-semester Practice",
+  "description": "All topics from Labs 1 to 5, plus debug-it type questions.",
   "time_limit": false,
   "duration_seconds": null,
   "start_time": null,
@@ -42,7 +43,8 @@
     "start": 37,
     "count": 14
    }
-  ]
+  ],
+  "extension": null
  },
  "questions": [
   {
@@ -2686,5 +2688,5 @@
    ]
   }
  ],
- "content_hash": "46519ebdf9e63aee"
+ "content_hash": "2813e701f9b897df"
 }

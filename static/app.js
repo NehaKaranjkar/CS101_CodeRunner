@@ -61,7 +61,10 @@ async function showChoose() {
   $("password-part").hidden = true;
   show("screen-bank");
   if (!WEB) return;
-  $("choose-title").textContent = "Python programming practice";
+  document.title = "Python Code Runner";
+  $("bank-box").classList.add("home");
+  $("web-intro").hidden = false;
+  $("choose-title").textContent = "Question sets";
   $("file-help").hidden = true;
   $("bank-list-wrap").hidden = false;
   const list = $("bank-list");
@@ -70,13 +73,15 @@ async function showChoose() {
   try { banks = (await (await fetch("question_banks/index.json", { cache: "no-store" })).json()).banks || []; }
   catch (e) { /* no index: only the file button */ }
   $("bank-list-empty").hidden = banks.length > 0;
-  for (const b of banks) {
+  banks.forEach((b, i) => {
     const meta = `${b.questions} questions, ${fmt(b.marks)} marks` + (b.duration_minutes ? `, ${b.duration_minutes} min` : "");
     const item = el("li", {}, el("button", {
-      class: "bank-item", onclick: () => openBankUrl("question_banks/" + b.file, b.file),
-    }, el("span", { class: "bank-title", text: b.title }), el("span", { class: "muted", text: meta })));
+      class: "bank-item accent-" + (i % 6), onclick: () => openBankUrl("question_banks/" + b.file, b.file),
+    }, el("span", { class: "bank-title", text: b.title }),
+       b.description ? el("span", { class: "bank-desc", text: b.description }) : null,
+       el("span", { class: "bank-meta", text: meta })));
     list.append(item);
-  }
+  });
 }
 
 async function openBankUrl(url, name) {
@@ -118,6 +123,8 @@ $("password").addEventListener("keydown", (e) => { if (e.key === "Enter") unlock
 
 function showLogin(st) {
   $("login-title").textContent = st.title;
+  $("login-desc").textContent = st.description || "";
+  $("login-desc").hidden = !st.description;
   $("login-opens").hidden = !st.opens_at;
   $("login-opens").textContent = st.opens_at ? `This exam opens at ${st.opens_at}.` : "";
   show("screen-login");
@@ -158,12 +165,15 @@ let clockOffset = 0;
 let busy = false;
 let submitting = false;
 let ticker = null;
+let pinger = null;
 
 const MODE_LABEL = { exam: "Exam in progress", preview: "Preview (nothing is saved)", practice: "Practice" };
 
 async function loadExam() {
   EXAM = await api("/api/exam");
   clockOffset = EXAM.server_now - Date.now() / 1000;
+  clearInterval(pinger);
+  if (EXAM.mode === "exam") pinger = setInterval(ping, 20000);   // extension file, time-up
   if (EXAM.submitted) return showDone(EXAM.status);
   setupEditor();
   for (const k of Object.keys(docs)) delete docs[k];
@@ -173,6 +183,9 @@ async function loadExam() {
   }
   $("tb-mode").textContent = MODE_LABEL[EXAM.mode] || "";
   $("tb-title").textContent = EXAM.title;
+  $("tb-desc").textContent = EXAM.description || "";
+  $("tb-desc").title = EXAM.description || "";
+  $("tb-desc").hidden = !EXAM.description;
   $("tb-student").textContent = EXAM.mode === "exam" ? `${EXAM.roll}, ${EXAM.name}` : "";
   $("tb-student").hidden = EXAM.mode !== "exam";
   $("tb-start").textContent = new Date(EXAM.started_epoch * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -203,6 +216,9 @@ function buildTools() {
       el("button", { class: "small", text: "Other question sets", onclick: backToChoose }));
   } else if (EXAM.mode === "preview") {
     t.append(el("button", { class: "small", text: "Open another bank", onclick: backToChoose }));
+  }
+  if (EXAM.status.extension) {
+    t.append(el("button", { class: "small", text: "Request time extension", onclick: askExtension }));
   }
   $("btn-more").hidden = t.childElementCount === 0;   // phones show the tools behind "More"
 }
@@ -244,6 +260,7 @@ function buildNav() {
 
 function applyStatus(status) {
   STATUS = status;
+  if (EXAM && status.deadline_epoch !== undefined) EXAM.deadline_epoch = status.deadline_epoch;
   const s = status.summary;
   $("tb-marks").textContent = `${fmt(s.marks)} / ${fmt(s.max_marks)}`;
   $("tb-correct").textContent = s.correct;
@@ -253,7 +270,7 @@ function applyStatus(status) {
     serverCode[q.no] = q.code;
     refreshNavItem(q.no);
   }
-  if (current) showWorth(current);
+  if (current) showTries(current);
   if (status.submitted) showDone(status);
 }
 
@@ -264,14 +281,20 @@ function refreshNavItem(no) {
   a.className = [q.state, no === current ? "current" : "", (q.modified || isDirty(no)) ? "edited" : ""].join(" ").trim();
 }
 
-function showWorth(no) {
+function showTries(no) {
   const q = STATUS.questions[no - 1];
-  const w = $("q-worth");
-  w.hidden = !EXAM.penalty_on || q.state === "correct";
-  if (w.hidden) return;
-  w.textContent = q.next_worth_pct >= 100
-    ? "Your next Check can earn full marks."
-    : `After ${q.failed_checks} failed Check${q.failed_checks === 1 ? "" : "s"}, your next Check can earn at most ${fmt(q.next_worth_pct)}% (${fmt(q.max_marks * q.next_worth_pct / 100)} of ${fmt(q.max_marks)} marks).`;
+  const c = $("try-chip");
+  c.hidden = !EXAM.penalty_on;
+  if (c.hidden) return;
+  const solved = q.state === "correct";
+  const pct = solved ? q.penalty_pct : q.next_penalty_pct;
+  c.textContent = `Tries: ${q.checks} \u00b7 ` + (pct > 0 ? `Penalty: ${fmt(pct)}%` : "No penalty");
+  c.className = "try-chip" + (solved ? " solved" : pct > 0 ? " warn" : "");
+  c.title = (solved
+    ? `Solved: ${fmt(q.marks)} of ${fmt(q.max_marks)} marks` + (pct > 0 ? ` after a ${fmt(pct)}% penalty.` : ".")
+    : pct > 0 ? `Your next graded try can earn at most ${fmt(100 - pct)}% (${fmt(q.max_marks * (100 - pct) / 100)} of ${fmt(q.max_marks)} marks).`
+      : "Your next graded try can earn full marks.") +
+    " A try is a Check of changed code, or grading at Final submit of an answer changed since its last Check. Pre-check is free.";
 }
 
 /* ---------- question list: collapsible (desktop), drawer (phones) ---------- */
@@ -369,7 +392,7 @@ function openQuestion(no) {
   cm.swapDoc(docs[no]);
   cm.refresh();
   renderResult(lastResult[no]);
-  showWorth(no);
+  showTries(no);
   $("save-state").textContent = isDirty(no) ? "Unsaved changes" : "";
   if (prev) refreshNavItem(prev);
   refreshNavItem(no);
@@ -479,7 +502,7 @@ function confirmBox(title, lines, okText, action) {
   $("modal-title").textContent = title;
   const body = $("modal-body");
   body.textContent = "";
-  for (const l of lines) body.append(el("p", { text: l }));
+  for (const l of lines) body.append(typeof l === "string" ? el("p", { text: l }) : l);
   $("modal-ok").textContent = okText;
   modalAction = action;
   $("modal").hidden = false;
@@ -492,8 +515,10 @@ $("btn-submit").addEventListener("click", () => {
   const s = STATUS.summary;
   const pending = STATUS.questions.filter((q) => q.modified || isDirty(q.no)).length;
   const lines = [`Correct: ${s.correct}, wrong: ${s.wrong}, not attempted: ${s.not_attempted}. Marks so far: ${fmt(s.marks)} / ${fmt(s.max_marks)}.`];
-  if (pending) lines.push(`${pending} answer(s) were changed after their last Check; they will be checked and graded now.`);
-  lines.push(EXAM.mode === "exam" ? "After submitting you cannot change any answer." : "You can start over afterwards.");
+  if (pending) lines.push(`${pending} answer(s) were changed after their last Check. They will be graded now` +
+    (EXAM.penalty_on ? ", and this counts as a try (like pressing Check) for each of them." : "."));
+  if (EXAM.deadline_epoch != null) lines.push("You can resume working until the time is up.");
+  else lines.push(EXAM.mode === "practice" ? "You can resume or start over afterwards." : "You can resume working afterwards.");
   confirmBox("Submit?", lines, "Submit now", () => submitExam("student"));
 });
 
@@ -504,7 +529,13 @@ async function submitExam(reason) {
   const codes = {};
   for (const no of Object.keys(docs)) codes[no] = docs[no].getValue();
   try {
-    applyStatus((await api("/api/submit", { codes, reason })).status);
+    const st = (await api("/api/submit", { codes, reason })).status;
+    applyStatus(st);
+    if (!st.submitted) {                        // the deadline was extended meanwhile
+      submitting = false;
+      setBusy(false, "Time was extended.");
+      tick();
+    }
   } catch (e) {
     submitting = false;
     setBusy(false);
@@ -524,7 +555,8 @@ function tick() {
   }
   const left = Math.max(0, Math.round(EXAM.deadline_epoch - (Date.now() / 1000 + clockOffset)));
   const h = Math.floor(left / 3600), m = Math.floor((left % 3600) / 60), s = left % 60;
-  $("tb-clock-label").textContent = "Time left";
+  const ext = STATUS.extension;
+  $("tb-clock-label").textContent = "Time left" + (ext && ext.minutes ? ` (+${fmt(ext.minutes)} min)` : "");
   t.textContent = `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
   t.className = left <= 120 ? "urgent" : left <= 600 ? "soon" : "";
   if (left === 0) submitExam("time_up");
@@ -556,9 +588,52 @@ function startOver() {
   });
 }
 
+/* ---------- time extensions (lab exams) ---------- */
+async function ping() {
+  if (!EXAM || EXAM.mode !== "exam" || submitting && !STATUS.submitted) return;
+  try {
+    const r = await api("/api/ping", {});
+    clockOffset = r.server_now - Date.now() / 1000;
+    if (STATUS && STATUS.submitted) {
+      if (r.status.can_resume !== STATUS.can_resume || r.status.deadline_epoch !== STATUS.deadline_epoch) showDone(r.status);
+      STATUS = r.status;
+    } else applyStatus(r.status);
+  } catch (e) { /* exam program not reachable; the next action reports it */ }
+}
+
+async function applyExtension(password) {
+  const r = await api("/api/extend", { password });
+  submitting = false;
+  await loadExam();
+  $("save-state").textContent = r.message;
+  alert(r.message);
+}
+
+function askExtension() {
+  const input = el("input", { type: "password", autocomplete: "off", id: "ext-password" });
+  const field = el("label", { class: "field" }, "Extension password", input);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") $("modal-ok").click(); });
+  confirmBox("Request time extension", ["Ask the invigilator for the current extension password.", field], "Apply", async () => {
+    try { await applyExtension(input.value); } catch (e) { alert(e.message); }
+  });
+  input.focus();
+}
+
 /* ---------- done ---------- */
+async function resumeExam() {
+  try {
+    await api("/api/resume", {});
+    submitting = false;
+    setBusy(false, "");
+    await loadExam();
+  } catch (e) { alert(e.message); }
+}
+
 function showDone(status) {
   submitting = true;
+  STATUS = status;
+  const old = $("ext-box");
+  if (old) old.remove();
   const s = status.summary;
   const exam = EXAM && EXAM.mode === "exam";
   $("done-heading").textContent = exam ? "Exam submitted" : "Finished";
@@ -577,6 +652,23 @@ function showDone(status) {
   $("done-path").textContent = exam && EXAM.sol_path ? "Your answers are saved in " + EXAM.sol_path + ". You may close this window." : "";
   const acts = $("done-actions");
   acts.textContent = "";
+  if (exam && status.extension) {
+    const input = el("input", { type: "password", autocomplete: "off", placeholder: "Extension password" });
+    const go = async () => {
+      try { await applyExtension(input.value); } catch (e) { alert(e.message); }
+    };
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter") go(); });
+    $("done-reason").after(el("div", { class: "ext-box", id: "ext-box" },
+      el("span", { text: "Given more time? Enter the extension password:" }), input,
+      el("button", { text: "Apply", onclick: go })));
+  }
+  if (status.can_resume) {
+    acts.append(el("button", { class: "primary", text: "Resume", onclick: resumeExam }));
+    if (status.deadline_epoch != null) {
+      const until = new Date(status.deadline_epoch * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+      $("done-path").textContent += (exam && EXAM.sol_path ? " " : "") + `You can resume until ${until}.`;
+    }
+  }
   if (EXAM && EXAM.mode === "practice") {
     acts.append(el("button", { text: "Start over", onclick: startOver }), el("button", { text: "Other question sets", onclick: backToChoose }));
   } else if (EXAM && EXAM.mode === "preview") {

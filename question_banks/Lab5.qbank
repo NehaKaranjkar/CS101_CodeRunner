@@ -3,9 +3,10 @@
  "bank_name": "Lab5",
  "encrypted": false,
  "source_xml": "Lab5.xml",
- "built_at": "2026-09-24T19:42:39",
+ "built_at": "2026-09-26T23:07:52",
  "settings": {
-  "title": "Practice: Lab 5",
+  "title": "Lab 5: Recursion",
+  "description": "Classic recursive problems (factorial, power, GCD, Fibonacci, digit sums), recursion over lists using an index, and a recursive selection sort.",
   "time_limit": false,
   "duration_seconds": null,
   "start_time": null,
@@ -22,7 +23,8 @@
     "start": 1,
     "count": 15
    }
-  ]
+  ],
+  "extension": null
  },
  "questions": [
   {
@@ -926,5 +928,5 @@
    ]
   }
  ],
- "content_hash": "46799a1d57a9a8f0"
+ "content_hash": "33ec2702f04b4901"
 }

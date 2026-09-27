@@ -3,9 +3,10 @@
  "bank_name": "Lab3",
  "encrypted": false,
  "source_xml": "Lab3.xml",
- "built_at": "2026-09-24T19:42:39",
+ "built_at": "2026-09-26T23:07:52",
  "settings": {
-  "title": "Practice: Lab 3",
+  "title": "Lab 3: Loops, Patterns and Lists",
+  "description": "While loops, for loops and range(), nested loops for printing patterns, and an introduction to lists: indexing, the in operator and looping over a list.",
   "time_limit": false,
   "duration_seconds": null,
   "start_time": null,
@@ -22,7 +23,8 @@
     "start": 1,
     "count": 40
    }
-  ]
+  ],
+  "extension": null
  },
  "questions": [
   {
@@ -3486,5 +3488,5 @@
    ]
   }
  ],
- "content_hash": "b7a4e14bb1b994bd"
+ "content_hash": "15ac773e64a0952e"
 }

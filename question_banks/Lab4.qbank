@@ -3,9 +3,10 @@
  "bank_name": "Lab4",
  "encrypted": false,
  "source_xml": "Lab4.xml",
- "built_at": "2026-09-24T19:42:39",
+ "built_at": "2026-09-26T23:07:52",
  "settings": {
-  "title": "Practice: Lab 4",
+  "title": "Lab 4: Introduction to Functions",
+  "description": "Defining and calling functions, parameters and return values, functions calling other functions, multiple return values, functions on lists, and a first look at recursion.",
   "time_limit": false,
   "duration_seconds": null,
   "start_time": null,
@@ -22,7 +23,8 @@
     "start": 1,
     "count": 40
    }
-  ]
+  ],
+  "extension": null
  },
  "questions": [
   {
@@ -1696,5 +1698,5 @@
    ]
   }
  ],
- "content_hash": "184bf2c0463da130"
+ "content_hash": "b0fa18e6888f8838"
 }

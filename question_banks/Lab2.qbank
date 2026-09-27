@@ -3,9 +3,10 @@
  "bank_name": "Lab2",
  "encrypted": false,
  "source_xml": "Lab2.xml",
- "built_at": "2026-09-24T19:42:39",
+ "built_at": "2026-09-26T23:07:52",
  "settings": {
-  "title": "Practice: Lab 2",
+  "title": "Lab 2: Variables, Conditions and First Loops",
+  "description": "Comments, variables and basic types (int, float, string), making decisions with if-else, and a first look at while loops, ending with a multiplication table.",
   "time_limit": false,
   "duration_seconds": null,
   "start_time": null,
@@ -22,7 +23,8 @@
     "start": 1,
     "count": 20
    }
-  ]
+  ],
+  "extension": null
  },
  "questions": [
   {
@@ -776,5 +778,5 @@
    ]
   }
  ],
- "content_hash": "0efb4cdefb5e52c3"
+ "content_hash": "92fe3d34ca8d1925"
 }

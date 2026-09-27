@@ -3,9 +3,10 @@
  "bank_name": "Lab1",
  "encrypted": false,
  "source_xml": "Lab1.xml",
- "built_at": "2026-09-24T19:42:39",
+ "built_at": "2026-09-26T23:07:52",
  "settings": {
-  "title": "Practice: Lab 1",
+  "title": "Lab 1: Getting Started with Python",
+  "description": "Your first Python programs: printing output, reading input with input(), converting text to numbers with int(), storing values in variables and doing arithmetic.",
   "time_limit": false,
   "duration_seconds": null,
   "start_time": null,
@@ -22,7 +23,8 @@
     "start": 1,
     "count": 20
    }
-  ]
+  ],
+  "extension": null
  },
  "questions": [
   {
@@ -776,5 +778,5 @@
    ]
   }
  ],
- "content_hash": "0048ec689331f83e"
+ "content_hash": "d1c956572a9f1d2e"
 }

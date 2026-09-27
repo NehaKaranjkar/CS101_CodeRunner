@@ -15,8 +15,18 @@
 
 <!-- 1. Choose a question bank (and password for exams) -->
 <section id="screen-bank" class="gate" hidden>
-  <div class="gate-box">
+  <div class="gate-box" id="bank-box">
     <div id="choose-part">
+      <header id="web-intro" class="hero" hidden>
+        <div class="hero-mark" aria-hidden="true">&gt;&gt;&gt;</div>
+        <h1>Python Code Runner</h1>
+        <p class="hero-lead">Welcome! This site hosts interactive Python question sets and teaching labs,
+          developed as part of the CS101 course at IIT Goa.</p>
+        <p class="hero-sub">It works like Moodle's CodeRunner: read a question, write your Python code in the editor,
+          then use <b>Pre-check</b> to try the example tests and <b>Check</b> to run all tests and see your marks at once.
+          Your code runs right here in your browser, and your progress is saved on this device.</p>
+        <p class="hero-credit">Course instructor: Neha Karanjkar</p>
+      </header>
       <h1 id="choose-title">Programming exam</h1>
       <div id="bank-list-wrap" hidden>
         <p class="gate-help">Choose a question set to practise.</p>
@@ -46,6 +56,7 @@
 <section id="screen-login" class="gate" hidden>
   <div class="gate-box">
     <h1 id="login-title"></h1>
+    <p id="login-desc" class="gate-help" hidden></p>
     <p id="login-opens" class="notice" hidden></p>
     <label class="field">Roll number
       <input type="text" id="roll" autocomplete="off" spellcheck="false">
@@ -66,6 +77,7 @@
     <div class="tb-who">
       <strong id="tb-mode"></strong>
       <span id="tb-title"></span>
+      <span id="tb-desc" class="tb-desc" hidden></span>
       <span id="tb-student"></span>
     </div>
     <div class="tb-stats">
@@ -98,7 +110,6 @@
         <h2 id="q-title"></h2>
         <span id="q-mark" class="muted"></span>
       </div>
-      <p id="q-worth" class="worth" hidden></p>
       <div id="q-text" class="qtext"></div>
       <div id="q-examples"></div>
 
@@ -107,6 +118,7 @@
       <div class="actions">
         <button id="btn-precheck">Pre-check</button>
         <button id="btn-check" class="primary">Check</button>
+        <span id="try-chip" class="try-chip" hidden></span>
         <button id="btn-save">Save</button>
         <button id="btn-fill" class="fill" hidden title="Instructor preview only">Fill correct answer</button>
         <span id="save-state" class="muted"></span>

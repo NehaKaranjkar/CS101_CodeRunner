@@ -128,7 +128,8 @@ const WebBackend = (() => {
       format: "qsol-2", bank_name: bank.bank_name, bank_built_at: bank.built_at, title: st.title,
       roll: "PRACTICE", name: "", started_at: nowIso(), started_epoch: start,
       deadline_epoch: st.time_limit ? start + st.duration_seconds : null,   // own start in practice
-      last_saved_at: null, submitted: false, submitted_at: null, submit_reason: null,
+      last_saved_at: null, submitted: false, submitted_at: null, submit_reason: null, submits: 0,
+      events: [{ event: "start", at: nowIso() }],
       questions: bank.questions.map((q, i) => ({
         display_no: i + 1, xml_index: q.xml_index, xml_name: q.xml_name, max_marks: q.mark,
         code: q.answerpreload, state: "not_attempted", marks: 0, modified: false, checked_hash: null,
@@ -154,12 +155,16 @@ const WebBackend = (() => {
       questions: sol.questions.map((q) => ({
         no: q.display_no, state: q.state, marks: q.marks, max_marks: q.max_marks, modified: q.modified,
         code: q.code, tests_passed: q.tests_passed, tests_total: q.tests_total, failed_checks: q.failed_checks,
-        next_worth_pct: 100 - penaltyPct(regime, q.failed_checks),
+        checks: q.checks, penalty_pct: q.penalty_pct, next_penalty_pct: penaltyPct(regime, q.failed_checks),
       })),
-      submitted: sol.submitted, submit_reason: sol.submit_reason, submitted_at: sol.submitted_at, last_saved_at: sol.last_saved_at,
+      submitted: sol.submitted, can_resume: canResume(), deadline_epoch: sol.deadline_epoch,
+      submit_reason: sol.submit_reason, submitted_at: sol.submitted_at, last_saved_at: sol.last_saved_at,
+      extension: null,                           // time extensions exist only in lab exams (exam.py)
     };
   }
 
+  const canResume = () => !!sol.submitted && (sol.deadline_epoch == null || Date.now() / 1000 < sol.deadline_epoch);
+  const logEvent = (event, info = {}) => { (sol.events = sol.events || []).push({ event, at: nowIso(), ...info }); };
   const timeUp = () => sol.deadline_epoch != null && Date.now() / 1000 > sol.deadline_epoch + 20;
 
   function question(no) {
@@ -190,12 +195,15 @@ const WebBackend = (() => {
     return full;
   }
 
+  // same rules as exam.py _finalize: grading an edited answer here counts as a try
   async function finalize(reason) {
     for (let i = 0; i < sol.questions.length; i++) {
       const sq = sol.questions[i], bq = bank.questions[i];
       if (sq.modified) { await applyCheck(bq, sq, sq.code); sq.last_action = "graded_at_submit"; sq.last_action_at = nowIso(); }
     }
     sol.submitted = true; sol.submitted_at = nowIso(); sol.submit_reason = reason;
+    sol.submits = (sol.submits || 0) + 1;
+    logEvent("submit", { reason });
     persist();
   }
 
@@ -218,7 +226,7 @@ const WebBackend = (() => {
   function view() {
     const st = bank.settings;
     return {
-      mode: "practice", title: st.title, bank_name: bank.bank_name, roll: sol.roll, name: sol.name,
+      mode: "practice", title: st.title, description: st.description || "", bank_name: bank.bank_name, roll: sol.roll, name: sol.name,
       started_at: sol.started_at, started_epoch: sol.started_epoch, deadline_epoch: sol.deadline_epoch,
       server_now: Date.now() / 1000, penalty_text: st.penalty_text, penalty_on: !!(st.penalty.steps || []).length,
       sections: st.sections || [], submitted: sol.submitted, sol_path: null,
@@ -267,6 +275,19 @@ const WebBackend = (() => {
             if (code !== sq.code) storeCode(bq, sq, code, "save");
           }
           await finalize(body.reason === "time_up" ? "time_up" : "student");
+        }
+        return { status: status() };
+      case "/api/ping":
+        if (!sol.submitted && timeUp()) await finalize("time_up");
+        return { status: status(), server_now: Date.now() / 1000 };
+      case "/api/extend":
+        throw new Error("Time extensions are only available in lab exams.");
+      case "/api/resume":                        // same as exam.py resume
+        if (sol.submitted) {
+          if (!canResume()) throw new Error("Time is up; this question set can no longer be resumed.");
+          sol.submitted = false;
+          logEvent("resume");
+          persist();
         }
         return { status: status() };
       default:
