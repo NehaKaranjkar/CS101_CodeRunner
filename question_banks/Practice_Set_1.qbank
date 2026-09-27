@@ -3,9 +3,9 @@
  "bank_name": "Practice_Set_1",
  "encrypted": false,
  "source_xml": "Practice_Set_1.xml",
- "built_at": "2026-09-26T23:07:53",
+ "built_at": "2026-09-27T17:57:23",
  "settings": {
-  "title": "Practice Set 1: Lab Exam 1 Questions",
+  "title": "Practice Set 1",
   "description": "Easy, medium and difficult questions covering all topics from Labs 1 to 5.",
   "time_limit": false,
   "duration_seconds": null,
@@ -3443,5 +3443,5 @@
    ]
   }
  ],
- "content_hash": "316ea4a6b9463be3"
+ "content_hash": "3681fdc04c20c0ac"
 }

@@ -73,15 +73,14 @@ async function showChoose() {
   try { banks = (await (await fetch("question_banks/index.json", { cache: "no-store" })).json()).banks || []; }
   catch (e) { /* no index: only the file button */ }
   $("bank-list-empty").hidden = banks.length > 0;
-  banks.forEach((b, i) => {
+  for (const b of banks) {
     const meta = `${b.questions} questions, ${fmt(b.marks)} marks` + (b.duration_minutes ? `, ${b.duration_minutes} min` : "");
     const item = el("li", {}, el("button", {
-      class: "bank-item accent-" + (i % 6), onclick: () => openBankUrl("question_banks/" + b.file, b.file),
-    }, el("span", { class: "bank-title", text: b.title }),
-       b.description ? el("span", { class: "bank-desc", text: b.description }) : null,
-       el("span", { class: "bank-meta", text: meta })));
+      class: "bank-item", title: b.description || "", onclick: () => openBankUrl("question_banks/" + b.file, b.file),
+    }, el("span", { class: "bank-head" }, el("span", { class: "bank-title", text: b.title }), el("span", { class: "bank-meta", text: meta })),
+       b.description ? el("span", { class: "bank-desc", text: b.description }) : null));
     list.append(item);
-  });
+  }
 }
 
 async function openBankUrl(url, name) {

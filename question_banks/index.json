@@ -2,7 +2,7 @@
  "banks": [
   {
    "file": "Lab1.qbank",
-   "title": "Lab 1: Getting Started with Python",
+   "title": "Lab 1: Python Basics",
    "description": "Your first Python programs: printing output, reading input with input(), converting text to numbers with int(), storing values in variables and doing arithmetic.",
    "questions": 20,
    "marks": 20.0,
@@ -10,7 +10,7 @@
   },
   {
    "file": "Lab2.qbank",
-   "title": "Lab 2: Variables, Conditions and First Loops",
+   "title": "Lab 2: Variables and Conditions",
    "description": "Comments, variables and basic types (int, float, string), making decisions with if-else, and a first look at while loops, ending with a multiplication table.",
    "questions": 20,
    "marks": 20.0,
@@ -18,7 +18,7 @@
   },
   {
    "file": "Lab3.qbank",
-   "title": "Lab 3: Loops, Patterns and Lists",
+   "title": "Lab 3: Loops and Lists",
    "description": "While loops, for loops and range(), nested loops for printing patterns, and an introduction to lists: indexing, the in operator and looping over a list.",
    "questions": 40,
    "marks": 40.0,
@@ -26,7 +26,7 @@
   },
   {
    "file": "Lab4.qbank",
-   "title": "Lab 4: Introduction to Functions",
+   "title": "Lab 4: Functions",
    "description": "Defining and calling functions, parameters and return values, functions calling other functions, multiple return values, functions on lists, and a first look at recursion.",
    "questions": 40,
    "marks": 40.0,
@@ -34,7 +34,7 @@
   },
   {
    "file": "Lab4B.qbank",
-   "title": "Lab 4B: Functions with Type Hints",
+   "title": "Lab 4B: Type Hints",
    "description": "Adding type hints (int, float, str, bool, list) to function parameters and return values, from filling in a hinted function to writing full hinted signatures yourself.",
    "questions": 12,
    "marks": 12.0,
@@ -50,7 +50,7 @@
   },
   {
    "file": "Practice_Set_1.qbank",
-   "title": "Practice Set 1: Lab Exam 1 Questions",
+   "title": "Practice Set 1",
    "description": "Easy, medium and difficult questions covering all topics from Labs 1 to 5.",
    "questions": 60,
    "marks": 120.0,
@@ -58,7 +58,7 @@
   },
   {
    "file": "Practice_Set_2.qbank",
-   "title": "Practice Set 2: Mid-semester Practice",
+   "title": "Practice Set 2",
    "description": "All topics from Labs 1 to 5, plus debug-it type questions.",
    "questions": 50,
    "marks": 50.0,

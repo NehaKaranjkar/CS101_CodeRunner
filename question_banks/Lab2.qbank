@@ -3,9 +3,9 @@
  "bank_name": "Lab2",
  "encrypted": false,
  "source_xml": "Lab2.xml",
- "built_at": "2026-09-26T23:07:52",
+ "built_at": "2026-09-27T17:58:08",
  "settings": {
-  "title": "Lab 2: Variables, Conditions and First Loops",
+  "title": "Lab 2: Variables and Conditions",
   "description": "Comments, variables and basic types (int, float, string), making decisions with if-else, and a first look at while loops, ending with a multiplication table.",
   "time_limit": false,
   "duration_seconds": null,
@@ -778,5 +778,5 @@
    ]
   }
  ],
- "content_hash": "92fe3d34ca8d1925"
+ "content_hash": "55dabb526a86f88e"
 }
