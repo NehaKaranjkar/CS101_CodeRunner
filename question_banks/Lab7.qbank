@@ -1,0 +1,2612 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab7",
+ "encrypted": false,
+ "source_xml": "Lab7.xml",
+ "built_at": "2026-09-28T13:23:33",
+ "settings": {
+  "title": "Lab 7: Lists",
+  "description": "Creating and converting lists, positive and negative indexing, nested lists, slicing, mutability and copies, and the most useful list methods.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Creating and converting lists",
+    "start": 1,
+    "count": 5
+   },
+   {
+    "heading": "Indexing",
+    "start": 6,
+    "count": 5
+   },
+   {
+    "heading": "Nested lists",
+    "start": 11,
+    "count": 3
+   },
+   {
+    "heading": "Slicing",
+    "start": 14,
+    "count": 8
+   },
+   {
+    "heading": "Changing lists: mutability",
+    "start": 22,
+    "count": 6
+   },
+   {
+    "heading": "Adding and combining",
+    "start": 28,
+    "count": 5
+   },
+   {
+    "heading": "Removing items",
+    "start": 33,
+    "count": 5
+   },
+   {
+    "heading": "Useful methods and built-ins",
+    "start": 38,
+    "count": 4
+   },
+   {
+    "heading": "Putting it together",
+    "start": 42,
+    "count": 3
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L07_001_Create A List",
+   "display_name": "Create A List",
+   "questiontext_html": "<p>Welcome to Lab 7! This lab is all about <b>lists</b>, one of the most useful things in Python.</p>\n<p>A <b>list</b> is an ordered sequence of values, called <b>items</b> (or elements). You write a list with square brackets <code>[ ]</code>, and separate the items with commas:</p>\n<pre>colours = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;, &quot;black&quot;]</pre>\n<p>Each item has a position, called its <b>index</b>. Counting starts at <b>0</b>:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">colours =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;red&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;green&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;blue&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;yellow&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;black&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr></table>\n<p>A list can hold any kind of value: numbers, strings, <code>True</code>/<code>False</code>, even a mix of these, and even other lists. <code>len(L)</code> gives the number of items. Printing a list shows it with its brackets:</p>\n<pre>marks = [72, 85, 90]\nmixed = [1, &quot;abc&quot;, 2.5, True]\nprint(marks)\nprint(len(marks))\nprint(mixed)</pre>\n<p>Output:</p>\n<pre>[72, 85, 90]\n3\n[1, &#x27;abc&#x27;, 2.5, True]</pre>\n<p><b>Your task:</b> write the function <code>make_list(a, b, c)</code>, which returns a new list containing <code>a</code>, <code>b</code> and <code>c</code>, in that order. The three values can be of any type.</p>\n<p>For example, <code>make_list(1, 2, 3)</code> returns <code>[1, 2, 3]</code>.</p>",
+   "answerpreload": "def make_list(a, b, c):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(make_list(1, 2, 3))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(make_list(1, 2, 3))",
+     "stdin": "",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(make_list(\"x\", \"y\", \"z\"))",
+     "stdin": "",
+     "expected": "['x', 'y', 'z']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(make_list(5, \"five\", 5.0))",
+     "stdin": "",
+     "expected": "[5, 'five', 5.0]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(len(make_list(0, 0, 0)))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L07_002_Build A List With Append",
+   "display_name": "Build A List With Append",
+   "questiontext_html": "<p>Often we do not know the items in advance, and build the list <b>step by step</b>:</p>\n<ol><li>Start with an <b>empty list</b> <code>[]</code> (it has 0 items).</li><li>Add items one at a time with <code>L.append(x)</code>, which puts <code>x</code> at the <b>end</b> of the list.</li></ol>\n<p>You met <code>append</code> briefly in Lab 5. Here it is again, step by step:</p>\n<pre>squares = []\nprint(squares, len(squares))\nfor k in range(1, 5):\n    squares.append(k * k)\n    print(squares)</pre>\n<p>Output:</p>\n<pre>[] 0\n[1]\n[1, 4]\n[1, 4, 9]\n[1, 4, 9, 16]</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>numbers_up_to(n)</code>, which returns the list <code>[1, 2, ..., n]</code> for a non-negative integer <code>n</code> (int &gt;= 0). For <code>n = 0</code> it returns the empty list <code>[]</code>. Build it with an empty list and <code>append</code>.</p>\n<p>For example, <code>numbers_up_to(5)</code> returns <code>[1, 2, 3, 4, 5]</code>.</p>",
+   "answerpreload": "def numbers_up_to(n):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(numbers_up_to(5))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(numbers_up_to(5))",
+     "stdin": "",
+     "expected": "[1, 2, 3, 4, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(numbers_up_to(1))",
+     "stdin": "",
+     "expected": "[1]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(numbers_up_to(0))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L07_003_List From A String",
+   "display_name": "List From A String",
+   "questiontext_html": "<p>The function <code>list(...)</code> <b>converts</b> other kinds of values into a list. Given a string, it makes a list of its characters, one item per character (spaces count too):</p>\n<pre>print(list(&quot;Goa!&quot;))\nprint(list(&quot;a b&quot;))\nprint(len(list(&quot;hello&quot;)))</pre>\n<p>Output:</p>\n<pre>[&#x27;G&#x27;, &#x27;o&#x27;, &#x27;a&#x27;, &#x27;!&#x27;]\n[&#x27;a&#x27;, &#x27; &#x27;, &#x27;b&#x27;]\n5</pre>\n<p><b>Your task:</b> write the function <code>letters(word)</code>, which returns the list of characters of the string <code>word</code>. The empty string <code>\"\"</code> gives the empty list.</p>\n<p>For example, <code>letters(\"abc\")</code> returns <code>['a', 'b', 'c']</code>. (Python prints strings inside a list with single quotes.)</p>",
+   "answerpreload": "def letters(word):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(letters(\"abc\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(letters(\"abc\"))",
+     "stdin": "",
+     "expected": "['a', 'b', 'c']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(letters(\"Goa\"))",
+     "stdin": "",
+     "expected": "['G', 'o', 'a']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(letters(\"\"))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(letters(\"a b\"))",
+     "stdin": "",
+     "expected": "['a', ' ', 'b']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L07_004_List From A Range",
+   "display_name": "List From A Range",
+   "questiontext_html": "<p><code>range(start, stop, step)</code> produces numbers, but it is not a list itself. <code>list(range(...))</code> converts it into one, which is handy to <b>see</b> exactly which numbers a range produces. Remember: the range stops <b>before</b> <code>stop</code>.</p>\n<pre>print(list(range(5)))\nprint(list(range(2, 12, 3)))\nprint(list(range(10, 0, -2)))\nprint(list(range(4, 4)))</pre>\n<p>Output:</p>\n<pre>[0, 1, 2, 3, 4]\n[2, 5, 8, 11]\n[10, 8, 6, 4, 2]\n[]</pre>\n<p><b>Your task:</b> write the function <code>range_list(start, stop, step)</code>, which returns the list of numbers produced by <code>range(start, stop, step)</code>. The integers are such that <code>step</code> is never 0.</p>\n<p>For example, <code>range_list(1, 6, 1)</code> returns <code>[1, 2, 3, 4, 5]</code>.</p>",
+   "answerpreload": "def range_list(start, stop, step):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(range_list(1, 6, 1))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(range_list(1, 6, 1))",
+     "stdin": "",
+     "expected": "[1, 2, 3, 4, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(range_list(0, 10, 3))",
+     "stdin": "",
+     "expected": "[0, 3, 6, 9]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(range_list(5, 0, -1))",
+     "stdin": "",
+     "expected": "[5, 4, 3, 2, 1]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(range_list(3, 3, 1))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L07_005_Numbers From A Line Of Text",
+   "display_name": "Numbers From A Line Of Text",
+   "questiontext_html": "<p>Input often arrives as one line of text, like <code>\"3 14 15\"</code>. The string method <code>text.split()</code> cuts a string at the spaces and returns a <b>list of strings</b> (the words):</p>\n<pre>line = &quot;the quick  brown fox&quot;\nwords = line.split()\nprint(words)\nprint(len(words))\nprint(&quot;12 7 30&quot;.split())</pre>\n<p>Output:</p>\n<pre>[&#x27;the&#x27;, &#x27;quick&#x27;, &#x27;brown&#x27;, &#x27;fox&#x27;]\n4\n[&#x27;12&#x27;, &#x27;7&#x27;, &#x27;30&#x27;]</pre>\n<p>Notice that <code>\"12 7 30\".split()</code> gives the <b>strings</b> <code>'12'</code>, <code>'7'</code> and <code>'30'</code>, not numbers. To get numbers, convert each one with <code>int(...)</code> and append it to a new list.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>to_numbers(text)</code>. The string <code>text</code> contains one or more integers separated by spaces; return them as a list of <code>int</code> values, in the same order.</p>\n<p>For example, <code>to_numbers(\"3 14 15\")</code> returns <code>[3, 14, 15]</code>.</p>",
+   "answerpreload": "def to_numbers(text):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(to_numbers(\"3 14 15\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(to_numbers(\"3 14 15\"))",
+     "stdin": "",
+     "expected": "[3, 14, 15]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(to_numbers(\"7\"))",
+     "stdin": "",
+     "expected": "[7]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(to_numbers(\"-2 0 9\"))",
+     "stdin": "",
+     "expected": "[-2, 0, 9]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(to_numbers(\"100   5\"))",
+     "stdin": "",
+     "expected": "[100, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L07_006_First And Last Item",
+   "display_name": "First And Last Item",
+   "questiontext_html": "<p><code>L[i]</code> gives the item at index <code>i</code>. Besides the usual indexes <code>0, 1, 2, ...</code> counted from the <b>front</b>, Python also has <b>negative indexes</b>, counted from the <b>back</b>: <code>L[-1]</code> is the last item, <code>L[-2]</code> the one before it, and so on.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">colours =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;red&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;green&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;blue&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;yellow&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;black&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr></table>\n<p>The top row shows the negative indexes, the bottom row the positive ones. So <code>colours[4]</code> and <code>colours[-1]</code> are both <code>'black'</code>, and <code>colours[0]</code> and <code>colours[-5]</code> are both <code>'red'</code>.</p>\n<pre>colours = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;, &quot;black&quot;]\nprint(colours[0], colours[-1])\nprint(colours[1], colours[-2])</pre>\n<p>Output:</p>\n<pre>red black\ngreen yellow</pre>\n<p><b>Your task:</b> write the function <code>first_and_last(L)</code>, which returns a new list with two items: the first item of <code>L</code> and the last item of <code>L</code>. <code>L</code> is a non-empty list (for a list with one item, that item is both first and last).</p>\n<p>For example, <code>first_and_last([\"red\", \"green\", \"blue\"])</code> returns <code>['red', 'blue']</code>.</p>",
+   "answerpreload": "def first_and_last(L):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(first_and_last([\"red\", \"green\", \"blue\"]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(first_and_last([\"red\", \"green\", \"blue\"]))",
+     "stdin": "",
+     "expected": "['red', 'blue']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_and_last([7]))",
+     "stdin": "",
+     "expected": "[7, 7]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_and_last([4, 8, 15, 16, 23, 42]))",
+     "stdin": "",
+     "expected": "[4, 42]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L07_007_Kth Item From The End",
+   "display_name": "Kth Item From The End",
+   "questiontext_html": "<p>Negative indexes make \"the k-th item from the end\" easy: it is simply <code>L[-k]</code>. Look at the diagram: counting from the back, the 1st item is at <code>-1</code>, the 2nd at <code>-2</code>, and so on.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">10</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">20</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">30</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(57,136,195);color:#fff;border-radius:2px\">40</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">50</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">60</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">L[-3] is 40: the 3rd item from the end (the same item as L[3])</div>\n<p><b>Your task:</b> write the function <code>from_end(L, k)</code>, which returns the <code>k</code>-th item from the end of the list <code>L</code>, where <code>k</code> is an integer from 1 to <code>len(L)</code>.</p>\n<p>For example, <code>from_end([10, 20, 30, 40, 50, 60], 3)</code> returns <code>40</code>.</p>",
+   "answerpreload": "def from_end(L, k):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(from_end([10, 20, 30, 40, 50, 60], 3))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(from_end([10, 20, 30, 40, 50, 60], 3))",
+     "stdin": "",
+     "expected": "40",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(from_end([10, 20, 30, 40, 50, 60], 1))",
+     "stdin": "",
+     "expected": "60",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(from_end([10, 20, 30, 40, 50, 60], 6))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(from_end([\"a\", \"b\"], 2))",
+     "stdin": "",
+     "expected": "a",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L07_008_Middle Item",
+   "display_name": "Middle Item",
+   "questiontext_html": "<p>An index can be any expression that gives an integer, such as <code>L[len(L) - 1]</code> (the last item) or <code>L[n // 2]</code>.</p>\n<p>For a list with an <b>odd</b> number of items, the middle item is at index <code>len(L) // 2</code>. For example, a list of 7 items has indexes 0 to 6, and <code>7 // 2</code> is 3:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;g&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">len(L) is 7, and 7 // 2 is 3</div>\n<p><b>Your task:</b> write the function <code>middle(L)</code>, which returns the middle item of a list <code>L</code> with an odd number of items.</p>\n<p>For example, <code>middle([1, 2, 3])</code> returns <code>2</code>.</p>",
+   "answerpreload": "def middle(L):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(middle([1, 2, 3]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(middle([1, 2, 3]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle([\"a\", \"b\", \"c\", \"d\", \"e\"]))",
+     "stdin": "",
+     "expected": "c",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle([9]))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L07_009_Negative Index Twin",
+   "display_name": "Negative Index Twin",
+   "questiontext_html": "<p>Every negative index has a positive \"twin\" that points to the same item. In a list of length <code>n</code>, the negative index <code>i</code> is the same position as <code>n + i</code>:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">colours =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;red&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;green&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;blue&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;yellow&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;black&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">n = 5: the index -4 is the same position as 5 + (-4) = 1</div>\n<p>This is how Python itself understands negative indexes: <code>L[-1]</code> means <code>L[len(L) - 1]</code>.</p>\n<p><b>Your task:</b> write the function <code>positive_index(n, i)</code>, which returns the positive index of the same position as the negative index <code>i</code>, in a list of length <code>n</code>. Here <code>n</code> is a positive integer (int &gt; 0) and <code>i</code> is a negative integer from <code>-n</code> to <code>-1</code>.</p>\n<p>For example, <code>positive_index(5, -4)</code> returns <code>1</code>.</p>",
+   "answerpreload": "def positive_index(n, i):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(positive_index(5, -4))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(positive_index(5, -4))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(positive_index(5, -1))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(positive_index(5, -5))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(positive_index(1, -1))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L07_010_Safe Index",
+   "display_name": "Safe Index",
+   "questiontext_html": "<p>In Lab 6 you saw that an index outside the list gives an <code>IndexError</code>. For a list of length <code>n</code>, the valid indexes are <code>0</code> to <code>n - 1</code> and <code>-n</code> to <code>-1</code>. Anything else is out of range. An empty list has no valid index at all.</p>\n<p>Sometimes, instead of crashing, a function should return a special value. Python has the value <code>None</code> (meaning \"nothing\") for this.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>get_item(L, i)</code>, which returns <code>L[i]</code> if <code>i</code> is a valid index for the list <code>L</code> (positive or negative), and <code>None</code> otherwise. <code>i</code> can be any integer.</p>\n<p>For example, <code>get_item([\"a\", \"b\", \"c\"], -3)</code> returns <code>'a'</code>, and <code>get_item([\"a\", \"b\", \"c\"], 3)</code> returns <code>None</code>.</p>",
+   "answerpreload": "def get_item(L, i):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(get_item([\"a\", \"b\", \"c\"], 1))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(get_item([\"a\", \"b\", \"c\"], 1))",
+     "stdin": "",
+     "expected": "b",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(get_item([\"a\", \"b\", \"c\"], 3))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(get_item([\"a\", \"b\", \"c\"], -3))",
+     "stdin": "",
+     "expected": "a",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(get_item([\"a\", \"b\", \"c\"], -4))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(get_item([], 0))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L07_011_Item In A Table",
+   "display_name": "Item In A Table",
+   "questiontext_html": "<p>A list can contain other lists. A list of lists is a natural way to store a <b>table</b>: each inner list is one <b>row</b>.</p>\n<pre>table = [[1, 2, 3],\n         [4, 5, 6],\n         [7, 8, 9]]</pre>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">table =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">[1, 2, 3]</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">[4, 5, 6]</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">[7, 8, 9]</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">table[1] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">6</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">table[1] is the row [4, 5, 6], and table[1][2] is 6</div>\n<p><code>table[1]</code> is the second row (itself a list), and <code>table[1][2]</code> takes item <code>2</code> of that row. So <code>table[r][c]</code> is the item in row <code>r</code>, column <code>c</code> (both counted from 0).</p>\n<p><b>Your task:</b> write the function <code>get_cell(table, r, c)</code>, which returns the item in row <code>r</code> and column <code>c</code> of the list of lists <code>table</code>. The indexes are always valid.</p>\n<p>For example, <code>get_cell([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 1, 2)</code> returns <code>6</code>.</p>",
+   "answerpreload": "def get_cell(table, r, c):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(get_cell([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 1, 2))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(get_cell([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 1, 2))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(get_cell([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 0, 0))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(get_cell([[\"x\", \"o\"], [\"o\", \"x\"]], 1, 0))",
+     "stdin": "",
+     "expected": "o",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(get_cell([[5, 6, 7]], 0, -1))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L07_012_Row And Column Sums",
+   "display_name": "Row And Column Sums",
+   "questiontext_html": "<p>To add up a <b>row</b>, loop over the items of that row. To add up a <b>column</b>, loop over the <b>rows</b> and take the item at the same column from each one:</p>\n<pre>grid = [[2, 4], [6, 8], [10, 12]]\ntotal = 0\nfor row in grid:\n    total = total + row[1]      # the item in column 1 of this row\nprint(total)</pre>\n<p>Output:</p>\n<pre>24</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write two functions for a table (a non-empty list of rows, all of the same non-zero length) of integers:</p>\n<ul><li><code>row_sum(table, r)</code> returns the sum of the items in row <code>r</code>;</li><li><code>col_sum(table, c)</code> returns the sum of the items in column <code>c</code>.</li></ul>\n<p>For example, <code>row_sum([[1, 2, 3], [4, 5, 6]], 1)</code> returns <code>15</code> and <code>col_sum([[1, 2, 3], [4, 5, 6]], 0)</code> returns <code>5</code>.</p>",
+   "answerpreload": "def row_sum(table, r):\n    # write your code here\n\n\ndef col_sum(table, c):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(row_sum([[1, 2, 3], [4, 5, 6]], 1))\n# print(col_sum([[1, 2, 3], [4, 5, 6]], 0))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(row_sum([[1, 2, 3], [4, 5, 6]], 1))",
+     "stdin": "",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(col_sum([[1, 2, 3], [4, 5, 6]], 0))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(col_sum([[1, 2, 3], [4, 5, 6]], 2))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(row_sum([[7]], 0))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(row_sum([[1, -1], [10, 20], [3, 3]], 2))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L07_013_Following A Path Of Indexes",
+   "display_name": "Following A Path Of Indexes",
+   "questiontext_html": "<p>Lists can be nested more than one level deep. Each <code>[ ]</code> goes <b>one level further in</b>:</p>\n<pre>L = [&quot;a&quot;, &quot;b&quot;, [&quot;cc&quot;, &quot;dd&quot;, [&quot;eee&quot;, &quot;fff&quot;]], &quot;g&quot;, &quot;h&quot;]</pre>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">[...]</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;g&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;h&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr></table>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[2] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;cc&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;dd&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">[...]</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[2][2] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;eee&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;fff&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">L[2][2][0] is &#x27;eee&#x27;</div>\n<pre>L = [&quot;a&quot;, &quot;b&quot;, [&quot;cc&quot;, &quot;dd&quot;, [&quot;eee&quot;, &quot;fff&quot;]], &quot;g&quot;, &quot;h&quot;]\nprint(L[2])\nprint(L[2][2])\nprint(L[2][2][0])</pre>\n<p>Output:</p>\n<pre>[&#x27;cc&#x27;, &#x27;dd&#x27;, [&#x27;eee&#x27;, &#x27;fff&#x27;]]\n[&#x27;eee&#x27;, &#x27;fff&#x27;]\neee</pre>\n<p>A path of indexes like <code>[2, 2, 0]</code> can be followed with a loop: start with <code>item = L</code>, and for each index <code>p</code> in the path, go one level in with <code>item = item[p]</code>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>follow(L, path)</code>, where <code>path</code> is a list of indexes. It returns what you reach by indexing <code>L</code> with each index of <code>path</code> in turn. An empty path returns <code>L</code> itself. The paths are always valid.</p>\n<p>For example, <code>follow([\"a\", \"b\", [\"cc\", \"dd\", [\"eee\", \"fff\"]], \"g\", \"h\"], [2, 2, 0])</code> returns <code>'eee'</code>.</p>",
+   "answerpreload": "def follow(L, path):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(follow([\"a\", \"b\", [\"cc\", \"dd\", [\"eee\", \"fff\"]], \"g\", \"h\"], [2, 2, 0]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [\"a\", \"b\", [\"cc\", \"dd\", [\"eee\", \"fff\"]], \"g\", \"h\"]\nprint(follow(L, [2, 2, 0]))",
+     "stdin": "",
+     "expected": "eee",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [\"a\", \"b\", [\"cc\", \"dd\", [\"eee\", \"fff\"]], \"g\", \"h\"]\nprint(follow(L, [1]))",
+     "stdin": "",
+     "expected": "b",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [\"a\", \"b\", [\"cc\", \"dd\", [\"eee\", \"fff\"]], \"g\", \"h\"]\nprint(follow(L, [2, 1]))",
+     "stdin": "",
+     "expected": "dd",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [\"a\", \"b\", [\"cc\", \"dd\", [\"eee\", \"fff\"]], \"g\", \"h\"]\nprint(follow(L, [2, -1, -1]))",
+     "stdin": "",
+     "expected": "fff",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(follow([1, 2], []))",
+     "stdin": "",
+     "expected": "[1, 2]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L07_014_Slice From Start To Stop",
+   "display_name": "Slice From Start To Stop",
+   "questiontext_html": "<p>A <b>slice</b> takes a part of a list and gives it as a <b>new list</b>. The syntax is:</p>\n<pre>L[start:stop]</pre>\n<p>It takes the items from index <code>start</code> <b>up to, but not including</b>, index <code>stop</code>, just like <code>range(start, stop)</code>. Think of the indexes as marking the <b>gaps before</b> each item: the slice runs from the gap at <code>start</code> to the gap at <code>stop</code>.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(36,104,162);color:#fff;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(47,120,179);color:#fff;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(58,138,197);color:#fff;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;g&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(69,154,214);color:#fff;border-radius:2px\">&#x27;h&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;i&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">8</td></tr></table>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[2:7] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(47,120,179);color:#fff;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(58,138,197);color:#fff;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;g&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;h&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;i&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">8</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#2e7a48;white-space:nowrap\">&uarr;<br>start</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#7b3fa0;white-space:nowrap\">&uarr;<br>stop</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">start 2 is included; stop 7 is not</div>\n<p>So <code>L[2:7]</code> is <code>['c', 'd', 'e', 'f', 'g']</code>: 5 items, which is <code>stop - start</code>. If <code>start</code> and <code>stop</code> are equal, the slice is empty. The original list does not change.</p>\n<pre>L = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;]\nprint(L[2:7])\nprint(L[0:2])\nprint(L[4:4])\nprint(L)</pre>\n<p>Output:</p>\n<pre>[&#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;, &#x27;f&#x27;, &#x27;g&#x27;]\n[&#x27;a&#x27;, &#x27;b&#x27;]\n[]\n[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;, &#x27;f&#x27;, &#x27;g&#x27;, &#x27;h&#x27;, &#x27;i&#x27;]</pre>\n<p><b>Your task:</b> write the function <code>part(L, a, b)</code>, which returns the slice of <code>L</code> from index <code>a</code> up to (not including) index <code>b</code>. The indexes satisfy <code>0 &lt;= a &lt;= b &lt;= len(L)</code>.</p>\n<p>For example, <code>part([10, 20, 30, 40, 50], 1, 3)</code> returns <code>[20, 30]</code>.</p>",
+   "answerpreload": "def part(L, a, b):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(part([10, 20, 30, 40, 50], 1, 3))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(part([10, 20, 30, 40, 50], 1, 3))",
+     "stdin": "",
+     "expected": "[20, 30]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(part([10, 20, 30, 40, 50], 0, 5))",
+     "stdin": "",
+     "expected": "[10, 20, 30, 40, 50]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(part([10, 20, 30, 40, 50], 2, 2))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(part(L, 2, 5))",
+     "stdin": "9 8 7 6 5 4 3",
+     "expected": "[7, 6, 5]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(part(L, 0, 1))",
+     "stdin": "42 17",
+     "expected": "[42]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L07_015_Leaving Out Start Or Stop",
+   "display_name": "Leaving Out Start Or Stop",
+   "questiontext_html": "<p>Either end of a slice can be left out:</p>\n<ul><li><code>L[:stop]</code> starts from the beginning (like <code>start = 0</code>);</li><li><code>L[start:]</code> goes all the way to the end (like <code>stop = len(L)</code>);</li><li><code>L[:]</code> is a copy of the whole list.</li></ul>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[:3] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(36,104,162);color:#fff;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;g&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;h&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;i&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">8</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#7b3fa0;white-space:nowrap\">&uarr;<br>stop</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">from the beginning up to (not including) 3</div>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[6:] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;g&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(69,154,214);color:#fff;border-radius:2px\">&#x27;h&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;i&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">8</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#2e7a48;white-space:nowrap\">&uarr;<br>start</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">from 6 to the end</div>\n<p>Notice that <code>L[:3]</code> and <code>L[3:]</code> split the list into two parts with nothing missing and nothing repeated.</p>\n<p><b>Your task:</b> write two functions, for a list <code>L</code> and an integer <code>n</code> from 0 to <code>len(L)</code>:</p>\n<ul><li><code>first_n(L, n)</code> returns the first <code>n</code> items of <code>L</code>;</li><li><code>drop_first_n(L, n)</code> returns everything <b>except</b> the first <code>n</code> items.</li></ul>\n<p>For example, <code>first_n([5, 6, 7, 8], 3)</code> returns <code>[5, 6, 7]</code> and <code>drop_first_n([5, 6, 7, 8], 3)</code> returns <code>[8]</code>.</p>",
+   "answerpreload": "def first_n(L, n):\n    # write your code here\n\n\ndef drop_first_n(L, n):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(first_n([5, 6, 7, 8], 3))\n# print(drop_first_n([5, 6, 7, 8], 3))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(first_n([5, 6, 7, 8], 3))",
+     "stdin": "",
+     "expected": "[5, 6, 7]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(drop_first_n([5, 6, 7, 8], 3))",
+     "stdin": "",
+     "expected": "[8]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_n([5, 6, 7, 8], 0))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(drop_first_n([5, 6, 7, 8], 4))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(first_n(L, 2), drop_first_n(L, 2))",
+     "stdin": "1 2 3 4 5 6",
+     "expected": "[1, 2] [3, 4, 5, 6]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(first_n(L, 5), drop_first_n(L, 0))",
+     "stdin": "3 1 4 1 5",
+     "expected": "[3, 1, 4, 1, 5] [3, 1, 4, 1, 5]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "L07_016_Negative Slices",
+   "display_name": "Negative Slices",
+   "questiontext_html": "<p>Slices can use <b>negative indexes</b> too, counted from the end. This is very handy for \"the last few items\":</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-9</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-8</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[-7:-2] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(47,120,179);color:#fff;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(58,138,197);color:#fff;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;g&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;h&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;i&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#2e7a48;white-space:nowrap\">&uarr;<br>start</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#7b3fa0;white-space:nowrap\">&uarr;<br>stop</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">start -7 is included; stop -2 is not</div>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-9</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-8</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[-3:] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;g&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(69,154,214);color:#fff;border-radius:2px\">&#x27;h&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;i&#x27;</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">the last 3 items</div>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-9</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-8</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[:-1] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(36,104,162);color:#fff;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(47,120,179);color:#fff;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(58,138,197);color:#fff;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;g&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(69,154,214);color:#fff;border-radius:2px\">&#x27;h&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;i&#x27;</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">everything except the last item</div>\n<pre>L = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;]\nprint(L[-7:-2])\nprint(L[-3:])\nprint(L[:-1])</pre>\n<p>Output:</p>\n<pre>[&#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;, &#x27;f&#x27;, &#x27;g&#x27;]\n[&#x27;g&#x27;, &#x27;h&#x27;, &#x27;i&#x27;]\n[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;, &#x27;f&#x27;, &#x27;g&#x27;, &#x27;h&#x27;]</pre>\n<p><b>Careful:</b> <code>L[-0:]</code> is the <b>whole</b> list, because <code>-0</code> is just <code>0</code>. So \"the last n items\" as <code>L[-n:]</code> only works for <code>n &gt;= 1</code>.</p>\n<p><b>Your task:</b> write two functions, for a list <code>L</code>:</p>\n<ul><li><code>last_n(L, n)</code> returns the last <code>n</code> items of <code>L</code>, for <code>n</code> from 1 to <code>len(L)</code>;</li><li><code>drop_last(L)</code> returns all items except the last one (for an empty list, the result is the empty list).</li></ul>\n<p>For example, <code>last_n([1, 2, 3, 4, 5], 2)</code> returns <code>[4, 5]</code> and <code>drop_last([1, 2, 3])</code> returns <code>[1, 2]</code>.</p>",
+   "answerpreload": "def last_n(L, n):\n    # write your code here\n\n\ndef drop_last(L):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(last_n([1, 2, 3, 4, 5], 2))\n# print(drop_last([1, 2, 3]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(last_n([1, 2, 3, 4, 5], 2))",
+     "stdin": "",
+     "expected": "[4, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(drop_last([1, 2, 3]))",
+     "stdin": "",
+     "expected": "[1, 2]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(last_n([1, 2, 3, 4, 5], 5))",
+     "stdin": "",
+     "expected": "[1, 2, 3, 4, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(drop_last([7]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(drop_last([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(last_n(L, 1), drop_last(L))",
+     "stdin": "8 6 4 2",
+     "expected": "[2] [8, 6, 4]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(last_n(L, 3))",
+     "stdin": "10 20 30 40 50 60",
+     "expected": "[40, 50, 60]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "L07_017_Every Other Item",
+   "display_name": "Every Other Item",
+   "questiontext_html": "<p>A slice can have a third part, the <b>step</b>: <code>L[start:stop:step]</code> takes every <code>step</code>-th item. The step works like the step of <code>range</code>.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[2:7:2] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;g&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;h&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;i&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">8</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#2e7a48;white-space:nowrap\">&uarr;<br>start</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#7b3fa0;white-space:nowrap\">&uarr;<br>stop</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">step 2: take &#x27;c&#x27;, skip one, take &#x27;e&#x27;, skip one, take &#x27;g&#x27;</div>\n<p>Parts can still be left out: <code>L[::2]</code> takes every second item from the start (indexes 0, 2, 4, ...), and <code>L[1::2]</code> every second item starting at index 1.</p>\n<pre>L = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;]\nprint(L[2:7:2])\nprint(L[::2])\nprint(L[1::2])\nprint(L[::3])</pre>\n<p>Output:</p>\n<pre>[&#x27;c&#x27;, &#x27;e&#x27;, &#x27;g&#x27;]\n[&#x27;a&#x27;, &#x27;c&#x27;, &#x27;e&#x27;, &#x27;g&#x27;, &#x27;i&#x27;]\n[&#x27;b&#x27;, &#x27;d&#x27;, &#x27;f&#x27;, &#x27;h&#x27;]\n[&#x27;a&#x27;, &#x27;d&#x27;, &#x27;g&#x27;]</pre>\n<p><b>Your task:</b> write two functions, for any list <code>L</code>:</p>\n<ul><li><code>even_positions(L)</code> returns the items at indexes 0, 2, 4, ...;</li><li><code>odd_positions(L)</code> returns the items at indexes 1, 3, 5, ...</li></ul>\n<p>For example, <code>even_positions([10, 11, 12, 13, 14])</code> returns <code>[10, 12, 14]</code> and <code>odd_positions([10, 11, 12, 13, 14])</code> returns <code>[11, 13]</code>.</p>",
+   "answerpreload": "def even_positions(L):\n    # write your code here\n\n\ndef odd_positions(L):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(even_positions([10, 11, 12, 13, 14]))\n# print(odd_positions([10, 11, 12, 13, 14]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(even_positions([10, 11, 12, 13, 14]))",
+     "stdin": "",
+     "expected": "[10, 12, 14]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(odd_positions([10, 11, 12, 13, 14]))",
+     "stdin": "",
+     "expected": "[11, 13]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(even_positions([7]), odd_positions([7]))",
+     "stdin": "",
+     "expected": "[7] []",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(even_positions([]), odd_positions([]))",
+     "stdin": "",
+     "expected": "[] []",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(even_positions(L), odd_positions(L))",
+     "stdin": "1 2 3 4 5 6 7 8",
+     "expected": "[1, 3, 5, 7] [2, 4, 6, 8]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(odd_positions(L))",
+     "stdin": "-5 -4",
+     "expected": "[-4]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "L07_018_Reverse With A Slice",
+   "display_name": "Reverse With A Slice",
+   "questiontext_html": "<p>The step can be <b>negative</b>, which walks through the list backwards. With both start and stop left out, <code>L[::-1]</code> is the whole list <b>reversed</b>, as a new list (the original list does not change):</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">3</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">5</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr></table>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[::-1] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">3</td></tr></table>\n<pre>L = [3, 1, 4, 1, 5]\nR = L[::-1]\nprint(R)\nprint(L)\nprint(L[::-2])</pre>\n<p>Output:</p>\n<pre>[5, 1, 4, 1, 3]\n[3, 1, 4, 1, 5]\n[5, 4, 3]</pre>\n<p><b>Your task:</b> write the function <code>reversed_copy(L)</code>, which returns a new list with the items of <code>L</code> in reverse order, without changing <code>L</code>.</p>\n<p>For example, <code>reversed_copy([3, 1, 4, 1, 5])</code> returns <code>[5, 1, 4, 1, 3]</code>.</p>",
+   "answerpreload": "def reversed_copy(L):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(reversed_copy([3, 1, 4, 1, 5]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(reversed_copy([3, 1, 4, 1, 5]))",
+     "stdin": "",
+     "expected": "[5, 1, 4, 1, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [1, 2, 3]\nR = reversed_copy(L)\nprint(R)\nprint(L)",
+     "stdin": "",
+     "expected": "[3, 2, 1]\n[1, 2, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(reversed_copy([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(reversed_copy(L))\nprint(L)",
+     "stdin": "10 20 30 40",
+     "expected": "[40, 30, 20, 10]\n[10, 20, 30, 40]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(reversed_copy(L))",
+     "stdin": "-1 0 -1 2",
+     "expected": "[2, -1, 0, -1]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "L07_019_Slicing Strings",
+   "display_name": "Slicing Strings",
+   "questiontext_html": "<p>Everything you learned about indexing and slicing also works on <b>strings</b>. A string is a sequence of characters, and a slice of a string is a new, shorter string:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">s =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">P</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(40,109,167);color:#fff;border-radius:2px\">Y</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(48,122,181);color:#fff;border-radius:2px\">T</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(57,136,195);color:#fff;border-radius:2px\">H</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(65,149,209);color:#fff;border-radius:2px\">O</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">N</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td></tr></table>\n<pre>s = &quot;PYTHON&quot;\nprint(s[0], s[-1])\nprint(s[1:4])\nprint(s[:2], s[2:])\nprint(s[::-1])</pre>\n<p>Output:</p>\n<pre>P N\nYTH\nPY THON\nNOHTYP</pre>\n<p>A word is a <b>palindrome</b> if it reads the same backwards, like <code>\"madam\"</code> or <code>\"noon\"</code>: the string equals its own reverse.</p>\n<p><b>Your task:</b> write two functions, for a string <code>word</code> of lowercase letters:</p>\n<ul><li><code>inner(word)</code> returns <code>word</code> without its first and last characters (for a word of 2 letters or fewer, this is the empty string <code>\"\"</code>);</li><li><code>is_palindrome(word)</code> returns <code>True</code> if <code>word</code> reads the same backwards, otherwise <code>False</code>. The empty string counts as a palindrome.</li></ul>\n<p>For example, <code>inner(\"python\")</code> returns <code>\"ytho\"</code> and <code>is_palindrome(\"madam\")</code> returns <code>True</code>.</p>",
+   "answerpreload": "def inner(word):\n    # write your code here\n\n\ndef is_palindrome(word):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(inner(\"python\"))\n# print(is_palindrome(\"madam\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(inner(\"python\"))",
+     "stdin": "",
+     "expected": "ytho",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_palindrome(\"madam\"))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_palindrome(\"goa\"))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(inner(\"ab\"), is_palindrome(\"\"))",
+     "stdin": "",
+     "expected": " True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(inner(\"racecar\"), is_palindrome(\"racecar\"))",
+     "stdin": "",
+     "expected": "aceca True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(inner(\"abcd\"), is_palindrome(\"abca\"))",
+     "stdin": "",
+     "expected": "bc False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_palindrome(\"x\"))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "L07_020_Slices Never Go Out Of Range",
+   "display_name": "Slices Never Go Out Of Range",
+   "questiontext_html": "<p>Indexing past the end is an error, but <b>slicing is forgiving</b>: if <code>start</code> or <code>stop</code> goes past the end of the list, Python simply stops at the end. No <code>IndexError</code>:</p>\n<pre>L = [10, 20, 30]\nprint(L[1:100])\nprint(L[5:9])\nprint(L[:2])\nx = []\nprint(x[:2])</pre>\n<p>Output:</p>\n<pre>[20, 30]\n[]\n[10, 20]\n[]</pre>\n<p>This makes slices great for \"the first few items\" when the list might be shorter.</p>\n<p><b>Your task:</b> write the function <code>top_three(scores)</code>, which returns the first three items of the list <code>scores</code>, or all of them if there are fewer than three. Do not use <code>if</code>: a slice is enough.</p>\n<p>For example, <code>top_three([91, 85, 78, 66])</code> returns <code>[91, 85, 78]</code> and <code>top_three([50])</code> returns <code>[50]</code>.</p>",
+   "answerpreload": "def top_three(scores):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(top_three([91, 85, 78, 66]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(top_three([91, 85, 78, 66]))",
+     "stdin": "",
+     "expected": "[91, 85, 78]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(top_three([50]))",
+     "stdin": "",
+     "expected": "[50]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(top_three([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(top_three(L))",
+     "stdin": "7 8",
+     "expected": "[7, 8]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(top_three(L))",
+     "stdin": "1 2 3",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 21,
+   "xml_name": "L07_021_Rotate A List",
+   "display_name": "Rotate A List",
+   "questiontext_html": "<p>Two slices and <code>+</code> (which joins two lists into a new one) can <b>rotate</b> a list: move the first <code>k</code> items to the back.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;e&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>k</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">k = 2: L[2:] is [&#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;] and L[:2] is [&#x27;a&#x27;, &#x27;b&#x27;]</div>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[2:] + L[:2] =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;b&#x27;</td></tr></table>\n<p><b>Your task:</b> write the function <code>rotate_left(L, k)</code>, which returns a new list: the items of <code>L</code> moved <code>k</code> places to the left, with the first <code>k</code> items going to the back. <code>k</code> is an integer from 0 to <code>len(L)</code>.</p>\n<p>For example, <code>rotate_left([\"a\", \"b\", \"c\", \"d\", \"e\"], 2)</code> returns <code>['c', 'd', 'e', 'a', 'b']</code>.</p>",
+   "answerpreload": "def rotate_left(L, k):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(rotate_left([\"a\", \"b\", \"c\", \"d\", \"e\"], 2))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(rotate_left([\"a\", \"b\", \"c\", \"d\", \"e\"], 2))",
+     "stdin": "",
+     "expected": "['c', 'd', 'e', 'a', 'b']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(rotate_left([1, 2, 3], 0))",
+     "stdin": "",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(rotate_left([1, 2, 3], 3))",
+     "stdin": "",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(rotate_left(L, 1))",
+     "stdin": "5 6 7 8",
+     "expected": "[6, 7, 8, 5]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(rotate_left(L, 4))",
+     "stdin": "1 2 3 4 5 6",
+     "expected": "[5, 6, 1, 2, 3, 4]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 22,
+   "xml_name": "L07_022_Change One Item",
+   "display_name": "Change One Item",
+   "questiontext_html": "<p>Lists are <b>mutable</b>: they can be changed after they are made. Assigning to an index replaces that item:</p>\n<pre>L[i] = new_value</pre>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">before:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;red&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;green&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;blue&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L[1] = &#x27;violet&#x27;:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;red&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;violet&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;blue&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table>\n<p>This changes the list <b>itself</b>; no new list is made. So a function can change a list it is given, and the caller sees the change. Such a function does not need to return anything (it returns <code>None</code>); the tests call it, then print the list:</p>\n<pre>def paint_first(colours, c):\n    colours[0] = c\n\nmy_list = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]\npaint_first(my_list, &quot;white&quot;)\nprint(my_list)</pre>\n<p>Output:</p>\n<pre>[&#x27;white&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;]</pre>\n<p><b>Your task:</b> write the function <code>set_last(L, x)</code>, which replaces the <b>last</b> item of the non-empty list <code>L</code> with <code>x</code>. It changes <code>L</code> and returns nothing.</p>\n<p>For example, after <code>L = [1, 2, 3]</code> and <code>set_last(L, 9)</code>, <code>L</code> is <code>[1, 2, 9]</code>.</p>",
+   "answerpreload": "def set_last(L, x):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [1, 2, 3]; set_last(L, 9); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [1, 2, 3]\nset_last(L, 9)\nprint(L)",
+     "stdin": "",
+     "expected": "[1, 2, 9]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [\"a\"]\nset_last(L, \"z\")\nprint(L)",
+     "stdin": "",
+     "expected": "['z']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [4, 5]\nset_last(L, 5)\nprint(L)",
+     "stdin": "",
+     "expected": "[4, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nset_last(L, 0)\nprint(L)",
+     "stdin": "6 7 8 9",
+     "expected": "[6, 7, 8, 0]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nset_last(L, -5)\nprint(L)",
+     "stdin": "3",
+     "expected": "[-5]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 23,
+   "xml_name": "L07_023_Double Every Item In Place",
+   "display_name": "Double Every Item In Place",
+   "questiontext_html": "<p>To change <b>every</b> item of a list, loop over the <b>indexes</b> and assign to <code>L[i]</code>:</p>\n<pre>prices = [100, 250, 40]\nfor i in range(len(prices)):\n    prices[i] = prices[i] + 10\nprint(prices)</pre>\n<p>Output:</p>\n<pre>[110, 260, 50]</pre>\n<p>A common mistake is to loop over the <b>items</b> instead. The loop variable only holds a copy of each value; changing it does <b>not</b> change the list:</p>\n<pre>prices = [100, 250, 40]\nfor p in prices:\n    p = p + 10       # changes only p, not the list\nprint(prices)</pre>\n<p>Output:</p>\n<pre>[100, 250, 40]</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>double_all(L)</code>, which doubles every item of the list of integers <code>L</code>, <b>changing <code>L</code> itself</b>. It returns nothing. An empty list stays empty.</p>\n<p>For example, after <code>L = [1, 5, -2]</code> and <code>double_all(L)</code>, <code>L</code> is <code>[2, 10, -4]</code>.</p>",
+   "answerpreload": "def double_all(L):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [1, 5, -2]; double_all(L); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [1, 5, -2]\ndouble_all(L)\nprint(L)",
+     "stdin": "",
+     "expected": "[2, 10, -4]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = []\ndouble_all(L)\nprint(L)",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [0, 7]\ndouble_all(L)\nprint(L)",
+     "stdin": "",
+     "expected": "[0, 14]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\ndouble_all(L)\nprint(L)",
+     "stdin": "3 3 -8 100",
+     "expected": "[6, 6, -16, 200]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\ndouble_all(L)\nprint(L)",
+     "stdin": "-1",
+     "expected": "[-2]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 24,
+   "xml_name": "L07_024_Strings Cannot Change",
+   "display_name": "Strings Cannot Change",
+   "questiontext_html": "<p>Lists are mutable, but <b>strings are not</b>: they are <b>immutable</b>. You can read <code>s[0]</code>, but you cannot assign to it:</p>\n<pre>s = &quot;cat&quot;\ns[0] = &quot;b&quot;</pre>\n<p>gives:</p>\n<pre style=\"color:#b3322a\">TypeError: &#x27;str&#x27; object does not support item assignment</pre>\n<p>To \"change\" a string, build a <b>new</b> string from pieces, for example with slices and <code>+</code>:</p>\n<pre>s = &quot;cat&quot;\nt = &quot;b&quot; + s[1:]\nprint(t)\nprint(s)</pre>\n<p>Output:</p>\n<pre>bat\ncat</pre>\n<p><b>Your task:</b> write the function <code>replace_at(word, i, ch)</code>, which returns a new string: <code>word</code> with the character at index <code>i</code> replaced by the one-character string <code>ch</code>. The index <code>i</code> is from 0 to <code>len(word) - 1</code>.</p>\n<p>For example, <code>replace_at(\"cat\", 0, \"b\")</code> returns <code>\"bat\"</code>.</p>",
+   "answerpreload": "def replace_at(word, i, ch):\n    # write your code here\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(replace_at(\"cat\", 0, \"b\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(replace_at(\"cat\", 0, \"b\"))",
+     "stdin": "",
+     "expected": "bat",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(replace_at(\"cat\", 2, \"p\"))",
+     "stdin": "",
+     "expected": "cap",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(replace_at(\"x\", 0, \"y\"))",
+     "stdin": "",
+     "expected": "y",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(replace_at(\"python\", 3, \"X\"))",
+     "stdin": "",
+     "expected": "pytXon",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(replace_at(\"goa\", 1, \"e\"))",
+     "stdin": "",
+     "expected": "gea",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 25,
+   "xml_name": "L07_025_Two Names One List",
+   "display_name": "Two Names One List",
+   "questiontext_html": "<p>Assigning a list to another name does <b>not</b> copy it. After <code>b = a</code>, both names refer to the <b>same</b> list, like two labels on one box. This is called <b>aliasing</b>. A change made through either name is seen through both:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 10px\"><tr><td style=\"font-family:monospace;padding:2px 8px\">a</td><td style=\"padding:0 6px\">&rarr;</td><td rowspan=\"2\" style=\"vertical-align:middle\"><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\"></td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">3</td></tr></table></td></tr><tr><td style=\"font-family:monospace;padding:2px 8px\">b</td><td style=\"padding:0 6px\">&rarr;</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">after b = a: two names, ONE list</div>\n<pre>a = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)</pre>\n<p>Output:</p>\n<pre>[1, 2, 3, 4]</pre>\n<p>To get an independent list, make a <b>copy</b>: <code>L.copy()</code> or the slice <code>L[:]</code>. Joining with <code>+</code> also makes a new list.</p>\n<p>The code below should return a <b>new</b> list with <code>x</code> added at the end, and leave the original list unchanged. It has an aliasing bug: the original list gets changed too. Fix it.</p>\n<p><b>Your task:</b> fix the function <code>with_item(L, x)</code> so that it returns a new list (the items of <code>L</code> followed by <code>x</code>) and does <b>not</b> change <code>L</code>.</p>\n<p>For example, after <code>L = [1, 2]</code>, <code>with_item(L, 3)</code> returns <code>[1, 2, 3]</code> and <code>L</code> is still <code>[1, 2]</code>.</p>",
+   "answerpreload": "def with_item(L, x):\n    new = L\n    new.append(x)\n    return new\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [1, 2]; print(with_item(L, 3)); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [1, 2]\nprint(with_item(L, 3))\nprint(L)",
+     "stdin": "",
+     "expected": "[1, 2, 3]\n[1, 2]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = []\nprint(with_item(L, 'a'))\nprint(L)",
+     "stdin": "",
+     "expected": "['a']\n[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nM = with_item(L, 0)\nprint(M)\nprint(L)",
+     "stdin": "5 6 7",
+     "expected": "[5, 6, 7, 0]\n[5, 6, 7]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nM = with_item(L, 9)\nprint(M, L)",
+     "stdin": "1",
+     "expected": "[1, 9] [1]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 26,
+   "xml_name": "L07_026_A Function That Changes Its Argument",
+   "display_name": "A Function That Changes Its Argument",
+   "questiontext_html": "<p>When you pass a list to a function, the parameter becomes <b>another name for the same list</b> (aliasing again). So if the function changes the list, the caller's list changes too.</p>\n<p>Such a function usually returns nothing, so calling <code>print(f(L))</code> prints <code>None</code>. What we want to see is the list:</p>\n<pre>def add_star(names):\n    for i in range(len(names)):\n        names[i] = names[i] + &quot;*&quot;\n\nteam = [&quot;Asha&quot;, &quot;Ravi&quot;]\nresult = add_star(team)\nprint(team)\nprint(result)</pre>\n<p>Output:</p>\n<pre>[&#x27;Asha*&#x27;, &#x27;Ravi*&#x27;]\nNone</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>add_bonus(marks, bonus)</code>, which adds <code>bonus</code> to every mark in the list of integers <code>marks</code>, but never lets a mark go above 100 (a mark that would go above 100 becomes 100). It changes <code>marks</code> and returns nothing.</p>\n<p>For example, after <code>m = [50, 95, 70]</code> and <code>add_bonus(m, 10)</code>, <code>m</code> is <code>[60, 100, 80]</code>.</p>",
+   "answerpreload": "# Define add_bonus(marks, bonus): change the list marks itself; return nothing.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# m = [50, 95, 70]; add_bonus(m, 10); print(m)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "m = [50, 95, 70]\nr = add_bonus(m, 10)\nprint(m)\nprint(r)",
+     "stdin": "",
+     "expected": "[60, 100, 80]\nNone",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "m = []\nadd_bonus(m, 5)\nprint(m)",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "m = [100, 0]\nadd_bonus(m, 0)\nprint(m)",
+     "stdin": "",
+     "expected": "[100, 0]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "m = list(map(int, input().split()))\nadd_bonus(m, 25)\nprint(m)",
+     "stdin": "75 76 10 99",
+     "expected": "[100, 100, 35, 100]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "m = list(map(int, input().split()))\nadd_bonus(m, 3)\nprint(m)",
+     "stdin": "97 98 1",
+     "expected": "[100, 100, 4]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 27,
+   "xml_name": "L07_027_Make A Changed Copy",
+   "display_name": "Make A Changed Copy",
+   "questiontext_html": "<p>Sometimes you want a changed version of a list <b>and</b> want to keep the original. Then:</p>\n<ol><li>make a copy with <code>L.copy()</code> or <code>L[:]</code>;</li><li>change the copy;</li><li>return the copy.</li></ol>\n<pre>original = [3, 6, 9]\ncopy = original[:]\ncopy[0] = 100\nprint(original)\nprint(copy)</pre>\n<p>Output:</p>\n<pre>[3, 6, 9]\n[100, 6, 9]</pre>\n<p><b>Your task:</b> write the function <code>with_changed(L, i, x)</code>, which returns a new list equal to <code>L</code> but with the item at index <code>i</code> replaced by <code>x</code>. The list <code>L</code> must not change. <code>i</code> is a valid index (positive or negative).</p>\n<p>For example, after <code>L = [3, 6, 9]</code>, <code>with_changed(L, 1, 0)</code> returns <code>[3, 0, 9]</code> and <code>L</code> is still <code>[3, 6, 9]</code>.</p>",
+   "answerpreload": "# Define with_changed(L, i, x): return a changed COPY; do not change L.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [3, 6, 9]; print(with_changed(L, 1, 0)); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [3, 6, 9]\nprint(with_changed(L, 1, 0))\nprint(L)",
+     "stdin": "",
+     "expected": "[3, 0, 9]\n[3, 6, 9]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = ['a', 'b']\nprint(with_changed(L, -1, 'z'))\nprint(L)",
+     "stdin": "",
+     "expected": "['a', 'z']\n['a', 'b']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(with_changed(L, 0, -1))\nprint(L)",
+     "stdin": "4 5 6 7",
+     "expected": "[-1, 5, 6, 7]\n[4, 5, 6, 7]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(with_changed(L, -2, 8))\nprint(L)",
+     "stdin": "1 2 3",
+     "expected": "[1, 8, 3]\n[1, 2, 3]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 28,
+   "xml_name": "L07_028_Insert At A Position",
+   "display_name": "Insert At A Position",
+   "questiontext_html": "<p><code>L.insert(i, x)</code> puts <code>x</code> <b>at index <code>i</code></b>. The item that was at <code>i</code>, and all items after it, <b>shift one place to the right</b>:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">before:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;red&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;green&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;blue&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L.insert(1, &#x27;yellow&#x27;):</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;red&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(45,118,176);color:#fff;border-radius:2px\">&#x27;yellow&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;green&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;blue&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">&#x27;green&#x27; and &#x27;blue&#x27; moved from 1, 2 to 2, 3</div>\n<p><code>L.insert(0, x)</code> puts <code>x</code> at the front, and <code>L.insert(len(L), x)</code> at the end (the same as <code>append</code>). Like <code>append</code>, <code>insert</code> changes the list and returns <code>None</code>.</p>\n<pre>L = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]\nL.insert(1, &quot;yellow&quot;)\nprint(L)\nL.insert(0, &quot;white&quot;)\nprint(L)</pre>\n<p>Output:</p>\n<pre>[&#x27;red&#x27;, &#x27;yellow&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;]\n[&#x27;white&#x27;, &#x27;red&#x27;, &#x27;yellow&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;]</pre>\n<p><b>Your task:</b> write the function <code>insert_sorted(L, x)</code>. The list <code>L</code> of integers is sorted from small to large; insert <code>x</code> at the right place so that <code>L</code> stays sorted (if <code>x</code> equals some items, it may go before or after them). It changes <code>L</code> and returns nothing. <code>L</code> may be empty.</p>\n<p>Hint: find the first index <code>i</code> where <code>L[i] &gt;= x</code> (or <code>len(L)</code> if there is none), then insert there.</p>\n<p>For example, after <code>L = [10, 20, 30]</code> and <code>insert_sorted(L, 25)</code>, <code>L</code> is <code>[10, 20, 25, 30]</code>.</p>",
+   "answerpreload": "# Define insert_sorted(L, x): insert x into the sorted list L so it stays sorted.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [10, 20, 30]; insert_sorted(L, 25); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [10, 20, 30]\ninsert_sorted(L, 25)\nprint(L)",
+     "stdin": "",
+     "expected": "[10, 20, 25, 30]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [10, 20, 30]\ninsert_sorted(L, 5)\nprint(L)",
+     "stdin": "",
+     "expected": "[5, 10, 20, 30]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [10, 20, 30]\ninsert_sorted(L, 99)\nprint(L)",
+     "stdin": "",
+     "expected": "[10, 20, 30, 99]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = []\ninsert_sorted(L, 7)\nprint(L)",
+     "stdin": "",
+     "expected": "[7]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\ninsert_sorted(L, 4)\nprint(L)",
+     "stdin": "1 3 5 7",
+     "expected": "[1, 3, 4, 5, 7]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\ninsert_sorted(L, 2)\nprint(L)",
+     "stdin": "2 2 2",
+     "expected": "[2, 2, 2, 2]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 29,
+   "xml_name": "L07_029_Append Versus Extend",
+   "display_name": "Append Versus Extend",
+   "questiontext_html": "<p>Both <code>append</code> and <code>extend</code> add to the end of a list, but they are different when the thing you add is a list:</p>\n<ul><li><code>L.append(x)</code> adds <b>one</b> item, <code>x</code>. If <code>x</code> is a list, it goes in as a single (nested) item.</li><li><code>L.extend(M)</code> adds <b>each item</b> of <code>M</code>, one by one.</li></ul>\n<pre>a = [1, 2]\na.append([3, 4])\nprint(a, len(a))\nb = [1, 2]\nb.extend([3, 4])\nprint(b, len(b))</pre>\n<p>Output:</p>\n<pre>[1, 2, [3, 4]] 3\n[1, 2, 3, 4] 4</pre>\n<p><b>Your task:</b> write the function <code>add_all(L, items)</code>, which adds every item of the list <code>items</code> to the end of the list <code>L</code>, in order. It changes <code>L</code> and returns nothing.</p>\n<p>For example, after <code>L = [1, 2]</code> and <code>add_all(L, [3, 4])</code>, <code>L</code> is <code>[1, 2, 3, 4]</code>.</p>",
+   "answerpreload": "# Define add_all(L, items): add each item of items to the end of L.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [1, 2]; add_all(L, [3, 4]); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [1, 2]\nadd_all(L, [3, 4])\nprint(L)",
+     "stdin": "",
+     "expected": "[1, 2, 3, 4]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = []\nadd_all(L, [\"x\"])\nprint(L)",
+     "stdin": "",
+     "expected": "['x']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [5]\nadd_all(L, [])\nprint(L)",
+     "stdin": "",
+     "expected": "[5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [0]\nadd_all(L, [[1], 2])\nprint(L)",
+     "stdin": "",
+     "expected": "[0, [1], 2]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nadd_all(L, [7, 8, 9])\nprint(L)",
+     "stdin": "1 2",
+     "expected": "[1, 2, 7, 8, 9]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nadd_all(L, L[:])\nprint(L)",
+     "stdin": "5 6",
+     "expected": "[5, 6, 5, 6]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 30,
+   "xml_name": "L07_030_Joining Lists With Plus",
+   "display_name": "Joining Lists With Plus",
+   "questiontext_html": "<p>The <code>+</code> operator joins two lists into a <b>new</b> list; neither original list changes. <code>L += M</code> adds the items of <code>M</code> to <code>L</code> itself (like <code>extend</code>).</p>\n<pre>front = [1, 2]\nback = [8, 9]\nboth = front + back\nprint(both)\nprint(front, back)\nfront += [3]\nprint(front)</pre>\n<p>Output:</p>\n<pre>[1, 2, 8, 9]\n[1, 2] [8, 9]\n[1, 2, 3]</pre>\n<p>Remember: <code>+</code> only joins a list with another <b>list</b>. To add a single value <code>x</code>, write <code>L + [x]</code>.</p>\n<p><b>Your task:</b> write the function <code>sandwich(L, x)</code>, which returns a new list: <code>x</code>, then all the items of <code>L</code>, then <code>x</code> again. <code>L</code> must not change.</p>\n<p>For example, <code>sandwich([5, 6], 0)</code> returns <code>[0, 5, 6, 0]</code>.</p>",
+   "answerpreload": "# Define sandwich(L, x): return [x] + L + [x] as a new list.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(sandwich([5, 6], 0))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sandwich([5, 6], 0))",
+     "stdin": "",
+     "expected": "[0, 5, 6, 0]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = []\nprint(sandwich(L, 'b'))\nprint(L)",
+     "stdin": "",
+     "expected": "['b', 'b']\n[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(sandwich(L, 1))\nprint(L)",
+     "stdin": "7 8 9",
+     "expected": "[1, 7, 8, 9, 1]\n[7, 8, 9]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(sandwich(L, -1))",
+     "stdin": "0",
+     "expected": "[-1, 0, -1]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 31,
+   "xml_name": "L07_031_Repeating With Star",
+   "display_name": "Repeating With Star",
+   "questiontext_html": "<p><code>L * n</code> makes a new list with the items of <code>L</code> repeated <code>n</code> times. It is a quick way to make a list of a given length filled with the same value:</p>\n<pre>print([0] * 5)\nprint([&quot;ha&quot;] * 3)\nprint([1, 2] * 3)\nprint([7] * 0)</pre>\n<p>Output:</p>\n<pre>[0, 0, 0, 0, 0]\n[&#x27;ha&#x27;, &#x27;ha&#x27;, &#x27;ha&#x27;]\n[1, 2, 1, 2, 1, 2]\n[]</pre>\n<p><b>Your task:</b> write the function <code>pattern(items, n, fill)</code>, which returns a new list: the items of <code>items</code> repeated <code>n</code> times, followed by the value <code>fill</code> repeated <code>n</code> times. <code>n</code> is a non-negative integer (int &gt;= 0).</p>\n<p>For example, <code>pattern([1, 2], 2, 0)</code> returns <code>[1, 2, 1, 2, 0, 0]</code>.</p>",
+   "answerpreload": "# Define pattern(items, n, fill).\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(pattern([1, 2], 2, 0))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(pattern([1, 2], 2, 0))",
+     "stdin": "",
+     "expected": "[1, 2, 1, 2, 0, 0]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pattern(['a'], 3, 'b'))",
+     "stdin": "",
+     "expected": "['a', 'a', 'a', 'b', 'b', 'b']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pattern([5, 6], 0, 9))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pattern([7, 8, 9], 1, -1))",
+     "stdin": "",
+     "expected": "[7, 8, 9, -1]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pattern([], 4, 1))",
+     "stdin": "",
+     "expected": "[1, 1, 1, 1]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 32,
+   "xml_name": "L07_032_Alternate Two Lists",
+   "display_name": "Alternate Two Lists",
+   "questiontext_html": "<p>Many list problems combine an index loop with <code>append</code>: walk through positions <code>0, 1, 2, ...</code> and build a new list from items taken from one or more lists.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>interleave(a, b)</code>, which returns a new list taking items alternately from the lists <code>a</code> and <code>b</code>: <code>a[0], b[0], a[1], b[1], ...</code>. The two lists have the same length (possibly 0).</p>\n<p>For example, <code>interleave([1, 2, 3], [\"x\", \"y\", \"z\"])</code> returns <code>[1, 'x', 2, 'y', 3, 'z']</code>.</p>",
+   "answerpreload": "# Define interleave(a, b).\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(interleave([1, 2, 3], [\"x\", \"y\", \"z\"]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(interleave([1, 2, 3], [\"x\", \"y\", \"z\"]))",
+     "stdin": "",
+     "expected": "[1, 'x', 2, 'y', 3, 'z']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(interleave([], []))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(interleave([5], [6]))",
+     "stdin": "",
+     "expected": "[5, 6]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = list(map(int, input().split()))\nprint(interleave(a, a[::-1]))",
+     "stdin": "1 2 3 4",
+     "expected": "[1, 4, 2, 3, 3, 2, 4, 1]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = list(map(int, input().split()))\nprint(interleave(a, [0] * len(a)))",
+     "stdin": "9 8",
+     "expected": "[9, 0, 8, 0]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 33,
+   "xml_name": "L07_033_Pop An Item",
+   "display_name": "Pop An Item",
+   "questiontext_html": "<p><code>L.pop(i)</code> <b>removes</b> the item at index <code>i</code> and <b>returns</b> it, so you can use it. The items after it shift one place to the left. <code>L.pop()</code> with no index removes and returns the <b>last</b> item.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">before:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(45,118,176);color:#fff;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;d&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">L.pop(1) returns &#x27;b&#x27;</div>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">after:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;d&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table>\n<pre>L = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]\nx = L.pop(1)\nprint(x, L)\ny = L.pop()\nprint(y, L)</pre>\n<p>Output:</p>\n<pre>b [&#x27;a&#x27;, &#x27;c&#x27;, &#x27;d&#x27;]\nd [&#x27;a&#x27;, &#x27;c&#x27;]</pre>\n<p><b>Your task:</b> write the function <code>move_to_end(L, i)</code>, which moves the item at index <code>i</code> of the list <code>L</code> to the end of <code>L</code> (use <code>pop</code> and <code>append</code>). It changes <code>L</code> and returns nothing. <code>i</code> is a valid index.</p>\n<p>For example, after <code>L = [\"a\", \"b\", \"c\", \"d\"]</code> and <code>move_to_end(L, 1)</code>, <code>L</code> is <code>['a', 'c', 'd', 'b']</code>.</p>",
+   "answerpreload": "# Define move_to_end(L, i): use pop and append; change L, return nothing.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [\"a\", \"b\", \"c\", \"d\"]; move_to_end(L, 1); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [\"a\", \"b\", \"c\", \"d\"]\nmove_to_end(L, 1)\nprint(L)",
+     "stdin": "",
+     "expected": "['a', 'c', 'd', 'b']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [1, 2, 3]\nmove_to_end(L, -1)\nprint(L)",
+     "stdin": "",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [9]\nmove_to_end(L, 0)\nprint(L)",
+     "stdin": "",
+     "expected": "[9]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nmove_to_end(L, 0)\nprint(L)",
+     "stdin": "4 5 6 7",
+     "expected": "[5, 6, 7, 4]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nmove_to_end(L, 2)\nprint(L)",
+     "stdin": "1 2 3 4 5",
+     "expected": "[1, 2, 4, 5, 3]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 34,
+   "xml_name": "L07_034_Delete By Index And Slice",
+   "display_name": "Delete By Index And Slice",
+   "questiontext_html": "<p>The <code>del</code> statement deletes by position, without returning anything:</p>\n<ul><li><code>del L[i]</code> deletes the item at index <code>i</code>;</li><li><code>del L[a:b]</code> deletes a whole <b>slice</b>.</li></ul>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(38,106,165);color:#fff;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(45,118,176);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;e&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(67,152,211);color:#fff;border-radius:2px\">&#x27;f&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;g&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#2e7a48;white-space:nowrap\">&uarr;<br>start</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#7b3fa0;white-space:nowrap\">&uarr;<br>stop</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">del L[3:5] removes &#x27;d&#x27; and &#x27;e&#x27;</div>\n<pre>L = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;]\ndel L[3:5]\nprint(L)\ndel L[0]\nprint(L)</pre>\n<p>Output:</p>\n<pre>[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;f&#x27;, &#x27;g&#x27;]\n[&#x27;b&#x27;, &#x27;c&#x27;, &#x27;f&#x27;, &#x27;g&#x27;]</pre>\n<p><b>Careful with <code>-0</code>:</b> to delete the last <code>k</code> items you might write <code>del L[-k:]</code>, but for <code>k = 0</code> this is <code>del L[0:]</code>, which deletes <b>everything</b>! Using <code>len(L) - k</code> avoids this.</p>\n<p><b>Your task:</b> write the function <code>trim(L, k)</code>, which deletes the first <code>k</code> items and the last <code>k</code> items of the list <code>L</code>. It changes <code>L</code> and returns nothing. <code>k</code> is a non-negative integer and <code>L</code> has at least <code>2 * k</code> items.</p>\n<p>For example, after <code>L = [1, 2, 3, 4, 5, 6]</code> and <code>trim(L, 2)</code>, <code>L</code> is <code>[3, 4]</code>.</p>",
+   "answerpreload": "# Define trim(L, k): delete the first k and last k items of L.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [1, 2, 3, 4, 5, 6]; trim(L, 2); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [1, 2, 3, 4, 5, 6]\ntrim(L, 2)\nprint(L)",
+     "stdin": "",
+     "expected": "[3, 4]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [1, 2, 3]\ntrim(L, 0)\nprint(L)",
+     "stdin": "",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [7, 8]\ntrim(L, 1)\nprint(L)",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\ntrim(L, 1)\nprint(L)",
+     "stdin": "10 20 30 40 50",
+     "expected": "[20, 30, 40]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\ntrim(L, 3)\nprint(L)",
+     "stdin": "1 2 3 4 5 6 7",
+     "expected": "[4]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 35,
+   "xml_name": "L07_035_Remove The First Match",
+   "display_name": "Remove The First Match",
+   "questiontext_html": "<p><code>L.remove(x)</code> deletes by <b>value</b>: it removes the <b>first</b> item equal to <code>x</code> (only that one). If <code>x</code> is not in the list, it raises a <code>ValueError</code>, so check with <code>in</code> first when you are not sure:</p>\n<pre>L = [3, 1, 4, 1, 5]\nL.remove(1)\nprint(L)\nif 9 in L:\n    L.remove(9)\nprint(L)</pre>\n<p>Output:</p>\n<pre>[3, 4, 1, 5]\n[3, 4, 1, 5]</pre>\n<p>To sum up the ways of removing: <code>remove(x)</code> by value, <code>pop(i)</code> and <code>del L[i]</code> by index.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>remove_first(L, x)</code>, which removes the first item equal to <code>x</code> from the list <code>L</code>, if there is one, and returns <code>True</code>; if <code>x</code> is not in <code>L</code>, it leaves <code>L</code> unchanged and returns <code>False</code>.</p>\n<p>For example, after <code>L = [3, 1, 4, 1, 5]</code>, <code>remove_first(L, 1)</code> returns <code>True</code> and <code>L</code> becomes <code>[3, 4, 1, 5]</code>.</p>",
+   "answerpreload": "# Define remove_first(L, x): remove the first x (if any) and return True or False.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [3, 1, 4, 1, 5]; print(remove_first(L, 1)); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [3, 1, 4, 1, 5]\nprint(remove_first(L, 1))\nprint(L)",
+     "stdin": "",
+     "expected": "True\n[3, 4, 1, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [3, 1, 4]\nprint(remove_first(L, 9))\nprint(L)",
+     "stdin": "",
+     "expected": "False\n[3, 1, 4]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = []\nprint(remove_first(L, 0))\nprint(L)",
+     "stdin": "",
+     "expected": "False\n[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(remove_first(L, 2))\nprint(L)",
+     "stdin": "2 2 3 2",
+     "expected": "True\n[2, 3, 2]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(remove_first(L, 10), L)",
+     "stdin": "8 9",
+     "expected": "False [8, 9]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 36,
+   "xml_name": "L07_036_Remove Every Match",
+   "display_name": "Remove Every Match",
+   "questiontext_html": "<p>Since <code>remove</code> deletes only the first match, removing <b>all</b> matches needs a loop. A simple way: keep removing while the value is still in the list.</p>\n<pre>while x in L:\n    L.remove(x)</pre>\n<p>(Another way is to build a <b>new</b> list of the items you want to keep. Both are fine; here the list itself must change.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>remove_all(L, x)</code>, which removes every item equal to <code>x</code> from the list <code>L</code>. It changes <code>L</code> and returns nothing.</p>\n<p>For example, after <code>L = [1, 2, 1, 3, 1]</code> and <code>remove_all(L, 1)</code>, <code>L</code> is <code>[2, 3]</code>.</p>",
+   "answerpreload": "# Define remove_all(L, x): remove every x from L.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [1, 2, 1, 3, 1]; remove_all(L, 1); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [1, 2, 1, 3, 1]\nremove_all(L, 1)\nprint(L)",
+     "stdin": "",
+     "expected": "[2, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [5, 5, 5]\nremove_all(L, 5)\nprint(L)",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [4, 6]\nremove_all(L, 9)\nprint(L)",
+     "stdin": "",
+     "expected": "[4, 6]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nremove_all(L, 0)\nprint(L)",
+     "stdin": "0 1 0 0 2 0",
+     "expected": "[1, 2]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nremove_all(L, 7)\nprint(L)",
+     "stdin": "7 8 7",
+     "expected": "[8]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 37,
+   "xml_name": "L07_037_Clear Versus A New Empty List",
+   "display_name": "Clear Versus A New Empty List",
+   "questiontext_html": "<p>There are two ways to \"empty\" a list, and they are <b>not</b> the same:</p>\n<ul><li><code>L.clear()</code> removes all items from <b>this</b> list. Every name for this list now sees an empty list.</li><li><code>L = []</code> makes the name <code>L</code> point to a <b>new</b>, empty list. The old list is not changed, and other names for it still see all the items.</li></ul>\n<p>Inside a function this matters a lot: <code>L = []</code> only changes the function's own name <code>L</code>, and the caller's list stays full.</p>\n<p>The function below is supposed to empty the list it is given, but the caller's list stays unchanged. Fix it.</p>\n<p><b>Your task:</b> fix the function <code>reset(L)</code> so that it empties the list <code>L</code> itself (all names for that list then see <code>[]</code>). It returns nothing.</p>\n<p>For example, after <code>a = [1, 2]</code>, <code>b = a</code> and <code>reset(a)</code>, both <code>a</code> and <code>b</code> are <code>[]</code>.</p>",
+   "answerpreload": "def reset(L):\n    L = []\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# a = [1, 2]; b = a; reset(a); print(a, b)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a = [1, 2]\nb = a\nreset(a)\nprint(a, b)",
+     "stdin": "",
+     "expected": "[] []",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = []\nreset(L)\nprint(L)",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nM = L\nreset(M)\nprint(L, M)",
+     "stdin": "4 5 6",
+     "expected": "[] []",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nreset(L)\nprint(L, len(L))",
+     "stdin": "1 2 3 4 5",
+     "expected": "[] 0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 38,
+   "xml_name": "L07_038_Count And Index",
+   "display_name": "Count And Index",
+   "questiontext_html": "<p>Two methods answer questions about a list without changing it:</p>\n<ul><li><code>L.count(x)</code> returns <b>how many</b> items are equal to <code>x</code> (0 if none);</li><li><code>L.index(x)</code> returns the index of the <b>first</b> item equal to <code>x</code> (a <code>ValueError</code> if there is none, as you saw in Lab 6).</li></ul>\n<pre>L = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;, &quot;a&quot;]\nprint(L.count(&quot;a&quot;), L.count(&quot;z&quot;))\nprint(L.index(&quot;c&quot;))\nprint(L.index(&quot;a&quot;))</pre>\n<p>Output:</p>\n<pre>3 0\n3\n0</pre>\n<p><b>Your task:</b> write the function <code>summary(L, x)</code>, which returns a list of two numbers: how many times <code>x</code> appears in the list <code>L</code>, and the index of the first <code>x</code> (or <code>-1</code> if <code>x</code> is not in <code>L</code>).</p>\n<p>For example, <code>summary([\"a\", \"b\", \"a\"], \"a\")</code> returns <code>[2, 0]</code>.</p>",
+   "answerpreload": "# Define summary(L, x): return [count of x, index of first x or -1].\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(summary([\"a\", \"b\", \"a\"], \"a\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(summary([\"a\", \"b\", \"a\"], \"a\"))",
+     "stdin": "",
+     "expected": "[2, 0]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(summary([\"a\", \"b\", \"a\"], \"z\"))",
+     "stdin": "",
+     "expected": "[0, -1]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(summary([], 1))",
+     "stdin": "",
+     "expected": "[0, -1]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(summary(L, 5))",
+     "stdin": "1 5 2 5 5",
+     "expected": "[3, 1]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(summary(L, 3))",
+     "stdin": "9 8 3",
+     "expected": "[1, 2]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 39,
+   "xml_name": "L07_039_Sort Versus Sorted",
+   "display_name": "Sort Versus Sorted",
+   "questiontext_html": "<p>There are two ways to sort, and the difference is mutability again:</p>\n<ul><li><code>L.sort()</code> sorts <b>the list itself</b> and returns <code>None</code>;</li><li><code>sorted(L)</code> returns a <b>new</b> sorted list and leaves <code>L</code> unchanged.</li></ul>\n<p>Both sort from small to large; add <code>reverse=True</code> for large to small.</p>\n<pre>L = [3, 1, 2]\nS = sorted(L)\nprint(S, L)\nr = L.sort()\nprint(L, r)\nprint(sorted([3, 1, 2], reverse=True))</pre>\n<p>Output:</p>\n<pre>[1, 2, 3] [3, 1, 2]\n[1, 2, 3] None\n[3, 2, 1]</pre>\n<p>A common mistake is <code>L = L.sort()</code>, which sets <code>L</code> to <code>None</code>!</p>\n<p><b>Your task:</b> write the function <code>smallest_three(L)</code>, which returns a new list with the three smallest items of the list of integers <code>L</code> (it has at least three items), from small to large. <code>L</code> must <b>not</b> change.</p>\n<p>For example, <code>smallest_three([7, 2, 9, 4, 1])</code> returns <code>[1, 2, 4]</code>.</p>",
+   "answerpreload": "# Define smallest_three(L): do not change L.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [7, 2, 9, 4, 1]; print(smallest_three(L)); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [7, 2, 9, 4, 1]\nprint(smallest_three(L))\nprint(L)",
+     "stdin": "",
+     "expected": "[1, 2, 4]\n[7, 2, 9, 4, 1]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(smallest_three([5, 5, 5]))",
+     "stdin": "",
+     "expected": "[5, 5, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(smallest_three(L))\nprint(L)",
+     "stdin": "10 -3 8 -3 0 2",
+     "expected": "[-3, -3, 0]\n[10, -3, 8, -3, 0, 2]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(smallest_three(L))",
+     "stdin": "3 2 1",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 40,
+   "xml_name": "L07_040_Reverse In Place",
+   "display_name": "Reverse In Place",
+   "questiontext_html": "<p>Like sorting, reversing comes in two forms:</p>\n<ul><li><code>L.reverse()</code> reverses <b>the list itself</b> (returns <code>None</code>);</li><li><code>L[::-1]</code> gives a <b>new</b> reversed list.</li></ul>\n<pre>L = [1, 2, 3]\nR = L[::-1]\nprint(L, R)\nL.reverse()\nprint(L)</pre>\n<p>Output:</p>\n<pre>[1, 2, 3] [3, 2, 1]\n[3, 2, 1]</pre>\n<p><b>Your task:</b> write the function <code>reverse_ends(L, k)</code>, which reverses <b>only the first <code>k</code> items</b> of the list <code>L</code>, in place (the rest stays as it is). It changes <code>L</code> and returns nothing. <code>k</code> is an integer from 0 to <code>len(L)</code>.</p>\n<p>Hint: a slice can also be <b>assigned to</b>: <code>L[:k] = something</code> replaces the first <code>k</code> items.</p>\n<p>For example, after <code>L = [1, 2, 3, 4, 5]</code> and <code>reverse_ends(L, 3)</code>, <code>L</code> is <code>[3, 2, 1, 4, 5]</code>.</p>",
+   "answerpreload": "# Define reverse_ends(L, k): reverse the first k items of L in place.\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# L = [1, 2, 3, 4, 5]; reverse_ends(L, 3); print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [1, 2, 3, 4, 5]\nreverse_ends(L, 3)\nprint(L)",
+     "stdin": "",
+     "expected": "[3, 2, 1, 4, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [1, 2, 3]\nreverse_ends(L, 0)\nprint(L)",
+     "stdin": "",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [1, 2, 3]\nreverse_ends(L, 3)\nprint(L)",
+     "stdin": "",
+     "expected": "[3, 2, 1]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nreverse_ends(L, 2)\nprint(L)",
+     "stdin": "8 9 10 11",
+     "expected": "[9, 8, 10, 11]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nreverse_ends(L, 5)\nprint(L)",
+     "stdin": "5 4 3 2 1 0",
+     "expected": "[1, 2, 3, 4, 5, 0]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 41,
+   "xml_name": "L07_041_Min Max And Sum",
+   "display_name": "Min Max And Sum",
+   "questiontext_html": "<p>Python has built-in functions that work on a whole list of numbers:</p>\n<ul><li><code>min(L)</code> and <code>max(L)</code> give the smallest and largest item;</li><li><code>sum(L)</code> gives the total (0 for an empty list);</li><li><code>len(L)</code> gives the number of items.</li></ul>\n<pre>temps = [31, 28, 35, 30]\nprint(min(temps), max(temps))\nprint(sum(temps), len(temps))\nprint(sum(temps) / len(temps))</pre>\n<p>Output:</p>\n<pre>28 35\n124 4\n31.0</pre>\n<p>(<code>min</code> and <code>max</code> of an empty list are errors: there is no smallest item.)</p>\n<p><b>Your task:</b> write the function <code>stats(L)</code>, which returns a list <code>[smallest, largest, average]</code> for a non-empty list of integers <code>L</code>, where the average is rounded to 2 decimal places with <code>round(value, 2)</code>.</p>\n<p>For example, <code>stats([31, 28, 35, 30])</code> returns <code>[28, 35, 31.0]</code>.</p>",
+   "answerpreload": "# Define stats(L): return [min, max, average rounded to 2 places].\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(stats([31, 28, 35, 30]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(stats([31, 28, 35, 30]))",
+     "stdin": "",
+     "expected": "[28, 35, 31.0]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(stats([-5]))",
+     "stdin": "",
+     "expected": "[-5, -5, -5.0]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(stats([1, 2]))",
+     "stdin": "",
+     "expected": "[1, 2, 1.5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(stats(L))",
+     "stdin": "10 20 31",
+     "expected": "[10, 31, 20.33]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(stats(L))",
+     "stdin": "-3 -1 -2 -9",
+     "expected": "[-9, -1, -3.75]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 42,
+   "xml_name": "L07_042_Remove Duplicates",
+   "display_name": "Remove Duplicates",
+   "questiontext_html": "<p>The last questions put several ideas together, with less help. Think first about <b>which list tools</b> you need (a new list with <code>append</code>? <code>in</code>? <code>sorted</code>? a slice?), and test your function on small examples, including an <b>empty list</b> and a list with <b>one item</b>.</p>\n<p><b>Your task:</b> write the function <code>unique(L)</code>, which returns a new list with the items of <code>L</code> but without repeats: only the <b>first</b> time each value appears is kept, in the original order. <code>L</code> must not change.</p>\n<p>For example, <code>unique([3, 1, 3, 2, 1])</code> returns <code>[3, 1, 2]</code>.</p>",
+   "answerpreload": "# Define unique(L).\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(unique([3, 1, 3, 2, 1]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(unique([3, 1, 3, 2, 1]))",
+     "stdin": "",
+     "expected": "[3, 1, 2]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(unique([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(unique([\"a\", \"a\", \"a\"]))",
+     "stdin": "",
+     "expected": "['a']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(unique(L))\nprint(L)",
+     "stdin": "5 6 5 7 6 8",
+     "expected": "[5, 6, 7, 8]\n[5, 6, 5, 7, 6, 8]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(unique(L))",
+     "stdin": "1 2 3",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 43,
+   "xml_name": "L07_043_Second Largest",
+   "display_name": "Second Largest",
+   "questiontext_html": "<p>The last questions put several ideas together, with less help. Think first about <b>which list tools</b> you need (a new list with <code>append</code>? <code>in</code>? <code>sorted</code>? a slice?), and test your function on small examples, including an <b>empty list</b> and a list with <b>one item</b>.</p>\n<p><b>Your task:</b> write the function <code>second_largest(L)</code>, which returns the second largest <b>different</b> value in the list of integers <code>L</code>. For example, in <code>[5, 9, 9, 7]</code> the largest value is 9 and the second largest different value is 7. <code>L</code> has at least two different values. <code>L</code> must not change.</p>\n<p>For example, <code>second_largest([5, 9, 9, 7])</code> returns <code>7</code>.</p>",
+   "answerpreload": "# Define second_largest(L).\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(second_largest([5, 9, 9, 7]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(second_largest([5, 9, 9, 7]))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(second_largest([1, 2]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(second_largest([-4, -4, -8]))",
+     "stdin": "",
+     "expected": "-8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(second_largest(L))\nprint(L)",
+     "stdin": "3 10 10 10 2 8",
+     "expected": "8\n[3, 10, 10, 10, 2, 8]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(second_largest(L))",
+     "stdin": "7 7 7 6",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 44,
+   "xml_name": "L07_044_Running Totals",
+   "display_name": "Running Totals",
+   "questiontext_html": "<p>The last questions put several ideas together, with less help. Think first about <b>which list tools</b> you need (a new list with <code>append</code>? <code>in</code>? <code>sorted</code>? a slice?), and test your function on small examples, including an <b>empty list</b> and a list with <b>one item</b>.</p>\n<p><b>Your task:</b> write the function <code>running_totals(L)</code>, which returns a new list of the same length as the list of integers <code>L</code>, where each item is the sum of the items of <code>L</code> <b>up to and including</b> that position. An empty list gives an empty list.</p>\n<p>For example, <code>running_totals([3, 1, 4, 1])</code> returns <code>[3, 4, 8, 9]</code> (3, 3+1, 3+1+4, 3+1+4+1).</p>",
+   "answerpreload": "# Define running_totals(L).\n\n\n\n# ---- Use this space to test your function; comment it out before Check ----\n# print(running_totals([3, 1, 4, 1]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(running_totals([3, 1, 4, 1]))",
+     "stdin": "",
+     "expected": "[3, 4, 8, 9]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(running_totals([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(running_totals([-2]))",
+     "stdin": "",
+     "expected": "[-2]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(running_totals(L))",
+     "stdin": "1 1 1 1 1",
+     "expected": "[1, 2, 3, 4, 5]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(running_totals(L))",
+     "stdin": "10 -10 5 -5",
+     "expected": "[10, 0, 5, 0]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "c6fc979655873daa"
+}

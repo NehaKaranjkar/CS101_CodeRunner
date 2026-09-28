@@ -57,6 +57,14 @@
    "duration_minutes": null
   },
   {
+   "file": "Lab7.qbank",
+   "title": "Lab 7: Lists",
+   "description": "Creating and converting lists, positive and negative indexing, nested lists, slicing, mutability and copies, and the most useful list methods.",
+   "questions": 44,
+   "marks": 44.0,
+   "duration_minutes": null
+  },
+  {
    "file": "Practice_Set_1.qbank",
    "title": "Practice Set 1",
    "description": "Easy, medium and difficult questions covering all topics from Labs 1 to 5.",
