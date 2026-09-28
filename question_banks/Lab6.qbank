@@ -1,0 +1,2650 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab6",
+ "encrypted": false,
+ "source_xml": "Lab6.xml",
+ "built_at": "2026-09-27T18:34:47",
+ "settings": {
+  "title": "Lab 6: Errors and Debugging",
+  "description": "Reading error messages and fixing broken code: syntax, indentation, NameError, TypeError, IndexError and more, then finding logical errors that give no message at all.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "5, 10, ...",
+   "steps": [
+    5.0,
+    10.0
+   ],
+   "extend": true
+  },
+  "penalty_text": "Penalty on: -5%, -10%, -15%, ... after 1, 2, 3, ... failed Checks. Final submit counts as a Check for changed answers. Pre-check is free.",
+  "sections": [
+   {
+    "heading": "Syntax errors",
+    "start": 1,
+    "count": 7
+   },
+   {
+    "heading": "Indentation errors",
+    "start": 8,
+    "count": 4
+   },
+   {
+    "heading": "NameError",
+    "start": 12,
+    "count": 4
+   },
+   {
+    "heading": "TypeError and ValueError",
+    "start": 16,
+    "count": 7
+   },
+   {
+    "heading": "IndexError and ZeroDivisionError",
+    "start": 23,
+    "count": 6
+   },
+   {
+    "heading": "Programs that never stop",
+    "start": 29,
+    "count": 4
+   },
+   {
+    "heading": "Mixed errors",
+    "start": 33,
+    "count": 3
+   },
+   {
+    "heading": "Logical errors",
+    "start": 36,
+    "count": 11
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L06_001_Missing Colon",
+   "display_name": "Missing Colon",
+   "questiontext_html": "<p>Welcome to Lab 6! So far you have been writing code. In this lab you will <b>fix</b> code. Every programmer, even an expert, writes code with mistakes. Finding and fixing them is called <b>debugging</b>, and it is one of the most useful skills you can learn.</p>\n<p>Mistakes in Python programs come in a few kinds:</p>\n<ul><li><b>Syntax errors:</b> the code breaks Python's grammar rules (a missing <code>:</code> or bracket, a misspelled keyword). Python refuses to run the program at all.</li><li><b>Runtime errors:</b> the grammar is fine, but something goes wrong while the program runs (using a name that does not exist, adding text to a number, reading past the end of a list). The program stops at that line.</li><li><b>Logical errors:</b> the program runs and finishes, but the answer is wrong. Python gives no message at all, so these are the hardest to find.</li></ul>\n<p><b>How to read an error message.</b> When Python finds an error, it prints a message like this one (for a program where line 3 is <code>if age &gt;= 18</code> with no colon):</p>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 3\n  if age &gt;= 18\n              ^\nSyntaxError: expected &#x27;:&#x27;</pre>\n<p>Read it from the bottom up:</p>\n<ul><li>The <b>last line</b> gives the error type (<code>SyntaxError</code>) and a short message (<code>expected ':'</code>).</li><li>The line above shows the <b>line number</b> and the code on that line, and <code>^</code> points near the problem.</li></ul>\n<p>(The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>The rule for this error:</b> every line that starts a block (<code>if</code>, <code>elif</code>, <code>else</code>, <code>for</code>, <code>while</code>, <code>def</code>) must end with a colon <code>:</code>.</p>\n<p><b>Pre-check and Check in this lab.</b> This lab has a small penalty: each failed <b>Check</b> lowers the marks that question can still earn. <b>Pre-check is always free.</b> So press Pre-check to see the error message, fix the code, Pre-check again, and press Check only when you think the code is correct.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the program below reads a student's marks (an integer from 0 to 100) and should print <code>Pass</code> if the marks are 40 or more, otherwise <code>Fail</code>. It has a syntax error. Fix it.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nmarks = int(input())\nif marks >= 40\n    print(\"Pass\")\nelse:\n    print(\"Fail\")\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "55",
+     "expected": "Pass",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "40",
+     "expected": "Pass",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "12",
+     "expected": "Fail",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "39",
+     "expected": "Fail",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "Pass",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L06_002_Missing Closing Bracket",
+   "display_name": "Missing Closing Bracket",
+   "questiontext_html": "<p>Brackets always come in pairs: every <code>(</code> needs a matching <code>)</code>, and every <code>[</code> needs a matching <code>]</code>. If one is missing, Python reaches the end of the line (or the program) still waiting for it, and reports a syntax error. For example:</p>\n<pre>x = 5\nprint(&quot;Value:&quot;, x</pre>\n<p>gives:</p>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2\n  print(&quot;Value:&quot;, x\n       ^\nSyntaxError: &#x27;(&#x27; was never closed</pre>\n<p>Notice that the message says <b>which bracket</b> was never closed and on which line it was opened. Sometimes Python notices the problem only on a later line, so if the line it points to looks fine, look at the line <b>just before</b> it too. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> the program below reads a name and should print a greeting in exactly this format: <code>Hello, &lt;name&gt;!</code>. Fix the syntax error.</p>\n<p>For example, if the input is <code>Asha</code>, the output is <code>Hello, Asha!</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nname = input()\nprint(\"Hello, \" + name + \"!\"\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "Asha",
+     "expected": "Hello, Asha!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Zoro",
+     "expected": "Hello, Zoro!",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Ravi Kumar",
+     "expected": "Hello, Ravi Kumar!",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Hermione",
+     "expected": "Hello, Hermione!",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L06_003_Unterminated String",
+   "display_name": "Unterminated String",
+   "questiontext_html": "<p>A <b>string</b> (text) must start and end with the same kind of quote: <code>\"like this\"</code> or <code>'like this'</code>. If the closing quote is missing, Python keeps reading everything after the opening quote as text, until the end of the line, and then reports an error:</p>\n<pre>city = &quot;Goa\nprint(city)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 1\n  city = &quot;Goa\n         ^\nSyntaxError: unterminated string literal (detected at line 1)</pre>\n<p>A related mistake is putting the closing quote in the wrong place, so that code which should be outside the string ends up inside it. Look carefully at where each string starts and ends. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> the program below reads an integer <code>n</code> and should print the text <code>Double is:</code> followed by the value of <code>2 * n</code>, separated by a space. Fix the error.</p>\n<p>For example, if the input is <code>5</code>, the output is <code>Double is: 10</code>.</p>\n<p><b>Python fact:</b> <code>print(\"Total:\", t)</code> prints the text, a space, then the value of <code>t</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nn = int(input())\nprint(\"Double is:, n * 2)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "Double is: 10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Double is: 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-7",
+     "expected": "Double is: -14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "21",
+     "expected": "Double is: 42",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1000",
+     "expected": "Double is: 2000",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L06_004_Assignment Instead Of Comparison",
+   "display_name": "Assignment Instead Of Comparison",
+   "questiontext_html": "<p>In Python, <code>=</code> and <code>==</code> mean very different things:</p>\n<ul><li><code>x = 5</code> is <b>assignment</b>: store 5 in <code>x</code>.</li><li><code>x == 5</code> is <b>comparison</b>: is <code>x</code> equal to 5? The answer is <code>True</code> or <code>False</code>.</li></ul>\n<p>A condition in an <code>if</code> or <code>while</code> must be a comparison, so it needs <code>==</code>. Using <code>=</code> there is a syntax error:</p>\n<pre>count = 3\nif count = 3:\n    print(&quot;three&quot;)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2\n  if count = 3:\n     ^^^^^^^^^\nSyntaxError: invalid syntax. Maybe you meant &#x27;==&#x27; or &#x27;:=&#x27; instead of &#x27;=&#x27;?</pre>\n<p>Newer versions of Python even suggest the fix (\"Maybe you meant '=='...\"). (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the program below reads an integer and should print <code>Even</code> if it is even, otherwise <code>Odd</code>. (An integer is even when the remainder after dividing by 2 is 0; <code>0</code> is even, and negative integers work the same way.) Fix the error.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nn = int(input())\nif n % 2 = 0:\n    print(\"Even\")\nelse:\n    print(\"Odd\")\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "Even",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "Odd",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Even",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-3",
+     "expected": "Odd",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "Even",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L06_005_Misspelled Keyword",
+   "display_name": "Misspelled Keyword",
+   "questiontext_html": "<p><b>Keywords</b> are the special words of Python: <code>if</code>, <code>elif</code>, <code>else</code>, <code>while</code>, <code>for</code>, <code>in</code>, <code>def</code>, <code>return</code>, <code>and</code>, <code>or</code>, <code>not</code>, <code>True</code>, <code>False</code> and a few more. They must be spelled exactly right, in lowercase. A misspelled keyword is just an unknown word to Python, and the line no longer makes sense:</p>\n<pre>count = 0\nwhlie count &lt; 3:\n    count = count + 1</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2\n  whlie count &lt; 3:\n        ^^^^^\nSyntaxError: invalid syntax</pre>\n<p>A misspelled keyword usually gives the plain message <code>invalid syntax</code>, with <code>^</code> pointing at or just after the word. When you see <code>invalid syntax</code> and the line looks almost right, <b>check the spelling of every keyword on that line</b>. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the program below reads a positive integer <code>n</code> (int &gt; 0) and should print the numbers from 1 to <code>n</code>, one per line. Fix the error.</p>\n<p>For example, if the input is <code>3</code>, the output is:</p>\n<pre>1\n2\n3</pre>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nn = int(input())\ni = 1\nwhlie i <= n:\n    print(i)\n    i = i + 1\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1\n2\n3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1\n2\n3\n4\n5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "8",
+     "expected": "1\n2\n3\n4\n5\n6\n7\n8",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L06_006_Else If Instead Of Elif",
+   "display_name": "Else If Instead Of Elif",
+   "questiontext_html": "<p>Some other programming languages write <code>else if</code>. Python uses one word: <b><code>elif</code></b>. Writing <code>else if</code> is a syntax error, because after <code>else</code> Python expects only a colon:</p>\n<pre>if x &gt; 0:\n    print(&quot;positive&quot;)\nelse if x &lt; 0:\n    print(&quot;negative&quot;)</pre>\n<p>gives <code>SyntaxError</code> pointing at the <code>if</code> after <code>else</code> (the message is usually <code>expected ':'</code> or <code>invalid syntax</code>). (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p>Remember the shape of a chain of conditions:</p>\n<pre>if condition1:\n    ...\nelif condition2:\n    ...\nelse:\n    ...</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the program below reads a temperature (an integer, in degrees Celsius) and should print:</p>\n<ul><li><code>Hot</code> if the temperature is more than 30,</li><li><code>Pleasant</code> if it is from 20 to 30 (both included),</li><li><code>Cold</code> if it is less than 20.</li></ul>\n<p>Fix the error.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ntemp = int(input())\nif temp > 30:\n    print(\"Hot\")\nelse if temp >= 20:\n    print(\"Pleasant\")\nelse:\n    print(\"Cold\")\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "35",
+     "expected": "Hot",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "25",
+     "expected": "Pleasant",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "20",
+     "expected": "Pleasant",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "30",
+     "expected": "Pleasant",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "Cold",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "31",
+     "expected": "Hot",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "19",
+     "expected": "Cold",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L06_007_Missing Comma",
+   "display_name": "Missing Comma",
+   "questiontext_html": "<p>Items in a list, and arguments to a function such as <code>print</code>, are separated by <b>commas</b>. If a comma is missing, Python sees two things side by side with nothing joining them, which is not allowed:</p>\n<pre>colours = [&quot;red&quot;, &quot;green&quot; &quot;blue&quot;]\nprint(&quot;Colours:&quot; colours)</pre>\n<p>The second line gives:</p>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2\n  print(&quot;Colours:&quot; colours)\n        ^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Perhaps you forgot a comma?</pre>\n<p>(The first line is also a mistake, but a sneaky one: Python joins two strings written next to each other, so the list silently becomes <code>[\"red\", \"greenblue\"]</code>. Mistakes that give no error message are called <b>logical errors</b>; you will meet many of them at the end of this lab.) (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> the program below reads two integers (one per line) and should print <code>Sum:</code> followed by their sum, separated by a space. Fix the error.</p>\n<p>For example, if the inputs are <code>3</code> and <code>4</code>, the output is <code>Sum: 7</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\na = int(input())\nb = int(input())\nprint(\"Sum:\" a + b)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3\n4",
+     "expected": "Sum: 7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-2\n5",
+     "expected": "Sum: 3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0\n0",
+     "expected": "Sum: 0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "120\n-45",
+     "expected": "Sum: 75",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L06_008_Expected An Indented Block",
+   "display_name": "Expected An Indented Block",
+   "questiontext_html": "<p>Python uses <b>indentation</b> (spaces at the start of a line) to know which lines belong inside a block. After a line ending in <code>:</code> (an <code>if</code>, <code>else</code>, loop or <code>def</code>), the next line <b>must</b> be indented. If it is not, Python reports an <code>IndentationError</code>:</p>\n<pre>for k in range(2):\nprint(k)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2\n  print(k)\n  ^\nIndentationError: expected an indented block after &#x27;for&#x27; statement on line 1</pre>\n<p><code>IndentationError</code> is a special kind of syntax error: Python cannot even start running the program. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the program below reads a positive integer <code>n</code> (int &gt; 0) and should print the squares <code>1*1, 2*2, ..., n*n</code>, one per line. Fix the error.</p>\n<p>For example, if the input is <code>3</code>, the output is:</p>\n<pre>1\n4\n9</pre>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nn = int(input())\nfor i in range(1, n + 1):\nprint(i * i)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3",
+     "expected": "1\n4\n9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "1\n4\n9\n16\n25",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "1\n4\n9\n16",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L06_009_Unexpected Indent",
+   "display_name": "Unexpected Indent",
+   "questiontext_html": "<p>The opposite mistake: a line is indented when it should not be. Only lines inside a block (after a line ending with <code>:</code>) may be indented. A stray indent, often from a stray Tab or from copying code, gives:</p>\n<pre>x = 10\n    y = 20\nprint(x + y)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2\n  y = 20\nIndentationError: unexpected indent</pre>\n<p>Lines that are not inside any block must start at the very left edge, with no spaces in front. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> the program below reads two integers (one per line) and should print their product. Fix the error.</p>\n<p>For example, if the inputs are <code>3</code> and <code>4</code>, the output is <code>12</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\na = int(input())\n    b = int(input())\nprint(a * b)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "3\n4",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0\n9",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-2\n6",
+     "expected": "-12",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7\n7",
+     "expected": "49",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L06_010_Unindent Does Not Match",
+   "display_name": "Unindent Does Not Match",
+   "questiontext_html": "<p>When a block ends, the next line must go back to <b>exactly</b> the indentation of an earlier line. Going back only part of the way (say 2 spaces instead of 0 or 4) confuses Python:</p>\n<pre>if 5 &gt; 3:\n    print(&quot;yes&quot;)\n  print(&quot;done&quot;)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 3\n  print(&quot;done&quot;)\n               ^\nIndentationError: unindent does not match any outer indentation level</pre>\n<p>The fix depends on what the line should do: if it belongs <b>inside</b> the block, indent it like the other lines of the block; if it should run <b>after</b> the block, move it all the way back. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the program below reads an integer and should print <code>Positive</code> if it is more than 0, otherwise <code>Not positive</code>. After that, it should always print <code>Done</code> (for every input). Fix the error.</p>\n<p>For example, if the input is <code>5</code>, the output is:</p>\n<pre>Positive\nDone</pre>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nn = int(input())\nif n > 0:\n    print(\"Positive\")\nelse:\n    print(\"Not positive\")\n  print(\"Done\")\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "Positive\nDone",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Not positive\nDone",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-4",
+     "expected": "Not positive\nDone",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "12",
+     "expected": "Positive\nDone",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L06_011_Body Of Def Not Indented",
+   "display_name": "Body Of Def Not Indented",
+   "questiontext_html": "<p>The body of a function is a block too, so every line of it must be indented under the <code>def</code> line:</p>\n<pre>def greet():\nprint(&quot;Hi&quot;)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2\n  print(&quot;Hi&quot;)\n  ^\nIndentationError: expected an indented block after function definition on line 1</pre>\n<p>From now on most questions are <b>functions</b>, as in Labs 4 and 5: the tests call your function, for example <code>print(cube(3))</code>, and compare what is printed. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>cube(x)</code>, which should return <code>x * x * x</code> for any integer <code>x</code>.</p>\n<p>For example, <code>cube(3)</code> returns <code>27</code> and <code>cube(-2)</code> returns <code>-8</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef cube(x):\nreturn x * x * x\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(cube(3))",
+     "stdin": "",
+     "expected": "27",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(cube(0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(cube(-2))",
+     "stdin": "",
+     "expected": "-8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(cube(5))",
+     "stdin": "",
+     "expected": "125",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(cube(-4))",
+     "stdin": "",
+     "expected": "-64",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(cube(10))",
+     "stdin": "",
+     "expected": "1000",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L06_012_Misspelled Variable",
+   "display_name": "Misspelled Variable",
+   "questiontext_html": "<p>Now we move from syntax errors to <b>runtime errors</b>. The program starts running, and stops at the line where something goes wrong. The message shows the line number, the error type and a short explanation.</p>\n<p>A <code>NameError</code> means Python met a name (a variable or a function) that it does not know. The most common cause is a <b>spelling mistake</b>: a variable is created with one spelling and used with another.</p>\n<pre>speed = 60\ntime = 2\ndistance = sped * time</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 3, in &lt;module&gt;\n  distance = sped * time\nNameError: name &#x27;sped&#x27; is not defined. Did you mean: &#x27;speed&#x27;?</pre>\n<p>Newer versions of Python even suggest the name you probably meant (\"Did you mean: ...\"). (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> fix the function <code>final_price(price, discount)</code>. It is given a price and a discount percentage (from 0 to 100) and should return the price after the discount, rounded to 2 decimal places with <code>round(value, 2)</code>. For example, <code>print(round(3.14159, 2))</code> gives <code>3.14</code>.</p>\n<p>The discount amount is <code>price * discount / 100</code>. For example, <code>final_price(200, 10)</code> returns <code>180.0</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef final_price(price, discount):\n    discount_amount = price * discount / 100\n    return round(price - discount_amont, 2)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(final_price(200, 10))",
+     "stdin": "",
+     "expected": "180.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(final_price(50, 0))",
+     "stdin": "",
+     "expected": "50.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(final_price(99.5, 20))",
+     "stdin": "",
+     "expected": "79.6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(final_price(1000, 15))",
+     "stdin": "",
+     "expected": "850.0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L06_013_Wrong Capital Letters",
+   "display_name": "Wrong Capital Letters",
+   "questiontext_html": "<p>Python is <b>case-sensitive</b>: <code>total</code>, <code>Total</code> and <code>TOTAL</code> are three different names. The same is true for built-in functions: <code>print</code> works, but <code>Print</code> does not exist.</p>\n<pre>Count = 3\nprint(count)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2, in &lt;module&gt;\n  print(count)\nNameError: name &#x27;count&#x27; is not defined. Did you mean: &#x27;Count&#x27;?</pre>\n<p>A good habit: write all your variable names in lowercase, with <code>_</code> between words (<code>max_value</code>, <code>total_marks</code>). (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> fix the function <code>rectangle_area(length, width)</code>, which should return the area of a rectangle, <code>length * width</code> (both are non-negative integers).</p>\n<p>For example, <code>rectangle_area(3, 4)</code> returns <code>12</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef rectangle_area(length, width):\n    Area = length * width\n    return area\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(rectangle_area(3, 4))",
+     "stdin": "",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(rectangle_area(5, 0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(rectangle_area(7, 8))",
+     "stdin": "",
+     "expected": "56",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(rectangle_area(1, 1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L06_014_Text Without Quotes",
+   "display_name": "Text Without Quotes",
+   "questiontext_html": "<p>Text that should be printed as it is must be inside quotes. Without quotes, Python thinks the word is the <b>name</b> of a variable, and if there is no such variable you get a <code>NameError</code>:</p>\n<pre>print(Welcome)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 1, in &lt;module&gt;\n  print(Welcome)\nNameError: name &#x27;Welcome&#x27; is not defined</pre>\n<p>Programs often have the <b>same mistake in more than one place</b>. Python stops at the first error, so after you fix one, Pre-check again: there may be another one further down. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> the program below reads a name and should print two lines: <code>Welcome</code> followed by the name (separated by a space), and then <code>Goodbye</code>. Fix all the errors.</p>\n<p>For example, if the input is <code>Asha</code>, the output is:</p>\n<pre>Welcome Asha\nGoodbye</pre>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nname = input()\nprint(Welcome, name)\nprint(Goodbye)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "Asha",
+     "expected": "Welcome Asha\nGoodbye",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Luffy",
+     "expected": "Welcome Luffy\nGoodbye",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Ravi Kumar",
+     "expected": "Welcome Ravi Kumar\nGoodbye",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "Frodo",
+     "expected": "Welcome Frodo\nGoodbye",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L06_015_Called Before Definition",
+   "display_name": "Called Before Definition",
+   "questiontext_html": "<p>Python runs a program <b>from top to bottom</b>. A <code>def</code> line creates the function only when Python reaches it. So if you call a function on a line <b>above</b> its <code>def</code>, the function does not exist yet:</p>\n<pre>print(half(10))\n\ndef half(x):\n    return x / 2</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 1, in &lt;module&gt;\n  print(half(10))\nNameError: name &#x27;half&#x27; is not defined</pre>\n<p>Always put your function definitions first, and the code that uses them after. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the program below reads an integer <code>n</code> and should print <code>2 * n</code> using the function <code>double_it</code>. Fix the error.</p>\n<p>For example, if the input is <code>4</code>, the output is <code>8</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nn = int(input())\nprint(double_it(n))\n\ndef double_it(x):\n    return 2 * x\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "-3",
+     "expected": "-6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "50",
+     "expected": "100",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "L06_016_Input Not Converted",
+   "display_name": "Input Not Converted",
+   "questiontext_html": "<p>Every value in Python has a <b>type</b>: <code>int</code> (whole numbers like <code>7</code>), <code>float</code> (decimals like <code>2.5</code>), <code>str</code> (text like <code>\"7\"</code>), <code>bool</code> (<code>True</code>/<code>False</code>), <code>list</code>, and so on. A <code>TypeError</code> means an operation was used on the wrong type of value.</p>\n<p>A very common case: <code>input()</code> always gives <b>text</b> (a <code>str</code>), even when the user types digits. Text and a number cannot be added:</p>\n<pre>year = input()\nprint(year + 1)</pre>\n<p>If the user types <code>2025</code>, this gives:</p>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2, in &lt;module&gt;\n  print(year + 1)\nTypeError: can only concatenate str (not &quot;int&quot;) to str</pre>\n<p>The fix is to convert the text to a number with <code>int(...)</code> (or <code>float(...)</code> for decimals) as soon as you read it. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> the program below reads a person's age (a non-negative integer) and should print <code>Next year you will be</code> followed by the age next year. Fix the error.</p>\n<p>For example, if the input is <code>18</code>, the output is <code>Next year you will be 19</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nage = input()\nnext_age = age + 1\nprint(\"Next year you will be\", next_age)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "18",
+     "expected": "Next year you will be 19",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "Next year you will be 1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "45",
+     "expected": "Next year you will be 46",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "7",
+     "expected": "Next year you will be 8",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "L06_017_Adding Text And A Number",
+   "display_name": "Adding Text And A Number",
+   "questiontext_html": "<p>The <code>+</code> operator means <b>add</b> for numbers but <b>join</b> for strings. Python does not guess what you want when one side is text and the other is a number:</p>\n<pre>score = 42\nmessage = &quot;Score: &quot; + score</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2, in &lt;module&gt;\n  message = &quot;Score: &quot; + score\nTypeError: can only concatenate str (not &quot;int&quot;) to str</pre>\n<p><b>Python fact:</b> <code>str(x)</code> converts a value to text, so <code>\"Score: \" + str(score)</code> gives the string <code>\"Score: 42\"</code>. (Inside <code>print</code> you can also use commas, <code>print(\"Score:\", score)</code>, but a function that must <b>return</b> one string needs <code>str()</code>.) (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> fix the function <code>bill_message(price, quantity)</code> (both non-negative integers). It should return the text <code>Total: </code> followed by <code>price * quantity</code>.</p>\n<p>For example, <code>bill_message(20, 3)</code> returns <code>\"Total: 60\"</code>, so <code>print(bill_message(20, 3))</code> prints <code>Total: 60</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef bill_message(price, quantity):\n    total = price * quantity\n    return \"Total: \" + total\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(bill_message(20, 3))",
+     "stdin": "",
+     "expected": "Total: 60",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(bill_message(5, 0))",
+     "stdin": "",
+     "expected": "Total: 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(bill_message(99, 2))",
+     "stdin": "",
+     "expected": "Total: 198",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(bill_message(1, 1))",
+     "stdin": "",
+     "expected": "Total: 1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "L06_018_Wrong Number Of Arguments",
+   "display_name": "Wrong Number Of Arguments",
+   "questiontext_html": "<p>When you call a function, you must give it <b>exactly as many arguments as its <code>def</code> line has parameters</b>. Too few or too many gives a <code>TypeError</code> that names the function and the missing argument:</p>\n<pre>def add(a, b):\n    return a + b\n\nprint(add(5))</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 4, in &lt;module&gt;\n  print(add(5))\nTypeError: add() missing 1 required positional argument: &#x27;b&#x27;</pre>\n<p>Notice that this traceback has <b>more than one</b> <code>File ... line ...</code> entry: it lists the chain of calls. The last entry is where the error happened; the ones above show which line called it. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the code below. <code>rectangle_perimeter(length, width)</code> returns <code>2 * (length + width)</code> and is correct. <code>square_perimeter(side)</code> should return the perimeter of a square with that side (a square is a rectangle whose length and width are equal), but it has an error. All sides are non-negative integers.</p>\n<p>For example, <code>square_perimeter(5)</code> returns <code>20</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef rectangle_perimeter(length, width):\n    return 2 * (length + width)\n\ndef square_perimeter(side):\n    return rectangle_perimeter(side)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(square_perimeter(5))",
+     "stdin": "",
+     "expected": "20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(square_perimeter(0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(rectangle_perimeter(2, 3))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(square_perimeter(7))",
+     "stdin": "",
+     "expected": "28",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(square_perimeter(13))",
+     "stdin": "",
+     "expected": "52",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "L06_019_Length Of A Number",
+   "display_name": "Length Of A Number",
+   "questiontext_html": "<p><code>len()</code> gives the length of a <b>string</b> or a <b>list</b>: <code>len(\"cat\")</code> is 3 and <code>len([4, 8, 1])</code> is 3. A number such as <code>345</code> has no length, so <code>len(345)</code> is a <code>TypeError</code>:</p>\n<pre>n = 2025\nprint(len(n))</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2, in &lt;module&gt;\n  print(len(n))\nTypeError: object of type &#x27;int&#x27; has no len()</pre>\n<p><b>Python fact:</b> <code>str(n)</code> turns a number into text: <code>str(2025)</code> is <code>\"2025\"</code>, and <code>len(str(2025))</code> is 4. (You could also count digits with a <code>while</code> loop and <code>// 10</code>, as in Lab 4.) (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> fix the function <code>count_digits(n)</code>, which should return the number of digits of a non-negative integer <code>n</code> (int &gt;= 0). The number <code>0</code> has 1 digit.</p>\n<p>For example, <code>count_digits(345)</code> returns <code>3</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef count_digits(n):\n    return len(n)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_digits(345))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(7))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(0))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(100000))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(42))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "L06_020_Print Instead Of Return",
+   "display_name": "Print Instead Of Return",
+   "questiontext_html": "<p><code>print</code> and <code>return</code> are not the same:</p>\n<ul><li><code>print(x)</code> <b>shows</b> <code>x</code> on the screen. The value is gone after that; the caller cannot use it.</li><li><code>return x</code> <b>gives</b> <code>x</code> back to the caller, who can store it or calculate with it.</li></ul>\n<p>A function with no <code>return</code> gives back a special value, <b><code>None</code></b> (meaning \"nothing\"). Calculating with <code>None</code> gives a <code>TypeError</code>:</p>\n<pre>def triple(x):\n    print(3 * x)\n\nresult = triple(4) + 1</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 4, in &lt;module&gt;\n  result = triple(4) + 1\nTypeError: unsupported operand type(s) for +: &#x27;NoneType&#x27; and &#x27;int&#x27;</pre>\n<p>Here <code>12</code> is printed first, and then the program stops. <code>NoneType</code> is the type of <code>None</code>. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the code below so that <code>sum_of_squares(a, b)</code> returns <code>a * a + b * b</code> (for any integers <code>a</code> and <code>b</code>), using the helper function <code>square</code>. Nothing else should be printed.</p>\n<p>For example, <code>sum_of_squares(3, 4)</code> returns <code>25</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef square(x):\n    print(x * x)\n\ndef sum_of_squares(a, b):\n    return square(a) + square(b)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_of_squares(3, 4))",
+     "stdin": "",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_squares(0, 2))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_squares(-1, 6))",
+     "stdin": "",
+     "expected": "37",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_squares(10, 10))",
+     "stdin": "",
+     "expected": "200",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 21,
+   "xml_name": "L06_021_Decimal Input With Int",
+   "display_name": "Decimal Input With Int",
+   "questiontext_html": "<p>A <code>ValueError</code> means the <b>type</b> is right but the <b>value</b> is not acceptable. For example, <code>int()</code> accepts text, but only text that looks like a whole number: <code>int(\"42\")</code> works, but <code>int(\"4.5\")</code> and <code>int(\"hello\")</code> do not:</p>\n<pre>weight = int(input())</pre>\n<p>If the user types <code>62.5</code>:</p>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 1, in &lt;module&gt;\n  weight = int(input())\nValueError: invalid literal for int() with base 10: &#x27;62.5&#x27;</pre>\n<p>For inputs that may have a decimal point, use <code>float(...)</code> instead of <code>int(...)</code>. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> the program below reads the price of one item (a non-negative number, possibly with decimals) and then a quantity (a non-negative integer), and should print <code>Total:</code> followed by <code>price * quantity</code> rounded to 2 decimal places with <code>round(value, 2)</code>. Fix the error.</p>\n<p>For example, if the inputs are <code>12.5</code> and <code>4</code>, the output is <code>Total: 50.0</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nprice = int(input())\nqty = int(input())\nprint(\"Total:\", round(price * qty, 2))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "12.5\n4",
+     "expected": "Total: 50.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9.99\n3",
+     "expected": "Total: 29.97",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100\n2",
+     "expected": "Total: 200.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0.5\n7",
+     "expected": "Total: 3.5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "149.95\n2",
+     "expected": "Total: 299.9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 22,
+   "xml_name": "L06_022_Index Of A Missing Value",
+   "display_name": "Index Of A Missing Value",
+   "questiontext_html": "<p>In Lab 5 you met <code>lst.index(x)</code>, which gives the position of the first <code>x</code> in a list: <code>[4, 7, 9].index(7)</code> is <code>1</code>. But if <code>x</code> is <b>not</b> in the list, <code>index</code> has no answer to give, and raises a <code>ValueError</code>:</p>\n<pre>days = [&quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;]\nprint(days.index(&quot;Sun&quot;))</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2, in &lt;module&gt;\n  print(days.index(&quot;Sun&quot;))\nValueError: &#x27;Sun&#x27; is not in list</pre>\n<p>To avoid this, <b>check first</b> with the <code>in</code> operator (<code>x in lst</code> is <code>True</code> or <code>False</code>), and use <code>index</code> only when the value is there. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>position_of(lst, x)</code>. It should return the position (index) of the first <code>x</code> in the list of integers <code>lst</code>, or <code>-1</code> if <code>x</code> is not in the list (this includes an empty list).</p>\n<p>For example, <code>position_of([4, 7, 9], 7)</code> returns <code>1</code> and <code>position_of([4, 7, 9], 5)</code> returns <code>-1</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef position_of(lst, x):\n    return lst.index(x)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(position_of([4, 7, 9], 5))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(position_of([4, 7, 9], 7))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(position_of([], 3))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(position_of([2, 8, 2], 2))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(position_of(lst, 6))",
+     "stdin": "1 3 5 7",
+     "expected": "-1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(position_of(lst, 13))",
+     "stdin": "10 11 12 13 14",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 23,
+   "xml_name": "L06_023_Loop One Step Too Far",
+   "display_name": "Loop One Step Too Far",
+   "questiontext_html": "<p>The positions (indices) of a list with <code>n</code> items are <code>0, 1, ..., n - 1</code>. There is <b>no</b> position <code>n</code>. Asking for a position that does not exist gives an <code>IndexError</code>:</p>\n<pre>nums = [10, 20, 30]\nprint(nums[3])</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2, in &lt;module&gt;\n  print(nums[3])\nIndexError: list index out of range</pre>\n<p>A loop like <code>for i in range(len(lst)):</code> visits exactly the valid positions <code>0</code> to <code>len(lst) - 1</code>, because <code>range(k)</code> stops <b>before</b> <code>k</code>. Adding <code>+ 1</code> makes the loop go one step too far. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>list_sum(lst)</code>, which should return the sum of all the integers in <code>lst</code>. The sum of an empty list is <code>0</code>.</p>\n<p>For example, <code>list_sum([4, 8, 15])</code> returns <code>27</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef list_sum(lst):\n    total = 0\n    for i in range(len(lst) + 1):\n        total = total + lst[i]\n    return total\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(list_sum([4, 8, 15]))",
+     "stdin": "",
+     "expected": "27",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([5]))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_sum([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_sum(lst))",
+     "stdin": "3 -1 20 7",
+     "expected": "29",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_sum(lst))",
+     "stdin": "100 200 300 400 500",
+     "expected": "1500",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 24,
+   "xml_name": "L06_024_Last Element Of A List",
+   "display_name": "Last Element Of A List",
+   "questiontext_html": "<p>To get the <b>last</b> item of a list, remember that positions start at 0, so the last position is <code>len(lst) - 1</code>, not <code>len(lst)</code>:</p>\n<pre>letters = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]\nprint(letters[len(letters)])</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2, in &lt;module&gt;\n  print(letters[len(letters)])\nIndexError: list index out of range</pre>\n<p><b>Python fact:</b> negative positions count from the end: <code>lst[-1]</code> is the last item, <code>lst[-2]</code> the one before it. So <code>lst[-1]</code> and <code>lst[len(lst) - 1]</code> are the same item. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Your task:</b> fix the function <code>first_plus_last(lst)</code>, which should return the first item plus the last item of a <b>non-empty</b> list of integers. (For a list with one item, that item is both first and last.)</p>\n<p>For example, <code>first_plus_last([3, 9, 4])</code> returns <code>7</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef first_plus_last(lst):\n    return lst[0] + lst[len(lst)]\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(first_plus_last([3, 9, 4]))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_plus_last([6]))",
+     "stdin": "",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(first_plus_last(lst))",
+     "stdin": "10 -5 8 2 -3",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(first_plus_last(lst))",
+     "stdin": "1 2",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 25,
+   "xml_name": "L06_025_While Loop Past The End",
+   "display_name": "While Loop Past The End",
+   "questiontext_html": "<p>The same off-by-one mistake happens with <code>while</code> loops. To visit every position of a list, the loop must <b>stop before</b> <code>len(lst)</code>, so the condition is <code>i &lt; len(lst)</code>, not <code>i &lt;= len(lst)</code>.</p>\n<p>A good way to check a loop bound: take a tiny list, say <code>[7, 8]</code> (positions 0 and 1), and write down the value of <code>i</code> each time the condition is tested: <code>0</code> (yes), <code>1</code> (yes), <code>2</code> (must be no!).</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>count_even(lst)</code>, which should return how many integers in <code>lst</code> are even. An empty list has 0 even numbers. (Negative numbers can be even too: <code>-4 % 2</code> is <code>0</code>.)</p>\n<p>For example, <code>count_even([1, 2, 3, 4])</code> returns <code>2</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef count_even(lst):\n    count = 0\n    i = 0\n    while i <= len(lst):\n        if lst[i] % 2 == 0:\n            count = count + 1\n        i = i + 1\n    return count\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_even([1, 2, 3, 4]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_even([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_even([7]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_even(lst))",
+     "stdin": "-4 6 9 0 11",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_even(lst))",
+     "stdin": "2 4 6 8 10 12",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 26,
+   "xml_name": "L06_026_Empty List Has No First Item",
+   "display_name": "Empty List Has No First Item",
+   "questiontext_html": "<p>An <b>empty list</b> <code>[]</code> has no items at all, so even <code>lst[0]</code> is an <code>IndexError</code>. Code that starts with the first item, like \"the biggest so far is <code>lst[0]</code>\", must handle the empty list separately, <b>before</b> touching <code>lst[0]</code>:</p>\n<pre>if len(lst) == 0:\n    return ...   # the answer for an empty list</pre>\n<p>When a problem says what to do for an empty list, that is a hint that the empty list will be tested. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>largest(lst)</code>, which should return the largest integer in <code>lst</code>, or <code>0</code> if the list is empty.</p>\n<p>For example, <code>largest([3, 9, 2])</code> returns <code>9</code> and <code>largest([])</code> returns <code>0</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef largest(lst):\n    biggest = lst[0]\n    for x in lst:\n        if x > biggest:\n            biggest = x\n    return biggest\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(largest([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest([3, 9, 2]))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest([-5, -2, -8]))",
+     "stdin": "",
+     "expected": "-2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(largest(lst))",
+     "stdin": "4 18 11 18 7",
+     "expected": "18",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(largest(lst))",
+     "stdin": "-30",
+     "expected": "-30",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 27,
+   "xml_name": "L06_027_Average Of An Empty List",
+   "display_name": "Average Of An Empty List",
+   "questiontext_html": "<p>Dividing by zero has no answer in mathematics, and in Python it gives a <code>ZeroDivisionError</code>:</p>\n<pre>total = 50\ncount = 0\nprint(total / count)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 3, in &lt;module&gt;\n  print(total / count)\nZeroDivisionError: division by zero</pre>\n<p>The same error comes from <code>//</code> and <code>%</code> with 0 on the right. Whenever you divide by something that <b>can</b> be 0 (such as the length of a list that may be empty), check for it first. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>average(lst)</code>, which should return the average of the integers in <code>lst</code>, rounded to 2 decimal places with <code>round(value, 2)</code>. For an empty list it should return <code>0</code>.</p>\n<p>For example, <code>average([2, 3, 4])</code> returns <code>3.0</code> and <code>average([])</code> returns <code>0</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef average(lst):\n    total = 0\n    for x in lst:\n        total = total + x\n    return round(total / len(lst), 2)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(average([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(average([2, 3, 4]))",
+     "stdin": "",
+     "expected": "3.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(average([1, 2]))",
+     "stdin": "",
+     "expected": "1.5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(average(lst))",
+     "stdin": "10 20 31",
+     "expected": "20.33",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(average(lst))",
+     "stdin": "-6 7",
+     "expected": "0.5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 28,
+   "xml_name": "L06_028_Percentage Of Zero Total",
+   "display_name": "Percentage Of Zero Total",
+   "questiontext_html": "<p>Here is another division that can fail. A percentage is <code>part * 100 / total</code>, and if <code>total</code> is <code>0</code> (for example, a test with no questions), the division fails with a <code>ZeroDivisionError</code>. The fix is the same as before: check the dangerous case first, and return the answer the problem asks for. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>percentage(marks, total)</code>, where <code>marks</code> and <code>total</code> are non-negative integers and <code>marks</code> is never more than <code>total</code>. It should return <code>marks * 100 / total</code> rounded to 2 decimal places with <code>round(value, 2)</code>, or <code>0.0</code> when <code>total</code> is 0.</p>\n<p>For example, <code>percentage(45, 50)</code> returns <code>90.0</code> and <code>percentage(0, 0)</code> returns <code>0.0</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef percentage(marks, total):\n    return round(marks * 100 / total, 2)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(percentage(0, 0))",
+     "stdin": "",
+     "expected": "0.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(percentage(45, 50))",
+     "stdin": "",
+     "expected": "90.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(percentage(1, 3))",
+     "stdin": "",
+     "expected": "33.33",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(percentage(7, 8))",
+     "stdin": "",
+     "expected": "87.5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(percentage(50, 200))",
+     "stdin": "",
+     "expected": "25.0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 29,
+   "xml_name": "L06_029_Loop Counter Never Changes",
+   "display_name": "Loop Counter Never Changes",
+   "questiontext_html": "<p>Some programs have no error at all, yet <b>never finish</b>. The most common cause is a <code>while</code> loop whose condition never becomes <code>False</code>, often because the loop body forgets to change the variable that the condition tests.</p>\n<p>A program that never stops cannot be tested, so after a few seconds it is stopped and you see a message like:</p>\n<pre style=\"color:#b3322a\">***Time limit exceeded ... infinite loop?***</pre>\n<p>When you see this, look at every <code>while</code> loop and ask: <b>what changes inside the loop that will eventually make the condition <code>False</code>?</b></p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the program below reads a non-negative integer <code>n</code> (int &gt;= 0) and should print the sum of its digits. It uses <code>n % 10</code> to get the last digit and should use <code>n // 10</code> to remove it. Fix it.</p>\n<p>For example, if the input is <code>123</code>, the output is <code>6</code> (because 1 + 2 + 3 = 6).</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nn = int(input())\ntotal = 0\nwhile n > 0:\n    total = total + n % 10\nprint(total)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "123",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "5",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "0",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "9999",
+     "expected": "36",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1000",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 30,
+   "xml_name": "L06_030_Condition That Never Becomes False",
+   "display_name": "Condition That Never Becomes False",
+   "questiontext_html": "<p>Sometimes the loop variable <b>does</b> change, but it jumps <b>over</b> the value that would stop the loop. A condition like <code>while i != n:</code> stops only if <code>i</code> becomes exactly <code>n</code>. If <code>i</code> goes up in steps of 2, it may never be exactly <code>n</code>.</p>\n<p>Safer conditions use <code>&lt;</code> or <code>&gt;</code> (for example <code>while i &lt; n:</code>), which also stop when the variable goes past the limit.</p>\n<p>Try tracing the loop by hand for a small input where it fails: write down <code>i</code> after each step and see whether the condition ever becomes <code>False</code>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>sum_odds_below(n)</code>, which should return the sum of the odd numbers <code>1, 3, 5, ...</code> that are <b>less than</b> <code>n</code>, for a positive integer <code>n</code> (int &gt; 0). If there are none (when <code>n</code> is 1), the sum is <code>0</code>.</p>\n<p>For example, <code>sum_odds_below(10)</code> returns <code>25</code> (1 + 3 + 5 + 7 + 9) and <code>sum_odds_below(7)</code> returns <code>9</code> (1 + 3 + 5).</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef sum_odds_below(n):\n    total = 0\n    i = 1\n    while i != n:\n        total = total + i\n        i = i + 2\n    return total\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_odds_below(10))",
+     "stdin": "",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_odds_below(7))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_odds_below(1))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_odds_below(2))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_odds_below(15))",
+     "stdin": "",
+     "expected": "49",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_odds_below(20))",
+     "stdin": "",
+     "expected": "100",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 31,
+   "xml_name": "L06_031_Recursion Without Base Case",
+   "display_name": "Recursion Without Base Case",
+   "questiontext_html": "<p>In Lab 5 you learned that every recursive function needs a <b>base case</b>: an input for which it returns an answer directly, without calling itself. Without it, the function calls itself again and again, forever. Python allows only about 1000 calls inside each other, and then stops the program with a <code>RecursionError</code>:</p>\n<pre>def countdown(n):\n    return countdown(n - 1)\n\ncountdown(3)</pre>\n<pre style=\"color:#b3322a\">File &quot;__tester__.python3&quot;, line 2, in countdown\n  return countdown(n - 1)\n[Previous line repeated 996 more times]\nRecursionError: maximum recursion depth exceeded</pre>\n<p>The traceback is very long (the same line again and again), but only its <b>last line</b> matters. (The exact wording of error messages can differ a little between Python versions, but the error type and the line number are what matter.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>factorial(n)</code> for a non-negative integer <code>n</code> (int &gt;= 0). Remember: <code>0! = 1</code>, and <code>n! = n * (n-1)!</code> for <code>n &gt;= 1</code>.</p>\n<p>For example, <code>factorial(5)</code> returns <code>120</code> and <code>factorial(0)</code> returns <code>1</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef factorial(n):\n    return n * factorial(n - 1)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(factorial(5))",
+     "stdin": "",
+     "expected": "120",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(factorial(0))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(factorial(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(factorial(10))",
+     "stdin": "",
+     "expected": "3628800",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(factorial(7))",
+     "stdin": "",
+     "expected": "5040",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 32,
+   "xml_name": "L06_032_Base Case Never Reached",
+   "display_name": "Base Case Never Reached",
+   "questiontext_html": "<p>Having a base case is not enough: the recursive calls must <b>reach</b> it. If each call changes <code>n</code> by 2, a base case <code>n == 0</code> is reached only from even numbers. From an odd number, <code>n</code> goes <code>5, 3, 1, -1, -3, ...</code> and skips 0, so you get a <code>RecursionError</code> again.</p>\n<p>Like with <code>while</code> loops, a base case written with <code>&lt;=</code> or <code>&lt;</code> (for example <code>if n &lt;= 0:</code>) also catches values that jump past the stopping point.</p>\n<p><b>Test with different kinds of input:</b> a program that works for even numbers may fail for odd ones. Always try a few different small inputs.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the recursive function <code>sum_by_twos(n)</code> for a non-negative integer <code>n</code> (int &gt;= 0). It should return <code>n + (n - 2) + (n - 4) + ...</code>, adding only the terms that are more than 0. For <code>n = 0</code> the sum is 0.</p>\n<p>For example, <code>sum_by_twos(5)</code> returns <code>9</code> (5 + 3 + 1) and <code>sum_by_twos(6)</code> returns <code>12</code> (6 + 4 + 2).</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef sum_by_twos(n):\n    if n == 0:\n        return 0\n    return n + sum_by_twos(n - 2)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_by_twos(5))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_by_twos(6))",
+     "stdin": "",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_by_twos(0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_by_twos(7))",
+     "stdin": "",
+     "expected": "16",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_by_twos(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_by_twos(10))",
+     "stdin": "",
+     "expected": "30",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 33,
+   "xml_name": "L06_033_Mixed Errors In A Sum",
+   "display_name": "Mixed Errors In A Sum",
+   "questiontext_html": "<p>This section mixes everything so far. Each program has <b>two or three errors of different kinds</b>. Python shows only one error at a time, so work in a loop: <b>Pre-check, read the message, fix that one error, Pre-check again</b>, until all the tests pass. Some of the errors may give no message at all (the output is simply wrong), so also compare your output with the expected output.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the program below reads a positive integer <code>n</code> (int &gt; 0) and should print <code>Sum is</code> followed by <code>1 + 2 + ... + n</code>. Fix all the errors.</p>\n<p>For example, if the input is <code>4</code>, the output is <code>Sum is 10</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\nn = input()\ntotal = 0\nfor i in range(1, n + 1)\n    totl = total + i\nprint(\"Sum is\", total)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "",
+     "stdin": "4",
+     "expected": "Sum is 10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "1",
+     "expected": "Sum is 1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "10",
+     "expected": "Sum is 55",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "",
+     "stdin": "100",
+     "expected": "Sum is 5050",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 34,
+   "xml_name": "L06_034_Mixed Errors In Counting",
+   "display_name": "Mixed Errors In Counting",
+   "questiontext_html": "<p>This section mixes everything so far. Each program has <b>two or three errors of different kinds</b>. Python shows only one error at a time, so work in a loop: <b>Pre-check, read the message, fix that one error, Pre-check again</b>, until all the tests pass. Some of the errors may give no message at all (the output is simply wrong), so also compare your output with the expected output.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>count_above(lst, limit)</code>, which should return how many integers in <code>lst</code> are <b>strictly greater</b> than <code>limit</code>. For an empty list the answer is <code>0</code>.</p>\n<p>For example, <code>count_above([5, 12, 8, 20], 10)</code> returns <code>2</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef count_above(lst, limit):\n    count = 0\n    for x in lst:\n        if x > limit:\n        count = count + 1\n    return Count\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_above([5, 12, 8, 20], 10))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above([], 3))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above([1, 2, 10], 10))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_above(lst, 0))",
+     "stdin": "-5 0 5 -1 3",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_above(lst, 55))",
+     "stdin": "50 60 70 80",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 35,
+   "xml_name": "L06_035_Mixed Errors In Maximum",
+   "display_name": "Mixed Errors In Maximum",
+   "questiontext_html": "<p>This section mixes everything so far. Each program has <b>two or three errors of different kinds</b>. Python shows only one error at a time, so work in a loop: <b>Pre-check, read the message, fix that one error, Pre-check again</b>, until all the tests pass. Some of the errors may give no message at all (the output is simply wrong), so also compare your output with the expected output.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>max_of_list(lst)</code>, which should return the largest integer in a <b>non-empty</b> list <code>lst</code>, using a <code>while</code> loop.</p>\n<p>For example, <code>max_of_list([3, 17, 5])</code> returns <code>17</code>.</p>",
+   "answerpreload": "# This code has at least one error. Use Pre-check (free) to see the error message.\n# Fix the code, and add a comment saying what you changed.\ndef max_of_list(lst)\n    best = lst[0]\n    i = 1\n    while i <= len(lst):\n        if lst[i] > best\n            best = lst[i]\n        i = i + 1\n    return best\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(max_of_list([3, 17, 5]))",
+     "stdin": "",
+     "expected": "17",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(max_of_list([4]))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(max_of_list([-2, -9]))",
+     "stdin": "",
+     "expected": "-2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(max_of_list(lst))",
+     "stdin": "8 1 22 22 14",
+     "expected": "22",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(max_of_list(lst))",
+     "stdin": "-7 -3 -12",
+     "expected": "-3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 36,
+   "xml_name": "L06_036_Off By One In Range",
+   "display_name": "Off By One In Range",
+   "questiontext_html": "<p>The last section is about <b>logical errors</b>: the program runs without any error message, but gives the <b>wrong answer</b>. Python cannot help you here, because as far as Python knows, the program is fine. You have to find the mistake yourself. These are the most common and the hardest bugs, so here are three techniques that work:</p>\n<p><b>1. Compare \"expected\" with \"got\".</b> After Pre-check, look at the test table: which inputs give a wrong answer, and how wrong? An answer that is a little too small often means a loop stops one step early.</p>\n<p><b>2. Trace by hand with a small input.</b> Take the smallest input that fails and write a <b>trace table</b>: one row for each loop step, one column for each variable. For example, for this loop:</p>\n<pre>total = 0\nfor i in range(1, 4):\n    total = total + i</pre>\n<table border=\"1\" cellpadding=\"4\" style=\"border-collapse:collapse\"><tr><th>step</th><th>i</th><th>total after the step</th></tr><tr><td>1</td><td>1</td><td>1</td></tr><tr><td>2</td><td>2</td><td>3</td></tr><tr><td>3</td><td>3</td><td>6</td></tr></table>\n<p>(<code>range(1, 4)</code> gives 1, 2, 3: it stops <b>before</b> 4.)</p>\n<p><b>3. Add temporary <code>print</code> lines</b> to see what the program is really doing, for example <code>print(\"i =\", i, \"total =\", total)</code> inside the loop. Run it with Pre-check and read the output. <b>Remove these lines before Check</b>, because the extra output makes the tests fail.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>sum_to_n(n)</code>, which should return <code>1 + 2 + ... + n</code> for a positive integer <code>n</code> (int &gt; 0).</p>\n<p>For example, <code>sum_to_n(4)</code> returns <code>10</code>.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef sum_to_n(n):\n    total = 0\n    for i in range(1, n):\n        total = total + i\n    return total\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_to_n(4))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_to_n(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_to_n(10))",
+     "stdin": "",
+     "expected": "55",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_to_n(100))",
+     "stdin": "",
+     "expected": "5050",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 37,
+   "xml_name": "L06_037_Order Of Operations",
+   "display_name": "Order Of Operations",
+   "questiontext_html": "<p>Python follows the same <b>order of operations</b> as mathematics: <code>*</code>, <code>/</code>, <code>//</code> and <code>%</code> are done <b>before</b> <code>+</code> and <code>-</code>. So <code>2 + 6 / 2</code> is <code>2 + 3.0 = 5.0</code>, not <code>4.0</code>. Use brackets to make Python add first: <code>(2 + 6) / 2</code> is <code>4.0</code>.</p>\n<p>When a formula gives a wrong number, write the calculation out step by step for one example, <b>in the order Python does it</b>, and compare with what you meant.</p>\n<p><b>Your task:</b> fix the function <code>average3(a, b, c)</code>, which should return the average of three integers, rounded to 2 decimal places with <code>round(value, 2)</code>.</p>\n<p>For example, <code>average3(3, 6, 9)</code> returns <code>6.0</code>.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef average3(a, b, c):\n    return round(a + b + c / 3, 2)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(average3(3, 6, 9))",
+     "stdin": "",
+     "expected": "6.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(average3(1, 2, 2))",
+     "stdin": "",
+     "expected": "1.67",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(average3(10, 20, 30))",
+     "stdin": "",
+     "expected": "20.0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(average3(-3, 0, 3))",
+     "stdin": "",
+     "expected": "0.0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 38,
+   "xml_name": "L06_038_Division Operators Mixed Up",
+   "display_name": "Division Operators Mixed Up",
+   "questiontext_html": "<p>Python has three division operators, and mixing them up is a common logical error:</p>\n<ul><li><code>/</code> gives the exact answer, always a float: <code>7 / 2</code> is <code>3.5</code>.</li><li><code>//</code> gives the whole number of times it fits (integer division): <code>7 // 2</code> is <code>3</code>.</li><li><code>%</code> gives the <b>remainder</b>: <code>7 % 2</code> is <code>1</code>.</li></ul>\n<p>For example, 130 seconds is <code>130 // 60 = 2</code> minutes and <code>130 % 60 = 10</code> seconds.</p>\n<p>This function returns <b>two values</b> (as in Lab 4), and the tests use them like this:</p>\n<pre>h, m = split_minutes(125)\nprint(h, m)</pre>\n<p><b>Your task:</b> fix the function <code>split_minutes(total_minutes)</code>. For a non-negative integer <code>total_minutes</code> (int &gt;= 0), it should return the number of whole hours and the minutes left over.</p>\n<p>For example, 125 minutes is 2 hours and 5 minutes, so the test above prints <code>2 5</code>.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef split_minutes(total_minutes):\n    hours = total_minutes / 60\n    minutes = total_minutes // 60\n    return hours, minutes\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "h, m = split_minutes(125)\nprint(h, m)",
+     "stdin": "",
+     "expected": "2 5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "h, m = split_minutes(60)\nprint(h, m)",
+     "stdin": "",
+     "expected": "1 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "h, m = split_minutes(59)\nprint(h, m)",
+     "stdin": "",
+     "expected": "0 59",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "h, m = split_minutes(0)\nprint(h, m)",
+     "stdin": "",
+     "expected": "0 0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "h, m = split_minutes(1439)\nprint(h, m)",
+     "stdin": "",
+     "expected": "23 59",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 39,
+   "xml_name": "L06_039_Total Reset Inside Loop",
+   "display_name": "Total Reset Inside Loop",
+   "questiontext_html": "<p>An <b>accumulator</b> is a variable that collects a result over a loop, such as a running total or a count. It must be set to its starting value <b>once, before the loop</b>. If the starting line is inside the loop, the total is thrown away at every step.</p>\n<p>A trace table shows this kind of bug at once: watch the value of the accumulator from one step to the next. You can also add <code>print(\"x =\", x, \"total =\", total)</code> as the last line inside the loop, Pre-check, and read the output (remove it before Check).</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>total_marks(marks)</code>, which should return the sum of a <b>non-empty</b> list of integer marks.</p>\n<p>For example, <code>total_marks([40, 35, 20])</code> returns <code>95</code>.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef total_marks(marks):\n    for m in marks:\n        total = 0\n        total = total + m\n    return total\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(total_marks([40, 35, 20]))",
+     "stdin": "",
+     "expected": "95",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(total_marks([50]))",
+     "stdin": "",
+     "expected": "50",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(total_marks(lst))",
+     "stdin": "10 20 30 40",
+     "expected": "100",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(total_marks(lst))",
+     "stdin": "7 0 3",
+     "expected": "10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 40,
+   "xml_name": "L06_040_Wrong Starting Value",
+   "display_name": "Wrong Starting Value",
+   "questiontext_html": "<p>The <b>starting value</b> of a variable matters. To find the largest item, a common mistake is to start with <code>biggest = 0</code>. This works when some item is more than 0, but if <b>every</b> item is negative, no item beats 0, and the function wrongly returns 0.</p>\n<p><b>Test corner cases:</b> a program that works on \"normal\" inputs may fail on unusual ones: all negative numbers, zeros, a list with one item, equal items. When you test, always try a few of these.</p>\n<p>The safe start is the <b>first item of the list</b>, <code>lst[0]</code>: the largest item is at least that big.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>max_temperature(temps)</code>, which should return the highest temperature in a <b>non-empty</b> list of integer temperatures (which can be negative, for example in winter in Ladakh).</p>\n<p>For example, <code>max_temperature([-5, -2, -9])</code> returns <code>-2</code>.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef max_temperature(temps):\n    biggest = 0\n    for t in temps:\n        if t > biggest:\n            biggest = t\n    return biggest\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(max_temperature([-5, -2, -9]))",
+     "stdin": "",
+     "expected": "-2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(max_temperature([12, 30, 25]))",
+     "stdin": "",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(max_temperature(lst))",
+     "stdin": "-1",
+     "expected": "-1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(max_temperature(lst))",
+     "stdin": "-12 -30 -4 -18",
+     "expected": "-4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 41,
+   "xml_name": "L06_041_Separate Ifs Instead Of Elif",
+   "display_name": "Separate Ifs Instead Of Elif",
+   "questiontext_html": "<p>In a chain <code>if ... elif ... elif ... else</code>, <b>only one</b> branch runs: the first one whose condition is <code>True</code>. With separate <code>if</code> statements, <b>every</b> condition is checked, and a later <code>if</code> can overwrite what an earlier one did.</p>\n<p>Trace the code by hand for one input that gives the wrong answer (for example marks = 90): which lines run, and what is stored in the variable after each one?</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>grade(marks)</code>, for an integer <code>marks</code> from 0 to 100. It should return:</p>\n<ul><li><code>\"A\"</code> for 80 or more,</li><li><code>\"B\"</code> for 60 to 79,</li><li><code>\"C\"</code> for 40 to 59,</li><li><code>\"F\"</code> for less than 40.</li></ul>\n<p>For example, <code>grade(90)</code> returns <code>\"A\"</code> (so <code>print(grade(90))</code> prints <code>A</code>).</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef grade(marks):\n    if marks >= 80:\n        g = \"A\"\n    if marks >= 60:\n        g = \"B\"\n    if marks >= 40:\n        g = \"C\"\n    else:\n        g = \"F\"\n    return g\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(grade(90))",
+     "stdin": "",
+     "expected": "A",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(grade(65))",
+     "stdin": "",
+     "expected": "B",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(grade(40))",
+     "stdin": "",
+     "expected": "C",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(grade(39))",
+     "stdin": "",
+     "expected": "F",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(grade(80))",
+     "stdin": "",
+     "expected": "A",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(grade(60))",
+     "stdin": "",
+     "expected": "B",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(grade(100))",
+     "stdin": "",
+     "expected": "A",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 42,
+   "xml_name": "L06_042_And Versus Or",
+   "display_name": "And Versus Or",
+   "questiontext_html": "<p>From here on, the questions work like the debugging questions in exams: the code <b>passes the example test</b>, so Pre-check alone will not show the bug. The bug appears only for some other inputs, which are checked by hidden tests. Read the code carefully, think of <b>corner cases</b> (boundaries, the first and last items, negative numbers, odd and even values) and test them yourself by adding a <code>print(...)</code> call below the function (remove it before Check).</p>\n<p>Remember how <code>and</code> and <code>or</code> work:</p>\n<ul><li><code>a and b</code> is <code>True</code> only when <b>both</b> are <code>True</code>.</li><li><code>a or b</code> is <code>True</code> when <b>at least one</b> is <code>True</code>.</li></ul>\n<p>\"<code>m</code> is between 0 and 100\" means <code>m &gt;= 0</code> <b>and</b> <code>m &lt;= 100</code>. With <code>or</code>, every number passes, because every number is either at least 0 or at most 100.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>is_valid_marks(m)</code>, which should return <code>True</code> if the integer <code>m</code> is from 0 to 100 (both included), and <code>False</code> otherwise. Inputs your solution must work on: any integer.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef is_valid_marks(m):\n    if m >= 0 or m <= 100:\n        return True\n    else:\n        return False\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_valid_marks(50))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_valid_marks(-5))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_valid_marks(101))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_valid_marks(-1))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 43,
+   "xml_name": "L06_043_Boundary Value",
+   "display_name": "Boundary Value",
+   "questiontext_html": "<p>From here on, the questions work like the debugging questions in exams: the code <b>passes the example test</b>, so Pre-check alone will not show the bug. The bug appears only for some other inputs, which are checked by hidden tests. Read the code carefully, think of <b>corner cases</b> (boundaries, the first and last items, negative numbers, odd and even values) and test them yourself by adding a <code>print(...)</code> call below the function (remove it before Check).</p>\n<p>A classic bug is at the <b>boundary</b>: <code>&gt;</code> versus <code>&gt;=</code>, or <code>&lt;</code> versus <code>&lt;=</code>. The code works for every input except the exact boundary value. Whenever a problem says \"<b>or more</b>\", \"<b>at least</b>\", \"<b>at most</b>\" or \"<b>up to</b>\", test the boundary value itself.</p>\n<p><b>Your task:</b> fix the function <code>result(marks)</code>, which should return <code>\"Pass\"</code> if <code>marks</code> is 40 or more, and <code>\"Fail\"</code> otherwise. Inputs your solution must work on: integers from 0 to 100.</p>\n<p>For example, <code>result(75)</code> returns <code>\"Pass\"</code>.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef result(marks):\n    if marks > 40:\n        return \"Pass\"\n    else:\n        return \"Fail\"\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(result(75))",
+     "stdin": "",
+     "expected": "Pass",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(result(40))",
+     "stdin": "",
+     "expected": "Pass",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 44,
+   "xml_name": "L06_044_Return Too Early",
+   "display_name": "Return Too Early",
+   "questiontext_html": "<p>From here on, the questions work like the debugging questions in exams: the code <b>passes the example test</b>, so Pre-check alone will not show the bug. The bug appears only for some other inputs, which are checked by hidden tests. Read the code carefully, think of <b>corner cases</b> (boundaries, the first and last items, negative numbers, odd and even values) and test them yourself by adding a <code>print(...)</code> call below the function (remove it before Check).</p>\n<p><code>return</code> ends the function <b>immediately</b>, even in the middle of a loop. A loop that has <code>return</code> in <b>both</b> the <code>if</code> and the <code>else</code> branch can only ever look at the <b>first</b> item.</p>\n<p>When searching a list, you can answer <code>True</code> as soon as you find the item, but you can answer <code>False</code> only after checking <b>every</b> item, that is, after the loop has finished.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>contains(lst, x)</code>, which should return <code>True</code> if the integer <code>x</code> is in the list <code>lst</code>, and <code>False</code> otherwise. Do not use the <code>in</code> operator for the search (use a loop). Inputs your solution must work on: any list of integers, including an empty list.</p>\n<p>For example, <code>contains([7, 3, 9], 7)</code> returns <code>True</code>.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef contains(lst, x):\n    for item in lst:\n        if item == x:\n            return True\n        else:\n            return False\n    return False\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(contains([7, 3, 9], 7))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(contains([7, 3, 9], 9))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(contains(lst, 4))",
+     "stdin": "1 2 3 4",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(contains(lst, 6))",
+     "stdin": "5 6",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 45,
+   "xml_name": "L06_045_Return Inside The Loop",
+   "display_name": "Return Inside The Loop",
+   "questiontext_html": "<p>From here on, the questions work like the debugging questions in exams: the code <b>passes the example test</b>, so Pre-check alone will not show the bug. The bug appears only for some other inputs, which are checked by hidden tests. Read the code carefully, think of <b>corner cases</b> (boundaries, the first and last items, negative numbers, odd and even values) and test them yourself by adding a <code>print(...)</code> call below the function (remove it before Check).</p>\n<p>Indentation decides <b>where a line belongs</b>. A <code>return</code> (or <code>print</code>) that is indented one level too deep ends up <b>inside</b> the loop, and runs during the first step instead of after the loop. Python gives no error, because both places are valid; only the answer is wrong.</p>\n<p>When you read a loop, check each line: should it run <b>once per item</b> (inside the loop) or <b>once at the end</b> (after the loop, at the same indentation as the <code>for</code>)?</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the function <code>count_multiples(lst, k)</code>, which should return how many integers in <code>lst</code> are multiples of <code>k</code> (divisible by <code>k</code>, i.e. <code>x % k == 0</code>). Inputs your solution must work on: a non-empty list of integers and a positive integer <code>k</code> (int &gt; 0).</p>\n<p>For example, <code>count_multiples([4, 5, 6], 4)</code> returns <code>1</code>.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef count_multiples(lst, k):\n    count = 0\n    for x in lst:\n        if x % k == 0:\n            count = count + 1\n        return count\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_multiples([4, 5, 6], 4))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_multiples(lst, 3))",
+     "stdin": "3 6 9",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_multiples(lst, 2))",
+     "stdin": "1 2 4 8",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_multiples(lst, 5))",
+     "stdin": "5 10 15 7",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 46,
+   "xml_name": "L06_046_Recursion With Wrong Step",
+   "display_name": "Recursion With Wrong Step",
+   "questiontext_html": "<p>From here on, the questions work like the debugging questions in exams: the code <b>passes the example test</b>, so Pre-check alone will not show the bug. The bug appears only for some other inputs, which are checked by hidden tests. Read the code carefully, think of <b>corner cases</b> (boundaries, the first and last items, negative numbers, odd and even values) and test them yourself by adding a <code>print(...)</code> call below the function (remove it before Check).</p>\n<p>In a recursive function, check two things: the <b>base case</b> (is the answer right for the smallest inputs?) and the <b>recursive step</b> (does it split the problem correctly?).</p>\n<p>For digits, recall: <code>n % 10</code> is the <b>last digit</b> of <code>n</code>, and <code>n // 10</code> is <code>n</code> <b>without</b> its last digit. For example, for <code>n = 347</code>: <code>n % 10</code> is <code>7</code> and <code>n // 10</code> is <code>34</code>. So \"sum of digits of 347\" = <code>7</code> + \"sum of digits of 34\".</p>\n<p>Bugs in the recursive step often hide in short inputs: a mistake may give the right answer for every 2-digit number and only show up with 3 or more digits. Trace the calls for a longer input by hand.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, <code>else</code>, loop or function must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> fix the recursive function <code>digit_sum(n)</code>, which should return the sum of the digits of a non-negative integer <code>n</code> (int &gt;= 0).</p>\n<p>For example, <code>digit_sum(47)</code> returns <code>11</code>.</p>",
+   "answerpreload": "# This code runs, but gives wrong answers for some valid inputs.\n# Find and fix the bug, and add a comment saying what you changed.\ndef digit_sum(n):\n    if n < 10:\n        return n\n    return n // 10 + digit_sum(n % 10)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(digit_sum(47))",
+     "stdin": "",
+     "expected": "11",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(digit_sum(123))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(digit_sum(9999))",
+     "stdin": "",
+     "expected": "36",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(digit_sum(505))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "61b8af7e0ed78c20"
+}

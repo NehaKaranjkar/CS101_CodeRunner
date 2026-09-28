@@ -49,6 +49,14 @@
    "duration_minutes": null
   },
   {
+   "file": "Lab6.qbank",
+   "title": "Lab 6: Errors and Debugging",
+   "description": "Reading error messages and fixing broken code: syntax, indentation, NameError, TypeError, IndexError and more, then finding logical errors that give no message at all.",
+   "questions": 46,
+   "marks": 46.0,
+   "duration_minutes": null
+  },
+  {
    "file": "Practice_Set_1.qbank",
    "title": "Practice Set 1",
    "description": "Easy, medium and difficult questions covering all topics from Labs 1 to 5.",
