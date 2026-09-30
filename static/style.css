@@ -184,6 +184,11 @@ body.nav-collapsed nav { display: none; }
 button.more { display: none; }
 .modebar { position: relative; }
 
+/* ---------- matplotlib figures under the results ---------- */
+.figs { margin-top: 14px; padding: 10px 14px; background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; }
+.figs h4 { margin: 0 0 8px; font-size: 15px; }
+.figs img { display: block; max-width: 100%; height: auto; margin: 0 0 8px; }
+
 /* ---------- tries / penalty chip next to Check ---------- */
 .try-chip {
   font-size: 13px; padding: 3px 10px; border-radius: 12px; white-space: nowrap; cursor: help;

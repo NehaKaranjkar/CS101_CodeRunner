@@ -2,12 +2,16 @@
 # Mirrors runner.py (local exams): same syntax check, same file name in
 # tracebacks, same output normalisation. Time limits are enforced by the page,
 # which terminates the worker if a test runs too long.
+import base64
 import io
+import os
 import sys
 import traceback
 
 SOURCE_NAME = "__tester__.python3"
 MAX_OUTPUT_CHARS = 256_000
+MAX_FIGURES = 4                      # figures shown after a run (not graded)
+os.environ["MPLBACKEND"] = "Agg"     # matplotlib draws into memory, never to a window
 
 
 class _OutputLimit(BaseException):
@@ -38,8 +42,29 @@ def syntax_check(code):
         return f"{type(e).__name__}: {e}"
 
 
-def run_test(program, stdin):
-    """Returns [output, status] with status 'ok' or 'error'."""
+def _figures(capture):
+    """PNG images (base64) of the matplotlib figures the program left open, if
+    it used matplotlib. Figures are always closed so they do not pile up."""
+    plt = sys.modules.get("matplotlib.pyplot")
+    if plt is None:
+        return []
+    out = []
+    try:
+        if capture:
+            for num in plt.get_fignums()[:MAX_FIGURES]:
+                buf = io.BytesIO()
+                plt.figure(num).savefig(buf, format="png", dpi=80, bbox_inches="tight")
+                out.append(base64.b64encode(buf.getvalue()).decode("ascii"))
+    except Exception:  # noqa: BLE001 - a broken figure must not break the test result
+        out = []
+    finally:
+        plt.close("all")
+    return out
+
+
+def run_test(program, stdin, capture=False):
+    """Returns [output, status, figures] with status 'ok' or 'error'; figures
+    (base64 PNGs) only when capture is true and the program used matplotlib."""
     out = _CappedOut()
     saved = sys.stdin, sys.stdout, sys.stderr
     sys.stdin, sys.stdout, sys.stderr = io.StringIO(stdin), out, out
@@ -57,7 +82,7 @@ def run_test(program, stdin):
         status, extra = "error", _format(e)
     finally:
         sys.stdin, sys.stdout, sys.stderr = saved
-    return [out.getvalue() + extra, status]
+    return [out.getvalue() + extra, status, _figures(capture)]
 
 
 def _format(e):

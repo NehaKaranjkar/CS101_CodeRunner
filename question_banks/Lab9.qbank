@@ -1,0 +1,1917 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab9",
+ "encrypted": false,
+ "source_xml": "Lab9.xml",
+ "built_at": "2026-09-30T19:25:11",
+ "settings": {
+  "title": "Lab 9: Dictionaries and Sets",
+  "description": "Dictionaries (keys and values, get, adding, removing, looping, counting and grouping) and sets (unique items, union, intersection, difference, subsets).",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Creating dictionaries",
+    "start": 1,
+    "count": 4
+   },
+   {
+    "heading": "Reading a dictionary",
+    "start": 5,
+    "count": 4
+   },
+   {
+    "heading": "Changing a dictionary",
+    "start": 9,
+    "count": 5
+   },
+   {
+    "heading": "Looping over a dictionary",
+    "start": 14,
+    "count": 3
+   },
+   {
+    "heading": "Dictionary patterns",
+    "start": 17,
+    "count": 6
+   },
+   {
+    "heading": "Sets",
+    "start": 23,
+    "count": 5
+   },
+   {
+    "heading": "Set operations",
+    "start": 28,
+    "count": 6
+   },
+   {
+    "heading": "Putting it together",
+    "start": 34,
+    "count": 4
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L09_001_Create A Dictionary",
+   "display_name": "Create A Dictionary",
+   "questiontext_html": "<p>Welcome to Lab 9! A <b>dictionary</b> stores <b>key: value</b> pairs. Instead of looking up an item by its position (0, 1, 2, ...), as in a list, you look it up by its <b>key</b>, like looking up a word in a real dictionary to find its meaning.</p>\n<p>A dictionary is written with curly braces <code>{ }</code>, with a colon between each key and its value:</p>\n<pre>menu = {&quot;tea&quot;: 10, &quot;coffee&quot;: 25, &quot;samosa&quot;: 15}</pre>\n<table style=\"border-collapse:separate;border-spacing:2px 1px;margin:6px 0 4px\"><tr><td rowspan=\"2\" style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">menu =</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;tea&#x27;</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;coffee&#x27;</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;samosa&#x27;</td><td style=\"padding-left:8px;font-size:12px;color:#8a939c\">key<br><br>value</td></tr><tr><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:0 0 2px 2px\">10</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:0 0 2px 2px\">25</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:0 0 2px 2px\">15</td></tr></table>\n<pre>menu = {&quot;tea&quot;: 10, &quot;coffee&quot;: 25, &quot;samosa&quot;: 15}\nprint(menu[&quot;coffee&quot;])\nprint(len(menu))\nprint(menu)</pre>\n<p>Output:</p>\n<pre>25\n3\n{&#x27;tea&#x27;: 10, &#x27;coffee&#x27;: 25, &#x27;samosa&#x27;: 15}</pre>\n<p><code>menu[\"coffee\"]</code> gives the value for the key <code>\"coffee\"</code>. <code>len</code> counts the pairs.</p>\n<p><b>Your task:</b> write the function <code>make_contact(name, phone)</code>, which returns a dictionary with two pairs: the key <code>\"name\"</code> with the value <code>name</code>, and the key <code>\"phone\"</code> with the value <code>phone</code>.</p>\n<p>For example, <code>make_contact(\"Asha\", \"98220\")</code> returns <code>{'name': 'Asha', 'phone': '98220'}</code>.</p>",
+   "answerpreload": "def make_contact(name, phone):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(make_contact(\"Asha\", \"98220\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(make_contact(\"Asha\", \"98220\"))",
+     "stdin": "",
+     "expected": "{'name': 'Asha', 'phone': '98220'}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "c = make_contact(\"Ravi\", \"11\")\nprint(c[\"name\"], c[\"phone\"])",
+     "stdin": "",
+     "expected": "Ravi 11",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(len(make_contact(\"\", \"\")))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L09_002_Build A Dictionary Step By Step",
+   "display_name": "Build A Dictionary Step By Step",
+   "questiontext_html": "<p>Like a list, a dictionary can be built step by step. Start with the <b>empty dictionary</b> <code>{}</code>, then add pairs by assigning to a new key:</p>\n<pre>d[key] = value</pre>\n<pre>cubes = {}\nfor k in range(1, 4):\n    cubes[k] = k * k * k\nprint(cubes)</pre>\n<p>Output:</p>\n<pre>{1: 1, 2: 8, 3: 27}</pre>\n<p>Keys do not have to be strings: here they are integers.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>squares_dict(n)</code>, which returns a dictionary with the keys <code>1, 2, ..., n</code>, where each key <code>k</code> has the value <code>k * k</code>. For <code>n = 0</code>, return the empty dictionary.</p>\n<p>For example, <code>squares_dict(3)</code> returns <code>{1: 1, 2: 4, 3: 9}</code>.</p>",
+   "answerpreload": "def squares_dict(n):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(squares_dict(3))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(squares_dict(3))",
+     "stdin": "",
+     "expected": "{1: 1, 2: 4, 3: 9}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(squares_dict(0))",
+     "stdin": "",
+     "expected": "{}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(squares_dict(1))",
+     "stdin": "",
+     "expected": "{1: 1}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L09_003_Dictionary From Pairs",
+   "display_name": "Dictionary From Pairs",
+   "questiontext_html": "<p><code>dict(...)</code> converts a list of <code>(key, value)</code> tuples into a dictionary. Going back, <code>list(d.items())</code> gives the pairs as a list of tuples:</p>\n<pre>pairs = [(&quot;Goa&quot;, &quot;Panaji&quot;), (&quot;Kerala&quot;, &quot;Thiruvananthapuram&quot;)]\ncapitals = dict(pairs)\nprint(capitals[&quot;Goa&quot;])\nprint(list(capitals.items()))</pre>\n<p>Output:</p>\n<pre>Panaji\n[(&#x27;Goa&#x27;, &#x27;Panaji&#x27;), (&#x27;Kerala&#x27;, &#x27;Thiruvananthapuram&#x27;)]</pre>\n<p>A key can appear only <b>once</b> in a dictionary. If a key is repeated, the <b>last</b> value wins:</p>\n<pre>print(dict([(&quot;a&quot;, 1), (&quot;b&quot;, 2), (&quot;a&quot;, 3)]))</pre>\n<p>Output:</p>\n<pre>{&#x27;a&#x27;: 3, &#x27;b&#x27;: 2}</pre>\n<p><b>Your task:</b> write the function <code>from_pairs(pairs)</code>, which returns a dictionary made from the list of <code>(key, value)</code> tuples <code>pairs</code>.</p>\n<p>For example, <code>from_pairs([(\"x\", 1), (\"y\", 2)])</code> returns <code>{'x': 1, 'y': 2}</code>.</p>",
+   "answerpreload": "def from_pairs(pairs):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(from_pairs([(\"x\", 1), (\"y\", 2)]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(from_pairs([(\"x\", 1), (\"y\", 2)]))",
+     "stdin": "",
+     "expected": "{'x': 1, 'y': 2}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(from_pairs([]))",
+     "stdin": "",
+     "expected": "{}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(from_pairs([(\"k\", 1), (\"k\", 2)]))",
+     "stdin": "",
+     "expected": "{'k': 2}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L09_004_Keys Must Be Immutable",
+   "display_name": "Keys Must Be Immutable",
+   "questiontext_html": "<p>A dictionary key must be <b>immutable</b>: numbers, strings and <b>tuples</b> are fine, but a <b>list cannot be a key</b> (it could change later, and then Python could not find it):</p>\n<pre>d = {[1, 2]: &quot;no&quot;}</pre>\n<pre style=\"color:#b3322a\">TypeError: unhashable type: &#x27;list&#x27;</pre>\n<p>(Values can be anything, including lists.) Tuples make good keys for positions on a board:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 1px;margin:6px 0 4px\"><tr><td rowspan=\"2\" style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">board =</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">(0, 0)</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">(0, 1)</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">(1, 1)</td><td style=\"padding-left:8px;font-size:12px;color:#8a939c\">key<br><br>value</td></tr><tr><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:0 0 2px 2px\">&#x27;X&#x27;</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:0 0 2px 2px\">&#x27;O&#x27;</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:0 0 2px 2px\">&#x27;X&#x27;</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">only the filled cells are stored; the key is the (row, column) tuple</div>\n<pre>board = {(0, 0): &quot;X&quot;, (0, 1): &quot;O&quot;, (1, 1): &quot;X&quot;}\nprint(board[(0, 1)])\nprint((1, 0) in board)</pre>\n<p>Output:</p>\n<pre>O\nFalse</pre>\n<p><b>Your task:</b> write the function <code>cell(board, r, c)</code>, where <code>board</code> is a dictionary like the one above. Return the value stored for the position <code>(r, c)</code>, or <code>\".\"</code> if that position is not in the dictionary.</p>\n<p>For example, <code>cell({(0, 0): \"X\", (0, 1): \"O\"}, 0, 1)</code> returns <code>\"O\"</code>.</p>",
+   "answerpreload": "def cell(board, r, c):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(cell({(0, 0): \"X\", (0, 1): \"O\"}, 0, 1))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(cell({(0, 0): \"X\", (0, 1): \"O\"}, 0, 1))",
+     "stdin": "",
+     "expected": "O",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(cell({(0, 0): \"X\"}, 1, 1))",
+     "stdin": "",
+     "expected": ".",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(cell({}, 0, 0))",
+     "stdin": "",
+     "expected": ".",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L09_005_Access And KeyError",
+   "display_name": "Access And KeyError",
+   "questiontext_html": "<p><code>d[key]</code> gives the value for <code>key</code>. If the key is not in the dictionary, you get a <code>KeyError</code> (the dictionary version of <code>IndexError</code>):</p>\n<pre>menu = {&quot;tea&quot;: 10, &quot;coffee&quot;: 25}\nprint(menu[&quot;tea&quot;])\nprint(&quot;juice&quot; in menu)</pre>\n<p>Output:</p>\n<pre>10\nFalse</pre>\n<pre>print(menu[&quot;juice&quot;])</pre>\n<pre style=\"color:#b3322a\">KeyError: &#x27;juice&#x27;</pre>\n<p><code>key in d</code> checks whether a key is present (it checks <b>keys</b>, not values).</p>\n<p><b>Your task:</b> write the function <code>price_of(menu, item)</code>, which returns the price of <code>item</code> from the dictionary <code>menu</code>, or <code>-1</code> if the item is not on the menu.</p>\n<p>For example, <code>price_of({\"tea\": 10, \"coffee\": 25}, \"coffee\")</code> returns <code>25</code>.</p>",
+   "answerpreload": "def price_of(menu, item):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(price_of({\"tea\": 10, \"coffee\": 25}, \"coffee\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(price_of({\"tea\": 10, \"coffee\": 25}, \"coffee\"))",
+     "stdin": "",
+     "expected": "25",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(price_of({\"tea\": 10}, \"juice\"))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(price_of({}, \"tea\"))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L09_006_Safe Access With get",
+   "display_name": "Safe Access With get",
+   "questiontext_html": "<p><code>d.get(key)</code> is a safe way to read: it returns the value, or <code>None</code> if the key is missing (no error). <code>d.get(key, default)</code> returns <code>default</code> instead of <code>None</code>:</p>\n<pre>stock = {&quot;pens&quot;: 12, &quot;books&quot;: 0}\nprint(stock.get(&quot;pens&quot;))\nprint(stock.get(&quot;bags&quot;))\nprint(stock.get(&quot;bags&quot;, 0))</pre>\n<p>Output:</p>\n<pre>12\nNone\n0</pre>\n<p><b>Your task:</b> write the function <code>stock_of(stock, item)</code>, which returns how many of <code>item</code> are in the dictionary <code>stock</code>, or <code>0</code> if the item is not listed. Use <code>get</code> with a default.</p>\n<p>For example, <code>stock_of({\"pens\": 12}, \"bags\")</code> returns <code>0</code>.</p>",
+   "answerpreload": "def stock_of(stock, item):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(stock_of({\"pens\": 12}, \"bags\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(stock_of({\"pens\": 12}, \"bags\"))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(stock_of({\"pens\": 12}, \"pens\"))",
+     "stdin": "",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(stock_of({\"x\": 0}, \"x\"))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L09_007_Checking Many Keys",
+   "display_name": "Checking Many Keys",
+   "questiontext_html": "<p><code>in</code> checks the keys of a dictionary. To check the <b>values</b>, use <code>x in d.values()</code>:</p>\n<pre>ages = {&quot;Asha&quot;: 19, &quot;Ravi&quot;: 20}\nprint(&quot;Asha&quot; in ages, 19 in ages)\nprint(19 in ages.values())</pre>\n<p>Output:</p>\n<pre>True False\nTrue</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>has_all(d, keys)</code>, which returns <code>True</code> if <b>every</b> item of the list <code>keys</code> is a key of the dictionary <code>d</code>, and <code>False</code> otherwise. (An empty list of keys gives <code>True</code>.)</p>\n<p>For example, <code>has_all({\"a\": 1, \"b\": 2}, [\"a\", \"b\"])</code> returns <code>True</code>.</p>",
+   "answerpreload": "def has_all(d, keys):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(has_all({\"a\": 1, \"b\": 2}, [\"a\", \"b\"]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(has_all({\"a\": 1, \"b\": 2}, [\"a\", \"b\"]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(has_all({\"a\": 1}, [\"a\", \"z\"]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(has_all({}, []))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L09_008_Finding A Key By Value",
+   "display_name": "Finding A Key By Value",
+   "questiontext_html": "<p>Looking up a value by its key is fast and easy. The other way round (which key has this value?) needs a loop over the keys:</p>\n<pre>ages = {&quot;Asha&quot;: 19, &quot;Ravi&quot;: 20, &quot;Meera&quot;: 19}\nfor name in ages:            # a for loop over a dictionary gives its keys\n    print(name, ages[name])</pre>\n<p>Output:</p>\n<pre>Asha 19\nRavi 20\nMeera 19</pre>\n<p>Dictionaries keep their pairs in the order they were added.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>find_key(d, v)</code>, which returns the <b>first</b> key (in the dictionary's order) whose value equals <code>v</code>, or <code>None</code> if no key has that value.</p>\n<p>For example, <code>find_key({\"Asha\": 19, \"Ravi\": 20, \"Meera\": 19}, 19)</code> returns <code>\"Asha\"</code>.</p>",
+   "answerpreload": "def find_key(d, v):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(find_key({\"Asha\": 19, \"Ravi\": 20, \"Meera\": 19}, 19))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(find_key({\"Asha\": 19, \"Ravi\": 20, \"Meera\": 19}, 19))",
+     "stdin": "",
+     "expected": "Asha",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(find_key({\"Asha\": 19}, 5))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(find_key({\"x\": 1, \"y\": 2}, 2))",
+     "stdin": "",
+     "expected": "y",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L09_009_Add And Update",
+   "display_name": "Add And Update",
+   "questiontext_html": "<p>Dictionaries are <b>mutable</b>. The same assignment <code>d[key] = value</code> either <b>adds</b> a new pair (if the key is new) or <b>updates</b> the value (if the key exists):</p>\n<table style=\"border-collapse:separate;border-spacing:2px 1px;margin:6px 0 4px\"><tr><td rowspan=\"2\" style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">menu =</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;tea&#x27;</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#e2e6ea;color:#8a939c;border-radius:2px 2px 0 0\">&#x27;coffee&#x27;</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;juice&#x27;</td><td style=\"padding-left:8px;font-size:12px;color:#8a939c\">key<br><br>value</td></tr><tr><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:0 0 2px 2px\">12</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:0 0 2px 2px\">25</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:0 0 2px 2px\">30</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">menu[&#x27;tea&#x27;] = 12 updated a value; menu[&#x27;juice&#x27;] = 30 added a pair</div>\n<pre>menu = {&quot;tea&quot;: 10, &quot;coffee&quot;: 25}\nmenu[&quot;tea&quot;] = 12\nmenu[&quot;juice&quot;] = 30\nprint(menu)</pre>\n<p>Output:</p>\n<pre>{&#x27;tea&#x27;: 12, &#x27;coffee&#x27;: 25, &#x27;juice&#x27;: 30}</pre>\n<p>Like a list, a dictionary passed to a function can be changed by the function.</p>\n<p><b>Your task:</b> write the function <code>raise_price(menu, item, amount)</code>, which increases the price of <code>item</code> by <code>amount</code> if the item is on the menu, and otherwise adds it with the price <code>amount</code>. It changes <code>menu</code> and returns nothing.</p>\n<p>For example, after <code>m = {\"tea\": 10}</code> and <code>raise_price(m, \"tea\", 2)</code>, <code>m</code> is <code>{'tea': 12}</code>.</p>",
+   "answerpreload": "# Define raise_price(menu, item, amount): change menu itself.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# m = {\"tea\": 10}\n# raise_price(m, \"tea\", 2)\n# print(m)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "m = {\"tea\": 10}\nraise_price(m, \"tea\", 2)\nprint(m)",
+     "stdin": "",
+     "expected": "{'tea': 12}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "m = {\"tea\": 10}\nraise_price(m, \"juice\", 30)\nprint(m)",
+     "stdin": "",
+     "expected": "{'tea': 10, 'juice': 30}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "m = {}\nraise_price(m, \"a\", 1)\nraise_price(m, \"a\", 1)\nprint(m)",
+     "stdin": "",
+     "expected": "{'a': 2}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "m = {\"x\": 5, \"y\": 7}\nr = raise_price(m, \"y\", -7)\nprint(m, r)",
+     "stdin": "",
+     "expected": "{'x': 5, 'y': 0} None",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L09_010_Removing With pop And del",
+   "display_name": "Removing With pop And del",
+   "questiontext_html": "<p>There are several ways to remove pairs:</p>\n<ul><li><code>d.pop(key)</code> removes the pair and <b>returns</b> its value (a <code>KeyError</code> if the key is missing);</li><li><code>d.pop(key, default)</code> returns <code>default</code> instead of failing when the key is missing;</li><li><code>del d[key]</code> removes the pair without returning anything;</li><li><code>d.clear()</code> removes everything.</li></ul>\n<pre>d = {&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3}\nx = d.pop(&quot;b&quot;)\nprint(x, d)\nprint(d.pop(&quot;zzz&quot;, None))\ndel d[&quot;a&quot;]\nprint(d)</pre>\n<p>Output:</p>\n<pre>2 {&#x27;a&#x27;: 1, &#x27;c&#x27;: 3}\nNone\n{&#x27;c&#x27;: 3}</pre>\n<p><b>Your task:</b> write the function <code>take(d, key)</code>, which removes <code>key</code> from the dictionary <code>d</code> and returns its value; if the key is not there, it returns <code>None</code> and changes nothing.</p>\n<p>For example, after <code>d = {\"a\": 1, \"b\": 2}</code>, <code>take(d, \"a\")</code> returns <code>1</code> and <code>d</code> becomes <code>{'b': 2}</code>.</p>",
+   "answerpreload": "# Define take(d, key).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# d = {\"a\": 1, \"b\": 2}\n# print(take(d, \"a\"))\n# print(d)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "d = {\"a\": 1, \"b\": 2}\nprint(take(d, \"a\"))\nprint(d)",
+     "stdin": "",
+     "expected": "1\n{'b': 2}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "d = {\"a\": 1}\nprint(take(d, \"z\"), d)",
+     "stdin": "",
+     "expected": "None {'a': 1}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "d = {1: \"x\", 2: \"y\"}\nprint(take(d, 2), take(d, 2), d)",
+     "stdin": "",
+     "expected": "y None {1: 'x'}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "d = {}\nprint(take(d, 0), d)",
+     "stdin": "",
+     "expected": "None {}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L09_011_The Last Pair With popitem",
+   "display_name": "The Last Pair With popitem",
+   "questiontext_html": "<p><code>d.popitem()</code> removes the <b>most recently added</b> pair and returns it as a tuple <code>(key, value)</code>. It is handy when you want to take pairs out one at a time, like a stack.</p>\n<pre>d = {&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3}\nprint(d.popitem())\nprint(d)\nd[&quot;z&quot;] = 26\nprint(d.popitem())</pre>\n<p>Output:</p>\n<pre>(&#x27;c&#x27;, 3)\n{&#x27;a&#x27;: 1, &#x27;b&#x27;: 2}\n(&#x27;z&#x27;, 26)</pre>\n<p>(<code>popitem()</code> on an empty dictionary is a <code>KeyError</code>.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>undo(d, n)</code>, which removes the last <code>n</code> added pairs from the dictionary <code>d</code> and returns a list of the removed <code>(key, value)</code> tuples, in the order they were removed. If <code>d</code> has fewer than <code>n</code> pairs, remove them all.</p>\n<p>For example, after <code>d = {\"a\": 1, \"b\": 2, \"c\": 3}</code>, <code>undo(d, 2)</code> returns <code>[('c', 3), ('b', 2)]</code> and <code>d</code> becomes <code>{'a': 1}</code>.</p>",
+   "answerpreload": "# Define undo(d, n): use popitem() in a loop.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# d = {\"a\": 1, \"b\": 2, \"c\": 3}\n# print(undo(d, 2))\n# print(d)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "d = {\"a\": 1, \"b\": 2, \"c\": 3}\nprint(undo(d, 2))\nprint(d)",
+     "stdin": "",
+     "expected": "[('c', 3), ('b', 2)]\n{'a': 1}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "d = {\"a\": 1}\nprint(undo(d, 5), d)",
+     "stdin": "",
+     "expected": "[('a', 1)] {}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "d = {1: 1, 2: 4, 3: 9}\nprint(undo(d, 0), d)",
+     "stdin": "",
+     "expected": "[] {1: 1, 2: 4, 3: 9}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "d = {\"x\": 0, \"y\": 1}\nprint(undo(d, 2), d)",
+     "stdin": "",
+     "expected": "[('y', 1), ('x', 0)] {}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L09_012_Merging Dictionaries",
+   "display_name": "Merging Dictionaries",
+   "questiontext_html": "<p><code>d.update(other)</code> copies all the pairs of the dictionary <code>other</code> into <code>d</code>. Keys that are in both get the value from <code>other</code>. Like list methods, <code>update</code> changes <code>d</code> itself.</p>\n<p>To get a <b>new</b> dictionary and keep the original, first make a copy with <code>d.copy()</code> (just as with lists, <code>e = d</code> would only give a second name for the same dictionary).</p>\n<pre>prices = {&quot;tea&quot;: 10, &quot;coffee&quot;: 25}\nnew_prices = prices.copy()\nnew_prices.update({&quot;tea&quot;: 12, &quot;juice&quot;: 30})\nprint(new_prices)\nprint(prices)</pre>\n<p>Output:</p>\n<pre>{&#x27;tea&#x27;: 12, &#x27;coffee&#x27;: 25, &#x27;juice&#x27;: 30}\n{&#x27;tea&#x27;: 10, &#x27;coffee&#x27;: 25}</pre>\n<p><b>Your task:</b> write the function <code>merged(d1, d2)</code>, which returns a new dictionary with all pairs of <code>d1</code> and <code>d2</code>; for keys in both, the value from <code>d2</code> wins. Neither <code>d1</code> nor <code>d2</code> may change.</p>\n<p>For example, <code>merged({\"a\": 1, \"b\": 2}, {\"b\": 20, \"c\": 3})</code> returns <code>{'a': 1, 'b': 20, 'c': 3}</code>.</p>",
+   "answerpreload": "# Define merged(d1, d2): copy, then update.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(merged({\"a\": 1, \"b\": 2}, {\"b\": 20, \"c\": 3}))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(merged({\"a\": 1, \"b\": 2}, {\"b\": 20, \"c\": 3}))",
+     "stdin": "",
+     "expected": "{'a': 1, 'b': 20, 'c': 3}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = {\"x\": 1}\nb = {}\nprint(merged(a, b), a, b)",
+     "stdin": "",
+     "expected": "{'x': 1} {'x': 1} {}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = {\"k\": 1}\nb = {\"k\": 2}\nm = merged(a, b)\nprint(m, a, b)",
+     "stdin": "",
+     "expected": "{'k': 2} {'k': 1} {'k': 2}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merged({}, {\"z\": 0}))",
+     "stdin": "",
+     "expected": "{'z': 0}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L09_013_A Changed Copy",
+   "display_name": "A Changed Copy",
+   "questiontext_html": "<p>To make a changed version of a dictionary and keep the original, copy it first (or build a new dictionary in a loop), then change the copy.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>with_bonus(marks, bonus)</code>, where <code>marks</code> is a dictionary from names to integer marks. Return a new dictionary with the same names, where each mark is increased by <code>bonus</code>. <code>marks</code> must not change.</p>\n<p>For example, after <code>m = {\"Asha\": 80, \"Ravi\": 65}</code>, <code>with_bonus(m, 5)</code> returns <code>{'Asha': 85, 'Ravi': 70}</code> and <code>m</code> is unchanged.</p>",
+   "answerpreload": "# Define with_bonus(marks, bonus): return a NEW dictionary.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# m = {\"Asha\": 80, \"Ravi\": 65}\n# print(with_bonus(m, 5))\n# print(m)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "m = {\"Asha\": 80, \"Ravi\": 65}\nprint(with_bonus(m, 5))\nprint(m)",
+     "stdin": "",
+     "expected": "{'Asha': 85, 'Ravi': 70}\n{'Asha': 80, 'Ravi': 65}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(with_bonus({}, 3))",
+     "stdin": "",
+     "expected": "{}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "m = {\"a\": -1}\nprint(with_bonus(m, 1), m)",
+     "stdin": "",
+     "expected": "{'a': 0} {'a': -1}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(with_bonus({\"x\": 10, \"y\": 20, \"z\": 30}, -10))",
+     "stdin": "",
+     "expected": "{'x': 0, 'y': 10, 'z': 20}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L09_014_Looping Over Keys",
+   "display_name": "Looping Over Keys",
+   "questiontext_html": "<p><code>for k in d:</code> loops over the <b>keys</b> of a dictionary, in the order they were added. Inside the loop, <code>d[k]</code> gives each value.</p>\n<pre>marks = {&quot;Asha&quot;: 82, &quot;Ravi&quot;: 67, &quot;Meera&quot;: 91}\ntotal = 0\nfor name in marks:\n    total = total + marks[name]\nprint(total)</pre>\n<p>Output:</p>\n<pre>240</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>bill(order, menu)</code>. <code>order</code> is a dictionary from item names to quantities, and <code>menu</code> is a dictionary from item names to prices. Return the total cost of the order. Every ordered item is on the menu.</p>\n<p>For example, <code>bill({\"tea\": 2, \"samosa\": 3}, {\"tea\": 10, \"coffee\": 25, \"samosa\": 15})</code> returns <code>65</code>.</p>",
+   "answerpreload": "# Define bill(order, menu).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(bill({\"tea\": 2, \"samosa\": 3}, {\"tea\": 10, \"coffee\": 25, \"samosa\": 15}))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(bill({\"tea\": 2, \"samosa\": 3}, {\"tea\": 10, \"coffee\": 25, \"samosa\": 15}))",
+     "stdin": "",
+     "expected": "65",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(bill({}, {\"tea\": 10}))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(bill({\"coffee\": 4}, {\"tea\": 10, \"coffee\": 25}))",
+     "stdin": "",
+     "expected": "100",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(bill({\"a\": 1, \"b\": 0}, {\"a\": 7, \"b\": 9}))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L09_015_Looping Over Items",
+   "display_name": "Looping Over Items",
+   "questiontext_html": "<p>Three methods give views of a dictionary's contents:</p>\n<ul><li><code>d.keys()</code>: the keys;</li><li><code>d.values()</code>: the values;</li><li><code>d.items()</code>: the <code>(key, value)</code> pairs, which a <code>for</code> loop can <b>unpack</b>.</li></ul>\n<pre>marks = {&quot;Asha&quot;: 82, &quot;Ravi&quot;: 67, &quot;Meera&quot;: 91}\nprint(list(marks.keys()))\nprint(list(marks.values()))\nfor name, m in marks.items():\n    print(name, m)</pre>\n<p>Output:</p>\n<pre>[&#x27;Asha&#x27;, &#x27;Ravi&#x27;, &#x27;Meera&#x27;]\n[82, 67, 91]\nAsha 82\nRavi 67\nMeera 91</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>above(marks, cutoff)</code>, which returns a list of the names in the dictionary <code>marks</code> whose marks are <b>more than</b> <code>cutoff</code>, in the dictionary's order. Use <code>items()</code>.</p>\n<p>For example, <code>above({\"Asha\": 82, \"Ravi\": 67, \"Meera\": 91}, 80)</code> returns <code>['Asha', 'Meera']</code>.</p>",
+   "answerpreload": "# Define above(marks, cutoff): loop with items().\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(above({\"Asha\": 82, \"Ravi\": 67, \"Meera\": 91}, 80))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(above({\"Asha\": 82, \"Ravi\": 67, \"Meera\": 91}, 80))",
+     "stdin": "",
+     "expected": "['Asha', 'Meera']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(above({}, 0))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(above({\"A\": 50}, 50))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(above({\"p\": 1, \"q\": 2, \"r\": 3}, 1))",
+     "stdin": "",
+     "expected": "['q', 'r']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(above({\"x\": -5, \"y\": -1}, -2))",
+     "stdin": "",
+     "expected": "['y']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "L09_016_Key With The Largest Value",
+   "display_name": "Key With The Largest Value",
+   "questiontext_html": "<p>To find the key with the largest value, loop over the pairs and remember the best one so far (as you did with lists). Start with the first key, which you can get with <code>list(d.keys())[0]</code>.</p>\n<p><b>Python fact:</b> <code>sorted(d)</code> gives a sorted <b>list of the keys</b>.</p>\n<pre>d = {&quot;b&quot;: 3, &quot;a&quot;: 7, &quot;c&quot;: 5}\nprint(sorted(d))\nprint(list(d.keys())[0])</pre>\n<p>Output:</p>\n<pre>[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]\nb</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>best(d)</code>, which returns the key with the largest value in the non-empty dictionary <code>d</code>. If several keys share the largest value, return the one that comes <b>first</b> in the dictionary's order.</p>\n<p>For example, <code>best({\"b\": 3, \"a\": 7, \"c\": 7})</code> returns <code>\"a\"</code>.</p>",
+   "answerpreload": "# Define best(d).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(best({\"b\": 3, \"a\": 7, \"c\": 7}))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(best({\"b\": 3, \"a\": 7, \"c\": 7}))",
+     "stdin": "",
+     "expected": "a",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best({\"only\": -1}))",
+     "stdin": "",
+     "expected": "only",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best({\"x\": -9, \"y\": -2, \"z\": -5}))",
+     "stdin": "",
+     "expected": "y",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best({1: 0, 2: 0}))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "L09_017_Counting Letters",
+   "display_name": "Counting Letters",
+   "questiontext_html": "<p>The most common use of a dictionary is <b>counting</b>: each key is a thing, and its value is how many times we have seen it. For each new thing, add 1 to its count, starting from 0 if it is new:</p>\n<pre>counts[x] = counts.get(x, 0) + 1</pre>\n<table style=\"border-collapse:separate;border-spacing:2px 1px;margin:6px 0 4px\"><tr><td rowspan=\"2\" style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">counts =</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;n&#x27;</td><td style=\"padding-left:8px;font-size:12px;color:#8a939c\">key<br><br>value</td></tr><tr><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:0 0 2px 2px\">1</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:0 0 2px 2px\">3</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:0 0 2px 2px\">2</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">after counting the letters of &#x27;banana&#x27;</div>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>letter_counts(word)</code>, which returns a dictionary from each character of <code>word</code> to how many times it appears, with the keys in the order the characters first appear.</p>\n<p>For example, <code>letter_counts(\"banana\")</code> returns <code>{'b': 1, 'a': 3, 'n': 2}</code>.</p>",
+   "answerpreload": "# Define letter_counts(word).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(letter_counts(\"banana\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(letter_counts(\"banana\"))",
+     "stdin": "",
+     "expected": "{'b': 1, 'a': 3, 'n': 2}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(letter_counts(\"\"))",
+     "stdin": "",
+     "expected": "{}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(letter_counts(\"aaa\"))",
+     "stdin": "",
+     "expected": "{'a': 3}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(letter_counts(\"mississippi\"))",
+     "stdin": "",
+     "expected": "{'m': 1, 'i': 4, 's': 4, 'p': 2}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(letter_counts(\"abc\"))",
+     "stdin": "",
+     "expected": "{'a': 1, 'b': 1, 'c': 1}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "L09_018_Word Count",
+   "display_name": "Word Count",
+   "questiontext_html": "<p>The same pattern counts words: split the text into words, then count them.</p>\n<p><b>Your task:</b> write the function <code>word_count(text)</code>, which returns a dictionary from each word in <code>text</code> (words are separated by spaces, and are already lowercase) to how many times it appears, with the keys in the order the words first appear.</p>\n<p>For example, <code>word_count(\"to be or not to be\")</code> returns <code>{'to': 2, 'be': 2, 'or': 1, 'not': 1}</code>.</p>",
+   "answerpreload": "# Define word_count(text).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(word_count(\"to be or not to be\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(word_count(\"to be or not to be\"))",
+     "stdin": "",
+     "expected": "{'to': 2, 'be': 2, 'or': 1, 'not': 1}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(word_count(\"\"))",
+     "stdin": "",
+     "expected": "{}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(word_count(\"a a a b\"))",
+     "stdin": "",
+     "expected": "{'a': 3, 'b': 1}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(word_count(\"one\"))",
+     "stdin": "",
+     "expected": "{'one': 1}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "L09_019_Grouping Into Lists",
+   "display_name": "Grouping Into Lists",
+   "questiontext_html": "<p>A dictionary's values can be <b>lists</b>. That lets us <b>group</b> things: the key says which group, and the list holds its members.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 1px;margin:6px 0 4px\"><tr><td rowspan=\"2\" style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">groups =</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">3</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">4</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">2</td><td style=\"padding-left:8px;font-size:12px;color:#8a939c\">key<br><br>value</td></tr><tr><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:0 0 2px 2px\">[&#x27;cat&#x27;, &#x27;dog&#x27;]</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:0 0 2px 2px\">[&#x27;lion&#x27;]</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:0 0 2px 2px\">[&#x27;ox&#x27;]</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">words grouped by their length</div>\n<p>For each item: if its group is new, start it with an empty list; then append the item.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>group_by_length(words)</code>, which returns a dictionary from each word length to the list of words (from the list <code>words</code>) with that length, in their original order. The keys appear in the order their first word appears.</p>\n<p>For example, <code>group_by_length([\"cat\", \"lion\", \"dog\", \"ox\"])</code> returns <code>{3: ['cat', 'dog'], 4: ['lion'], 2: ['ox']}</code>.</p>",
+   "answerpreload": "# Define group_by_length(words).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(group_by_length([\"cat\", \"lion\", \"dog\", \"ox\"]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(group_by_length([\"cat\", \"lion\", \"dog\", \"ox\"]))",
+     "stdin": "",
+     "expected": "{3: ['cat', 'dog'], 4: ['lion'], 2: ['ox']}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(group_by_length([]))",
+     "stdin": "",
+     "expected": "{}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(group_by_length([\"a\", \"b\", \"cc\", \"d\"]))",
+     "stdin": "",
+     "expected": "{1: ['a', 'b', 'd'], 2: ['cc']}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(group_by_length([\"same\", \"size\", \"word\"]))",
+     "stdin": "",
+     "expected": "{4: ['same', 'size', 'word']}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "L09_020_Dictionary From Two Lists",
+   "display_name": "Dictionary From Two Lists",
+   "questiontext_html": "<p>Recall <code>zip(a, b)</code> from Lab 8: it pairs up two lists position by position. <code>dict(zip(keys, values))</code> turns two lists into a dictionary in one line:</p>\n<pre>names = [&quot;Asha&quot;, &quot;Ravi&quot;]\nmarks = [82, 67]\nprint(dict(zip(names, marks)))</pre>\n<p>Output:</p>\n<pre>{&#x27;Asha&#x27;: 82, &#x27;Ravi&#x27;: 67}</pre>\n<p><b>Your task:</b> write the function <code>make_dict(keys, values)</code>, which returns a dictionary pairing the items of the two lists <code>keys</code> and <code>values</code> (of the same length) position by position.</p>\n<p>For example, <code>make_dict([\"a\", \"b\"], [1, 2])</code> returns <code>{'a': 1, 'b': 2}</code>.</p>",
+   "answerpreload": "# Define make_dict(keys, values).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(make_dict([\"a\", \"b\"], [1, 2]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(make_dict([\"a\", \"b\"], [1, 2]))",
+     "stdin": "",
+     "expected": "{'a': 1, 'b': 2}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(make_dict([], []))",
+     "stdin": "",
+     "expected": "{}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(make_dict([1, 2, 3], [\"x\", \"y\", \"z\"]))",
+     "stdin": "",
+     "expected": "{1: 'x', 2: 'y', 3: 'z'}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(make_dict([\"k\", \"k\"], [1, 2]))",
+     "stdin": "",
+     "expected": "{'k': 2}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 21,
+   "xml_name": "L09_021_Invert A Dictionary",
+   "display_name": "Invert A Dictionary",
+   "questiontext_html": "<p><b>Inverting</b> a dictionary swaps its keys and values: <code>{\"Goa\": \"Panaji\"}</code> becomes <code>{\"Panaji\": \"Goa\"}</code>. This works when all the values are different (and immutable, since they become keys).</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>invert(d)</code>, which returns a new dictionary where each value of <code>d</code> becomes a key and its key becomes the value. All values of <code>d</code> are different. Keep the order of <code>d</code>.</p>\n<p>For example, <code>invert({\"Goa\": \"Panaji\", \"Assam\": \"Dispur\"})</code> returns <code>{'Panaji': 'Goa', 'Dispur': 'Assam'}</code>.</p>",
+   "answerpreload": "# Define invert(d).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(invert({\"Goa\": \"Panaji\", \"Assam\": \"Dispur\"}))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(invert({\"Goa\": \"Panaji\", \"Assam\": \"Dispur\"}))",
+     "stdin": "",
+     "expected": "{'Panaji': 'Goa', 'Dispur': 'Assam'}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(invert({}))",
+     "stdin": "",
+     "expected": "{}",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(invert({1: 'one', 2: 'two'}))",
+     "stdin": "",
+     "expected": "{'one': 1, 'two': 2}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "d = {'a': 1}\nprint(invert(d), d)",
+     "stdin": "",
+     "expected": "{1: 'a'} {'a': 1}",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 22,
+   "xml_name": "L09_022_Nested Dictionaries",
+   "display_name": "Nested Dictionaries",
+   "questiontext_html": "<p>A dictionary's values can be dictionaries. This is a natural way to store <b>records</b>: here each student's name maps to a dictionary of their marks.</p>\n<pre>students = {&quot;Asha&quot;: {&quot;maths&quot;: 90, &quot;physics&quot;: 78},\n            &quot;Ravi&quot;: {&quot;maths&quot;: 65, &quot;physics&quot;: 88}}</pre>\n<table style=\"border-collapse:separate;border-spacing:2px 1px;margin:6px 0 4px\"><tr><td rowspan=\"2\" style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">students =</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;Asha&#x27;</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;Ravi&#x27;</td><td style=\"padding-left:8px;font-size:12px;color:#8a939c\">key<br><br>value</td></tr><tr><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:0 0 2px 2px\">{&#x27;maths&#x27;: 90, &#x27;physics&#x27;: 78}</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:0 0 2px 2px\">{&#x27;maths&#x27;: 65, &#x27;physics&#x27;: 88}</td></tr></table>\n<table style=\"border-collapse:separate;border-spacing:2px 1px;margin:6px 0 4px\"><tr><td rowspan=\"2\" style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">students[&#x27;Asha&#x27;] =</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#e2e6ea;color:#8a939c;border-radius:2px 2px 0 0\">&#x27;maths&#x27;</td><td style=\"text-align:center;padding:4px 8px;white-space:nowrap;font-family:monospace;font-size:13px;background:#cfdcec;color:#1f3a63;border-radius:2px 2px 0 0\">&#x27;physics&#x27;</td><td style=\"padding-left:8px;font-size:12px;color:#8a939c\">key<br><br>value</td></tr><tr><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:0 0 2px 2px\">90</td><td style=\"text-align:center;padding:5px 8px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:0 0 2px 2px\">78</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">students[&#x27;Asha&#x27;][&#x27;physics&#x27;] is 78</div>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>subject_average(students, subject)</code>, where <code>students</code> is a non-empty dictionary like the one above and every student has marks for <code>subject</code>. Return the average mark in that subject, rounded to 2 decimal places with <code>round(value, 2)</code>.</p>\n<p>For example, <code>subject_average({\"Asha\": {\"maths\": 90}, \"Ravi\": {\"maths\": 65}}, \"maths\")</code> returns <code>77.5</code>.</p>",
+   "answerpreload": "# Define subject_average(students, subject).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(subject_average({\"Asha\": {\"maths\": 90}, \"Ravi\": {\"maths\": 65}}, \"maths\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(subject_average({\"Asha\": {\"maths\": 90}, \"Ravi\": {\"maths\": 65}}, \"maths\"))",
+     "stdin": "",
+     "expected": "77.5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "s = {\"Asha\": {\"maths\": 90, \"physics\": 78}, \"Ravi\": {\"maths\": 65, \"physics\": 88}}\nprint(subject_average(s, \"physics\"))",
+     "stdin": "",
+     "expected": "83.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(subject_average({\"a\": {\"x\": 1}, \"b\": {\"x\": 2}, \"c\": {\"x\": 2}}, \"x\"))",
+     "stdin": "",
+     "expected": "1.67",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(subject_average({\"solo\": {\"art\": 99, \"music\": 1}}, \"music\"))",
+     "stdin": "",
+     "expected": "1.0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 23,
+   "xml_name": "L09_023_Create A Set",
+   "display_name": "Create A Set",
+   "questiontext_html": "<p>A <b>set</b> is a collection of <b>unique</b> items, like a set in mathematics. It is written with curly braces, like a dictionary but without the <code>key:</code> parts:</p>\n<pre>primes = {2, 3, 5, 7}</pre>\n<p>Three things make sets special:</p>\n<ul><li><b>no duplicates</b>: adding an item that is already there changes nothing;</li><li><b>no order and no indexes</b>: <code>s[0]</code> is an error; the printing order is not the order you wrote;</li><li><code>x in s</code> is very fast, even for huge sets.</li></ul>\n<p><code>set(...)</code> converts a list, a string or a range into a set, and <b>removes duplicates</b>. The empty set is written <code>set()</code> (because <code>{}</code> is an empty <b>dictionary</b>).</p>\n<pre>nums = [3, 1, 3, 2, 1]\ns = set(nums)\nprint(len(s), 2 in s, 9 in s)\nprint(sorted(s))\nprint(len(set()))</pre>\n<p>Output:</p>\n<pre>3 True False\n[1, 2, 3]\n0</pre>\n<p>Because the order of a set is not fixed, in this lab we always print sets through <code>sorted(...)</code>, which gives a sorted list.</p>\n<p><b>Your task:</b> write the function <code>unique_count(L)</code>, which returns how many <b>different</b> values the list <code>L</code> contains.</p>\n<p>For example, <code>unique_count([3, 1, 3, 2, 1])</code> returns <code>3</code>.</p>",
+   "answerpreload": "def unique_count(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(unique_count([3, 1, 3, 2, 1]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(unique_count([3, 1, 3, 2, 1]))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(unique_count([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(unique_count([\"a\", \"a\"]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(unique_count(L))",
+     "stdin": "5 5 5 6 7 7 8",
+     "expected": "4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(unique_count(list(range(10))))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 24,
+   "xml_name": "L09_024_Removing Duplicates",
+   "display_name": "Removing Duplicates",
+   "questiontext_html": "<p><code>set</code> removes duplicates, and <code>sorted(s)</code> gives the items of a set as a sorted list. Together they give \"the different values, in order\":</p>\n<pre>print(sorted(set([5, 3, 5, 1, 3])))\nprint(sorted(set(&quot;banana&quot;)))</pre>\n<p>Output:</p>\n<pre>[1, 3, 5]\n[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;n&#x27;]</pre>\n<p>The second line shows that <code>set(\"banana\")</code> is the set of different <b>letters</b>.</p>\n<p><b>Your task:</b> write two functions:</p>\n<ul><li><code>distinct_sorted(L)</code> returns a sorted list of the different values in the list <code>L</code>;</li><li><code>letters_used(word)</code> returns a sorted list of the different characters in the string <code>word</code>.</li></ul>\n<p>For example, <code>distinct_sorted([5, 3, 5, 1])</code> returns <code>[1, 3, 5]</code> and <code>letters_used(\"banana\")</code> returns <code>['a', 'b', 'n']</code>.</p>",
+   "answerpreload": "def distinct_sorted(L):\n    # write your code here\n\n\ndef letters_used(word):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(distinct_sorted([5, 3, 5, 1]))\n# print(letters_used(\"banana\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(distinct_sorted([5, 3, 5, 1]))",
+     "stdin": "",
+     "expected": "[1, 3, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(letters_used(\"banana\"))",
+     "stdin": "",
+     "expected": "['a', 'b', 'n']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(distinct_sorted([]), letters_used(\"\"))",
+     "stdin": "",
+     "expected": "[] []",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(distinct_sorted(L))",
+     "stdin": "-2 9 -2 0 9 4",
+     "expected": "[-2, 0, 4, 9]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(letters_used(\"mississippi\"))",
+     "stdin": "",
+     "expected": "['i', 'm', 'p', 's']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 25,
+   "xml_name": "L09_025_Adding To A Set",
+   "display_name": "Adding To A Set",
+   "questiontext_html": "<p>Sets are mutable (items can be added and removed; the items themselves must be immutable, like dictionary keys):</p>\n<ul><li><code>s.add(x)</code> adds one item;</li><li><code>s.update(other)</code> adds every item of <code>other</code> (a list, a set, ...).</li></ul>\n<p>Adding something that is already there changes nothing.</p>\n<pre>s = {1, 2}\ns.add(3)\ns.add(2)\ns.update([4, 5, 1])\nprint(sorted(s))</pre>\n<p>Output:</p>\n<pre>[1, 2, 3, 4, 5]</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>all_tags(posts)</code>, where <code>posts</code> is a list of posts and each post is a list of tags (strings). Return a sorted list of all the different tags used in any post.</p>\n<p>For example, <code>all_tags([[\"python\", \"lists\"], [\"python\", \"sets\"]])</code> returns <code>['lists', 'python', 'sets']</code>.</p>",
+   "answerpreload": "# Define all_tags(posts): collect the tags in a set.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(all_tags([[\"python\", \"lists\"], [\"python\", \"sets\"]]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(all_tags([[\"python\", \"lists\"], [\"python\", \"sets\"]]))",
+     "stdin": "",
+     "expected": "['lists', 'python', 'sets']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(all_tags([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(all_tags([[], ['a']]))",
+     "stdin": "",
+     "expected": "['a']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(all_tags([[\"x\", \"x\"], [\"y\"], [\"x\", \"z\"]]))",
+     "stdin": "",
+     "expected": "['x', 'y', 'z']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(all_tags([[\"solo\"]]))",
+     "stdin": "",
+     "expected": "['solo']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 26,
+   "xml_name": "L09_026_Remove Versus Discard",
+   "display_name": "Remove Versus Discard",
+   "questiontext_html": "<p>Two methods remove an item from a set:</p>\n<ul><li><code>s.remove(x)</code> removes <code>x</code>, but raises a <code>KeyError</code> if <code>x</code> is not in the set;</li><li><code>s.discard(x)</code> removes <code>x</code> if it is there, and does <b>nothing</b> otherwise.</li></ul>\n<pre>s = {1, 2, 3}\ns.discard(2)\ns.discard(9)       # no error\nprint(sorted(s))</pre>\n<p>Output:</p>\n<pre>[1, 3]</pre>\n<p><b>Your task:</b> write the function <code>remove_all(s, items)</code>, which removes every item of the list <code>items</code> from the set <code>s</code>, if present (items that are not in <code>s</code> are ignored). It changes <code>s</code> and returns nothing.</p>\n<p>For example, after <code>s = {1, 2, 3}</code> and <code>remove_all(s, [2, 9])</code>, <code>sorted(s)</code> is <code>[1, 3]</code>.</p>",
+   "answerpreload": "# Define remove_all(s, items): use discard.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# s = {1, 2, 3}\n# remove_all(s, [2, 9])\n# print(sorted(s))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "s = {1, 2, 3}\nremove_all(s, [2, 9])\nprint(sorted(s))",
+     "stdin": "",
+     "expected": "[1, 3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "s = set()\nremove_all(s, [1])\nprint(sorted(s))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "s = {5, 6, 7}\nr = remove_all(s, [5, 6, 7, 7])\nprint(sorted(s), r)",
+     "stdin": "",
+     "expected": "[] None",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "s = {'a', 'b'}\nremove_all(s, [])\nprint(sorted(s))",
+     "stdin": "",
+     "expected": "['a', 'b']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 27,
+   "xml_name": "L09_027_Seen Before",
+   "display_name": "Seen Before",
+   "questiontext_html": "<p>Sets are perfect for remembering \"what have I seen so far?\": checking <code>x in seen</code> is fast, and <code>seen.add(x)</code> records it.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>first_repeat(L)</code>, which returns the first item of the list <code>L</code> that appears for the <b>second</b> time as you read <code>L</code> from left to right, or <code>None</code> if no item repeats.</p>\n<p>For example, <code>first_repeat([3, 1, 4, 1, 5, 3])</code> returns <code>1</code> (the second <code>1</code> comes before the second <code>3</code>).</p>",
+   "answerpreload": "# Define first_repeat(L): remember the items seen so far in a set.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(first_repeat([3, 1, 4, 1, 5, 3]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(first_repeat([3, 1, 4, 1, 5, 3]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_repeat([1, 2, 3]))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_repeat([]))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(first_repeat(L))",
+     "stdin": "7 8 9 9 8 7",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_repeat(['a', 'a']))",
+     "stdin": "",
+     "expected": "a",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 28,
+   "xml_name": "L09_028_Union",
+   "display_name": "Union",
+   "questiontext_html": "<p>Sets support the operations from mathematics. The <b>union</b> <code>a | b</code> (or <code>a.union(b)</code>) contains everything that is in <code>a</code>, in <code>b</code>, or in both:</p>\n<div style=\"position:relative;width:310px;height:175px;margin:6px 0 4px\"><div style=\"position:absolute;left:10px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2b4c7e;background:rgba(43,76,126,.07)\"></div><div style=\"position:absolute;left:120px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2a8c8c;background:rgba(42,140,140,.07)\"></div><div style=\"position:absolute;left:60px;top:0;font-weight:600;color:#2b4c7e\">a</div><div style=\"position:absolute;left:230px;top:0;font-weight:600;color:#2a8c8c\">b</div><div style=\"position:absolute;left:28px;top:55px;width:66px;text-align:center\"><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">1</div><br><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">2</div><br></div><div style=\"position:absolute;left:128px;top:55px;width:66px;text-align:center\"><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">3</div><br><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">4</div><br></div><div style=\"position:absolute;left:214px;top:55px;width:66px;text-align:center\"><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">5</div><br><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">6</div><br></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">a | b is {1, 2, 3, 4, 5, 6}</div>\n<pre>a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\nprint(sorted(a | b))</pre>\n<p>Output:</p>\n<pre>[1, 2, 3, 4, 5, 6]</pre>\n<p><b>Your task:</b> write the function <code>all_members(club1, club2)</code>, where the two lists contain the names of the members of two clubs. Return a sorted list of everyone who is in at least one club (each name once).</p>\n<p>For example, <code>all_members([\"Asha\", \"Ravi\"], [\"Ravi\", \"Meera\"])</code> returns <code>['Asha', 'Meera', 'Ravi']</code>.</p>",
+   "answerpreload": "# Define all_members(club1, club2): use a union.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(all_members([\"Asha\", \"Ravi\"], [\"Ravi\", \"Meera\"]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(all_members([\"Asha\", \"Ravi\"], [\"Ravi\", \"Meera\"]))",
+     "stdin": "",
+     "expected": "['Asha', 'Meera', 'Ravi']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(all_members([], []))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(all_members([\"a\", \"a\"], [\"b\"]))",
+     "stdin": "",
+     "expected": "['a', 'b']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(all_members([\"x\", \"y\"], [\"y\", \"x\"]))",
+     "stdin": "",
+     "expected": "['x', 'y']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 29,
+   "xml_name": "L09_029_Intersection",
+   "display_name": "Intersection",
+   "questiontext_html": "<p>The <b>intersection</b> <code>a &amp; b</code> (or <code>a.intersection(b)</code>) contains only the items that are in <b>both</b> sets:</p>\n<div style=\"position:relative;width:310px;height:175px;margin:6px 0 4px\"><div style=\"position:absolute;left:10px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2b4c7e;background:rgba(43,76,126,.07)\"></div><div style=\"position:absolute;left:120px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2a8c8c;background:rgba(42,140,140,.07)\"></div><div style=\"position:absolute;left:60px;top:0;font-weight:600;color:#2b4c7e\">a</div><div style=\"position:absolute;left:230px;top:0;font-weight:600;color:#2a8c8c\">b</div><div style=\"position:absolute;left:28px;top:55px;width:66px;text-align:center\"><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">1</div><br><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">2</div><br></div><div style=\"position:absolute;left:128px;top:55px;width:66px;text-align:center\"><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">3</div><br><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">4</div><br></div><div style=\"position:absolute;left:214px;top:55px;width:66px;text-align:center\"><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">5</div><br><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">6</div><br></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">a &amp; b is {3, 4}</div>\n<pre>a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\nprint(sorted(a &amp; b))</pre>\n<p>Output:</p>\n<pre>[3, 4]</pre>\n<p><b>Your task:</b> write the function <code>common_friends(f1, f2)</code>, where the two lists are the friends of two people. Return a sorted list of the friends they have in common.</p>\n<p>For example, <code>common_friends([\"Asha\", \"Ravi\", \"Zoya\"], [\"Ravi\", \"Meera\", \"Zoya\"])</code> returns <code>['Ravi', 'Zoya']</code>.</p>",
+   "answerpreload": "# Define common_friends(f1, f2): use an intersection.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(common_friends([\"Asha\", \"Ravi\", \"Zoya\"], [\"Ravi\", \"Meera\", \"Zoya\"]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(common_friends([\"Asha\", \"Ravi\", \"Zoya\"], [\"Ravi\", \"Meera\", \"Zoya\"]))",
+     "stdin": "",
+     "expected": "['Ravi', 'Zoya']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(common_friends([\"a\"], [\"b\"]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(common_friends([\"p\", \"q\", \"q\"], [\"q\", \"q\", \"p\"]))",
+     "stdin": "",
+     "expected": "['p', 'q']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(common_friends([], ['x']))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 30,
+   "xml_name": "L09_030_Difference",
+   "display_name": "Difference",
+   "questiontext_html": "<p>The <b>difference</b> <code>a - b</code> (or <code>a.difference(b)</code>) contains the items of <code>a</code> that are <b>not</b> in <code>b</code>. Unlike union and intersection, the order matters: <code>a - b</code> and <code>b - a</code> are different.</p>\n<div style=\"position:relative;width:310px;height:175px;margin:6px 0 4px\"><div style=\"position:absolute;left:10px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2b4c7e;background:rgba(43,76,126,.07)\"></div><div style=\"position:absolute;left:120px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2a8c8c;background:rgba(42,140,140,.07)\"></div><div style=\"position:absolute;left:60px;top:0;font-weight:600;color:#2b4c7e\">a</div><div style=\"position:absolute;left:230px;top:0;font-weight:600;color:#2a8c8c\">b</div><div style=\"position:absolute;left:28px;top:55px;width:66px;text-align:center\"><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">1</div><br><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">2</div><br></div><div style=\"position:absolute;left:128px;top:55px;width:66px;text-align:center\"><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">3</div><br><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">4</div><br></div><div style=\"position:absolute;left:214px;top:55px;width:66px;text-align:center\"><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">5</div><br><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">6</div><br></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">a - b is {1, 2}</div>\n<div style=\"position:relative;width:310px;height:175px;margin:6px 0 4px\"><div style=\"position:absolute;left:10px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2b4c7e;background:rgba(43,76,126,.07)\"></div><div style=\"position:absolute;left:120px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2a8c8c;background:rgba(42,140,140,.07)\"></div><div style=\"position:absolute;left:60px;top:0;font-weight:600;color:#2b4c7e\">a</div><div style=\"position:absolute;left:230px;top:0;font-weight:600;color:#2a8c8c\">b</div><div style=\"position:absolute;left:28px;top:55px;width:66px;text-align:center\"><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">1</div><br><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">2</div><br></div><div style=\"position:absolute;left:128px;top:55px;width:66px;text-align:center\"><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">3</div><br><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">4</div><br></div><div style=\"position:absolute;left:214px;top:55px;width:66px;text-align:center\"><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">5</div><br><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">6</div><br></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">b - a is {5, 6}</div>\n<p><b>Your task:</b> write the function <code>still_to_do(tasks, done)</code>, where <code>tasks</code> and <code>done</code> are lists of task names. Return a sorted list of the tasks that are not done yet (<code>done</code> may also contain things that are not in <code>tasks</code>; ignore them).</p>\n<p>For example, <code>still_to_do([\"cook\", \"shop\", \"study\"], [\"shop\", \"sleep\"])</code> returns <code>['cook', 'study']</code>.</p>",
+   "answerpreload": "# Define still_to_do(tasks, done): use a difference.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(still_to_do([\"cook\", \"shop\", \"study\"], [\"shop\", \"sleep\"]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(still_to_do([\"cook\", \"shop\", \"study\"], [\"shop\", \"sleep\"]))",
+     "stdin": "",
+     "expected": "['cook', 'study']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(still_to_do([\"a\"], [\"a\"]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(still_to_do([\"x\", \"y\", \"z\"], []))",
+     "stdin": "",
+     "expected": "['x', 'y', 'z']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(still_to_do([], [\"q\"]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 31,
+   "xml_name": "L09_031_Symmetric Difference",
+   "display_name": "Symmetric Difference",
+   "questiontext_html": "<p>The <b>symmetric difference</b> <code>a ^ b</code> contains the items that are in <b>exactly one</b> of the two sets (in either, but not in both):</p>\n<div style=\"position:relative;width:310px;height:175px;margin:6px 0 4px\"><div style=\"position:absolute;left:10px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2b4c7e;background:rgba(43,76,126,.07)\"></div><div style=\"position:absolute;left:120px;top:18px;width:170px;height:150px;border-radius:50%;border:2px solid #2a8c8c;background:rgba(42,140,140,.07)\"></div><div style=\"position:absolute;left:60px;top:0;font-weight:600;color:#2b4c7e\">a</div><div style=\"position:absolute;left:230px;top:0;font-weight:600;color:#2a8c8c\">b</div><div style=\"position:absolute;left:28px;top:55px;width:66px;text-align:center\"><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">1</div><br><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">2</div><br></div><div style=\"position:absolute;left:128px;top:55px;width:66px;text-align:center\"><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">3</div><br><div style=\"color:#8a939c;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">4</div><br></div><div style=\"position:absolute;left:214px;top:55px;width:66px;text-align:center\"><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">5</div><br><div style=\"background:#2b4c7e;color:#fff;border-radius:3px;padding:1px 5px;margin:2px 0;font-family:monospace;font-size:13px;white-space:nowrap;display:inline-block\">6</div><br></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">a ^ b is {1, 2, 5, 6}</div>\n<p>It is the same as <code>(a | b) - (a &amp; b)</code>.</p>\n<p><b>Your task:</b> write the function <code>changed_answers(before, after)</code>, where the two lists contain the numbers of the questions a student marked for review before and after revising. Return a sorted list of the questions that are marked in exactly one of the two lists.</p>\n<p>For example, <code>changed_answers([1, 2, 3], [2, 3, 4])</code> returns <code>[1, 4]</code>.</p>",
+   "answerpreload": "# Define changed_answers(before, after): use a symmetric difference.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(changed_answers([1, 2, 3], [2, 3, 4]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(changed_answers([1, 2, 3], [2, 3, 4]))",
+     "stdin": "",
+     "expected": "[1, 4]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(changed_answers([1], [1]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(changed_answers([], [5, 6]))",
+     "stdin": "",
+     "expected": "[5, 6]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(changed_answers([9, 8, 7], [1]))",
+     "stdin": "",
+     "expected": "[1, 7, 8, 9]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 32,
+   "xml_name": "L09_032_Subsets",
+   "display_name": "Subsets",
+   "questiontext_html": "<p><code>a &lt;= b</code> (or <code>a.issubset(b)</code>) is <code>True</code> when <b>every</b> item of <code>a</code> is also in <code>b</code>: <code>a</code> is a <b>subset</b> of <code>b</code>. Likewise <code>a &gt;= b</code> asks whether <code>a</code> contains all of <code>b</code> (a <b>superset</b>).</p>\n<pre>print({1, 2} &lt;= {1, 2, 3})\nprint({1, 4} &lt;= {1, 2, 3})\nprint(set() &lt;= {1})</pre>\n<p>Output:</p>\n<pre>True\nFalse\nTrue</pre>\n<p><b>Your task:</b> write the function <code>can_spell(word, tiles)</code>, which returns <code>True</code> if every letter used in <code>word</code> appears at least once in the string <code>tiles</code> (how many times does not matter here), and <code>False</code> otherwise.</p>\n<p>For example, <code>can_spell(\"cab\", \"abcde\")</code> returns <code>True</code>.</p>",
+   "answerpreload": "# Define can_spell(word, tiles): use a subset test.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(can_spell(\"cab\", \"abcde\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(can_spell(\"cab\", \"abcde\"))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(can_spell(\"dog\", \"gdx\"))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(can_spell(\"\", \"a\"))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(can_spell(\"aaa\", \"a\"))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(can_spell(\"python\", \"pytho\"))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 33,
+   "xml_name": "L09_033_Frozen Sets",
+   "display_name": "Frozen Sets",
+   "questiontext_html": "<p>A normal set is mutable, so (like a list) it cannot be a dictionary key or an item of another set. <code>frozenset(...)</code> makes an <b>immutable</b> set: it has no <code>add</code> or <code>remove</code>, but it <b>can</b> be put inside a set or used as a key. Two frozensets with the same items are equal, whatever order the items were given in.</p>\n<pre>t1 = frozenset([&quot;Asha&quot;, &quot;Ravi&quot;])\nt2 = frozenset([&quot;Ravi&quot;, &quot;Asha&quot;])\nprint(t1 == t2)\nteams = set()\nteams.add(t1)\nteams.add(t2)\nprint(len(teams))</pre>\n<p>Output:</p>\n<pre>True\n1</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>distinct_teams(teams)</code>, where <code>teams</code> is a list of teams and each team is a list of names. Two teams are the same if they have the same members, in any order. Return how many different teams there are.</p>\n<p>For example, <code>distinct_teams([[\"a\", \"b\"], [\"b\", \"a\"], [\"a\", \"c\"]])</code> returns <code>2</code>.</p>",
+   "answerpreload": "# Define distinct_teams(teams): put frozensets into a set.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(distinct_teams([[\"a\", \"b\"], [\"b\", \"a\"], [\"a\", \"c\"]]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(distinct_teams([[\"a\", \"b\"], [\"b\", \"a\"], [\"a\", \"c\"]]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(distinct_teams([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(distinct_teams([[\"x\"], [\"x\"], [\"x\"]]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(distinct_teams([[\"p\", \"q\", \"r\"], [\"r\", \"q\", \"p\"], [\"p\", \"q\"]]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 34,
+   "xml_name": "L09_034_Common Words",
+   "display_name": "Common Words",
+   "questiontext_html": "<p>Now choose the right tools yourself: a dictionary to look things up or count, a set to remove duplicates or compare groups, a list to keep order. Test with small examples, including empty inputs.</p>\n<p><b>Your task:</b> write the function <code>common_words(text1, text2)</code>, which returns a sorted list of the different words that appear in both strings (words are separated by spaces and are already lowercase).</p>\n<p>For example, <code>common_words(\"the cat sat\", \"a cat and the dog\")</code> returns <code>['cat', 'the']</code>.</p>",
+   "answerpreload": "# Define common_words(text1, text2).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(common_words(\"the cat sat\", \"a cat and the dog\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(common_words(\"the cat sat\", \"a cat and the dog\"))",
+     "stdin": "",
+     "expected": "['cat', 'the']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(common_words(\"\", \"a b\"))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(common_words(\"x x y\", \"y y x\"))",
+     "stdin": "",
+     "expected": "['x', 'y']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(common_words(\"one two\", \"three four\"))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 35,
+   "xml_name": "L09_035_Anagrams",
+   "display_name": "Anagrams",
+   "questiontext_html": "<p>Now choose the right tools yourself: a dictionary to look things up or count, a set to remove duplicates or compare groups, a list to keep order. Test with small examples, including empty inputs.</p>\n<p>Two words are <b>anagrams</b> if they use exactly the same letters, <b>the same number of times</b> each (for example \"listen\" and \"silent\"). Comparing sets is not enough here (\"aab\" and \"abb\" have the same set of letters); compare letter <b>counts</b> instead. Two dictionaries are equal (<code>==</code>) when they have the same pairs, whatever their order.</p>\n<p><b>Your task:</b> write the function <code>is_anagram(w1, w2)</code>, which returns <code>True</code> if the lowercase words <code>w1</code> and <code>w2</code> are anagrams, and <code>False</code> otherwise.</p>\n<p>For example, <code>is_anagram(\"listen\", \"silent\")</code> returns <code>True</code> and <code>is_anagram(\"aab\", \"abb\")</code> returns <code>False</code>.</p>",
+   "answerpreload": "# Define is_anagram(w1, w2).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(is_anagram(\"listen\", \"silent\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_anagram(\"listen\", \"silent\"))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_anagram(\"aab\", \"abb\"))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_anagram(\"\", \"\"))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_anagram(\"night\", \"thing\"))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_anagram(\"abc\", \"abcc\"))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 36,
+   "xml_name": "L09_036_Most Common Word",
+   "display_name": "Most Common Word",
+   "questiontext_html": "<p>Now choose the right tools yourself: a dictionary to look things up or count, a set to remove duplicates or compare groups, a list to keep order. Test with small examples, including empty inputs.</p>\n<p><b>Your task:</b> write the function <code>most_common(text)</code>, which returns the word that appears most often in the non-empty string <code>text</code> (lowercase words separated by spaces). If several words are equally common, return the one that appears <b>first</b> in the text.</p>\n<p>For example, <code>most_common(\"to be or not to be\")</code> returns <code>\"to\"</code>.</p>",
+   "answerpreload": "# Define most_common(text).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(most_common(\"to be or not to be\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(most_common(\"to be or not to be\"))",
+     "stdin": "",
+     "expected": "to",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(most_common(\"hello\"))",
+     "stdin": "",
+     "expected": "hello",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(most_common(\"a b b c c c\"))",
+     "stdin": "",
+     "expected": "c",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(most_common(\"x y z y x\"))",
+     "stdin": "",
+     "expected": "x",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 37,
+   "xml_name": "L09_037_Students In Every Club",
+   "display_name": "Students In Every Club",
+   "questiontext_html": "<p>Now choose the right tools yourself: a dictionary to look things up or count, a set to remove duplicates or compare groups, a list to keep order. Test with small examples, including empty inputs.</p>\n<p><b>Your task:</b> write the function <code>in_every_club(clubs)</code>, where <code>clubs</code> is a non-empty dictionary from club names to lists of member names. Return a sorted list of the students who are members of <b>every</b> club.</p>\n<p>For example, <code>in_every_club({\"chess\": [\"Asha\", \"Ravi\"], \"music\": [\"Ravi\", \"Asha\", \"Zoya\"], \"art\": [\"Ravi\", \"Asha\"]})</code> returns <code>['Asha', 'Ravi']</code>.</p>",
+   "answerpreload": "# Define in_every_club(clubs).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(in_every_club({\"chess\": [\"Asha\", \"Ravi\"], \"music\": [\"Ravi\", \"Asha\", \"Zoya\"]}))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(in_every_club({\"chess\": [\"Asha\", \"Ravi\"], \"music\": [\"Ravi\", \"Asha\", \"Zoya\"], \"art\": [\"Ravi\", \"Asha\"]}))",
+     "stdin": "",
+     "expected": "['Asha', 'Ravi']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(in_every_club({\"solo\": [\"X\", \"Y\"]}))",
+     "stdin": "",
+     "expected": "['X', 'Y']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(in_every_club({\"a\": [\"p\"], \"b\": [\"q\"]}))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(in_every_club({\"a\": [\"m\", \"n\"], \"b\": [\"n\", \"m\"], \"c\": [\"n\"]}))",
+     "stdin": "",
+     "expected": "['n']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "8ccc7d69933dfac8"
+}

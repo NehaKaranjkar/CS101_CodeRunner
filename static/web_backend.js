@@ -8,6 +8,9 @@
    The marking rules mirror exam.py and runner.py; keep them in step. */
 
 const WEB_TIMEOUT_SECONDS = 3;   // per test; Pyodide is a little slower than native Python
+const PLOT_TIMEOUT_SECONDS = 10; // per test, for programs that use matplotlib (drawing is slow)
+// an import line (not a comment) of matplotlib; same rule as runner.py uses_matplotlib
+const usesMatplotlib = (code) => /^[ \t]*(?:import|from)[ \t]+matplotlib/m.test(code);
 
 const WebBackend = (() => {
   /* ---------------- helpers ---------------- */
@@ -85,13 +88,14 @@ const WebBackend = (() => {
   let py = null;
   const python = () => (py = py || new PyRunner());
 
-  async function runProgram(program, stdin) {
-    const r = await python().call({ kind: "run", code: program, stdin }, WEB_TIMEOUT_SECONDS * 1000);
-    if (r.timeout) return [`\n***Time limit exceeded (${WEB_TIMEOUT_SECONDS} s); infinite loop?***`, "timeout"];
+  async function runProgram(program, stdin, capture) {
+    const limit = usesMatplotlib(program) ? PLOT_TIMEOUT_SECONDS : WEB_TIMEOUT_SECONDS;
+    const r = await python().call({ kind: "run", code: program, stdin, capture }, limit * 1000);
+    if (r.timeout) return [`\n***Time limit exceeded (${limit} s); infinite loop?***`, "timeout", []];
     if (!r.ok) {
       const deep = /call stack|too much recursion/i.test(r.error || "");
       return [deep ? "RecursionError: maximum recursion depth exceeded (browser limit; the lab computers allow deeper recursion)"
-                   : "***The program crashed: " + r.error + "***", "error"];
+                   : "***The program crashed: " + r.error + "***", "error", []];
     }
     return r.result;
   }
@@ -102,10 +106,15 @@ const WebBackend = (() => {
     const syn = await python().call({ kind: "syntax", code }, 10000);
     if (syn.timeout) throw new Error("Python did not respond. Please try again.");
     if (syn.ok && syn.result) { result.syntax_error = syn.result; return result; }
+    if (usesMatplotlib(code)) {        // load matplotlib once, outside the timed tests
+      const prep = await python().call({ kind: "prepare", packages: ["matplotlib"] }, 180000);
+      if (!prep.ok) throw new Error("matplotlib could not be loaded: " + (prep.error || "time-out"));
+    }
     for (let n = 1; n <= selected.length; n++) {
       const t = selected[n - 1];
       const program = t.testcode.trim() ? code.replace(/\n+$/, "") + "\n\n" + t.testcode + "\n" : code;
-      const [got, status] = await runProgram(program, t.stdin);
+      const [got, status, figures] = await runProgram(program, t.stdin, n === 1);
+      if (n === 1 && figures && figures.length) result.figures = figures;   // shown, not graded
       const passed = status === "ok" && normalise(got) === normalise(t.expected);
       result.tests.push({ n, show: t.show, testcode: t.testcode, stdin: t.stdin, expected: t.expected, got, status, passed });
       if (status !== "ok") { result.aborted = selected.length > n; break; }

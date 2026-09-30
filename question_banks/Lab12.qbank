@@ -1,0 +1,942 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab12",
+ "encrypted": false,
+ "source_xml": "Lab12.xml",
+ "built_at": "2026-09-30T19:25:10",
+ "settings": {
+  "title": "Lab 12: Searching, Sorting and Big O",
+  "description": "Counting operations and O notation; linear and binary search; bubble, insertion and selection sort; merging and quicksort. The tests also count how many looks, comparisons and swaps your code makes.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Counting operations",
+    "start": 1,
+    "count": 2
+   },
+   {
+    "heading": "Searching",
+    "start": 3,
+    "count": 4
+   },
+   {
+    "heading": "Simple sorting: O(n²)",
+    "start": 7,
+    "count": 5
+   },
+   {
+    "heading": "Faster sorting",
+    "start": 12,
+    "count": 3
+   },
+   {
+    "heading": "Putting it together",
+    "start": 15,
+    "count": 2
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L12_001_Counting Steps",
+   "display_name": "Counting Steps",
+   "questiontext_html": "<p>Welcome to Lab 12! Two programs can give the same answer, yet one may take a second and the other a day. To compare <b>algorithms</b> (step-by-step methods), we <b>count the basic operations</b> they perform, and ask how that count <b>grows</b> when the input gets bigger.</p>\n<p>Look at these two loops for a list of <code>n</code> items:</p>\n<pre>n = 5\none_pass = 0\nfor i in range(n):\n    one_pass += 1\nall_pairs = 0\nfor i in range(n):\n    for j in range(i + 1, n):\n        all_pairs += 1\nprint(one_pass, all_pairs)</pre>\n<p>Output:</p>\n<pre>5 10</pre>\n<p>The first does <code>n</code> steps: we say it takes <b>O(n)</b> time (\"order n\", or <b>linear</b>): double <code>n</code>, double the work. The second visits every pair <code>i &lt; j</code>, which is <code>n * (n - 1) / 2</code> steps: <b>O(n²)</b> (<b>quadratic</b>): double <code>n</code>, about four times the work. The <b>O notation</b> keeps only how fast the count grows, ignoring constant factors like <code>/ 2</code>:</p>\n<table border=\"1\" cellpadding=\"5\" style=\"border-collapse:collapse;margin:6px 0 12px;font-size:14px;text-align:right\"><tr><th>n (items)</th><th>O(log n): halving</th><th>O(n): one pass</th><th>O(n&sup2;): all pairs</th></tr><tr><td>10</td><td>4</td><td>10</td><td>100</td></tr><tr><td>100</td><td>7</td><td>100</td><td>10,000</td></tr><tr><td>1,000</td><td>10</td><td>1,000</td><td>1,000,000</td></tr><tr><td>1,000,000</td><td>20</td><td>1,000,000</td><td>1,000,000,000,000</td></tr></table>\n<p>(<code>x += 1</code> is short for <code>x = x + 1</code>.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>count_triples(n)</code>, which <b>counts with loops</b> (not with a formula) how many triples of indexes <code>i &lt; j &lt; k</code> there are with all three from <code>0</code> to <code>n - 1</code>, and returns that count. This grows as <b>O(n³)</b>.</p>\n<p>For example, <code>count_triples(4)</code> returns <code>4</code> (the triples are 012, 013, 023, 123).</p>",
+   "answerpreload": "def count_triples(n):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(count_triples(4))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_triples(4))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_triples(3), count_triples(2))",
+     "stdin": "",
+     "expected": "1 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_triples(10))",
+     "stdin": "",
+     "expected": "120",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L12_002_Counting Halvings",
+   "display_name": "Counting Halvings",
+   "questiontext_html": "<p>Some algorithms throw away <b>half</b> of the remaining work at every step. Starting from <code>n</code>, how many halvings until only 1 is left? For <code>n = 16</code>: 16, 8, 4, 2, 1, that is 4 halvings. This number is the <b>logarithm</b> of <code>n</code> in base 2, written <code>log n</code>. It grows <b>very slowly</b>: <code>log</code> of a million is only about 20. Algorithms whose step count grows like this take <b>O(log n)</b> time (<b>logarithmic</b>).</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>halvings(n)</code>, which returns how many times a positive integer <code>n</code> (int &gt; 0) can be replaced by <code>n // 2</code> before it becomes 1 (for <code>n = 1</code> the answer is 0). Use a <code>while</code> loop.</p>\n<p>For example, <code>halvings(16)</code> returns <code>4</code> and <code>halvings(20)</code> returns <code>4</code> (20, 10, 5, 2, 1).</p>",
+   "answerpreload": "def halvings(n):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(halvings(16))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(halvings(16))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(halvings(20), halvings(1))",
+     "stdin": "",
+     "expected": "4 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(halvings(1000000))",
+     "stdin": "",
+     "expected": "19",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L12_003_Linear Search",
+   "display_name": "Linear Search",
+   "questiontext_html": "<p>The simplest way to find a value in a list is <b>linear search</b>: look at the items one by one from the start, until you find it (or reach the end).</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">7</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">3</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">9</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">6</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>found</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">searching for 4: look at 7, 3, 9, 4, found at index 4 - 1 = 3 after 4 looks</div>\n<p><b>Pseudocode</b> (a plain description of the steps):</p>\n<pre>linear_search(L, x):\n    for i = 0, 1, ..., len(L) - 1:\n        if probe(L, i) == x:\n            return i\n    return -1</pre>\n<p><b>How we count:</b> the code box starts with a helper function <code>probe(L, i)</code>, which simply returns <code>L[i]</code>. Use it <b>every time</b> you look at an item (instead of writing <code>L[i]</code> yourself). The tests count your calls to <code>probe</code>: this is the number of items your search looked at. Do not change the helper functions.</p>\n<p>In the worst case (the value is not there, or is last), linear search looks at all <code>n</code> items: it is <b>O(n)</b>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>linear_search(L, x)</code> following the pseudocode exactly: return the index of the first <code>x</code> in the list <code>L</code>, or <code>-1</code> if it is not there.</p>\n<p>For example, <code>linear_search([7, 3, 9, 4, 6], 4)</code> returns <code>3</code>.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef probe(L, i):\n    # Look at the item at index i. Use this EVERY time you read an item.\n    return L[i]\n\n\ndef linear_search(L, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(linear_search([7, 3, 9, 4, 6], 4))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(linear_search([7, 3, 9, 4, 6], 4), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "3 looks: 4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(linear_search([7, 3, 9, 4, 6], 5), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "-1 looks: 5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(linear_search([], 1), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "-1 looks: 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nL = list(map(int, input().split()))\nprint(linear_search(L, 8), 'looks:', _c['probe'])",
+     "stdin": "8 1 8 2",
+     "expected": "0 looks: 1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(linear_search(list(range(1000)), 999), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "999 looks: 1000",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L12_004_Search From The End",
+   "display_name": "Search From The End",
+   "questiontext_html": "<p>Linear search can also run <b>backwards</b>, to find the <b>last</b> occurrence of a value. The number of looks then depends on how far from the end the value is.</p>\n<pre>last_index(L, x):\n    for i = len(L) - 1, len(L) - 2, ..., 0:\n        if probe(L, i) == x:\n            return i\n    return -1</pre>\n<p>(<code>range(len(L) - 1, -1, -1)</code> gives the indexes from the last down to 0.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>last_index(L, x)</code> following the pseudocode exactly, using <code>probe</code> for every look.</p>\n<p>For example, <code>last_index([4, 1, 4, 2], 4)</code> returns <code>2</code> after 2 looks.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef probe(L, i):\n    # Look at the item at index i. Use this EVERY time you read an item.\n    return L[i]\n\n\ndef last_index(L, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(last_index([4, 1, 4, 2], 4))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(last_index([4, 1, 4, 2], 4), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "2 looks: 2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(last_index([4, 1, 4, 2], 9), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "-1 looks: 4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nL = list(map(int, input().split()))\nprint(last_index(L, 3), 'looks:', _c['probe'])",
+     "stdin": "3 5 5 5 5",
+     "expected": "0 looks: 5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(last_index([1], 1), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "0 looks: 1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L12_005_Binary Search",
+   "display_name": "Binary Search",
+   "questiontext_html": "<p>If the list is <b>sorted</b>, we can do much better. <b>Binary search</b> looks at the <b>middle</b> item first. If it is the value, done. If the middle item is smaller than the value, the value can only be in the <b>right half</b>; if bigger, only in the <b>left half</b>. Either way, <b>half of the list is thrown away</b> with one look. Repeat on the remaining half.</p>\n<p>Searching for <code>23</code> in a sorted list of 10 items (blue: the part still being searched):</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">step 1:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(36,103,161);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(41,110,169);color:#fff;border-radius:2px\">8</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(45,118,176);color:#fff;border-radius:2px\">12</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(50,125,184);color:#fff;border-radius:2px\">16</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(55,133,192);color:#fff;border-radius:2px\">23</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(60,140,200);color:#fff;border-radius:2px\">38</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(64,148,207);color:#fff;border-radius:2px\">56</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(69,155,215);color:#fff;border-radius:2px\">72</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">91</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">8</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">9</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>lo</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>mid</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>hi</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">look at L[4] = 16; 16 &lt; 23: search the right half</div><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">step 2:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">8</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">12</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">16</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(55,133,192);color:#fff;border-radius:2px\">23</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(60,140,200);color:#fff;border-radius:2px\">38</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(64,148,207);color:#fff;border-radius:2px\">56</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(69,155,215);color:#fff;border-radius:2px\">72</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">91</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">8</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">9</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>lo</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>mid</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>hi</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">look at L[7] = 56; 56 &gt; 23: search the left half</div><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">step 3:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">8</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">12</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">16</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(55,133,192);color:#fff;border-radius:2px\">23</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(60,140,200);color:#fff;border-radius:2px\">38</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">56</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">72</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">91</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">8</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">9</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>lo mid</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\">&uarr;<br>hi</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">look at L[5] = 23; found!</div>\n<p>Only 3 looks instead of 6. Each step halves the remaining part, so binary search needs at most about <code>log n</code> looks: it is <b>O(log n)</b>. For a million items: about 20 looks instead of a million!</p>\n<pre>binary_search(L, x):\n    lo = 0\n    hi = len(L) - 1\n    while lo &lt;= hi:\n        mid = (lo + hi) // 2\n        v = probe(L, mid)          # look ONCE per step, and keep the value in v\n        if v == x:\n            return mid\n        else if v &lt; x:\n            lo = mid + 1           # continue in the right half\n        else:\n            hi = mid - 1           # continue in the left half\n    return -1</pre>\n<p>Note: call <code>probe</code> <b>exactly once per step</b> and store the value, as in the pseudocode; calling it again for each comparison would count extra looks.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>binary_search(L, x)</code> following the pseudocode exactly. <code>L</code> is sorted from small to large. Return the index of <code>x</code>, or <code>-1</code> if it is not in <code>L</code>.</p>\n<p>For example, <code>binary_search([2, 5, 8, 12, 16, 23, 38, 56, 72, 91], 23)</code> returns <code>5</code> after 3 looks.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef probe(L, i):\n    # Look at the item at index i. Use this EVERY time you read an item.\n    return L[i]\n\n\ndef binary_search(L, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(binary_search([2, 5, 8, 12, 16, 23, 38, 56, 72, 91], 23))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(binary_search([2, 5, 8, 12, 16, 23, 38, 56, 72, 91], 23), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "5 looks: 3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(binary_search([2, 5, 8, 12, 16, 23, 38, 56, 72, 91], 3), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "-1 looks: 3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(binary_search([], 3), binary_search([3], 3), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "-1 0 looks: 1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(binary_search(list(range(0, 2000000, 2)), 1234566), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "617283 looks: 20",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nL = list(map(int, input().split()))\nprint(binary_search(L, 100), 'looks:', _c['probe'])",
+     "stdin": "1 3 5 7 9 11 13",
+     "expected": "-1 looks: 3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(binary_search(list(range(100)), 0), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "0 looks: 6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L12_006_Where To Insert",
+   "display_name": "Where To Insert",
+   "questiontext_html": "<p>A useful variant of binary search finds <b>where a value belongs</b> in a sorted list: the first index whose item is <b>greater than or equal to</b> <code>x</code> (or <code>len(L)</code> if every item is smaller). Inserting <code>x</code> there keeps the list sorted. This version never stops early, so it always takes about <code>log n</code> looks:</p>\n<pre>insert_position(L, x):\n    lo = 0\n    hi = len(L)\n    while lo &lt; hi:\n        mid = (lo + hi) // 2\n        if probe(L, mid) &lt; x:\n            lo = mid + 1\n        else:\n            hi = mid\n    return lo</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>insert_position(L, x)</code> following the pseudocode exactly, for a list <code>L</code> sorted from small to large.</p>\n<p>For example, <code>insert_position([10, 20, 30, 40], 25)</code> returns <code>2</code>.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef probe(L, i):\n    # Look at the item at index i. Use this EVERY time you read an item.\n    return L[i]\n\n\ndef insert_position(L, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(insert_position([10, 20, 30, 40], 25))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(insert_position([10, 20, 30, 40], 25), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "2 looks: 2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(insert_position([10, 20, 30, 40], 5), insert_position([10, 20, 30, 40], 99))",
+     "stdin": "",
+     "expected": "0 4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(insert_position([], 7), insert_position([5, 5, 5], 5), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "0 0 looks: 2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(insert_position(list(range(0, 3000, 3)), 1000), 'looks:', _c['probe'])",
+     "stdin": "",
+     "expected": "334 looks: 10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nL = list(map(int, input().split()))\nprint(insert_position(L, 4), 'looks:', _c['probe'])",
+     "stdin": "1 2 4 4 4 8",
+     "expected": "2 looks: 3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L12_007_Bubble Sort",
+   "display_name": "Bubble Sort",
+   "questiontext_html": "<p><b>Sorting</b> puts a list in order. <b>Bubble sort</b> is the simplest method: walk through the list comparing <b>neighbours</b>; whenever a pair is in the wrong order, swap it. After one pass, the biggest item has \"bubbled up\" to the end. Repeat, each pass one item shorter:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">start:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">after pass 1:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">after pass 2:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">after pass 3:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">after pass 4:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">8</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">blue: the part that is already in its final place (the biggest items 'bubble' to the end)</div>\n<pre>bubble_sort(L):\n    n = len(L)\n    for i = 0, 1, ..., n - 2:              # passes\n        for j = 0, 1, ..., n - 2 - i:      # neighbours (j, j + 1) not yet in place\n            if greater(L, j, j + 1):\n                swap(L, j, j + 1)</pre>\n<p>Use the helpers <code>greater(L, i, j)</code> (is <code>L[i] &gt; L[j]</code>?) and <code>swap(L, i, j)</code>. The tests count both. The number of comparisons is always <code>n * (n - 1) / 2</code>: bubble sort is <b>O(n²)</b>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>bubble_sort(L)</code> following the pseudocode exactly. It sorts <code>L</code> in place (small to large) and returns nothing.</p>\n<p>For example, sorting <code>[5, 1, 4, 2, 8]</code> takes 10 comparisons and 4 swaps.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef greater(L, i, j):\n    # True if the item at index i is bigger than the item at index j.\n    return L[i] > L[j]\n\n\ndef swap(L, i, j):\n    # Exchange the items at indexes i and j.\n    L[i], L[j] = L[j], L[i]\n\n\ndef bubble_sort(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# L = [5, 1, 4, 2, 8]\n# bubble_sort(L)\n# print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [5, 1, 4, 2, 8]\nbubble_sort(L)\nprint(L, 'comparisons:', _c['greater'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 4, 5, 8] comparisons: 10 swaps: 4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [1, 2, 3]\nbubble_sort(L)\nprint(L, 'comparisons:', _c['greater'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 3] comparisons: 3 swaps: 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = []\nbubble_sort(L)\nprint(L, _c['greater'], _c['swap'])",
+     "stdin": "",
+     "expected": "[] 0 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(map(int, input().split()))\nbubble_sort(L)\nprint(L, _c['greater'], _c['swap'])",
+     "stdin": "9 8 7 6 5 4 3 2 1",
+     "expected": "[1, 2, 3, 4, 5, 6, 7, 8, 9] 36 36",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(map(int, input().split()))\nbubble_sort(L)\nprint(L, _c['greater'], _c['swap'])",
+     "stdin": "3 1 3 2 1",
+     "expected": "[1, 1, 2, 3, 3] 10 6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L12_008_Bubble Sort With Early Stop",
+   "display_name": "Bubble Sort With Early Stop",
+   "questiontext_html": "<p>If a whole pass makes <b>no swaps</b>, the list is already sorted, and we can stop. With this change, an already sorted list needs only <b>one</b> pass (<code>n - 1</code> comparisons, <b>O(n)</b>: the <b>best case</b>), while a reversed list still needs all passes (<b>O(n²)</b>: the <b>worst case</b>).</p>\n<pre>bubble_sort_early(L):\n    n = len(L)\n    for i = 0, 1, ..., n - 2:\n        swapped = False\n        for j = 0, 1, ..., n - 2 - i:\n            if greater(L, j, j + 1):\n                swap(L, j, j + 1)\n                swapped = True\n        if not swapped:\n            stop (return)</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>bubble_sort_early(L)</code> following the pseudocode exactly.</p>\n<p>For example, for the already sorted list <code>[1, 2, 3, 4, 5]</code> it makes 4 comparisons and 0 swaps.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef greater(L, i, j):\n    # True if the item at index i is bigger than the item at index j.\n    return L[i] > L[j]\n\n\ndef swap(L, i, j):\n    # Exchange the items at indexes i and j.\n    L[i], L[j] = L[j], L[i]\n\n\ndef bubble_sort_early(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# L = [1, 2, 3, 4, 5]\n# bubble_sort_early(L)\n# print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [1, 2, 3, 4, 5]\nbubble_sort_early(L)\nprint(L, 'comparisons:', _c['greater'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 3, 4, 5] comparisons: 4 swaps: 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [5, 1, 4, 2, 8]\nbubble_sort_early(L)\nprint(L, 'comparisons:', _c['greater'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 4, 5, 8] comparisons: 9 swaps: 4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [2, 1, 3, 4, 5, 6]\nbubble_sort_early(L)\nprint(L, _c['greater'], _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 3, 4, 5, 6] 9 1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(map(int, input().split()))\nbubble_sort_early(L)\nprint(L, _c['greater'], _c['swap'])",
+     "stdin": "6 5 4 3 2 1",
+     "expected": "[1, 2, 3, 4, 5, 6] 15 15",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(range(100))\nbubble_sort_early(L)\nprint(L == sorted(L), _c['greater'], _c['swap'])",
+     "stdin": "",
+     "expected": "True 99 0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L12_009_Insertion Sort",
+   "display_name": "Insertion Sort",
+   "questiontext_html": "<p><b>Insertion sort</b> works like sorting playing cards in your hand: keep a <b>sorted part</b> at the front, and take the next item and move it left, step by step, until it is in the right place in the sorted part:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">start:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">i = 1:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">i = 2:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">i = 3:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">i = 4:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">8</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">blue: the sorted part at the front; each step inserts one more item into it</div>\n<pre>insertion_sort(L):\n    for i = 1, 2, ..., len(L) - 1:\n        j = i\n        while j &gt; 0 and greater(L, j - 1, j):\n            swap(L, j - 1, j)\n            j = j - 1</pre>\n<p>(In Python, <code>and</code> stops as soon as the left side is <code>False</code>, so <code>greater</code> is not called when <code>j</code> is 0.)</p>\n<p>Insertion sort is <b>O(n²)</b> in the worst case (a reversed list), but on an almost sorted list it is very fast: each item moves only a little.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>insertion_sort(L)</code> following the pseudocode exactly.</p>\n<p>For example, sorting <code>[5, 1, 4, 2, 8]</code> takes 7 comparisons and 4 swaps.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef greater(L, i, j):\n    # True if the item at index i is bigger than the item at index j.\n    return L[i] > L[j]\n\n\ndef swap(L, i, j):\n    # Exchange the items at indexes i and j.\n    L[i], L[j] = L[j], L[i]\n\n\ndef insertion_sort(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# L = [5, 1, 4, 2, 8]\n# insertion_sort(L)\n# print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [5, 1, 4, 2, 8]\ninsertion_sort(L)\nprint(L, 'comparisons:', _c['greater'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 4, 5, 8] comparisons: 7 swaps: 4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [1, 2, 3, 4]\ninsertion_sort(L)\nprint(L, 'comparisons:', _c['greater'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 3, 4] comparisons: 3 swaps: 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [7]\ninsertion_sort(L)\nprint(L, _c['greater'], _c['swap'])",
+     "stdin": "",
+     "expected": "[7] 0 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(map(int, input().split()))\ninsertion_sort(L)\nprint(L, _c['greater'], _c['swap'])",
+     "stdin": "5 4 3 2 1",
+     "expected": "[1, 2, 3, 4, 5] 10 10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"greater\": 0, \"swap\": 0}\n_greater = greater\ndef greater(*args):\n    _c[\"greater\"] += 1\n    return _greater(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(map(int, input().split()))\ninsertion_sort(L)\nprint(L, _c['greater'], _c['swap'])",
+     "stdin": "2 2 1 3 0",
+     "expected": "[0, 1, 2, 2, 3] 8 6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L12_010_Selection Sort",
+   "display_name": "Selection Sort",
+   "questiontext_html": "<p><b>Selection sort</b> repeatedly <b>selects</b> the smallest remaining item and swaps it into the next place at the front:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">start:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">i = 0:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">i = 1:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">i = 2:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">8</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">i = 3:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">8</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">blue: the smallest items, chosen one at a time and put in their final place</div>\n<pre>selection_sort(L):\n    n = len(L)\n    for i = 0, 1, ..., n - 2:\n        m = i                              # index of the smallest so far\n        for j = i + 1, ..., n - 1:\n            if less(L, j, m):\n                m = j\n        if m != i:\n            swap(L, i, m)</pre>\n<p>It always makes <code>n * (n - 1) / 2</code> comparisons (<b>O(n²)</b>), but at most <code>n - 1</code> swaps: useful when swapping is expensive.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>selection_sort(L)</code> following the pseudocode exactly, using the helpers <code>less(L, i, j)</code> (is <code>L[i] &lt; L[j]</code>?) and <code>swap</code>.</p>\n<p>For example, sorting <code>[5, 1, 4, 2, 8]</code> takes 10 comparisons and 2 swaps.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef less(L, i, j):\n    # True if the item at index i is smaller than the item at index j.\n    return L[i] < L[j]\n\n\ndef swap(L, i, j):\n    # Exchange the items at indexes i and j.\n    L[i], L[j] = L[j], L[i]\n\n\ndef selection_sort(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# L = [5, 1, 4, 2, 8]\n# selection_sort(L)\n# print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [5, 1, 4, 2, 8]\nselection_sort(L)\nprint(L, 'comparisons:', _c['less'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 4, 5, 8] comparisons: 10 swaps: 2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [1, 2, 3]\nselection_sort(L)\nprint(L, 'comparisons:', _c['less'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 3] comparisons: 3 swaps: 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(map(int, input().split()))\nselection_sort(L)\nprint(L, _c['less'], _c['swap'])",
+     "stdin": "4 3 2 1",
+     "expected": "[1, 2, 3, 4] 6 2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(map(int, input().split()))\nselection_sort(L)\nprint(L, _c['less'], _c['swap'])",
+     "stdin": "3 1 2 3 1 2",
+     "expected": "[1, 1, 2, 2, 3, 3] 15 3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L12_011_Counting Inversions",
+   "display_name": "Counting Inversions",
+   "questiontext_html": "<p>An <b>inversion</b> is a pair of positions <code>i &lt; j</code> whose items are in the wrong order: <code>L[i] &gt; L[j]</code>. A sorted list has 0 inversions; a reversed list of <code>n</code> different items has <code>n * (n - 1) / 2</code>.</p>\n<p>Each swap of two <b>neighbours</b> in the wrong order removes exactly one inversion. That is why bubble sort and insertion sort always make exactly as many swaps as the list has inversions (check: <code>[5, 1, 4, 2, 8]</code> has 4 inversions, and both made 4 swaps).</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>inversions(L)</code>, which returns the number of inversions in the list <code>L</code> (use two nested loops over the pairs; no helpers needed).</p>\n<p>For example, <code>inversions([5, 1, 4, 2, 8])</code> returns <code>4</code>.</p>",
+   "answerpreload": "def inversions(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(inversions([5, 1, 4, 2, 8]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(inversions([5, 1, 4, 2, 8]))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(inversions([1, 2, 3]), inversions([3, 2, 1]), inversions([]))",
+     "stdin": "",
+     "expected": "0 3 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = list(map(int, input().split()))\nprint(inversions(L))",
+     "stdin": "2 4 1 3 5",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(inversions(list(range(50, 0, -1))))",
+     "stdin": "",
+     "expected": "1225",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L12_012_Merging Sorted Lists",
+   "display_name": "Merging Sorted Lists",
+   "questiontext_html": "<p>Faster sorting methods split the work. A key step is <b>merging</b>: two lists that are <b>already sorted</b> can be combined into one sorted list in a single pass. Keep a position in each list; repeatedly take the smaller of the two current items; when one list runs out, take the rest of the other.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">a =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">9</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">b =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(45,118,176);color:#fff;border-radius:2px\">3</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(60,140,200);color:#fff;border-radius:2px\">10</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">12</td></tr></table><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">merged:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(38,106,165);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(45,118,176);color:#fff;border-radius:2px\">3</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(60,140,200);color:#fff;border-radius:2px\">9</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(67,152,211);color:#fff;border-radius:2px\">10</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">12</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">each step takes the smaller front item: O(len(a) + len(b))</div>\n<pre>merge(a, b):\n    result = empty list, i = 0, j = 0\n    while i &lt; len(a) and j &lt; len(b):\n        if a[i] &lt;= b[j]: append a[i] to result; i = i + 1\n        else:            append b[j] to result; j = j + 1\n    append the rest of a (from i) and the rest of b (from j)</pre>\n<p>This is <b>O(n)</b>. (<b>Merge sort</b> splits a list in halves, sorts each half the same way, and merges them: <b>O(n log n)</b>.)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>merge(a, b)</code>, which returns a new sorted list with all the items of the sorted lists <code>a</code> and <code>b</code>. Do not use <code>sort</code> or <code>sorted</code>.</p>\n<p>For example, <code>merge([1, 4, 9], [2, 3, 10, 12])</code> returns <code>[1, 2, 3, 4, 9, 10, 12]</code>.</p>",
+   "answerpreload": "def merge(a, b):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(merge([1, 4, 9], [2, 3, 10, 12]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(merge([1, 4, 9], [2, 3, 10, 12]))",
+     "stdin": "",
+     "expected": "[1, 2, 3, 4, 9, 10, 12]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([], [1, 2]), merge([3], []))",
+     "stdin": "",
+     "expected": "[1, 2] [3]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([1, 1], [1]))",
+     "stdin": "",
+     "expected": "[1, 1, 1]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = list(map(int, input().split()))\nprint(merge(a, [0, 5, 100]))",
+     "stdin": "1 2 3 4 5 6",
+     "expected": "[0, 1, 2, 3, 4, 5, 5, 6, 100]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([-5, 0], [-6, -1, 7]))",
+     "stdin": "",
+     "expected": "[-6, -5, -1, 0, 7]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L12_013_Partition",
+   "display_name": "Partition",
+   "questiontext_html": "<p><b>Quicksort</b> is a fast sorting method built on <b>partitioning</b>: choose one item as the <b>pivot</b> (here: the <b>last</b> item of the part), then rearrange the part so that all items <b>smaller</b> than the pivot come first, then the pivot, then the rest. After partitioning, the pivot is in its <b>final</b> sorted place.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">before:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">7</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">9</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">5</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">the pivot is the last item, 5</div>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">after:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(57,136,195);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">9</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">7</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">smaller items first, then the pivot at index 3, then the bigger ones</div>\n<pre>partition(L, lo, hi):          # rearrange L[lo..hi]; the pivot is L[hi]\n    i = lo                     # next place for a smaller item\n    for j = lo, lo + 1, ..., hi - 1:\n        if less(L, j, hi):     # L[j] &lt; pivot\n            swap(L, i, j)\n            i = i + 1\n    swap(L, i, hi)             # put the pivot in its place\n    return i</pre>\n<p>Follow the pseudocode exactly (it swaps even when <code>i</code> equals <code>j</code>; that is fine and is counted).</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>partition(L, lo, hi)</code> following the pseudocode exactly. It rearranges the part <code>L[lo]</code> to <code>L[hi]</code> (with <code>lo &lt;= hi</code>) and returns the final index of the pivot.</p>\n<p>For example, for <code>L = [7, 2, 9, 4, 1, 5]</code>, <code>partition(L, 0, 5)</code> returns <code>3</code> and <code>L</code> becomes <code>[2, 4, 1, 5, 9, 7]</code>.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef less(L, i, j):\n    # True if the item at index i is smaller than the item at index j.\n    return L[i] < L[j]\n\n\ndef swap(L, i, j):\n    # Exchange the items at indexes i and j.\n    L[i], L[j] = L[j], L[i]\n\n\ndef partition(L, lo, hi):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# L = [7, 2, 9, 4, 1, 5]\n# print(partition(L, 0, 5), L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [7, 2, 9, 4, 1, 5]\np = partition(L, 0, 5)\nprint(p, L, 'comparisons:', _c['less'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "3 [2, 4, 1, 5, 9, 7] comparisons: 5 swaps: 4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [9, 1, 5, 3, 7]\np = partition(L, 1, 3)\nprint(p, L, _c['less'], _c['swap'])",
+     "stdin": "",
+     "expected": "2 [9, 1, 3, 5, 7] 2 2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [4]\nprint(partition(L, 0, 0), L, _c['less'], _c['swap'])",
+     "stdin": "",
+     "expected": "0 [4] 0 1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(map(int, input().split()))\np = partition(L, 0, len(L) - 1)\nprint(p, L, _c['less'], _c['swap'])",
+     "stdin": "3 8 1 9 2 6 5",
+     "expected": "3 [3, 1, 2, 5, 8, 6, 9] 6 4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [1, 2, 3, 4]\nprint(partition(L, 0, 3), L, _c['less'], _c['swap'])",
+     "stdin": "",
+     "expected": "3 [1, 2, 3, 4] 3 4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L12_014_Quicksort",
+   "display_name": "Quicksort",
+   "questiontext_html": "<p><b>Quicksort</b> sorts a part <code>L[lo..hi]</code> <b>recursively</b> (Lab 5!):</p>\n<ol><li>if the part has fewer than 2 items (<code>lo &gt;= hi</code>), it is already sorted (<b>base case</b>);</li><li>otherwise <b>partition</b> it; the pivot lands at index <code>p</code>;</li><li>quicksort the part left of the pivot, <code>L[lo..p-1]</code>, and the part right of it, <code>L[p+1..hi]</code>.</li></ol>\n<pre>quicksort(L, lo, hi):\n    if lo &lt; hi:\n        p = partition(L, lo, hi)\n        quicksort(L, lo, p - 1)\n        quicksort(L, p + 1, hi)</pre>\n<p>To sort a whole list: <code>quicksort(L, 0, len(L) - 1)</code>.</p>\n<p>When the pivots split the parts roughly in half, there are about <code>log n</code> levels of splitting, each doing about <code>n</code> comparisons in total: <b>O(n log n)</b>, much faster than O(n²) for big lists. (With an unlucky pivot every time, for example on an already sorted list with the last item as pivot, it degrades to O(n²).)</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the function <code>partition</code> from the previous question is given. Write the recursive function <code>quicksort(L, lo, hi)</code> following the pseudocode exactly.</p>\n<p>For example, sorting <code>[7, 2, 9, 4, 1, 5]</code> takes 9 comparisons and 7 swaps.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef less(L, i, j):\n    # True if the item at index i is smaller than the item at index j.\n    return L[i] < L[j]\n\n\ndef swap(L, i, j):\n    # Exchange the items at indexes i and j.\n    L[i], L[j] = L[j], L[i]\n\n\ndef partition(L, lo, hi):\n    i = lo\n    for j in range(lo, hi):\n        if less(L, j, hi):\n            swap(L, i, j)\n            i = i + 1\n    swap(L, i, hi)\n    return i\n\n\ndef quicksort(L, lo, hi):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# L = [7, 2, 9, 4, 1, 5]\n# quicksort(L, 0, len(L) - 1)\n# print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [7, 2, 9, 4, 1, 5]\nquicksort(L, 0, len(L) - 1)\nprint(L, 'comparisons:', _c['less'], 'swaps:', _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 4, 5, 7, 9] comparisons: 9 swaps: 7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = []\nquicksort(L, 0, -1)\nprint(L, _c['less'])",
+     "stdin": "",
+     "expected": "[] 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [1, 2, 3, 4, 5, 6, 7, 8]\nquicksort(L, 0, 7)\nprint(L, 'comparisons:', _c['less'])",
+     "stdin": "",
+     "expected": "[1, 2, 3, 4, 5, 6, 7, 8] comparisons: 28",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = list(map(int, input().split()))\nquicksort(L, 0, len(L) - 1)\nprint(L, _c['less'], _c['swap'])",
+     "stdin": "5 3 8 1 9 2 7",
+     "expected": "[1, 2, 3, 5, 7, 8, 9] 11 10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"less\": 0, \"swap\": 0}\n_less = less\ndef less(*args):\n    _c[\"less\"] += 1\n    return _less(*args)\n_swap = swap\ndef swap(*args):\n    _c[\"swap\"] += 1\n    return _swap(*args)\nL = [3, 3, 1, 2, 3]\nquicksort(L, 0, 4)\nprint(L, _c['less'], _c['swap'])",
+     "stdin": "",
+     "expected": "[1, 2, 3, 3, 3] 6 6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L12_015_Comparisons As A Formula",
+   "display_name": "Comparisons As A Formula",
+   "questiontext_html": "<p>Counting by hand connects code to O notation. Now the other way round: predict the count <b>without running the algorithm</b>.</p>\n<ul><li>Bubble sort (without early stop) and selection sort always make <code>n * (n - 1) / 2</code> comparisons.</li><li>Binary search on <code>n</code> items (the first pseudocode) looks at most <code>halvings(n) + 1</code> times, where <code>halvings</code> is your function from question 2.</li></ul>\n<p><b>Your task:</b> write two functions for a non-negative integer <code>n</code>:</p>\n<ul><li><code>sort_comparisons(n)</code> returns <code>n * (n - 1) // 2</code>;</li><li><code>binary_worst(n)</code> returns the maximum number of looks of binary search on <code>n</code> items: <code>0</code> for <code>n = 0</code>, otherwise the number of times <code>n</code> can be halved (with <code>// 2</code>) before reaching 1, plus 1.</li></ul>\n<p>For example, <code>sort_comparisons(1000)</code> returns <code>499500</code> while <code>binary_worst(1000)</code> returns <code>10</code>.</p>",
+   "answerpreload": "def sort_comparisons(n):\n    # write your code here\n\n\ndef binary_worst(n):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(sort_comparisons(1000), binary_worst(1000))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sort_comparisons(1000), binary_worst(1000))",
+     "stdin": "",
+     "expected": "499500 10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sort_comparisons(0), binary_worst(0), binary_worst(1))",
+     "stdin": "",
+     "expected": "0 0 1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sort_comparisons(10), binary_worst(10))",
+     "stdin": "",
+     "expected": "45 4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sort_comparisons(10 ** 6), binary_worst(10 ** 6))",
+     "stdin": "",
+     "expected": "499999500000 20",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(binary_worst(16), binary_worst(17))",
+     "stdin": "",
+     "expected": "5 5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "L12_016_Choose The Right Search",
+   "display_name": "Choose The Right Search",
+   "questiontext_html": "<p>Many searches in the <b>same</b> big sorted list: linear search would need about <code>n</code> looks each; binary search only about <code>log n</code>. The hidden tests of this question use a list of 100000 items and 50 searches, and allow at most <b>1000 looks in total</b>, so only an O(log n) method will pass.</p>\n<p><b>Your task:</b> write the function <code>count_present(L, targets)</code>, where <code>L</code> is a list sorted from small to large and <code>targets</code> is a list of values. Return how many of the values in <code>targets</code> are in <code>L</code>. Read items of <code>L</code> only through <code>probe(L, i)</code>.</p>\n<p>For example, <code>count_present([1, 3, 5, 7], [3, 4, 7])</code> returns <code>2</code>.</p>",
+   "answerpreload": "# ---- Helper functions: do not change them; the tests count how often you call them ----\ndef probe(L, i):\n    # Look at the item at index i. Use this EVERY time you read an item.\n    return L[i]\n\n\ndef count_present(L, targets):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(count_present([1, 3, 5, 7], [3, 4, 7]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(count_present([1, 3, 5, 7], [3, 4, 7]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nprint(count_present([], [1]), count_present([2], []))",
+     "stdin": "",
+     "expected": "0 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nL = list(range(0, 200000, 2))\nt = list(range(0, 100, 2))\nprint(count_present(L, t), _c['probe'] <= 1000)",
+     "stdin": "",
+     "expected": "50 True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "_c = {\"probe\": 0}\n_probe = probe\ndef probe(*args):\n    _c[\"probe\"] += 1\n    return _probe(*args)\nL = list(range(1, 100001))\nt = list(range(-10, 40, 1))\nprint(count_present(L, t), _c['probe'] <= 1000)",
+     "stdin": "",
+     "expected": "39 True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "f14f635350731eca"
+}

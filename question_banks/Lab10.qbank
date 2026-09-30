@@ -1,0 +1,1037 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab10",
+ "encrypted": false,
+ "source_xml": "Lab10.xml",
+ "built_at": "2026-09-30T19:25:10",
+ "settings": {
+  "title": "Lab 10: Classes and Objects",
+  "description": "An introduction to object-oriented programming: classes and objects, constructors and destructors, attributes and methods, class attributes, objects working together, and a first look at inheritance.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Classes and objects",
+    "start": 1,
+    "count": 5
+   },
+   {
+    "heading": "Methods",
+    "start": 6,
+    "count": 6
+   },
+   {
+    "heading": "Class attributes, constructors and destructors",
+    "start": 12,
+    "count": 4
+   },
+   {
+    "heading": "Objects working together",
+    "start": 16,
+    "count": 5
+   },
+   {
+    "heading": "Inheritance: a first look",
+    "start": 21,
+    "count": 3
+   },
+   {
+    "heading": "A complete example",
+    "start": 24,
+    "count": 1
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L10_001_Your First Class",
+   "display_name": "Your First Class",
+   "questiontext_html": "<p>Welcome to Lab 10! So far we have used types that Python gives us: <code>int</code>, <code>str</code>, <code>list</code>, <code>dict</code>... A <b>class</b> lets you define <b>your own type</b>. Think of a class as a <b>blueprint</b>, and the <b>objects</b> made from it as the actual things built from that blueprint:</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Dog</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">name</div><div style=\"font-family:monospace;font-size:13px\">age</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">bark()</div></div></div><div style=\"display:inline-block;vertical-align:top;padding:22px 6px 0 0;color:#8a939c\">&rarr;</div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">d1 : Dog</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">name = &#x27;Rex&#x27;</div><div style=\"font-family:monospace;font-size:13px\">age = 3</div></div></div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">d2 : Dog</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">name = &#x27;Tommy&#x27;</div><div style=\"font-family:monospace;font-size:13px\">age = 5</div></div></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">one class (blueprint), two objects (instances), each with its own values</div>\n<p>A class is defined with the keyword <code>class</code>. Inside it, a special function called <b><code>__init__</code></b> (two underscores on each side) runs automatically <b>every time a new object is created</b>. It is called the <b>constructor</b>, and its job is to give the new object its starting values, called <b>attributes</b>:</p>\n<pre>class Dog:\n    def __init__(self, name, age):\n        self.name = name      # an attribute of this object\n        self.age = age\n\nd1 = Dog(&quot;Rex&quot;, 3)            # creates an object: __init__ runs\nd2 = Dog(&quot;Tommy&quot;, 5)\nprint(d1.name, d1.age)\nprint(d2.name, d2.age)</pre>\n<p>Output:</p>\n<pre>Rex 3\nTommy 5</pre>\n<p><b><code>self</code></b> is the object being built (or used). <code>self.name = name</code> stores the value <b>inside that object</b>. You never pass <code>self</code> yourself: <code>Dog(\"Rex\", 3)</code> gives <code>\"Rex\"</code> to <code>name</code> and <code>3</code> to <code>age</code>. Read an attribute with a dot: <code>d1.name</code>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Book</code> whose constructor takes <code>title</code> and <code>author</code>, and stores them as the attributes <code>title</code> and <code>author</code>.</p>\n<p>For example, after <code>b = Book(\"Malgudi Days\", \"R. K. Narayan\")</code>, <code>b.title</code> is <code>\"Malgudi Days\"</code>.</p>",
+   "answerpreload": "class Book:\n    def __init__(self, title, author):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# b = Book(\"Malgudi Days\", \"R. K. Narayan\")\n# print(b.title, \"by\", b.author)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "b = Book(\"Malgudi Days\", \"R. K. Narayan\")\nprint(b.title, \"by\", b.author)",
+     "stdin": "",
+     "expected": "Malgudi Days by R. K. Narayan",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "b1 = Book(\"A\", \"X\")\nb2 = Book(\"B\", \"Y\")\nprint(b1.title, b2.title, b1.author, b2.author)",
+     "stdin": "",
+     "expected": "A B X Y",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L10_002_Default Values",
+   "display_name": "Default Values",
+   "questiontext_html": "<p>Like any function, <code>__init__</code> can have <b>default values</b> for its parameters. An attribute can also be set to a fixed starting value that is not a parameter at all:</p>\n<pre>class Player:\n    def __init__(self, name, level=1):\n        self.name = name\n        self.level = level\n        self.score = 0        # every player starts with 0\n\np = Player(&quot;Asha&quot;)\nq = Player(&quot;Ravi&quot;, 5)\nprint(p.name, p.level, p.score)\nprint(q.name, q.level, q.score)</pre>\n<p>Output:</p>\n<pre>Asha 1 0\nRavi 5 0</pre>\n<p><b>Your task:</b> write a class <code>Account</code> whose constructor takes <code>owner</code> and an optional <code>balance</code> (default <code>0</code>), and stores them as attributes <code>owner</code> and <code>balance</code>. Every account also gets an attribute <code>history</code>, starting as an empty list.</p>\n<p>For example, after <code>a = Account(\"Asha\")</code>, <code>a.balance</code> is <code>0</code> and <code>a.history</code> is <code>[]</code>.</p>",
+   "answerpreload": "class Account:\n    def __init__(self, owner, balance=0):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# a = Account(\"Asha\")\n# print(a.owner, a.balance, a.history)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a = Account(\"Asha\")\nprint(a.owner, a.balance, a.history)",
+     "stdin": "",
+     "expected": "Asha 0 []",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "b = Account(\"Ravi\", 500)\nprint(b.owner, b.balance, b.history)",
+     "stdin": "",
+     "expected": "Ravi 500 []",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = Account(\"A\")\nb = Account(\"B\")\na.history.append(1)\nprint(a.history, b.history)",
+     "stdin": "",
+     "expected": "[1] []",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L10_003_Objects Are Independent",
+   "display_name": "Objects Are Independent",
+   "questiontext_html": "<p>Each object has <b>its own</b> attributes. Changing an attribute of one object does not affect another object of the same class. Attributes can be changed from outside with the dot: <code>obj.attr = new_value</code>.</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">c1 : Counter</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">count = 5</div></div></div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">c2 : Counter</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">count = 0</div></div></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">c1.count = 5 changed only c1</div>\n<pre>class Counter:\n    def __init__(self):\n        self.count = 0\n\nc1 = Counter()\nc2 = Counter()\nc1.count = 5\nprint(c1.count, c2.count)</pre>\n<p>Output:</p>\n<pre>5 0</pre>\n<p><b>Your task:</b> write a class <code>Lamp</code> whose constructor takes <code>room</code> and stores it as the attribute <code>room</code>; every lamp also starts with the attribute <code>on</code> equal to <code>False</code>.</p>\n<p>For example, after <code>l = Lamp(\"kitchen\")</code>, <code>l.on</code> is <code>False</code>.</p>",
+   "answerpreload": "class Lamp:\n    def __init__(self, room):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# l = Lamp(\"kitchen\")\n# print(l.room, l.on)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "l = Lamp(\"kitchen\")\nprint(l.room, l.on)",
+     "stdin": "",
+     "expected": "kitchen False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = Lamp(\"hall\")\nb = Lamp(\"bed\")\na.on = True\nprint(a.on, b.on)",
+     "stdin": "",
+     "expected": "True False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L10_004_Printing An Object",
+   "display_name": "Printing An Object",
+   "questiontext_html": "<p>Printing an object normally shows something unhelpful like <code>&lt;__main__.Point object at 0x7f...&gt;</code>. To control what <code>print</code> shows, define the special method <b><code>__str__</code></b>, which must <b>return a string</b>:</p>\n<pre>class Temperature:\n    def __init__(self, degrees):\n        self.degrees = degrees\n\n    def __str__(self):\n        return str(self.degrees) + &quot; C&quot;\n\nt = Temperature(31)\nprint(t)\nprint(&quot;Today:&quot;, t)</pre>\n<p>Output:</p>\n<pre>31 C\nToday: 31 C</pre>\n<p><b>Your task:</b> write a class <code>Point</code> whose constructor takes <code>x</code> and <code>y</code>, and whose <code>__str__</code> returns the text <code>(x, y)</code> with the actual values.</p>\n<p>For example, <code>print(Point(3, -1))</code> prints <code>(3, -1)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y):\n        # write your code here\n\n    def __str__(self):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(Point(3, -1))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(Point(3, -1))",
+     "stdin": "",
+     "expected": "(3, -1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(0, 0)\nprint(p)\nprint(p.x + p.y)",
+     "stdin": "",
+     "expected": "(0, 0)\n0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(\"P =\", Point(10, 20))",
+     "stdin": "",
+     "expected": "P = (10, 20)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L10_005_Changing And Deleting Attributes",
+   "display_name": "Changing And Deleting Attributes",
+   "questiontext_html": "<p>Attributes can be read, changed, <b>added</b> and <b>deleted</b> from outside the class:</p>\n<pre>class Pet:\n    def __init__(self, name):\n        self.name = name\n\np = Pet(&quot;Bruno&quot;)\np.name = &quot;Max&quot;          # change\np.age = 2               # add a new attribute to this object only\nprint(p.name, p.age)\ndel p.age               # delete it again\nprint(hasattr(p, &#x27;age&#x27;))</pre>\n<p>Output:</p>\n<pre>Max 2\nFalse</pre>\n<p><b>Python fact:</b> <code>hasattr(obj, \"attr\")</code> is <code>True</code> if the object has that attribute.</p>\n<p>(Changing attributes from outside is allowed, but it is usually better to do it through <b>methods</b>, as you will see next.)</p>\n<p><b>Your task:</b> the class <code>Pet</code> is given. Write the function <code>rename(pet, new_name)</code>, which changes the pet's <code>name</code> to <code>new_name</code> and also gives the pet an attribute <code>old_name</code> holding its previous name. It returns nothing.</p>\n<p>For example, after <code>p = Pet(\"Bruno\")</code> and <code>rename(p, \"Max\")</code>, <code>p.name</code> is <code>\"Max\"</code> and <code>p.old_name</code> is <code>\"Bruno\"</code>.</p>",
+   "answerpreload": "class Pet:\n    def __init__(self, name):\n        self.name = name\n\n\ndef rename(pet, new_name):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# p = Pet(\"Bruno\")\n# rename(p, \"Max\")\n# print(p.name, p.old_name)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "p = Pet(\"Bruno\")\nrename(p, \"Max\")\nprint(p.name, p.old_name)",
+     "stdin": "",
+     "expected": "Max Bruno",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Pet(\"A\")\nrename(p, \"B\")\nrename(p, \"C\")\nprint(p.name, p.old_name)",
+     "stdin": "",
+     "expected": "C B",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L10_006_Your First Method",
+   "display_name": "Your First Method",
+   "questiontext_html": "<p>A <b>method</b> is a function defined <b>inside</b> a class. Its first parameter is always <code>self</code>, the object it is called on, so it can use the object's attributes. You call a method with a dot: <code>obj.method(...)</code>; again, <code>self</code> is passed automatically.</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Square</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">side</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">area()</div><div style=\"font-family:monospace;font-size:13px\">perimeter()</div></div></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">the class now has attributes AND methods</div>\n<pre>class Square:\n    def __init__(self, side):\n        self.side = side\n\n    def area(self):\n        return self.side * self.side\n\n    def perimeter(self):\n        return 4 * self.side\n\ns = Square(5)\nprint(s.area(), s.perimeter())</pre>\n<p>Output:</p>\n<pre>25 20</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Circle</code> whose constructor takes <code>r</code> (the radius), with two methods:</p>\n<ul><li><code>area()</code> returns <code>3.14 * r * r</code>, rounded to 2 decimal places with <code>round(value, 2)</code>;</li><li><code>diameter()</code> returns <code>2 * r</code>.</li></ul>\n<p>For example, <code>Circle(10).area()</code> returns <code>314.0</code>.</p>",
+   "answerpreload": "class Circle:\n    def __init__(self, r):\n        # write your code here\n\n    def area(self):\n        # write your code here\n\n    def diameter(self):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# c = Circle(10)\n# print(c.area(), c.diameter())\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "c = Circle(10)\nprint(c.area(), c.diameter())",
+     "stdin": "",
+     "expected": "314.0 20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Circle(1).area(), Circle(0).diameter())",
+     "stdin": "",
+     "expected": "3.14 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Circle(2.5).area())",
+     "stdin": "",
+     "expected": "19.62",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L10_007_Methods That Change The Object",
+   "display_name": "Methods That Change The Object",
+   "questiontext_html": "<p>Methods can <b>change</b> the object's attributes. This is the usual way to change an object: the class decides what changes are allowed.</p>\n<pre>class Lamp:\n    def __init__(self):\n        self.on = False\n\n    def switch(self):\n        self.on = not self.on\n\nl = Lamp()\nl.switch()\nprint(l.on)\nl.switch()\nprint(l.on)</pre>\n<p>Output:</p>\n<pre>True\nFalse</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>BankAccount</code> whose constructor takes <code>owner</code> and an optional <code>balance</code> (default <code>0</code>), with the methods:</p>\n<ul><li><code>deposit(amount)</code> adds <code>amount</code> to the balance;</li><li><code>withdraw(amount)</code> takes <code>amount</code> out of the balance <b>only if</b> the balance is enough, and returns <code>True</code>; otherwise it changes nothing and returns <code>False</code>.</li></ul>\n<p>For example, after <code>a = BankAccount(\"Asha\", 100)</code>, <code>a.withdraw(150)</code> returns <code>False</code>, and <code>a.balance</code> is still <code>100</code>.</p>",
+   "answerpreload": "class BankAccount:\n    def __init__(self, owner, balance=0):\n        # write your code here\n\n    def deposit(self, amount):\n        # write your code here\n\n    def withdraw(self, amount):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# a = BankAccount(\"Asha\", 100)\n# a.deposit(50)\n# print(a.withdraw(30), a.balance)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a = BankAccount(\"Asha\", 100)\na.deposit(50)\nprint(a.withdraw(30), a.balance)",
+     "stdin": "",
+     "expected": "True 120",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = BankAccount(\"Asha\", 100)\nprint(a.withdraw(150), a.balance)",
+     "stdin": "",
+     "expected": "False 100",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "b = BankAccount(\"Ravi\")\nprint(b.withdraw(1), b.balance)\nb.deposit(5)\nprint(b.withdraw(5), b.balance)",
+     "stdin": "",
+     "expected": "False 0\nTrue 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L10_008_Methods Calling Methods",
+   "display_name": "Methods Calling Methods",
+   "questiontext_html": "<p>Inside a class, one method can call another method of the same object with <code>self.method(...)</code>. This avoids repeating code:</p>\n<pre>class Rectangle:\n    def __init__(self, w, h):\n        self.w = w\n        self.h = h\n\n    def area(self):\n        return self.w * self.h\n\n    def bigger_than(self, other):\n        return self.area() &gt; other.area()     # uses area() of both\n\nprint(Rectangle(4, 5).bigger_than(Rectangle(3, 6)))</pre>\n<p>Output:</p>\n<pre>True</pre>\n<p>Note that a method can take <b>another object</b> as a parameter (<code>other</code>) and use its methods too.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Temperature</code> whose constructor takes <code>celsius</code>, with the methods:</p>\n<ul><li><code>fahrenheit()</code> returns <code>celsius * 9 / 5 + 32</code>;</li><li><code>feels()</code> returns <code>\"hot\"</code> if the Fahrenheit value is more than 95, <code>\"cold\"</code> if it is less than 50, and <code>\"pleasant\"</code> otherwise. It must call <code>fahrenheit()</code>.</li></ul>\n<p>For example, <code>Temperature(40).feels()</code> returns <code>\"hot\"</code>.</p>",
+   "answerpreload": "class Temperature:\n    def __init__(self, celsius):\n        # write your code here\n\n    def fahrenheit(self):\n        # write your code here\n\n    def feels(self):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# t = Temperature(40)\n# print(t.fahrenheit(), t.feels())\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "t = Temperature(40)\nprint(t.fahrenheit(), t.feels())",
+     "stdin": "",
+     "expected": "104.0 hot",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Temperature(0).feels(), Temperature(25).feels())",
+     "stdin": "",
+     "expected": "cold pleasant",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Temperature(35).feels(), Temperature(10).feels())",
+     "stdin": "",
+     "expected": "pleasant pleasant",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L10_009_Keeping The Object Valid",
+   "display_name": "Keeping The Object Valid",
+   "questiontext_html": "<p>Methods can <b>check</b> the values they are given, so that an object never ends up in a wrong state (for example, marks outside 0 to 100). This is a big advantage of changing objects through methods rather than directly.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Student</code> whose constructor takes <code>name</code>; each student starts with an empty list of marks (attribute <code>marks</code>). Methods:</p>\n<ul><li><code>add_mark(m)</code> adds <code>m</code> to the list and returns <code>True</code> if <code>m</code> is from 0 to 100; otherwise it ignores <code>m</code> and returns <code>False</code>;</li><li><code>average()</code> returns the average of the marks rounded to 2 decimal places with <code>round(value, 2)</code>, or <code>0</code> if there are no marks.</li></ul>\n<p>For example, after <code>s = Student(\"Asha\")</code>, <code>s.add_mark(120)</code> returns <code>False</code>.</p>",
+   "answerpreload": "class Student:\n    def __init__(self, name):\n        # write your code here\n\n    def add_mark(self, m):\n        # write your code here\n\n    def average(self):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# s = Student(\"Asha\")\n# print(s.add_mark(90), s.add_mark(120), s.add_mark(75))\n# print(s.marks, s.average())\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "s = Student(\"Asha\")\nprint(s.add_mark(90), s.add_mark(120), s.add_mark(75))\nprint(s.marks, s.average())",
+     "stdin": "",
+     "expected": "True False True\n[90, 75] 82.5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "s = Student(\"Ravi\")\nprint(s.average())\nprint(s.add_mark(-1), s.add_mark(0), s.add_mark(100))\nprint(s.average())",
+     "stdin": "",
+     "expected": "0\nFalse True True\n50.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L10_010_A Clock Time",
+   "display_name": "A Clock Time",
+   "questiontext_html": "<p>Here is a class that keeps its attributes within limits: minutes always from 0 to 59, hours from 0 to 23.</p>\n<p><b>Python fact:</b> <code>str(n).zfill(2)</code> gives the number with at least 2 digits: <code>str(5).zfill(2)</code> is <code>\"05\"</code>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Time</code> whose constructor takes <code>h</code> and <code>m</code> (valid hours and minutes), with:</p>\n<ul><li><code>__str__</code> returning the time as <code>HH:MM</code> with two digits each (for example <code>09:05</code>);</li><li><code>add_minutes(n)</code> moving the time forward by <code>n</code> minutes (a non-negative integer), wrapping around after <code>23:59</code> to <code>00:00</code>.</li></ul>\n<p>For example, after <code>t = Time(23, 50)</code> and <code>t.add_minutes(15)</code>, <code>print(t)</code> prints <code>00:05</code>.</p>",
+   "answerpreload": "class Time:\n    def __init__(self, h, m):\n        # write your code here\n\n    def __str__(self):\n        # write your code here\n\n    def add_minutes(self, n):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# t = Time(9, 5)\n# print(t)\n# t.add_minutes(70)\n# print(t)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "t = Time(9, 5)\nprint(t)\nt.add_minutes(70)\nprint(t)",
+     "stdin": "",
+     "expected": "09:05\n10:15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "t = Time(23, 50)\nt.add_minutes(15)\nprint(t)",
+     "stdin": "",
+     "expected": "00:05",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = Time(0, 0)\nt.add_minutes(0)\nprint(t)\nt.add_minutes(24 * 60 * 2 + 1)\nprint(t)",
+     "stdin": "",
+     "expected": "00:00\n00:01",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L10_011_Returning New Objects",
+   "display_name": "Returning New Objects",
+   "questiontext_html": "<p>A method can create and <b>return a new object</b> of the same class, leaving the original unchanged (like <code>sorted</code> versus <code>sort</code>). A method can also take another object of the same class as a parameter.</p>\n<pre>class Vector:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\n    def plus(self, other):\n        return Vector(self.x + other.x, self.y + other.y)\n\nv = Vector(1, 2).plus(Vector(10, 20))\nprint(v.x, v.y)</pre>\n<p>Output:</p>\n<pre>11 22</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Point</code> whose constructor takes <code>x</code> and <code>y</code>, with:</p>\n<ul><li><code>moved(dx, dy)</code> returning a <b>new</b> <code>Point</code> at <code>(x + dx, y + dy)</code> (the original does not change);</li><li><code>distance_to(other)</code> returning the distance to the point <code>other</code>, <code>((x2 - x1)<b>2 + (y2 - y1)</b>2) ** 0.5</code>, rounded to 2 decimal places.</li></ul>\n<p>For example, <code>Point(0, 0).distance_to(Point(3, 4))</code> returns <code>5.0</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y):\n        # write your code here\n\n    def moved(self, dx, dy):\n        # write your code here\n\n    def distance_to(self, other):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# p = Point(1, 2)\n# q = p.moved(2, 2)\n# print(q.x, q.y, p.x, p.y)\n# print(p.distance_to(q))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "p = Point(1, 2)\nq = p.moved(2, 2)\nprint(q.x, q.y, p.x, p.y)\nprint(p.distance_to(q))",
+     "stdin": "",
+     "expected": "3 4 1 2\n2.83",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Point(0, 0).distance_to(Point(3, 4)))",
+     "stdin": "",
+     "expected": "5.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(5, 5)\nprint(p.distance_to(p), p.moved(0, 0) is p)",
+     "stdin": "",
+     "expected": "0.0 False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L10_012_Class Attributes",
+   "display_name": "Class Attributes",
+   "questiontext_html": "<p>Attributes set with <code>self.x = ...</code> belong to <b>one object</b> (instance attributes). A variable written directly inside the class body belongs to the <b>class itself</b> and is <b>shared by all objects</b>: a <b>class attribute</b>. Read it as <code>ClassName.attr</code> (or through any object).</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Car</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">wheels = 4   (shared)</div></div><div style=\"padding:3px 8px\">&nbsp;</div></div><div style=\"display:inline-block;vertical-align:top;padding:22px 6px 0 0;color:#8a939c\">&rarr;</div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">c1 : Car</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">colour = &#x27;red&#x27;</div></div></div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">c2 : Car</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">colour = &#x27;blue&#x27;</div></div></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">both cars see Car.wheels; each has its own colour</div>\n<pre>class Car:\n    wheels = 4                 # class attribute\n\n    def __init__(self, colour):\n        self.colour = colour   # instance attribute\n\na = Car(&quot;red&quot;)\nb = Car(&quot;blue&quot;)\nprint(a.wheels, b.wheels, Car.wheels)\nCar.wheels = 6              # changes it for everyone\nprint(a.wheels, b.wheels)</pre>\n<p>Output:</p>\n<pre>4 4 4\n6 6</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Circle</code> with a class attribute <code>PI = 3.14</code>, a constructor taking <code>r</code>, and a method <code>area()</code> that returns <code>Circle.PI * r * r</code> rounded to 2 decimal places. Because <code>PI</code> is a class attribute, changing <code>Circle.PI</code> must change the result for all circles.</p>\n<p>For example, <code>Circle(1).area()</code> returns <code>3.14</code>.</p>",
+   "answerpreload": "# Define the class Circle with the class attribute PI = 3.14.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(Circle(1).area())\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(Circle(1).area())",
+     "stdin": "",
+     "expected": "3.14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Circle(2).area(), Circle.PI)",
+     "stdin": "",
+     "expected": "12.56 3.14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = Circle(10)\nb = Circle(1)\nCircle.PI = 3.14159\nprint(a.area(), b.area())",
+     "stdin": "",
+     "expected": "314.16 3.14",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Circle(0).area())",
+     "stdin": "",
+     "expected": "0.0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L10_013_Counting Objects",
+   "display_name": "Counting Objects",
+   "questiontext_html": "<p>A class attribute can count how many objects have been created: the constructor adds 1 to it each time. Each object can also remember <b>its own</b> number.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Ticket</code> with a class attribute <code>count</code> starting at <code>0</code>. The constructor takes <code>name</code>, stores it, adds 1 to <code>Ticket.count</code>, and gives the ticket an attribute <code>number</code> equal to the new count (so the first ticket is number 1, the second number 2, ...).</p>\n<p>For example, after <code>a = Ticket(\"Asha\")</code> and <code>b = Ticket(\"Ravi\")</code> (the first two tickets), <code>b.number</code> is <code>2</code> and <code>Ticket.count</code> is <code>2</code>.</p>",
+   "answerpreload": "# Define the class Ticket with the class attribute count = 0.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# a = Ticket(\"Asha\")\n# b = Ticket(\"Ravi\")\n# print(a.number, b.number, Ticket.count)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a = Ticket(\"Asha\")\nb = Ticket(\"Ravi\")\nprint(a.number, b.number, Ticket.count)",
+     "stdin": "",
+     "expected": "1 2 2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Ticket.count)\nt = Ticket('x')\nprint(t.number, Ticket.count)",
+     "stdin": "",
+     "expected": "0\n1 1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "for i in range(5):\n    t = Ticket(str(i))\nprint(t.number, t.name, Ticket.count)",
+     "stdin": "",
+     "expected": "5 4 5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L10_014_Instance Or Class Attribute",
+   "display_name": "Instance Or Class Attribute",
+   "questiontext_html": "<p>A trap: <b>assigning</b> through an object, <code>obj.attr = value</code>, always creates or changes an <b>instance</b> attribute, even if a class attribute has the same name. The class attribute is then hidden for that object only:</p>\n<pre>class Game:\n    lives = 3\n\ng1 = Game()\ng2 = Game()\ng1.lives = 1          # a NEW instance attribute on g1 only\nprint(g1.lives, g2.lives, Game.lives)</pre>\n<p>Output:</p>\n<pre>1 3 3</pre>\n<p>So: use <code>ClassName.attr</code> to read or change <b>shared</b> values, and <code>self.attr</code> for each object's <b>own</b> values.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Player</code> with a class attribute <code>start_lives = 3</code>. The constructor takes <code>name</code> and gives the player its own attribute <code>lives</code>, equal to the class's <code>start_lives</code> <b>at the moment the player is created</b>. The method <code>lose_life()</code> takes one life away (never going below 0) and returns the lives left.</p>\n<p>For example, if <code>Player.start_lives</code> is changed to 5, players created afterwards start with 5 lives, but existing players keep theirs.</p>",
+   "answerpreload": "# Define the class Player.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# p = Player(\"Asha\")\n# print(p.lose_life(), p.lives)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "p = Player(\"Asha\")\nprint(p.lose_life(), p.lives)",
+     "stdin": "",
+     "expected": "2 2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Player(\"A\")\nPlayer.start_lives = 5\nq = Player(\"B\")\nprint(p.lives, q.lives)",
+     "stdin": "",
+     "expected": "3 5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "Player.start_lives = 1\np = Player(\"C\")\nprint(p.lose_life(), p.lose_life(), p.lives)",
+     "stdin": "",
+     "expected": "0 0 0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "Player.start_lives = 2\na = Player(\"x\")\nb = Player(\"y\")\na.lose_life()\nprint(a.lives, b.lives)",
+     "stdin": "",
+     "expected": "1 2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L10_015_Constructors And Destructors",
+   "display_name": "Constructors And Destructors",
+   "questiontext_html": "<p>The <b>constructor</b> <code>__init__</code> runs when an object is <b>created</b>. Python also has a <b>destructor</b>, <code>__del__</code>, which runs when an object is about to be <b>destroyed</b>: when nothing refers to it any more. It is used to \"clean up\" (close a file, print a goodbye, ...).</p>\n<p><code>del x</code> removes the <b>name</b> <code>x</code>. If that was the last name referring to the object, the object is destroyed and <code>__del__</code> runs. If another name still refers to it, the object lives on:</p>\n<pre>class Robot:\n    def __init__(self, name):\n        self.name = name\n        print(&quot;Hello from&quot;, name)\n\n    def __del__(self):\n        print(&quot;Goodbye from&quot;, self.name)\n\nr = Robot(&quot;R1&quot;)\ndel r                  # last name gone: destroyed now\na = Robot(&quot;R2&quot;)\nb = a                  # two names, one object\ndel a                  # b still refers to it: no goodbye yet\nprint(&quot;still here:&quot;, b.name)\ndel b\nprint(&quot;end&quot;)</pre>\n<p>Output:</p>\n<pre>Hello from R1\nGoodbye from R1\nHello from R2\nstill here: R2\nGoodbye from R2\nend</pre>\n<p><b>Careful:</b> you do not control exactly when Python destroys objects in general (for example, objects still alive when the program ends). So do not rely on <code>__del__</code> for important work. In the tests here, objects are always deleted explicitly with <code>del</code>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Session</code> whose constructor takes <code>user</code>, stores it and prints <code>login &lt;user&gt;</code>, and whose destructor prints <code>logout &lt;user&gt;</code>.</p>\n<p>For example, <code>s = Session(\"asha\")</code> followed by <code>del s</code> prints <code>login asha</code> and then <code>logout asha</code>.</p>",
+   "answerpreload": "# Define the class Session with __init__ and __del__.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# s = Session(\"asha\")\n# del s\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "s = Session(\"asha\")\ndel s\nprint(\"done\")",
+     "stdin": "",
+     "expected": "login asha\nlogout asha\ndone",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = Session(\"x\")\nb = a\ndel a\nprint(\"still in\")\ndel b\nprint(\"done\")",
+     "stdin": "",
+     "expected": "login x\nstill in\nlogout x\ndone",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "s = Session(\"p\")\nt = Session(\"q\")\ndel t\ndel s",
+     "stdin": "",
+     "expected": "login p\nlogin q\nlogout q\nlogout p",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "L10_016_A List Of Objects",
+   "display_name": "A List Of Objects",
+   "questiontext_html": "<p>Objects can be stored in lists like any other value, and a loop can use each object's attributes and methods:</p>\n<pre>class City:\n    def __init__(self, name, population):\n        self.name = name\n        self.population = population\n\ncities = [City(&quot;Panaji&quot;, 114), City(&quot;Pune&quot;, 3124), City(&quot;Agra&quot;, 1585)]\nfor c in cities:\n    print(c.name, c.population)</pre>\n<p>Output:</p>\n<pre>Panaji 114\nPune 3124\nAgra 1585</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the class <code>Student</code> (with attributes <code>name</code> and <code>marks</code>) is given. Write the function <code>topper(students)</code>, which returns the <b>name</b> of the student with the highest marks in the non-empty list <code>students</code> (the first one on a tie).</p>\n<p>For example, <code>topper([Student(\"Asha\", 82), Student(\"Ravi\", 91)])</code> returns <code>\"Ravi\"</code>.</p>",
+   "answerpreload": "class Student:\n    def __init__(self, name, marks):\n        self.name = name\n        self.marks = marks\n\n\ndef topper(students):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(topper([Student(\"Asha\", 82), Student(\"Ravi\", 91)]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(topper([Student(\"Asha\", 82), Student(\"Ravi\", 91)]))",
+     "stdin": "",
+     "expected": "Ravi",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(topper([Student(\"Solo\", 0)]))",
+     "stdin": "",
+     "expected": "Solo",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(topper([Student(\"A\", 5), Student(\"B\", 7), Student(\"C\", 7)]))",
+     "stdin": "",
+     "expected": "B",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(topper([Student(\"x\", -1), Student(\"y\", -9)]))",
+     "stdin": "",
+     "expected": "x",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "L10_017_Objects Inside Objects",
+   "display_name": "Objects Inside Objects",
+   "questiontext_html": "<p>An object's attribute can be a list of <b>other objects</b>. A <code>Library</code> object, for example, can hold <code>Book</code> objects. This is called <b>composition</b>: a big object is built from smaller ones.</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">lib : Library</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">books = &#x27;[b1, b2]&#x27;</div></div></div><div style=\"display:inline-block;vertical-align:top;padding:22px 6px 0 0;color:#8a939c\">&rarr;</div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">b1 : Book</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">title = &#x27;Godan&#x27;</div><div style=\"font-family:monospace;font-size:13px\">author = &#x27;Premchand&#x27;</div></div></div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">b2 : Book</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">title = &#x27;Gitanjali&#x27;</div><div style=\"font-family:monospace;font-size:13px\">author = &#x27;Tagore&#x27;</div></div></div></div>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the class <code>Book</code> is given. Write a class <code>Library</code> whose constructor starts with an empty list <code>books</code>, with methods:</p>\n<ul><li><code>add(book)</code> adds a <code>Book</code> object to the list;</li><li><code>titles_by(author)</code> returns a list of the titles of the books by <code>author</code>, in the order they were added.</li></ul>\n<p>For example, after adding <code>Book(\"Godan\", \"Premchand\")</code> to an empty library <code>lib</code>, <code>lib.titles_by(\"Premchand\")</code> returns <code>['Godan']</code>.</p>",
+   "answerpreload": "class Book:\n    def __init__(self, title, author):\n        self.title = title\n        self.author = author\n\n\nclass Library:\n    def __init__(self):\n        # write your code here\n\n    def add(self, book):\n        # write your code here\n\n    def titles_by(self, author):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# lib = Library()\n# lib.add(Book(\"Godan\", \"Premchand\"))\n# print(lib.titles_by(\"Premchand\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "lib = Library()\nlib.add(Book(\"Godan\", \"Premchand\"))\nprint(lib.titles_by(\"Premchand\"))",
+     "stdin": "",
+     "expected": "['Godan']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "lib = Library()\nprint(lib.titles_by(\"X\"), len(lib.books))",
+     "stdin": "",
+     "expected": "[] 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lib = Library()\nfor t, a in [(\"A\", \"x\"), (\"B\", \"y\"), (\"C\", \"x\")]:\n    lib.add(Book(t, a))\nprint(lib.titles_by(\"x\"), lib.titles_by(\"z\"))",
+     "stdin": "",
+     "expected": "['A', 'C'] []",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "L10_018_Transfer Between Accounts",
+   "display_name": "Transfer Between Accounts",
+   "questiontext_html": "<p>Methods can work on <b>two objects</b> at once: the object the method is called on (<code>self</code>) and another one passed as a parameter.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Account</code> whose constructor takes <code>owner</code> and <code>balance</code>, with the method <code>transfer(other, amount)</code>: if this account's balance is at least <code>amount</code>, move <code>amount</code> from this account to the account <code>other</code> and return <code>True</code>; otherwise change nothing and return <code>False</code>.</p>\n<p>For example, after <code>a = Account(\"Asha\", 100)</code> and <code>b = Account(\"Ravi\", 20)</code>, <code>a.transfer(b, 30)</code> returns <code>True</code>, leaving <code>a.balance</code> 70 and <code>b.balance</code> 50.</p>",
+   "answerpreload": "# Define the class Account with transfer(other, amount).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# a = Account(\"Asha\", 100)\n# b = Account(\"Ravi\", 20)\n# print(a.transfer(b, 30), a.balance, b.balance)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "a = Account(\"Asha\", 100)\nb = Account(\"Ravi\", 20)\nprint(a.transfer(b, 30), a.balance, b.balance)",
+     "stdin": "",
+     "expected": "True 70 50",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "a = Account(\"A\", 10)\nb = Account(\"B\", 0)\nprint(a.transfer(b, 11), a.balance, b.balance)",
+     "stdin": "",
+     "expected": "False 10 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "a = Account(\"A\", 5)\nb = Account(\"B\", 5)\nprint(a.transfer(b, 5), b.transfer(a, 10), a.balance, b.balance)",
+     "stdin": "",
+     "expected": "True True 10 0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "L10_019_Shopping Cart",
+   "display_name": "Shopping Cart",
+   "questiontext_html": "<p>Objects often keep their data in lists or dictionaries. A shopping cart can store a dictionary from item names to quantities, and use a price list to compute the total.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Cart</code> whose constructor takes <code>prices</code> (a dictionary from item names to prices) and starts with an empty dictionary <code>items</code>. Methods:</p>\n<ul><li><code>add(name, qty=1)</code> adds <code>qty</code> of the item (adding to any quantity already in the cart);</li><li><code>remove(name)</code> removes the item completely if it is in the cart;</li><li><code>total()</code> returns the total cost of the cart.</li></ul>\n<p>For example, with prices <code>{\"tea\": 10, \"samosa\": 15}</code>, adding 2 teas and 1 samosa gives a total of <code>35</code>.</p>",
+   "answerpreload": "# Define the class Cart.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# c = Cart({\"tea\": 10, \"samosa\": 15})\n# c.add(\"tea\", 2)\n# c.add(\"samosa\")\n# print(c.items, c.total())\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "c = Cart({\"tea\": 10, \"samosa\": 15})\nc.add(\"tea\", 2)\nc.add(\"samosa\")\nprint(c.items, c.total())",
+     "stdin": "",
+     "expected": "{'tea': 2, 'samosa': 1} 35",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "c = Cart({\"tea\": 10})\nc.add(\"tea\")\nc.add(\"tea\")\nc.remove(\"tea\")\nc.remove(\"coffee\")\nprint(c.items, c.total())",
+     "stdin": "",
+     "expected": "{} 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "c = Cart({\"a\": 1, \"b\": 100})\nc.add(\"b\", 3)\nc.add(\"a\", 7)\nc.add(\"b\")\nprint(c.total())",
+     "stdin": "",
+     "expected": "407",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "L10_020_A Stack Class",
+   "display_name": "A Stack Class",
+   "questiontext_html": "<p>A <b>stack</b> is a pile: you can only add (<b>push</b>) to the top and take (<b>pop</b>) from the top, like a pile of plates. The last thing pushed is the first popped. A class can wrap a list to offer exactly these operations:</p>\n<pre>class Stack:\n    def __init__(self):\n        self.items = []\n\n    def push(self, x):\n        self.items.append(x)\n\n    def pop(self):\n        return self.items.pop()\n\n    def is_empty(self):\n        return len(self.items) == 0\n\ns = Stack()\ns.push(1)\ns.push(2)\nprint(s.pop(), s.pop(), s.is_empty())</pre>\n<p>Output:</p>\n<pre>2 1 True</pre>\n<p>A classic use: checking that brackets are <b>balanced</b>. Read the text left to right; push every opening bracket; for every closing bracket, the stack must not be empty and its top must be the matching opening bracket (pop it). At the end the stack must be empty.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the class <code>Stack</code> above is given. Write the function <code>balanced(text)</code>, which returns <code>True</code> if the brackets <code>()</code>, <code>[]</code> and <code>{}</code> in <code>text</code> are balanced (other characters are ignored), and <code>False</code> otherwise. Use a <code>Stack</code> object.</p>\n<p>For example, <code>balanced(\"a[b(c)]\")</code> returns <code>True</code> and <code>balanced(\"(]\")</code> returns <code>False</code>.</p>",
+   "answerpreload": "class Stack:\n    def __init__(self):\n        self.items = []\n\n    def push(self, x):\n        self.items.append(x)\n\n    def pop(self):\n        return self.items.pop()\n\n    def is_empty(self):\n        return len(self.items) == 0\n\n\ndef balanced(text):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(balanced(\"a[b(c)]\"), balanced(\"(]\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(balanced(\"a[b(c)]\"), balanced(\"(]\"))",
+     "stdin": "",
+     "expected": "True False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(balanced(\"\"), balanced(\"((\"), balanced(\"))\"))",
+     "stdin": "",
+     "expected": "True False False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(balanced(\"{[()()]}\"), balanced(\"{[(])}\"))",
+     "stdin": "",
+     "expected": "True False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(balanced(\"x = (1 + [2 * 3]) }\"))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 21,
+   "xml_name": "L10_021_A Subclass",
+   "display_name": "A Subclass",
+   "questiontext_html": "<p><b>Inheritance</b> lets you make a new class from an existing one. The new class (the <b>subclass</b>, or child) gets all the attributes and methods of the old one (the <b>superclass</b>, or parent), and can add new ones or <b>replace</b> (override) some:</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Animal</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">name</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">speak()</div><div style=\"font-family:monospace;font-size:13px\">describe()</div></div></div><div style=\"display:inline-block;vertical-align:top;padding:22px 6px 0 0;color:#8a939c\">&rarr;</div><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Dog(Animal)</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">(inherits name)</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">speak()  (overridden)</div></div></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">a Dog IS an Animal: it has everything an Animal has</div>\n<pre>class Animal:\n    def __init__(self, name):\n        self.name = name\n\n    def speak(self):\n        return &quot;...&quot;\n\n    def describe(self):\n        return self.name + &quot; says &quot; + self.speak()\n\nclass Dog(Animal):          # Dog inherits from Animal\n    def speak(self):         # override\n        return &quot;Woof&quot;\n\nprint(Animal(&quot;Generic&quot;).describe())\nprint(Dog(&quot;Rex&quot;).describe())</pre>\n<p>Output:</p>\n<pre>Generic says ...\nRex says Woof</pre>\n<p>Notice that <code>describe()</code> is written only once, in <code>Animal</code>, but calls the <b>Dog's</b> own <code>speak()</code> for a dog.</p>\n<p><b>Your task:</b> the class <code>Animal</code> above is given. Write two subclasses of <code>Animal</code>: <code>Cat</code>, whose <code>speak()</code> returns <code>\"Meow\"</code>, and <code>Cow</code>, whose <code>speak()</code> returns <code>\"Moo\"</code>.</p>\n<p>For example, <code>Cat(\"Tom\").describe()</code> returns <code>\"Tom says Meow\"</code>.</p>",
+   "answerpreload": "class Animal:\n    def __init__(self, name):\n        self.name = name\n\n    def speak(self):\n        return \"...\"\n\n    def describe(self):\n        return self.name + \" says \" + self.speak()\n\n\n# write the classes Cat and Cow here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(Cat(\"Tom\").describe())\n# print(Cow(\"Gauri\").describe())\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(Cat(\"Tom\").describe())\nprint(Cow(\"Gauri\").describe())",
+     "stdin": "",
+     "expected": "Tom says Meow\nGauri says Moo",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "c = Cat(\"Kitty\")\nprint(c.name, c.speak(), isinstance(c, Animal))",
+     "stdin": "",
+     "expected": "Kitty Meow True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Animal(\"X\").describe(), Cow(\"Y\").speak())",
+     "stdin": "",
+     "expected": "X says ... Moo",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 22,
+   "xml_name": "L10_022_Calling The Parent Constructor",
+   "display_name": "Calling The Parent Constructor",
+   "questiontext_html": "<p>If a subclass needs <b>extra attributes</b>, it defines its own <code>__init__</code>. To still set up everything the parent sets up, it calls the parent's constructor with <b><code>super().__init__(...)</code></b>:</p>\n<pre>class Person:\n    def __init__(self, name):\n        self.name = name\n\nclass Employee(Person):\n    def __init__(self, name, salary):\n        super().__init__(name)      # the Person part\n        self.salary = salary        # the extra part\n\ne = Employee(&quot;Asha&quot;, 50000)\nprint(e.name, e.salary)</pre>\n<p>Output:</p>\n<pre>Asha 50000</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the class <code>Person</code> (with attribute <code>name</code> and a <code>__str__</code> returning the name) is given. Write a subclass <code>Student</code> whose constructor takes <code>name</code> and <code>roll</code>, calls the parent constructor for the name, and stores <code>roll</code>. Override <code>__str__</code> to return <code>name (roll)</code>.</p>\n<p>For example, <code>print(Student(\"Asha\", \"23B001\"))</code> prints <code>Asha (23B001)</code>.</p>",
+   "answerpreload": "class Person:\n    def __init__(self, name):\n        self.name = name\n\n    def __str__(self):\n        return self.name\n\n\nclass Student(Person):\n    def __init__(self, name, roll):\n        # write your code here\n\n    def __str__(self):\n        # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(Student(\"Asha\", \"23B001\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(Student(\"Asha\", \"23B001\"))",
+     "stdin": "",
+     "expected": "Asha (23B001)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "s = Student(\"Ravi\", \"R2\")\nprint(s.name, s.roll)\nprint(Person(\"Meera\"))",
+     "stdin": "",
+     "expected": "Ravi R2\nMeera",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "s = Student(\"X\", \"0\")\nprint(isinstance(s, Person), s)",
+     "stdin": "",
+     "expected": "True X (0)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 23,
+   "xml_name": "L10_023_Many Shapes One Loop",
+   "display_name": "Many Shapes One Loop",
+   "questiontext_html": "<p>When several subclasses override the same method, a loop can call that method on a mixed list of objects, and <b>each object uses its own version</b>. This is called <b>polymorphism</b> (\"many forms\"):</p>\n<pre>for s in shapes:\n    total = total + s.area()     # a rectangle&#x27;s area() or a circle&#x27;s area()</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the class <code>Shape</code> (whose <code>area()</code> returns 0) is given. Write two subclasses:</p>\n<ul><li><code>Rect(w, h)</code> whose <code>area()</code> returns <code>w * h</code>;</li><li><code>Circle(r)</code> whose <code>area()</code> returns <code>3.14 * r * r</code>.</li></ul>\n<p>Then write the function <code>total_area(shapes)</code>, which returns the sum of the areas of the shapes in the list, rounded to 2 decimal places.</p>\n<p>For example, <code>total_area([Rect(2, 3), Circle(1)])</code> returns <code>9.14</code>.</p>",
+   "answerpreload": "class Shape:\n    def area(self):\n        return 0\n\n\n# write the classes Rect and Circle, and the function total_area, here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(total_area([Rect(2, 3), Circle(1)]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(total_area([Rect(2, 3), Circle(1)]))",
+     "stdin": "",
+     "expected": "9.14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(total_area([]), total_area([Shape()]))",
+     "stdin": "",
+     "expected": "0 0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(total_area([Circle(2), Circle(2), Rect(1, 1)]))",
+     "stdin": "",
+     "expected": "26.12",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(total_area([Rect(10, 0), Rect(0.5, 4)]))",
+     "stdin": "",
+     "expected": "2.0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 24,
+   "xml_name": "L10_024_A Fraction Class",
+   "display_name": "A Fraction Class",
+   "questiontext_html": "<p>To finish, a complete small class. A <b>fraction</b> <code>n/d</code> is stored in <b>lowest terms</b>: numerator and denominator are divided by their greatest common divisor (gcd), and the denominator is kept positive.</p>\n<p><b>Python fact:</b> <code>import math</code> at the top of your code, then <code>math.gcd(a, b)</code> gives the greatest common divisor of two integers (for example <code>math.gcd(6, 8)</code> is 2, and <code>math.gcd(0, 5)</code> is 5).</p>\n<p><code>a/b + c/d = (a*d + c*b) / (b*d)</code> and <code>(a/b) * (c/d) = (a*c) / (b*d)</code>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write a class <code>Fraction</code> whose constructor takes integers <code>n</code> and <code>d</code> (<code>d</code> is never 0) and stores them in lowest terms with a positive denominator, as attributes <code>n</code> and <code>d</code>. Methods:</p>\n<ul><li><code>__str__</code> returns <code>n/d</code> (for example <code>3/4</code>), or just <code>n</code> if the denominator is 1;</li><li><code>plus(other)</code> and <code>times(other)</code> return <b>new</b> <code>Fraction</code> objects.</li></ul>\n<p>For example, <code>print(Fraction(1, 2).plus(Fraction(1, 4)))</code> prints <code>3/4</code>, and <code>print(Fraction(6, -8))</code> prints <code>-3/4</code>.</p>",
+   "answerpreload": "# Define the class Fraction (import math for math.gcd).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(Fraction(1, 2).plus(Fraction(1, 4)))\n# print(Fraction(6, -8))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(Fraction(1, 2).plus(Fraction(1, 4)))\nprint(Fraction(6, -8))",
+     "stdin": "",
+     "expected": "3/4\n-3/4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Fraction(4, 2), Fraction(0, 7), Fraction(2, 3).times(Fraction(3, 2)))",
+     "stdin": "",
+     "expected": "2 0 1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "f = Fraction(1, 3)\nprint(f.plus(f).plus(f), f)",
+     "stdin": "",
+     "expected": "1 1/3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(Fraction(-5, -10).times(Fraction(4, 1)))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "c2b49d3231286df2"
+}

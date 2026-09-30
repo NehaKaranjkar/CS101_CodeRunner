@@ -65,6 +65,46 @@
    "duration_minutes": null
   },
   {
+   "file": "Lab8.qbank",
+   "title": "Lab 8: Tuples",
+   "description": "Tuples and immutability: creating, packing and unpacking, indexing and slicing, and why tuples, strings and lists behave differently when you try to change them.",
+   "questions": 27,
+   "marks": 27.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Lab9.qbank",
+   "title": "Lab 9: Dictionaries and Sets",
+   "description": "Dictionaries (keys and values, get, adding, removing, looping, counting and grouping) and sets (unique items, union, intersection, difference, subsets).",
+   "questions": 37,
+   "marks": 37.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Lab10.qbank",
+   "title": "Lab 10: Classes and Objects",
+   "description": "An introduction to object-oriented programming: classes and objects, constructors and destructors, attributes and methods, class attributes, objects working together, and a first look at inheritance.",
+   "questions": 24,
+   "marks": 24.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Lab11.qbank",
+   "title": "Lab 11: Geometry With Classes",
+   "description": "A worked example of object-oriented programming: Point, Line, Triangle and Scene classes that move, measure and draw themselves. Uncomment the drawing code to see your picture.",
+   "questions": 16,
+   "marks": 16.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Lab12.qbank",
+   "title": "Lab 12: Searching, Sorting and Big O",
+   "description": "Counting operations and O notation; linear and binary search; bubble, insertion and selection sort; merging and quicksort. The tests also count how many looks, comparisons and swaps your code makes.",
+   "questions": 16,
+   "marks": 16.0,
+   "duration_minutes": null
+  },
+  {
    "file": "Practice_Set_1.qbank",
    "title": "Practice Set 1",
    "description": "Easy, medium and difficult questions covering all topics from Labs 1 to 5.",

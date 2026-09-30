@@ -458,6 +458,11 @@ function renderResult(r) {
   if (r.aborted) res.append(el("p", { text: "Testing stopped at the first error or time-out; the remaining tests were not run." }));
   if (note) res.append(el("p", { text: note }));
   box.append(res);
+  if (r.figures && r.figures.length) {        // matplotlib drawings from the first test (not graded)
+    const figs = el("div", { class: "figs" }, el("h4", { text: "Your drawing (not graded)" }));
+    for (const b64 of r.figures) figs.append(el("img", { src: "data:image/png;base64," + b64, alt: "figure drawn by your code" }));
+    box.append(figs);
+  }
 }
 
 /* ---------- actions ---------- */

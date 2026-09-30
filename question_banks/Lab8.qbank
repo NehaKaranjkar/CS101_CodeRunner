@@ -1,0 +1,1422 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Lab8",
+ "encrypted": false,
+ "source_xml": "Lab8.xml",
+ "built_at": "2026-09-30T19:25:11",
+ "settings": {
+  "title": "Lab 8: Tuples",
+  "description": "Tuples and immutability: creating, packing and unpacking, indexing and slicing, and why tuples, strings and lists behave differently when you try to change them.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Creating and converting",
+    "start": 1,
+    "count": 6
+   },
+   {
+    "heading": "Accessing tuples",
+    "start": 7,
+    "count": 4
+   },
+   {
+    "heading": "Immutability",
+    "start": 11,
+    "count": 8
+   },
+   {
+    "heading": "Tuple operations",
+    "start": 19,
+    "count": 4
+   },
+   {
+    "heading": "Putting it together",
+    "start": 23,
+    "count": 5
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "L08_001_Create A Tuple",
+   "display_name": "Create A Tuple",
+   "questiontext_html": "<p>Welcome to Lab 8! A <b>tuple</b> is an ordered sequence of values, very much like a list, but written with <b>round brackets</b> <code>( )</code> instead of square brackets:</p>\n<pre>point = (3, 7)\ncolours = (&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;)</pre>\n<p>Tuples have indexes just like lists, starting at 0, and <code>len()</code> works the same way:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">colours =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;red&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;green&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;blue&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table>\n<p>The big difference, which this lab is about: a tuple is <b>immutable</b>, it can <b>never be changed</b> after it is made. We will see why that is useful.</p>\n<pre>point = (3, 7)\ncolours = (&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;)\nprint(point)\nprint(colours[0], colours[-1], len(colours))\nprint(type(point))</pre>\n<p>Output:</p>\n<pre>(3, 7)\nred blue 3\n&lt;class &#x27;tuple&#x27;&gt;</pre>\n<p><b>Your task:</b> write the function <code>make_point(x, y)</code>, which returns the tuple <code>(x, y)</code>.</p>\n<p>For example, <code>make_point(3, 7)</code> returns <code>(3, 7)</code>.</p>",
+   "answerpreload": "def make_point(x, y):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(make_point(3, 7))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(make_point(3, 7))",
+     "stdin": "",
+     "expected": "(3, 7)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(make_point(-1, 0))",
+     "stdin": "",
+     "expected": "(-1, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(len(make_point(5, 5)))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(type(make_point(1, 2)) == tuple)",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "L08_002_The One Item Tuple",
+   "display_name": "The One Item Tuple",
+   "questiontext_html": "<p>The <b>comma</b> makes a tuple, not the brackets. This matters for a tuple with only one item:</p>\n<ul><li><code>(4)</code> is just the number 4 in brackets (like <code>(2 + 2)</code>);</li><li><code>(4,)</code> is a tuple containing 4. The trailing comma is needed.</li></ul>\n<p>The empty tuple is <code>()</code>.</p>\n<pre>a = (4)\nb = (4,)\nprint(a, type(a))\nprint(b, type(b), len(b))\nprint((), len(()))</pre>\n<p>Output:</p>\n<pre>4 &lt;class &#x27;int&#x27;&gt;\n(4,) &lt;class &#x27;tuple&#x27;&gt; 1\n() 0</pre>\n<p><b>Your task:</b> write the function <code>wrap(x)</code>, which returns a tuple containing only <code>x</code>.</p>\n<p>For example, <code>wrap(4)</code> returns <code>(4,)</code>.</p>",
+   "answerpreload": "def wrap(x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(wrap(4))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(wrap(4))",
+     "stdin": "",
+     "expected": "(4,)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(wrap(\"a\"))",
+     "stdin": "",
+     "expected": "('a',)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(len(wrap(0)), type(wrap(0)) == tuple)",
+     "stdin": "",
+     "expected": "1 True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "L08_003_Converting With tuple",
+   "display_name": "Converting With tuple",
+   "questiontext_html": "<p><code>tuple(...)</code> converts other sequences into a tuple, just like <code>list(...)</code> makes a list:</p>\n<pre>print(tuple([1, 2, 3]))\nprint(tuple(&quot;abc&quot;))\nprint(tuple(range(4)))\nprint(list((7, 8)))</pre>\n<p>Output:</p>\n<pre>(1, 2, 3)\n(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)\n(0, 1, 2, 3)\n[7, 8]</pre>\n<p>The last line goes the other way: <code>list(...)</code> turns a tuple into a list.</p>\n<p><b>Your task:</b> write two functions:</p>\n<ul><li><code>as_tuple(L)</code> returns a tuple with the same items as the list <code>L</code>;</li><li><code>chars(word)</code> returns a tuple of the characters of the string <code>word</code>.</li></ul>\n<p>For example, <code>as_tuple([1, 2, 3])</code> returns <code>(1, 2, 3)</code> and <code>chars(\"hi\")</code> returns <code>('h', 'i')</code>.</p>",
+   "answerpreload": "def as_tuple(L):\n    # write your code here\n\n\ndef chars(word):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(as_tuple([1, 2, 3]))\n# print(chars(\"hi\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(as_tuple([1, 2, 3]))",
+     "stdin": "",
+     "expected": "(1, 2, 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(chars(\"hi\"))",
+     "stdin": "",
+     "expected": "('h', 'i')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(as_tuple([]), chars(''))",
+     "stdin": "",
+     "expected": "() ()",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [5]\nt = as_tuple(L)\nprint(t, L)",
+     "stdin": "",
+     "expected": "(5,) [5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L08_004_Words As A Tuple",
+   "display_name": "Words As A Tuple",
+   "questiontext_html": "<p>Conversions can be chained. <code>text.split()</code> gives a <b>list</b> of words, and <code>tuple(...)</code> turns that list into a tuple:</p>\n<pre>text = &quot;to be or not&quot;\nwords = text.split()\nprint(words)\nprint(tuple(words))</pre>\n<p>Output:</p>\n<pre>[&#x27;to&#x27;, &#x27;be&#x27;, &#x27;or&#x27;, &#x27;not&#x27;]\n(&#x27;to&#x27;, &#x27;be&#x27;, &#x27;or&#x27;, &#x27;not&#x27;)</pre>\n<p><b>Your task:</b> write the function <code>word_tuple(text)</code>, which returns a tuple of the words in the string <code>text</code> (words are separated by spaces).</p>\n<p>For example, <code>word_tuple(\"to be or not\")</code> returns <code>('to', 'be', 'or', 'not')</code>.</p>",
+   "answerpreload": "def word_tuple(text):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(word_tuple(\"to be or not\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(word_tuple(\"to be or not\"))",
+     "stdin": "",
+     "expected": "('to', 'be', 'or', 'not')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(word_tuple(\"hello\"))",
+     "stdin": "",
+     "expected": "('hello',)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(len(word_tuple(\"a b c d e\")))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L08_005_Packing And Unpacking",
+   "display_name": "Packing And Unpacking",
+   "questiontext_html": "<p>Writing several values separated by commas <b>packs</b> them into a tuple (the brackets are optional). The opposite, <b>unpacking</b>, puts the items of a tuple into separate variables in one line. The number of variables must match the number of items.</p>\n<pre>t = 10, 20, 30        # packing: t is (10, 20, 30)\na, b, c = t           # unpacking\nprint(t, a, b, c)\nx, y = 1, 2\nx, y = y, x           # swap in one line!\nprint(x, y)</pre>\n<p>Output:</p>\n<pre>(10, 20, 30) 10 20 30\n2 1</pre>\n<p><code>x, y = y, x</code> first packs <code>(y, x)</code> into a tuple, then unpacks it into <code>x</code> and <code>y</code>. That is the Python way to swap two variables.</p>\n<p><b>Your task:</b> write the function <code>swap_pair(p)</code>, which is given a tuple <code>p</code> of two items and returns a new tuple with the two items swapped. Use unpacking.</p>\n<p>For example, <code>swap_pair((1, 2))</code> returns <code>(2, 1)</code>.</p>",
+   "answerpreload": "def swap_pair(p):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(swap_pair((1, 2)))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(swap_pair((1, 2)))",
+     "stdin": "",
+     "expected": "(2, 1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(swap_pair((\"x\", \"y\")))",
+     "stdin": "",
+     "expected": "('y', 'x')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(swap_pair((5, 5)))",
+     "stdin": "",
+     "expected": "(5, 5)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L08_006_Returning Several Values",
+   "display_name": "Returning Several Values",
+   "questiontext_html": "<p>In Lab 4 you wrote functions like <code>return a, b</code> that return <b>several values</b>. Now you know what really happens: <code>return a, b</code> returns <b>one tuple</b> <code>(a, b)</code>, and <code>lo, hi = f(...)</code> unpacks it.</p>\n<pre>def divide(a, b):\n    return a // b, a % b\n\nr = divide(17, 5)\nprint(r, type(r))\nq, rem = divide(17, 5)\nprint(q, rem)</pre>\n<p>Output:</p>\n<pre>(3, 2) &lt;class &#x27;tuple&#x27;&gt;\n3 2</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>min_max(L)</code>, which returns a tuple <code>(smallest, largest)</code> for a non-empty list of integers <code>L</code>. (You may use <code>min()</code> and <code>max()</code>.)</p>\n<p>For example, <code>min_max([4, 1, 9, 7])</code> returns <code>(1, 9)</code>.</p>",
+   "answerpreload": "def min_max(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(min_max([4, 1, 9, 7]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(min_max([4, 1, 9, 7]))",
+     "stdin": "",
+     "expected": "(1, 9)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(min_max([-3]))",
+     "stdin": "",
+     "expected": "(-3, -3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lo, hi = min_max([10, 20])\nprint(lo)\nprint(hi)",
+     "stdin": "",
+     "expected": "10\n20",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L08_007_Index And Slice A Tuple",
+   "display_name": "Index And Slice A Tuple",
+   "questiontext_html": "<p>Indexing and slicing work on tuples exactly as on lists. A slice of a tuple is a new <b>tuple</b>:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">t =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">10</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(42,112,170);color:#fff;border-radius:2px\">20</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">30</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(63,146,206);color:#fff;border-radius:2px\">40</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">50</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#2e7a48;white-space:nowrap\">&uarr;<br>start</td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#16202b;white-space:nowrap\"></td><td style=\"text-align:center;font-size:12px;color:#7b3fa0;white-space:nowrap\">&uarr;<br>stop</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">t[1:4] is (20, 30, 40)</div>\n<pre>t = (10, 20, 30, 40, 50)\nprint(t[0], t[-1])\nprint(t[1:4])\nprint(t[::-1])</pre>\n<p>Output:</p>\n<pre>10 50\n(20, 30, 40)\n(50, 40, 30, 20, 10)</pre>\n<p><b>Your task:</b> write two functions for a tuple <code>t</code> with at least 2 items:</p>\n<ul><li><code>ends(t)</code> returns a tuple of its first and last items;</li><li><code>inside(t)</code> returns a tuple of all items except the first and the last.</li></ul>\n<p>For example, <code>ends((10, 20, 30, 40, 50))</code> returns <code>(10, 50)</code> and <code>inside((10, 20, 30, 40, 50))</code> returns <code>(20, 30, 40)</code>.</p>",
+   "answerpreload": "def ends(t):\n    # write your code here\n\n\ndef inside(t):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(ends((10, 20, 30, 40, 50)))\n# print(inside((10, 20, 30, 40, 50)))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(ends((10, 20, 30, 40, 50)))",
+     "stdin": "",
+     "expected": "(10, 50)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(inside((10, 20, 30, 40, 50)))",
+     "stdin": "",
+     "expected": "(20, 30, 40)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(ends((1, 2)), inside((1, 2)))",
+     "stdin": "",
+     "expected": "(1, 2) ()",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "L08_008_Nested Tuples",
+   "display_name": "Nested Tuples",
+   "questiontext_html": "<p>Tuples can hold tuples. A classic use: a tuple of <b>points</b>, each point a tuple <code>(x, y)</code>:</p>\n<pre>points = ((0, 0), (3, 4), (6, 1))</pre>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">points =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">(0, 0)</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">(3, 4)</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">(6, 1)</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">points[1] is (3, 4), and points[1][0] is 3</div>\n<pre>points = ((0, 0), (3, 4), (6, 1))\nprint(points[1])\nprint(points[1][0], points[1][1])\nfor x, y in points:\n    print(x + y)</pre>\n<p>Output:</p>\n<pre>(3, 4)\n3 4\n0\n7\n7</pre>\n<p>The loop <code>for x, y in points:</code> <b>unpacks</b> each point into <code>x</code> and <code>y</code>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>total_x(points)</code>, which returns the sum of the x-coordinates (the first item) of all the points in the tuple <code>points</code>. For an empty tuple the sum is 0.</p>\n<p>For example, <code>total_x(((0, 0), (3, 4), (6, 1)))</code> returns <code>9</code>.</p>",
+   "answerpreload": "def total_x(points):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(total_x(((0, 0), (3, 4), (6, 1))))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(total_x(((0, 0), (3, 4), (6, 1))))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(total_x(()))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(total_x(((-5, 2),)))",
+     "stdin": "",
+     "expected": "-5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "L08_009_Membership And Counting",
+   "display_name": "Membership And Counting",
+   "questiontext_html": "<p>Tuples have only <b>two</b> methods, both for asking questions (neither changes anything):</p>\n<ul><li><code>t.count(x)</code>: how many items equal <code>x</code>;</li><li><code>t.index(x)</code>: the index of the first <code>x</code> (a <code>ValueError</code> if there is none).</li></ul>\n<p><code>x in t</code> and <code>len(t)</code> work as for lists.</p>\n<pre>t = (&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;)\nprint(&quot;a&quot; in t, &quot;z&quot; in t)\nprint(t.count(&quot;a&quot;), t.index(&quot;c&quot;))</pre>\n<p>Output:</p>\n<pre>True False\n2 3</pre>\n<p><b>Your task:</b> write the function <code>describe(t, x)</code>, which returns a tuple of three values: whether <code>x</code> is in the tuple <code>t</code> (<code>True</code>/<code>False</code>), how many times it appears, and the index of its first appearance (or <code>-1</code> if it is not there).</p>\n<p>For example, <code>describe((\"a\", \"b\", \"a\"), \"a\")</code> returns <code>(True, 2, 0)</code>.</p>",
+   "answerpreload": "def describe(t, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(describe((\"a\", \"b\", \"a\"), \"a\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(describe((\"a\", \"b\", \"a\"), \"a\"))",
+     "stdin": "",
+     "expected": "(True, 2, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(describe((\"a\", \"b\"), \"z\"))",
+     "stdin": "",
+     "expected": "(False, 0, -1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(describe((), 1))",
+     "stdin": "",
+     "expected": "(False, 0, -1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "L08_010_Loop With Unpacking",
+   "display_name": "Loop With Unpacking",
+   "questiontext_html": "<p>A list of tuples is a common way to keep <b>records</b>, for example <code>(name, marks)</code> for each student. A <code>for</code> loop can unpack each record directly:</p>\n<pre>records = [(&quot;Asha&quot;, 82), (&quot;Ravi&quot;, 67), (&quot;Meera&quot;, 91)]\nfor name, marks in records:\n    print(name, &quot;scored&quot;, marks)</pre>\n<p>Output:</p>\n<pre>Asha scored 82\nRavi scored 67\nMeera scored 91</pre>\n<p><b>Python fact:</b> <code>enumerate(seq)</code> gives pairs <code>(index, item)</code>, so <code>for i, item in enumerate(seq):</code> loops with the position too.</p>\n<pre>for i, c in enumerate((&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)):\n    print(i, c)</pre>\n<p>Output:</p>\n<pre>0 x\n1 y\n2 z</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>names_above(records, cutoff)</code>, where <code>records</code> is a list of <code>(name, marks)</code> tuples. Return a list of the names whose marks are <b>more than</b> <code>cutoff</code>, in the original order.</p>\n<p>For example, <code>names_above([(\"Asha\", 82), (\"Ravi\", 67), (\"Meera\", 91)], 70)</code> returns <code>['Asha', 'Meera']</code>.</p>",
+   "answerpreload": "def names_above(records, cutoff):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(names_above([(\"Asha\", 82), (\"Ravi\", 67), (\"Meera\", 91)], 70))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(names_above([(\"Asha\", 82), (\"Ravi\", 67), (\"Meera\", 91)], 70))",
+     "stdin": "",
+     "expected": "['Asha', 'Meera']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(names_above([(\"Asha\", 82)], 82))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(names_above([], 0))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "L08_011_Tuples Cannot Change",
+   "display_name": "Tuples Cannot Change",
+   "questiontext_html": "<p>Now the key idea. A tuple is <b>immutable</b>: once made, its items can never be replaced, added or removed. Trying gives a <code>TypeError</code>:</p>\n<pre>t = (1, 2, 3)\nt[0] = 100</pre>\n<pre style=\"color:#b3322a\">TypeError: &#x27;tuple&#x27; object does not support item assignment</pre>\n<p>There is also no <code>append</code>, <code>insert</code>, <code>remove</code> or <code>sort</code> for tuples. To get a \"changed\" tuple you build a <b>new</b> one, for example from slices and <code>+</code> (which joins tuples):</p>\n<pre>t = (1, 2, 3)\nnew = (100,) + t[1:]\nprint(new)\nprint(t)</pre>\n<p>Output:</p>\n<pre>(100, 2, 3)\n(1, 2, 3)</pre>\n<p>Note <code>(100,)</code>: to join a single value, first make it a one-item tuple.</p>\n<p><b>Your task:</b> write the function <code>replace_item(t, i, x)</code>, which returns a new tuple equal to <code>t</code> but with the item at index <code>i</code> replaced by <code>x</code>. The index <code>i</code> is from 0 to <code>len(t) - 1</code>.</p>\n<p>For example, <code>replace_item((1, 2, 3), 0, 100)</code> returns <code>(100, 2, 3)</code>.</p>",
+   "answerpreload": "def replace_item(t, i, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(replace_item((1, 2, 3), 0, 100))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(replace_item((1, 2, 3), 0, 100))",
+     "stdin": "",
+     "expected": "(100, 2, 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(replace_item((1, 2, 3), 2, 0))",
+     "stdin": "",
+     "expected": "(1, 2, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = (\"a\",)\nprint(replace_item(t, 0, \"b\"), t)",
+     "stdin": "",
+     "expected": "('b',) ('a',)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = tuple(map(int, input().split()))\nprint(replace_item(t, 3, -1))",
+     "stdin": "5 6 7 8 9",
+     "expected": "(5, 6, 7, -1, 9)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = tuple(map(int, input().split()))\nprint(replace_item(t, 1, 7))\nprint(t)",
+     "stdin": "1 2",
+     "expected": "(1, 7)\n(1, 2)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "L08_012_Change Through A List",
+   "display_name": "Change Through A List",
+   "questiontext_html": "<p>Another way to \"change\" a tuple uses the fact that <b>lists can change</b>:</p>\n<ol><li>convert the tuple to a list with <code>list(t)</code>;</li><li>change the list (<code>append</code>, <code>remove</code>, <code>sort</code>, <code>L[i] = ...</code>);</li><li>convert back with <code>tuple(L)</code>.</li></ol>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">-1</td></tr><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">t =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;a&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">list(t), then change the list ...</div>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L.sort() :</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;c&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">... then tuple(L) is (&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;), a new tuple. t itself never changed.</div>\n<pre>t = (&quot;b&quot;, &quot;c&quot;, &quot;a&quot;)\nL = list(t)\nL.sort()\nL.append(&quot;d&quot;)\nprint(tuple(L))\nprint(t)</pre>\n<p>Output:</p>\n<pre>(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;)\n(&#x27;b&#x27;, &#x27;c&#x27;, &#x27;a&#x27;)</pre>\n<p><b>Your task:</b> write the function <code>remove_value(t, x)</code>, which returns a new tuple: <code>t</code> without the first item equal to <code>x</code>. If <code>x</code> is not in <code>t</code>, return a tuple equal to <code>t</code>. (Tuples have no <code>remove</code> method, but lists do.)</p>\n<p>For example, <code>remove_value((3, 1, 4, 1), 1)</code> returns <code>(3, 4, 1)</code>.</p>",
+   "answerpreload": "# Define remove_value(t, x): tuple -> list -> remove -> tuple.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(remove_value((3, 1, 4, 1), 1))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(remove_value((3, 1, 4, 1), 1))",
+     "stdin": "",
+     "expected": "(3, 4, 1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(remove_value((3, 1), 9))",
+     "stdin": "",
+     "expected": "(3, 1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(remove_value((5,), 5))",
+     "stdin": "",
+     "expected": "()",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = tuple(map(int, input().split()))\nprint(remove_value(t, 2), t)",
+     "stdin": "2 2 3",
+     "expected": "(2, 3) (2, 2, 3)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = tuple(map(int, input().split()))\nprint(remove_value(t, 9))",
+     "stdin": "1 9 1 9",
+     "expected": "(1, 1, 9)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "L08_013_Strings Are Immutable Too",
+   "display_name": "Strings Are Immutable Too",
+   "questiontext_html": "<p>Strings are immutable as well: <code>s[0] = \"x\"</code> is a <code>TypeError</code>. The same trick works: convert to a list of characters, change the list, and join the characters back into a string.</p>\n<p><b>Python fact:</b> <code>\"\".join(L)</code> joins a list (or tuple) of strings into one string, with nothing between them. <code>\"-\".join(L)</code> puts <code>-</code> between them.</p>\n<pre>word = &quot;hello&quot;\nL = list(word)\nL[0] = &quot;j&quot;\nprint(L)\nprint(&quot;&quot;.join(L))\nprint(&quot;-&quot;.join((&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)))\nprint(word)</pre>\n<p>Output:</p>\n<pre>[&#x27;j&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&#x27;]\njello\na-b-c\nhello</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>censor(word, ch)</code>, which returns a new string: <code>word</code> with every character equal to <code>ch</code> replaced by <code>\"*\"</code>.</p>\n<p>For example, <code>censor(\"banana\", \"a\")</code> returns <code>\"b*n*n*\"</code>.</p>",
+   "answerpreload": "# Define censor(word, ch): string -> list of characters -> change -> join.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(censor(\"banana\", \"a\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(censor(\"banana\", \"a\"))",
+     "stdin": "",
+     "expected": "b*n*n*",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(censor(\"goa\", \"z\"))",
+     "stdin": "",
+     "expected": "goa",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(censor(\"\", \"a\"))",
+     "stdin": "",
+     "expected": "",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(censor(\"mississippi\", \"s\"))",
+     "stdin": "",
+     "expected": "mi**i**ippi",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(censor(\"aaa\", \"a\"))",
+     "stdin": "",
+     "expected": "***",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "L08_014_Which Types Can Change",
+   "display_name": "Which Types Can Change",
+   "questiontext_html": "<p>Here are the three sequence types side by side:</p>\n<table border=\"1\" cellpadding=\"6\" style=\"border-collapse:collapse;margin:6px 0 12px;font-size:14px\"><tr><th></th><th>string</th><th>list</th><th>tuple</th></tr><tr><td>written as</td><td><code>\"abc\"</code></td><td><code>[1, 2, 3]</code></td><td><code>(1, 2, 3)</code></td></tr><tr><td>items</td><td>characters</td><td>any values</td><td>any values</td></tr><tr><td>indexing, slicing, <code>len</code>, <code>in</code>, <code>for</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td>can be changed (mutable)?</td><td style=\"color:#b3322a\">no</td><td style=\"color:#2e7a48\">yes</td><td style=\"color:#b3322a\">no</td></tr><tr><td><code>x[0] = ...</code></td><td>TypeError</td><td>works</td><td>TypeError</td></tr><tr><td>methods that change it</td><td>none</td><td>append, insert, remove, pop, sort, ...</td><td>none</td></tr><tr><td>convert to it</td><td><code>\"\".join(...)</code></td><td><code>list(...)</code></td><td><code>tuple(...)</code></td></tr></table>\n<p><b>Python fact:</b> <code>type(x) == list</code> is <code>True</code> when <code>x</code> is a list; likewise <code>type(x) == tuple</code> and <code>type(x) == str</code>.</p>\n<p><b>Your task:</b> write the function <code>is_mutable(x)</code>, which returns <code>True</code> if <code>x</code> is a list, and <code>False</code> if it is a string or a tuple (only these three types are tested).</p>\n<p>For example, <code>is_mutable([1, 2])</code> returns <code>True</code> and <code>is_mutable((1, 2))</code> returns <code>False</code>.</p>",
+   "answerpreload": "def is_mutable(x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(is_mutable([1, 2]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_mutable([1, 2]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_mutable((1, 2)))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_mutable(\"ab\"))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_mutable([]), is_mutable(()), is_mutable(''))",
+     "stdin": "",
+     "expected": "True False False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_mutable(list('xy')))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "L08_015_A List Inside A Tuple",
+   "display_name": "A List Inside A Tuple",
+   "questiontext_html": "<p>Immutability has a subtle side. A tuple can <b>hold a list</b>. The tuple cannot change <b>which</b> objects it holds, but a list inside it is still a list, and <b>the list itself can change</b>:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 4px\"><tr><td><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">record =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;Asha&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#9679;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td></tr></table></td><td style=\"padding:0 8px\">&rarr;</td><td><table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\"></td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">80</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">90</td></tr></table></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">record[1] points to a list; the list can grow, but record[1] always points to the same list</div>\n<pre>record = (&quot;Asha&quot;, [80, 90])\nrecord[1].append(75)       # allowed: changes the list\nprint(record)</pre>\n<p>Output:</p>\n<pre>(&#x27;Asha&#x27;, [80, 90, 75])</pre>\n<p>But <code>record[1] = [100]</code> is a <code>TypeError</code>: that would make the tuple hold a <b>different</b> object.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>add_mark(record, m)</code>, where <code>record</code> is a tuple <code>(name, marks)</code> and <code>marks</code> is a list. Add <code>m</code> to the end of the list of marks. The function returns nothing.</p>\n<p>For example, after <code>r = (\"Asha\", [80, 90])</code> and <code>add_mark(r, 75)</code>, <code>r</code> is <code>('Asha', [80, 90, 75])</code>.</p>",
+   "answerpreload": "def add_mark(record, m):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# r = (\"Asha\", [80, 90])\n# add_mark(r, 75)\n# print(r)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "r = (\"Asha\", [80, 90])\nadd_mark(r, 75)\nprint(r)",
+     "stdin": "",
+     "expected": "('Asha', [80, 90, 75])",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "r = (\"Ravi\", [])\nadd_mark(r, 0)\nprint(r)",
+     "stdin": "",
+     "expected": "('Ravi', [0])",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "r = (\"Meera\", [1])\nadd_mark(r, 2)\nadd_mark(r, 3)\nprint(r)",
+     "stdin": "",
+     "expected": "('Meera', [1, 2, 3])",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "r = (\"X\", [5, 5])\nx = add_mark(r, 6)\nprint(r, x)",
+     "stdin": "",
+     "expected": "('X', [5, 5, 6]) None",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "L08_016_Plus Equals Makes A New Tuple",
+   "display_name": "Plus Equals Makes A New Tuple",
+   "questiontext_html": "<p>If tuples cannot change, how can <code>t += (4,)</code> work? It does <b>not</b> change the tuple: it builds a <b>new</b> tuple <code>t + (4,)</code> and makes the name <code>t</code> point to it. Any other name for the old tuple still sees the old one. With a list, <code>+=</code> changes the list itself.</p>\n<p><b>Python fact:</b> <code>a is b</code> is <code>True</code> when <code>a</code> and <code>b</code> are the <b>same object</b> (not just equal).</p>\n<pre>t = (1, 2, 3)\nold = t\nt += (4,)\nprint(t, old, t is old)\n\nL = [1, 2, 3]\nold = L\nL += [4]\nprint(L, old, L is old)</pre>\n<p>Output:</p>\n<pre>(1, 2, 3, 4) (1, 2, 3) False\n[1, 2, 3, 4] [1, 2, 3, 4] True</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the function <code>grow(t, n)</code>, which returns a new tuple: the items of <code>t</code> followed by the numbers <code>1, 2, ..., n</code> (for a non-negative integer <code>n</code>). Build it in a loop with <code>+=</code>. The tuple <code>t</code> given to the function must not change (and cannot!).</p>\n<p>For example, <code>grow((9,), 3)</code> returns <code>(9, 1, 2, 3)</code>.</p>",
+   "answerpreload": "# Define grow(t, n): add 1..n to the end, one at a time, with +=.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(grow((9,), 3))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(grow((9,), 3))",
+     "stdin": "",
+     "expected": "(9, 1, 2, 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(grow((), 0))",
+     "stdin": "",
+     "expected": "()",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = (5, 6)\nprint(grow(t, 2), t)",
+     "stdin": "",
+     "expected": "(5, 6, 1, 2) (5, 6)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(grow((), 5))",
+     "stdin": "",
+     "expected": "(1, 2, 3, 4, 5)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = ('a',)\ng = grow(t, 1)\nprint(g, t, g is t)",
+     "stdin": "",
+     "expected": "('a', 1) ('a',) False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "L08_017_Tuples Are Safe To Share",
+   "display_name": "Tuples Are Safe To Share",
+   "questiontext_html": "<p>In Lab 7 you saw <b>aliasing</b>: when a list is passed to a function, the function can change the caller's list, sometimes by accident. With a tuple this cannot happen: nobody can change it, so it is <b>safe to share</b>. This is one reason to use tuples for data that should stay fixed.</p>\n<pre>def add_zero_list(L):\n    L.append(0)            # changes the caller&#x27;s list!\n\ndef add_zero_tuple(t):\n    t = t + (0,)           # only a new tuple inside the function\n    return t\n\nnums = [1, 2]\nadd_zero_list(nums)\nprint(nums)\nfixed = (1, 2)\nprint(add_zero_tuple(fixed), fixed)</pre>\n<p>Output:</p>\n<pre>[1, 2, 0]\n(1, 2, 0) (1, 2)</pre>\n<p><b>Your task:</b> write the function <code>with_extras(data, extra)</code>, where <code>data</code> is a tuple and <code>extra</code> is a list. Return a new tuple: the items of <code>data</code> followed by the items of <code>extra</code>. Neither <code>data</code> nor <code>extra</code> may change.</p>\n<p>For example, <code>with_extras((1, 2), [3, 4])</code> returns <code>(1, 2, 3, 4)</code>.</p>",
+   "answerpreload": "# Define with_extras(data, extra): return a new tuple; change nothing.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(with_extras((1, 2), [3, 4]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(with_extras((1, 2), [3, 4]))",
+     "stdin": "",
+     "expected": "(1, 2, 3, 4)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "d = (1,)\ne = []\nprint(with_extras(d, e), d, e)",
+     "stdin": "",
+     "expected": "(1,) (1,) []",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "e = list(map(int, input().split()))\nd = (0,)\nprint(with_extras(d, e), d, e)",
+     "stdin": "5 6 7",
+     "expected": "(0, 5, 6, 7) (0,) [5, 6, 7]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(with_extras((), ['a']))",
+     "stdin": "",
+     "expected": "('a',)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "L08_018_Tuples As Fixed Records",
+   "display_name": "Tuples As Fixed Records",
+   "questiontext_html": "<p>A point <code>(x, y)</code>, a date <code>(year, month, day)</code> or an RGB colour <code>(255, 128, 0)</code> has a <b>fixed number of parts</b> with fixed meanings. Tuples fit such <b>records</b> well. To \"move\" a point, we do not change it; we compute and return a <b>new</b> point.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">p =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">5</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">move(p, 3, -1) returns the new point (5, 4); p is still (2, 5)</div>\n<p><b>Your task:</b> write the function <code>move(p, dx, dy)</code>, where <code>p</code> is a point <code>(x, y)</code>. Return the new point <code>(x + dx, y + dy)</code>.</p>\n<p>For example, <code>move((2, 5), 3, -1)</code> returns <code>(5, 4)</code>.</p>",
+   "answerpreload": "# Define move(p, dx, dy): return a new point.\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(move((2, 5), 3, -1))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(move((2, 5), 3, -1))",
+     "stdin": "",
+     "expected": "(5, 4)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "p = (0, 0)\nprint(move(p, 0, 0), p)",
+     "stdin": "",
+     "expected": "(0, 0) (0, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(move((-4, 7), 4, -7))",
+     "stdin": "",
+     "expected": "(0, 0)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "p = (1, 1)\nq = move(move(p, 1, 0), 0, 2)\nprint(q, p)",
+     "stdin": "",
+     "expected": "(2, 3) (1, 1)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "L08_019_Join And Repeat Tuples",
+   "display_name": "Join And Repeat Tuples",
+   "questiontext_html": "<p><code>+</code> joins two tuples into a new tuple, and <code>*</code> repeats a tuple (just like lists):</p>\n<pre>print((1, 2) + (3,))\nprint((&quot;ha&quot;,) * 3)\nprint((0,) * 4 + (1,))</pre>\n<p>Output:</p>\n<pre>(1, 2, 3)\n(&#x27;ha&#x27;, &#x27;ha&#x27;, &#x27;ha&#x27;)\n(0, 0, 0, 0, 1)</pre>\n<p><b>Your task:</b> write the function <code>frame(t, x, n)</code>, which returns a new tuple: <code>n</code> copies of <code>x</code>, then the items of <code>t</code>, then <code>n</code> copies of <code>x</code> again (<code>n</code> is a non-negative integer).</p>\n<p>For example, <code>frame((5, 6), 0, 2)</code> returns <code>(0, 0, 5, 6, 0, 0)</code>.</p>",
+   "answerpreload": "# Define frame(t, x, n).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(frame((5, 6), 0, 2))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(frame((5, 6), 0, 2))",
+     "stdin": "",
+     "expected": "(0, 0, 5, 6, 0, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(frame((), 'x', 1))",
+     "stdin": "",
+     "expected": "('x', 'x')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(frame((1,), 9, 0))",
+     "stdin": "",
+     "expected": "(1,)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(frame((7, 8, 9), -1, 3))",
+     "stdin": "",
+     "expected": "(-1, -1, -1, 7, 8, 9, -1, -1, -1)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(frame(('a', 'b'), '*', 1))",
+     "stdin": "",
+     "expected": "('*', 'a', 'b', '*')",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "L08_020_Sorting A Tuple",
+   "display_name": "Sorting A Tuple",
+   "questiontext_html": "<p>A tuple has no <code>sort()</code> method (it cannot change). The built-in <code>sorted(t)</code> works on a tuple, but it returns a <b>list</b>. Convert back with <code>tuple(...)</code> if you need a tuple:</p>\n<pre>t = (3, 1, 2)\ns = sorted(t)\nprint(s, type(s))\nprint(tuple(s))\nprint(tuple(sorted(t, reverse=True)))</pre>\n<p>Output:</p>\n<pre>[1, 2, 3] &lt;class &#x27;list&#x27;&gt;\n(1, 2, 3)\n(3, 2, 1)</pre>\n<p><b>Your task:</b> write the function <code>sorted_tuple(t)</code>, which returns a new tuple with the items of <code>t</code> sorted from small to large.</p>\n<p>For example, <code>sorted_tuple((3, 1, 2))</code> returns <code>(1, 2, 3)</code>.</p>",
+   "answerpreload": "# Define sorted_tuple(t).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(sorted_tuple((3, 1, 2)))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sorted_tuple((3, 1, 2)))",
+     "stdin": "",
+     "expected": "(1, 2, 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sorted_tuple(()))",
+     "stdin": "",
+     "expected": "()",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sorted_tuple((\"b\", \"a\")))",
+     "stdin": "",
+     "expected": "('a', 'b')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = tuple(map(int, input().split()))\nprint(sorted_tuple(t), t)",
+     "stdin": "9 -1 4 4 0",
+     "expected": "(-1, 0, 4, 4, 9) (9, -1, 4, 4, 0)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sorted_tuple((1, 2, 3)))",
+     "stdin": "",
+     "expected": "(1, 2, 3)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 21,
+   "xml_name": "L08_021_Min Max Sum Of A Tuple",
+   "display_name": "Min Max Sum Of A Tuple",
+   "questiontext_html": "<p>The built-ins <code>min</code>, <code>max</code>, <code>sum</code> and <code>len</code> work on tuples of numbers just as on lists:</p>\n<pre>temps = (31, 28, 35)\nprint(min(temps), max(temps), sum(temps), len(temps))</pre>\n<p>Output:</p>\n<pre>28 35 94 3</pre>\n<p><b>Your task:</b> write the function <code>summary(t)</code>, which returns a tuple <code>(smallest, largest, total, average)</code> for a non-empty tuple of integers <code>t</code>, with the average rounded to 2 decimal places with <code>round(value, 2)</code>.</p>\n<p>For example, <code>summary((31, 28, 35))</code> returns <code>(28, 35, 94, 31.33)</code>.</p>",
+   "answerpreload": "# Define summary(t): return (min, max, sum, average rounded to 2 places).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(summary((31, 28, 35)))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(summary((31, 28, 35)))",
+     "stdin": "",
+     "expected": "(28, 35, 94, 31.33)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(summary((-4,)))",
+     "stdin": "",
+     "expected": "(-4, -4, -4, -4.0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = tuple(map(int, input().split()))\nprint(summary(t))",
+     "stdin": "10 20 30 41",
+     "expected": "(10, 41, 101, 25.25)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(summary((1, 2)))",
+     "stdin": "",
+     "expected": "(1, 2, 3, 1.5)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 22,
+   "xml_name": "L08_022_Comparing Tuples",
+   "display_name": "Comparing Tuples",
+   "questiontext_html": "<p>Tuples can be compared with <code>&lt;</code>, <code>&gt;</code>, <code>==</code>. Python compares them <b>item by item from the left</b>, like words in a dictionary: the first items decide, and only if they are equal do the second items decide, and so on.</p>\n<p>This makes dates as <code>(year, month, day)</code> easy to compare:</p>\n<pre>print((2026, 3, 15) &lt; (2026, 10, 1))    # same year; month 3 &lt; 10\nprint((2025, 12, 31) &lt; (2026, 1, 1))    # the year decides\nprint((1, 2) == (1, 2), (1, 2) &lt; (1, 2, 0))</pre>\n<p>Output:</p>\n<pre>True\nTrue\nTrue True</pre>\n<p><b>Your task:</b> write the function <code>earlier(d1, d2)</code>, where <code>d1</code> and <code>d2</code> are dates <code>(year, month, day)</code>. Return the date that comes first (if they are equal, return either).</p>\n<p>For example, <code>earlier((2026, 10, 1), (2026, 3, 15))</code> returns <code>(2026, 3, 15)</code>.</p>",
+   "answerpreload": "# Define earlier(d1, d2).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(earlier((2026, 10, 1), (2026, 3, 15)))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(earlier((2026, 10, 1), (2026, 3, 15)))",
+     "stdin": "",
+     "expected": "(2026, 3, 15)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(earlier((2025, 12, 31), (2026, 1, 1)))",
+     "stdin": "",
+     "expected": "(2025, 12, 31)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(earlier((2026, 5, 5), (2026, 5, 5)))",
+     "stdin": "",
+     "expected": "(2026, 5, 5)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(earlier((2026, 5, 20), (2026, 5, 3)))",
+     "stdin": "",
+     "expected": "(2026, 5, 3)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(earlier((1999, 1, 2), (2000, 1, 1)))",
+     "stdin": "",
+     "expected": "(1999, 1, 2)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 23,
+   "xml_name": "L08_023_Topper From Records",
+   "display_name": "Topper From Records",
+   "questiontext_html": "<p>Now combine what you know about tuples and lists. There is less help from here on: plan first, then test with small examples, including the corner cases mentioned.</p>\n<p><b>Your task:</b> write the function <code>topper(records)</code>, where <code>records</code> is a non-empty list of <code>(name, marks)</code> tuples. Return the name with the highest marks; if several students share the highest marks, return the one that comes <b>first</b> in the list.</p>\n<p>For example, <code>topper([(\"Asha\", 82), (\"Ravi\", 91), (\"Meera\", 91)])</code> returns <code>\"Ravi\"</code>.</p>",
+   "answerpreload": "# Define topper(records).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(topper([(\"Asha\", 82), (\"Ravi\", 91), (\"Meera\", 91)]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(topper([(\"Asha\", 82), (\"Ravi\", 91), (\"Meera\", 91)]))",
+     "stdin": "",
+     "expected": "Ravi",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(topper([(\"Solo\", 0)]))",
+     "stdin": "",
+     "expected": "Solo",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(topper([(\"A\", 5), (\"B\", 3), (\"C\", 5)]))",
+     "stdin": "",
+     "expected": "A",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(topper([(\"A\", -1), (\"B\", -3)]))",
+     "stdin": "",
+     "expected": "A",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 24,
+   "xml_name": "L08_024_Pairing With Zip",
+   "display_name": "Pairing With Zip",
+   "questiontext_html": "<p><b>Python fact:</b> <code>zip(a, b)</code> pairs up the items of two sequences position by position, giving tuples. <code>list(zip(a, b))</code> shows them as a list of tuples:</p>\n<pre>names = [&quot;Asha&quot;, &quot;Ravi&quot;]\nmarks = [82, 67]\nprint(list(zip(names, marks)))\nfor n, m in zip(names, marks):\n    print(n, m)</pre>\n<p>Output:</p>\n<pre>[(&#x27;Asha&#x27;, 82), (&#x27;Ravi&#x27;, 67)]\nAsha 82\nRavi 67</pre>\n<p>Now combine what you know about tuples and lists. There is less help from here on: plan first, then test with small examples, including the corner cases mentioned.</p>\n<p><b>Your task:</b> write the function <code>pass_list(names, marks, cutoff)</code>, where <code>names</code> and <code>marks</code> are lists of the same length. Return a list of <code>(name, marks)</code> tuples for the students whose marks are at least <code>cutoff</code>, in the original order.</p>\n<p>For example, <code>pass_list([\"Asha\", \"Ravi\"], [82, 67], 70)</code> returns <code>[('Asha', 82)]</code>.</p>",
+   "answerpreload": "# Define pass_list(names, marks, cutoff).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(pass_list([\"Asha\", \"Ravi\"], [82, 67], 70))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(pass_list([\"Asha\", \"Ravi\"], [82, 67], 70))",
+     "stdin": "",
+     "expected": "[('Asha', 82)]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pass_list([], [], 40))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pass_list([\"A\", \"B\"], [40, 39], 40))",
+     "stdin": "",
+     "expected": "[('A', 40)]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pass_list([\"P\", \"Q\", \"R\"], [90, 90, 10], 50))",
+     "stdin": "",
+     "expected": "[('P', 90), ('Q', 90)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pass_list([\"Z\"], [0], 0))",
+     "stdin": "",
+     "expected": "[('Z', 0)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 25,
+   "xml_name": "L08_025_Distance Between Points",
+   "display_name": "Distance Between Points",
+   "questiontext_html": "<p>Now combine what you know about tuples and lists. There is less help from here on: plan first, then test with small examples, including the corner cases mentioned.</p>\n<p>The distance between points <code>(x1, y1)</code> and <code>(x2, y2)</code> is <code>((x2 - x1)<b>2 + (y2 - y1)</b>2) ** 0.5</code> (Pythagoras).</p>\n<p><b>Your task:</b> write the function <code>path_length(points)</code>, where <code>points</code> is a list of points <code>(x, y)</code> visited in order. Return the total length of the path (the sum of the distances between consecutive points), rounded to 2 decimal places with <code>round(value, 2)</code>. A list with fewer than 2 points has length <code>0</code>.</p>\n<p>For example, <code>path_length([(0, 0), (3, 4), (3, 0)])</code> returns <code>9.0</code> (5 + 4).</p>",
+   "answerpreload": "# Define path_length(points).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(path_length([(0, 0), (3, 4), (3, 0)]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(path_length([(0, 0), (3, 4), (3, 0)]))",
+     "stdin": "",
+     "expected": "9.0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(path_length([(5, 5)]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(path_length([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(path_length([(0, 0), (1, 1), (2, 2)]))",
+     "stdin": "",
+     "expected": "2.83",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(path_length([(-1, 0), (2, 4)]))",
+     "stdin": "",
+     "expected": "5.0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 26,
+   "xml_name": "L08_026_Rank By Marks",
+   "display_name": "Rank By Marks",
+   "questiontext_html": "<p>Now combine what you know about tuples and lists. There is less help from here on: plan first, then test with small examples, including the corner cases mentioned.</p>\n<p>Hint: <code>sorted</code> sorts tuples by their <b>first</b> item (then the second, and so on). So to sort students by marks from high to low, and by name for equal marks, sort tuples <code>(-marks, name)</code>.</p>\n<p><b>Your task:</b> write the function <code>ranking(records)</code>, where <code>records</code> is a list of <code>(name, marks)</code> tuples. Return a list of the names, from the highest marks to the lowest; students with equal marks are listed in alphabetical order of name.</p>\n<p>For example, <code>ranking([(\"Ravi\", 67), (\"Asha\", 82), (\"Meera\", 82)])</code> returns <code>['Asha', 'Meera', 'Ravi']</code>.</p>",
+   "answerpreload": "# Define ranking(records).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(ranking([(\"Ravi\", 67), (\"Asha\", 82), (\"Meera\", 82)]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(ranking([(\"Ravi\", 67), (\"Asha\", 82), (\"Meera\", 82)]))",
+     "stdin": "",
+     "expected": "['Asha', 'Meera', 'Ravi']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(ranking([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(ranking([(\"b\", 5), (\"a\", 5), (\"c\", 9)]))",
+     "stdin": "",
+     "expected": "['c', 'a', 'b']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(ranking([(\"x\", 0), (\"y\", -2), (\"z\", 1)]))",
+     "stdin": "",
+     "expected": "['z', 'x', 'y']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 27,
+   "xml_name": "L08_027_Most Frequent Item",
+   "display_name": "Most Frequent Item",
+   "questiontext_html": "<p>Now combine what you know about tuples and lists. There is less help from here on: plan first, then test with small examples, including the corner cases mentioned.</p>\n<p><b>Your task:</b> write the function <code>most_frequent(t)</code>, where <code>t</code> is a non-empty tuple. Return a tuple <code>(item, count)</code>: the item that appears most often and how many times. If several items appear equally often, choose the one that appears <b>first</b> in <code>t</code>.</p>\n<p>For example, <code>most_frequent((\"a\", \"b\", \"b\", \"a\", \"c\", \"b\"))</code> returns <code>('b', 3)</code>.</p>",
+   "answerpreload": "# Define most_frequent(t).\n\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(most_frequent((\"a\", \"b\", \"b\", \"a\", \"c\", \"b\")))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(most_frequent((\"a\", \"b\", \"b\", \"a\", \"c\", \"b\")))",
+     "stdin": "",
+     "expected": "('b', 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(most_frequent((7,)))",
+     "stdin": "",
+     "expected": "(7, 1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(most_frequent((1, 2, 2, 1)))",
+     "stdin": "",
+     "expected": "(1, 2)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(most_frequent((5, 3, 3, 5, 3)))",
+     "stdin": "",
+     "expected": "(3, 3)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "1bad7c92aa138995"
+}
