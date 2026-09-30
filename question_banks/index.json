@@ -91,9 +91,9 @@
   {
    "file": "Lab11.qbank",
    "title": "Lab 11: Geometry With Classes",
-   "description": "A worked example of object-oriented programming: Point, Line, Triangle and Scene classes that move, measure and draw themselves. Uncomment the drawing code to see your picture.",
-   "questions": 16,
-   "marks": 16.0,
+   "description": "Classes for points, lines, triangles and scenes: write small methods that move, flip, turn and scale the shapes, and see the result drawn. The drawing code is given.",
+   "questions": 17,
+   "marks": 17.0,
    "duration_minutes": null
   },
   {

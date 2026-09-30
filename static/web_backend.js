@@ -100,7 +100,16 @@ const WebBackend = (() => {
     return r.result;
   }
 
-  async function runTests(code, tests, mode, maxMark) {   // same as runner.run_tests
+  // same as runner.build_program: a question template hides support code around the answer
+  function buildProgram(code, testcode, template) {
+    if (template && template.trim()) {
+      return template.replace(/\{\{\s*STUDENT_ANSWER\s*\}\}/g, () => code.replace(/\n+$/, ""))
+                     .replace(/\{\{\s*TEST\.testcode\s*\}\}/g, () => testcode);
+    }
+    return testcode.trim() ? code.replace(/\n+$/, "") + "\n\n" + testcode + "\n" : code;
+  }
+
+  async function runTests(code, tests, mode, maxMark, template) {   // same as runner.run_tests
     const selected = tests.filter((t) => (mode === "precheck" ? t.in_precheck : t.in_check));
     const result = { mode, syntax_error: null, tests: [], aborted: false, passed_all: false, mark: 0, max_mark: maxMark };
     const syn = await python().call({ kind: "syntax", code }, 10000);
@@ -112,7 +121,7 @@ const WebBackend = (() => {
     }
     for (let n = 1; n <= selected.length; n++) {
       const t = selected[n - 1];
-      const program = t.testcode.trim() ? code.replace(/\n+$/, "") + "\n\n" + t.testcode + "\n" : code;
+      const program = buildProgram(code, t.testcode, template);
       const [got, status, figures] = await runProgram(program, t.stdin, n === 1);
       if (n === 1 && figures && figures.length) result.figures = figures;   // shown, not graded
       const passed = status === "ok" && normalise(got) === normalise(t.expected);
@@ -189,7 +198,7 @@ const WebBackend = (() => {
   }
 
   async function applyCheck(bq, sq, code) {          // same rules as exam.py _apply_check
-    const full = await runTests(code, bq.tests, "check", bq.mark);
+    const full = await runTests(code, bq.tests, "check", bq.mark, bq.template);
     const h = codeHash(code);
     if (h === sq.checked_hash) { full.repeat = true; full.mark = sq.marks; full.penalty_pct = sq.penalty_pct; return full; }
     const pen = penaltyPct(bank.settings.penalty, sq.failed_checks);
@@ -272,7 +281,7 @@ const WebBackend = (() => {
         storeCode(bq, sq, body.code, kind);
         let result = null;
         if (kind === "save") sq.saves += 1;
-        else if (kind === "precheck") { sq.prechecks += 1; result = await runTests(body.code, bq.tests, "precheck", bq.mark); }
+        else if (kind === "precheck") { sq.prechecks += 1; result = await runTests(body.code, bq.tests, "precheck", bq.mark, bq.template); }
         else result = await applyCheck(bq, sq, body.code);
         persist();
         return { result, status: status() };

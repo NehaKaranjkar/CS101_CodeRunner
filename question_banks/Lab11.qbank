@@ -3,10 +3,10 @@
  "bank_name": "Lab11",
  "encrypted": false,
  "source_xml": "Lab11.xml",
- "built_at": "2026-09-30T19:25:10",
+ "built_at": "2026-09-30T21:02:11",
  "settings": {
   "title": "Lab 11: Geometry With Classes",
-  "description": "A worked example of object-oriented programming: Point, Line, Triangle and Scene classes that move, measure and draw themselves. Uncomment the drawing code to see your picture.",
+  "description": "Classes for points, lines, triangles and scenes: write small methods that move, flip, turn and scale the shapes, and see the result drawn. The drawing code is given.",
   "time_limit": false,
   "duration_seconds": null,
   "start_time": null,
@@ -21,22 +21,22 @@
    {
     "heading": "Point",
     "start": 1,
-    "count": 4
+    "count": 7
    },
    {
     "heading": "Line",
-    "start": 5,
+    "start": 8,
     "count": 3
    },
    {
     "heading": "Triangle",
-    "start": 8,
-    "count": 5
+    "start": 11,
+    "count": 4
    },
    {
     "heading": "Scene",
-    "start": 13,
-    "count": 4
+    "start": 15,
+    "count": 3
    }
   ],
   "extension": null
@@ -46,8 +46,8 @@
    "xml_index": 1,
    "xml_name": "L11_001_A Point Class",
    "display_name": "A Point Class",
-   "questiontext_html": "<p>In this lab we build a small <b>drawing program</b> out of classes, step by step, the way real programs are built: a <code>Point</code>, then a <code>Line</code> made of two points, a <code>Triangle</code> made of three points, and a <code>Scene</code> holding many shapes. At the end, your classes will draw a picture.</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Point</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">x, y, color</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">move()</div><div style=\"font-family:monospace;font-size:13px\">distance_to()</div><div style=\"font-family:monospace;font-size:13px\">draw()</div></div></div><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Line</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">p1, p2 (Points), color</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">length()</div><div style=\"font-family:monospace;font-size:13px\">midpoint()</div><div style=\"font-family:monospace;font-size:13px\">move()</div><div style=\"font-family:monospace;font-size:13px\">draw()</div></div></div><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Triangle</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">a, b, c (Points), color</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">perimeter()</div><div style=\"font-family:monospace;font-size:13px\">area()</div><div style=\"font-family:monospace;font-size:13px\">center()</div><div style=\"font-family:monospace;font-size:13px\">move()</div><div style=\"font-family:monospace;font-size:13px\">draw()</div></div></div><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Scene</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">shapes (a list)</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">add()</div><div style=\"font-family:monospace;font-size:13px\">move_all()</div><div style=\"font-family:monospace;font-size:13px\">draw()</div></div></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">the classes we will build; Line, Triangle and Scene are made of other objects</div>\n<p>We start with <code>Point</code>. A point has coordinates <code>x</code> and <code>y</code>, and a colour, given as a string such as <code>\"red\"</code> (default <code>\"black\"</code>).</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the class <code>Point</code> whose constructor takes <code>x</code>, <code>y</code> and an optional <code>color</code> (default <code>\"black\"</code>), stored as attributes with the same names, and whose <code>__str__</code> returns <code>(x, y)</code> (for example <code>(3, 4)</code>).</p>\n<p>For example, after <code>p = Point(3, 4, \"red\")</code>, <code>print(p)</code> prints <code>(3, 4)</code> and <code>p.color</code> is <code>\"red\"</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        # write your code here\n\n    def __str__(self):\n        # write your code here\n",
+   "questiontext_html": "<p>In this lab we build a small <b>drawing program</b> out of classes, step by step: a <code>Point</code>, then a <code>Line</code> made of two points, a <code>Triangle</code> made of three points, and a <code>Scene</code> holding many shapes. You will write small methods that <b>move, flip, turn and scale</b> these shapes, and you can <b>see</b> what your methods do.</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Point</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">x, y, color</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">move()</div><div style=\"font-family:monospace;font-size:13px\">flip_x()</div><div style=\"font-family:monospace;font-size:13px\">rotate90()</div><div style=\"font-family:monospace;font-size:13px\">...</div></div></div><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Line</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">p1, p2 (Points)</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">move()</div><div style=\"font-family:monospace;font-size:13px\">...</div></div></div><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Triangle</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">a, b, c (Points)</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">move()</div><div style=\"font-family:monospace;font-size:13px\">...</div></div></div><div style=\"display:inline-block;vertical-align:top;border:2px solid #2b4c7e;border-radius:4px;margin:4px 10px 4px 0;min-width:140px\"><div style=\"background:#2b4c7e;color:#fff;padding:3px 8px;font-weight:600\">class Scene</div><div style=\"padding:3px 8px;border-bottom:1px solid #c9d3de\"><div style=\"font-family:monospace;font-size:13px\">shapes (a list)</div></div><div style=\"padding:3px 8px\"><div style=\"font-family:monospace;font-size:13px\">move_all()</div><div style=\"font-family:monospace;font-size:13px\">...</div></div></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">Line, Triangle and Scene are made of other objects</div>\n<p>In every question, two methods are <b>given</b> (do not change them):</p>\n<ul><li><code>__str__</code>, so that <code>print(p)</code> shows the point as <code>(x, y)</code>;</li><li><code>draw(ax)</code>, which draws the shape with <b>matplotlib</b>, Python's plotting library. You do not need to understand it in detail: <code>ax</code> is the drawing area, and <code>ax.scatter([x], [y], color=...)</code> puts a dot at <code>(x, y)</code>.</li></ul>\n<p><b>Seeing your work:</b> at the bottom of the answer box there is a block of drawing code with <code>#</code> in front of every line. Remove the <code>#</code> signs and press <b>Pre-check</b>: a picture appears under the results, with the shape <b>before</b> the change in grey and <b>after</b> it in colour. (The first time, loading the drawing library takes a few seconds.) The drawing is not graded; the tests only check the coordinates.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> write the constructor <code>__init__</code> of the class <code>Point</code>. It takes <code>x</code>, <code>y</code> and an optional <code>color</code> (default <code>\"black\"</code>), and stores them as the attributes <code>x</code>, <code>y</code> and <code>color</code>.</p>\n<p>For example, after <code>p = Point(3, 4, \"red\")</code>, <code>print(p)</code> prints <code>(3, 4)</code> and <code>p.color</code> is <code>\"red\"</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        # write your code here\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# p = Point(3, 4, \"red\")\n# p.draw(ax)\n# Point(-2, 1).draw(ax)\n",
    "mark": 1.0,
    "tests": [
     {
@@ -61,9 +61,9 @@
      "in_check": true
     },
     {
-     "testcode": "p = Point(-1, 0)\nprint(p, p.x, p.y, p.color)",
+     "testcode": "p = Point(-1, 0)\nprint(p, p.color)",
      "stdin": "",
-     "expected": "(-1, 0) -1 0 black",
+     "expected": "(-1, 0) black",
      "extra": "",
      "show": true,
      "example": true,
@@ -71,9 +71,9 @@
      "in_check": true
     },
     {
-     "testcode": "print(Point(2.5, 7, \"blue\"))",
+     "testcode": "print(Point(2, 7, \"blue\"))",
      "stdin": "",
-     "expected": "(2.5, 7)",
+     "expected": "(2, 7)",
      "extra": "",
      "show": true,
      "example": true,
@@ -86,14 +86,14 @@
    "xml_index": 2,
    "xml_name": "L11_002_Moving A Point",
    "display_name": "Moving A Point",
-   "questiontext_html": "<p>A method can change the object's attributes. Moving a point by <code>dx</code> to the right and <code>dy</code> up means adding <code>dx</code> to <code>x</code> and <code>dy</code> to <code>y</code>:</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 1</div><div style=\"font-family:monospace;font-size:13px\">y = 2</div></div></div><div style=\"display:inline-block;padding:22px 8px 0 0;color:#8a939c\">p.move(3, -1) &rarr;</div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 4</div><div style=\"font-family:monospace;font-size:13px\">y = 1</div></div></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">the same object, with new coordinates</div>\n<p><b>Your task:</b> the <code>Point</code> class from the previous question is given. Add a method <code>move(dx, dy)</code> that moves the point (changing its <code>x</code> and <code>y</code>). It returns nothing.</p>\n<p>For example, after <code>p = Point(1, 2)</code> and <code>p.move(3, -1)</code>, <code>print(p)</code> prints <code>(4, 1)</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        # write your code here\n",
+   "questiontext_html": "<p>A <b>method</b> can change the object's attributes. Moving a point by <code>dx</code> to the right and <code>dy</code> up means adding <code>dx</code> to <code>x</code> and <code>dy</code> to <code>y</code>:</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 2</div><div style=\"font-family:monospace;font-size:13px\">y = 1</div></div></div><div style=\"display:inline-block;padding:22px 8px 0 0;color:#8a939c\">p.move(3, 2) &rarr;</div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 5</div><div style=\"font-family:monospace;font-size:13px\">y = 3</div></div></div></div><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">the same object, with new coordinates</div>\n<p><b>Your task:</b> write the method <code>move(dx, dy)</code>, which moves the point. It changes the point and returns nothing.</p>\n<p>For example, after <code>p = Point(2, 1)</code> and <code>p.move(3, 2)</code>, <code>print(p)</code> prints <code>(5, 3)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# Point(2, 1).draw(ax, \"grey\")      # before\n# p = Point(2, 1, \"red\")\n# p.move(3, 2)\n# p.draw(ax)                      # after\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "p = Point(1, 2)\np.move(3, -1)\nprint(p)",
+     "testcode": "p = Point(2, 1)\np.move(3, 2)\nprint(p)",
      "stdin": "",
-     "expected": "(4, 1)",
+     "expected": "(5, 3)",
      "extra": "",
      "show": true,
      "example": true,
@@ -101,9 +101,9 @@
      "in_check": true
     },
     {
-     "testcode": "p = Point(0, 0)\np.move(0, 0)\np.move(-5, 5)\nprint(p)",
+     "testcode": "p = Point(0, 0)\np.move(-4, 5)\np.move(1, 1)\nprint(p)",
      "stdin": "",
-     "expected": "(-5, 5)",
+     "expected": "(-3, 6)",
      "extra": "",
      "show": true,
      "example": true,
@@ -111,9 +111,9 @@
      "in_check": true
     },
     {
-     "testcode": "p = Point(10, 10)\nr = p.move(1, 1)\nprint(p, r)",
+     "testcode": "p = Point(7, 7)\np.move(0, 0)\nprint(p)",
      "stdin": "",
-     "expected": "(11, 11) None",
+     "expected": "(7, 7)",
      "extra": "",
      "show": false,
      "example": false,
@@ -124,10 +124,190 @@
   },
   {
    "xml_index": 3,
-   "xml_name": "L11_003_Distance Between Points",
+   "xml_name": "L11_003_Mirror Images",
+   "display_name": "Mirror Images",
+   "questiontext_html": "<p><b>Flipping</b> a point makes its mirror image:</p>\n<ul><li>in the <b>x-axis</b> (the horizontal line): <code>(x, y)</code> becomes <code>(x, -y)</code>;</li><li>in the <b>y-axis</b> (the vertical line): <code>(x, y)</code> becomes <code>(-x, y)</code>.</li></ul>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 3</div><div style=\"font-family:monospace;font-size:13px\">y = 2</div></div></div><div style=\"display:inline-block;padding:22px 8px 0 0;color:#8a939c\">p.flip_x() &rarr;</div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 3</div><div style=\"font-family:monospace;font-size:13px\">y = -2</div></div></div></div>\n<p><b>Your task:</b> write the methods <code>flip_x()</code> and <code>flip_y()</code>, which flip the point in the x-axis and in the y-axis. They change the point and return nothing.</p>\n<p>For example, after <code>p = Point(3, 2)</code> and <code>p.flip_x()</code>, <code>print(p)</code> prints <code>(3, -2)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        # write your code here\n\n    def flip_y(self):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# Point(3, 2).draw(ax, \"grey\")\n# p = Point(3, 2, \"red\")\n# p.flip_x()\n# p.draw(ax)\n# q = Point(3, 2, \"blue\")\n# q.flip_y()\n# q.draw(ax)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "p = Point(3, 2)\np.flip_x()\nprint(p)",
+     "stdin": "",
+     "expected": "(3, -2)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(3, 2)\np.flip_y()\nprint(p)",
+     "stdin": "",
+     "expected": "(-3, 2)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(-1, 4)\np.flip_x()\np.flip_y()\nprint(p)",
+     "stdin": "",
+     "expected": "(1, -4)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(0, 5)\np.flip_y()\nprint(p)",
+     "stdin": "",
+     "expected": "(0, 5)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "L11_004_A Quarter Turn",
+   "display_name": "A Quarter Turn",
+   "questiontext_html": "<p>Turning a point a <b>quarter turn</b> (90 degrees) <b>anticlockwise</b> around the origin <code>(0, 0)</code> has a simple rule:</p>\n<pre>(x, y)  becomes  (-y, x)</pre>\n<p>For example, <code>(3, 1)</code> becomes <code>(-1, 3)</code>; turning again gives <code>(-3, -1)</code>, then <code>(1, -3)</code>, and a fourth turn brings it back to <code>(3, 1)</code>.</p>\n<p><b>Careful:</b> the new <code>x</code> uses the old <code>y</code>, and the new <code>y</code> uses the old <code>x</code>. If you change <code>self.x</code> first, the old value is gone. Either save the old values in variables first, or assign both at once: <code>self.x, self.y = -self.y, self.x</code> (the right side is computed first, then both are stored).</p>\n<p><b>Your task:</b> write the method <code>rotate90()</code>, which turns the point a quarter turn anticlockwise around the origin.</p>\n<p>For example, after <code>p = Point(3, 1)</code> and <code>p.rotate90()</code>, <code>print(p)</code> prints <code>(-1, 3)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# p = Point(3, 1, \"red\")\n# for i in range(4):\n#     p.draw(ax)\n#     p.rotate90()\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "p = Point(3, 1)\np.rotate90()\nprint(p)",
+     "stdin": "",
+     "expected": "(-1, 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(3, 1)\np.rotate90()\np.rotate90()\nprint(p)",
+     "stdin": "",
+     "expected": "(-3, -1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(2, -5)\nfor i in range(4):\n    p.rotate90()\nprint(p)",
+     "stdin": "",
+     "expected": "(2, -5)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(0, 4)\np.rotate90()\nprint(p)",
+     "stdin": "",
+     "expected": "(-4, 0)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "L11_005_Scaling A Point",
+   "display_name": "Scaling A Point",
+   "questiontext_html": "<p><b>Scaling</b> by a factor <code>k</code> multiplies both coordinates by <code>k</code>, moving the point <code>k</code> times further from the origin (towards it if <code>k</code> is between 0 and 1).</p>\n<p><b>Your task:</b> write the method <code>scale(k)</code>, which multiplies the point's <code>x</code> and <code>y</code> by <code>k</code>.</p>\n<p>For example, after <code>p = Point(2, 1)</code> and <code>p.scale(3)</code>, <code>print(p)</code> prints <code>(6, 3)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# Point(2, 1).draw(ax, \"grey\")\n# p = Point(2, 1, \"red\")\n# p.scale(3)\n# p.draw(ax)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "p = Point(2, 1)\np.scale(3)\nprint(p)",
+     "stdin": "",
+     "expected": "(6, 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(-4, 6)\np.scale(0)\nprint(p)",
+     "stdin": "",
+     "expected": "(0, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(5, -2)\np.scale(2)\np.scale(2)\nprint(p)",
+     "stdin": "",
+     "expected": "(20, -8)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "L11_006_Turning Around Another Point",
+   "display_name": "Turning Around Another Point",
+   "questiontext_html": "<p>A method can <b>call other methods of the same object</b>, with <code>self.method(...)</code>. This lets us build a new operation from the ones we already have.</p>\n<p>To turn a point a quarter turn around another centre <code>(cx, cy)</code> (instead of the origin):</p>\n<ol><li>move it so that the centre is at the origin: <code>self.move(-cx, -cy)</code>;</li><li>turn it around the origin: <code>self.rotate90()</code>;</li><li>move it back: <code>self.move(cx, cy)</code>.</li></ol>\n<p><b>Your task:</b> write the method <code>rotate90_about(cx, cy)</code>, using <code>move</code> and <code>rotate90</code> as above.</p>\n<p>For example, after <code>p = Point(3, 1)</code> and <code>p.rotate90_about(2, 1)</code>, <code>print(p)</code> prints <code>(2, 2)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# Point(2, 1, \"black\").draw(ax)            # the centre\n# p = Point(3, 1, \"red\")\n# for i in range(4):\n#     p.draw(ax)\n#     p.rotate90_about(2, 1)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "p = Point(3, 1)\np.rotate90_about(2, 1)\nprint(p)",
+     "stdin": "",
+     "expected": "(2, 2)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(5, 5)\np.rotate90_about(5, 5)\nprint(p)",
+     "stdin": "",
+     "expected": "(5, 5)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "p = Point(4, 0)\np.rotate90_about(1, 1)\np.rotate90_about(1, 1)\nprint(p)",
+     "stdin": "",
+     "expected": "(-2, 2)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "L11_007_Distance Between Points",
    "display_name": "Distance Between Points",
-   "questiontext_html": "<p>The distance between two points follows from Pythagoras: <code>((x2 - x1)<b>2 + (y2 - y1)</b>2) <b> 0.5</code>. A method can take </b>another object of the same class** as a parameter:</p>\n<pre>p.distance_to(q)     # inside the method, self is p and other is q</pre>\n<p><b>Your task:</b> add the method <code>distance_to(other)</code> to <code>Point</code>, returning the distance to the point <code>other</code>, rounded to 2 decimal places.</p>\n<p>For example, <code>Point(0, 0).distance_to(Point(3, 4))</code> returns <code>5.0</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        # write your code here\n",
+   "questiontext_html": "<p>A method can take <b>another object of the same class</b> as a parameter. Inside <code>p.distance_to(q)</code>, <code>self</code> is <code>p</code> and <code>other</code> is <code>q</code>.</p>\n<p>The distance between two points is <code>((x2 - x1)<b>2 + (y2 - y1)</b>2) ** 0.5</code> (Pythagoras).</p>\n<p><b>Your task:</b> write the method <code>distance_to(other)</code>, which returns the distance from this point to the point <code>other</code>, rounded to 2 decimal places with <code>round(value, 2)</code>.</p>\n<p>For example, <code>Point(0, 0).distance_to(Point(3, 4))</code> returns <code>5.0</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        # write your code here\n",
    "mark": 1.0,
    "tests": [
     {
@@ -141,7 +321,7 @@
      "in_check": true
     },
     {
-     "testcode": "p = Point(1, 1)\nprint(p.distance_to(p), Point(1, 1).distance_to(Point(2, 2)))",
+     "testcode": "p = Point(1, 1)\nprint(p.distance_to(p), p.distance_to(Point(2, 2)))",
      "stdin": "",
      "expected": "0.0 1.41",
      "extra": "",
@@ -159,201 +339,21 @@
      "example": false,
      "in_precheck": false,
      "in_check": true
-    },
-    {
-     "testcode": "print(Point(0, 0).distance_to(Point(1, 3)))",
-     "stdin": "",
-     "expected": "3.16",
-     "extra": "",
-     "show": false,
-     "example": false,
-     "in_precheck": false,
-     "in_check": true
-    }
-   ]
-  },
-  {
-   "xml_index": 4,
-   "xml_name": "L11_004_Drawing A Point",
-   "display_name": "Drawing A Point",
-   "questiontext_html": "<p>Time to draw. <b>matplotlib</b> is Python's best-known plotting library. You draw on an <b>axes</b> object, usually called <code>ax</code>:</p>\n<pre>import matplotlib.pyplot as plt\nfig, ax = plt.subplots()          # a new picture (figure) with one axes\nax.set_aspect(&quot;equal&quot;)            # same scale on x and y\nax.scatter([1, 4], [2, 3], color=&quot;red&quot;)               # dots at (1, 2) and (4, 3)\nax.plot([0, 4], [0, 3], color=&quot;blue&quot;)                 # a line from (0, 0) to (4, 3)\nax.fill([0, 2, 1], [0, 0, 2], color=&quot;green&quot;, alpha=0.4)   # a filled shape (a triangle)</pre>\n<p>Each method takes a <b>list of x values</b> and a <b>list of y values</b>. <code>alpha</code> makes a colour see-through.</p>\n<p>We give every shape a method <code>draw(ax)</code> that draws the shape on the axes it is given. For a point, that is one dot:</p>\n<pre>ax.scatter([self.x], [self.y], color=self.color)</pre>\n<p><b>How it is tested:</b> the tests do not need a real picture. They pass a small <b>fake</b> axes object (<code>FakeAx</code>) that simply records the calls made on it, and print them. This is a common testing trick.</p>\n<p><b>Seeing your picture:</b> at the bottom of the answer box there is a commented-out block. Remove the <code>#</code> signs and press <b>Pre-check</b>: the picture appears under the test results. (The first time, loading matplotlib takes a few seconds.)</p>\n<p>We also add <code>points()</code>, which returns a list of the points that make up the shape; for a point, just <code>[self]</code>. It will be useful later.</p>\n<p><b>Your task:</b> add the methods <code>draw(ax)</code> and <code>points()</code> to <code>Point</code>, as described.</p>\n<p>For example, drawing <code>Point(1, 2, \"red\")</code> on the fake axes records <code>('scatter', [1], [2], 'red')</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        # write your code here\n\n    def points(self):\n        # write your code here\n\n\n# ---- See your drawing (practice site only; not graded) ----\n# Remove the # in front of the lines below, then press Pre-check.\n# (Put the # back before Check if Check becomes slow.)\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# p = Point(1, 2, \"red\")\n# p.draw(ax)\n# Point(3, 1, \"blue\").draw(ax)\n",
-   "mark": 1.0,
-   "tests": [
-    {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\nPoint(1, 2, \"red\").draw(ax)\nfor c in ax.calls:\n    print(c)",
-     "stdin": "",
-     "expected": "('scatter', [1], [2], 'red')",
-     "extra": "",
-     "show": true,
-     "example": true,
-     "in_precheck": true,
-     "in_check": true
-    },
-    {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\np = Point(0, 5)\np.draw(ax)\np.move(1, 1)\np.draw(ax)\nfor c in ax.calls:\n    print(c)",
-     "stdin": "",
-     "expected": "('scatter', [0], [5], 'black')\n('scatter', [1], [6], 'black')",
-     "extra": "",
-     "show": true,
-     "example": true,
-     "in_precheck": false,
-     "in_check": true
-    },
-    {
-     "testcode": "p = Point(7, 8)\nprint(p.points()[0] is p, len(p.points()))",
-     "stdin": "",
-     "expected": "True 1",
-     "extra": "",
-     "show": true,
-     "example": true,
-     "in_precheck": false,
-     "in_check": true
-    },
-    {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\nPoint(-3, 4, \"green\").draw(ax)\nfor c in ax.calls:\n    print(c)",
-     "stdin": "",
-     "expected": "('scatter', [-3], [4], 'green')",
-     "extra": "",
-     "show": false,
-     "example": false,
-     "in_precheck": false,
-     "in_check": true
-    }
-   ]
-  },
-  {
-   "xml_index": 5,
-   "xml_name": "L11_005_A Line Made Of Points",
-   "display_name": "A Line Made Of Points",
-   "questiontext_html": "<p>A <code>Line</code> is defined by its two end <b>points</b>, so its attributes are two <code>Point</code> objects. An object made of other objects is called <b>composition</b>. The line can then use the points' own methods, for example <code>self.p1.distance_to(self.p2)</code> for its length.</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">line : Line</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">p1 = &#x27;Point(0, 0)&#x27;</div><div style=\"font-family:monospace;font-size:13px\">p2 = &#x27;Point(3, 4)&#x27;</div><div style=\"font-family:monospace;font-size:13px\">color = &#x27;blue&#x27;</div></div></div><div style=\"display:inline-block;padding:22px 8px 0 0;color:#8a939c\">&rarr;</div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p1 : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 0</div><div style=\"font-family:monospace;font-size:13px\">y = 0</div></div></div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p2 : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 3</div><div style=\"font-family:monospace;font-size:13px\">y = 4</div></div></div></div>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the full <code>Point</code> class is given. Write the class <code>Line</code> whose constructor takes two points <code>p1</code>, <code>p2</code> and an optional <code>color</code> (default <code>\"black\"</code>), with:</p>\n<ul><li><code>length()</code> returning the distance between the two points (rounded to 2 decimal places, as <code>distance_to</code> already does);</li><li><code>__str__</code> returning the two points joined by <code>-</code>, for example <code>(0, 0)-(3, 4)</code>.</li></ul>\n<p>For example, <code>Line(Point(0, 0), Point(3, 4)).length()</code> returns <code>5.0</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        # write your code here\n\n    def length(self):\n        # write your code here\n\n    def __str__(self):\n        # write your code here\n",
-   "mark": 1.0,
-   "tests": [
-    {
-     "testcode": "line = Line(Point(0, 0), Point(3, 4), 'blue')\nprint(line, line.length(), line.color)",
-     "stdin": "",
-     "expected": "(0, 0)-(3, 4) 5.0 blue",
-     "extra": "",
-     "show": true,
-     "example": true,
-     "in_precheck": true,
-     "in_check": true
-    },
-    {
-     "testcode": "print(Line(Point(1, 1), Point(1, 1)).length(), Line(Point(1, 1), Point(4, 1)))",
-     "stdin": "",
-     "expected": "0.0 (1, 1)-(4, 1)",
-     "extra": "",
-     "show": true,
-     "example": true,
-     "in_precheck": false,
-     "in_check": true
-    },
-    {
-     "testcode": "print(Line(Point(-1, -1), Point(2, 3)).length())",
-     "stdin": "",
-     "expected": "5.0",
-     "extra": "",
-     "show": false,
-     "example": false,
-     "in_precheck": false,
-     "in_check": true
-    }
-   ]
-  },
-  {
-   "xml_index": 6,
-   "xml_name": "L11_006_Midpoint And Moving A Line",
-   "display_name": "Midpoint And Moving A Line",
-   "questiontext_html": "<p>A method can <b>delegate</b> work to the objects it is made of: moving a line means moving both of its points, and <code>Point</code> already knows how to move.</p>\n<p>The <b>midpoint</b> of a line is the point halfway between its ends: <code>((x1 + x2) / 2, (y1 + y2) / 2)</code>.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> add two methods to <code>Line</code>:</p>\n<ul><li><code>midpoint()</code> returns a <b>new</b> <code>Point</code> at the midpoint, with the line's colour;</li><li><code>move(dx, dy)</code> moves the whole line, by calling <code>move</code> on both points.</li></ul>\n<p>For example, <code>print(Line(Point(0, 0), Point(4, 2)).midpoint())</code> prints <code>(2.0, 1.0)</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        # write your code here\n\n    def move(self, dx, dy):\n        # write your code here\n",
-   "mark": 1.0,
-   "tests": [
-    {
-     "testcode": "print(Line(Point(0, 0), Point(4, 2)).midpoint())",
-     "stdin": "",
-     "expected": "(2.0, 1.0)",
-     "extra": "",
-     "show": true,
-     "example": true,
-     "in_precheck": true,
-     "in_check": true
-    },
-    {
-     "testcode": "line = Line(Point(0, 0), Point(4, 2), 'red')\nline.move(1, 1)\nprint(line, line.midpoint().color)",
-     "stdin": "",
-     "expected": "(1, 1)-(5, 3) red",
-     "extra": "",
-     "show": true,
-     "example": true,
-     "in_precheck": false,
-     "in_check": true
-    },
-    {
-     "testcode": "line = Line(Point(-3, 5), Point(3, -5))\nm = line.midpoint()\nline.move(10, 0)\nprint(m, line)",
-     "stdin": "",
-     "expected": "(0.0, 0.0) (7, 5)-(13, -5)",
-     "extra": "",
-     "show": false,
-     "example": false,
-     "in_precheck": false,
-     "in_check": true
-    }
-   ]
-  },
-  {
-   "xml_index": 7,
-   "xml_name": "L11_007_Drawing A Line",
-   "display_name": "Drawing A Line",
-   "questiontext_html": "<p>A line is drawn with <code>ax.plot</code>, giving the x values and the y values of its two ends:</p>\n<pre>ax.plot([x1, x2], [y1, y2], color=...)</pre>\n<p><b>Your task:</b> add the methods <code>draw(ax)</code>, which draws the line with <code>ax.plot</code> in the line's colour, and <code>points()</code>, which returns the list <code>[p1, p2]</code>.</p>\n<p>For example, drawing <code>Line(Point(0, 0), Point(3, 4), \"blue\")</code> records <code>('plot', [0, 3], [0, 4], 'blue')</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        # write your code here\n\n    def points(self):\n        # write your code here\n\n\n# ---- See your drawing (practice site only; not graded) ----\n# Remove the # in front of the lines below, then press Pre-check.\n# (Put the # back before Check if Check becomes slow.)\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# Line(Point(0, 0), Point(3, 4), \"blue\").draw(ax)\n# Line(Point(0, 4), Point(3, 0), \"red\").draw(ax)\n",
-   "mark": 1.0,
-   "tests": [
-    {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\nLine(Point(0, 0), Point(3, 4), \"blue\").draw(ax)\nfor c in ax.calls:\n    print(c)",
-     "stdin": "",
-     "expected": "('plot', [0, 3], [0, 4], 'blue')",
-     "extra": "",
-     "show": true,
-     "example": true,
-     "in_precheck": true,
-     "in_check": true
-    },
-    {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\nline = Line(Point(1, 1), Point(2, 5))\nline.draw(ax)\nline.move(0, -1)\nline.draw(ax)\nfor c in ax.calls:\n    print(c)",
-     "stdin": "",
-     "expected": "('plot', [1, 2], [1, 5], 'black')\n('plot', [1, 2], [0, 4], 'black')",
-     "extra": "",
-     "show": true,
-     "example": true,
-     "in_precheck": false,
-     "in_check": true
-    },
-    {
-     "testcode": "a = Point(1, 2)\nb = Point(3, 4)\nprint(Line(a, b).points() == [a, b])",
-     "stdin": "",
-     "expected": "True",
-     "extra": "",
-     "show": false,
-     "example": false,
-     "in_precheck": false,
-     "in_check": true
     }
    ]
   },
   {
    "xml_index": 8,
-   "xml_name": "L11_008_A Triangle Class",
-   "display_name": "A Triangle Class",
-   "questiontext_html": "<p>A <code>Triangle</code> is made of three <code>Point</code> objects, its corners <code>a</code>, <code>b</code> and <code>c</code>. Its <b>perimeter</b> is the sum of its three side lengths.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the classes <code>Point</code> and <code>Line</code> are given. Write the class <code>Triangle</code> whose constructor takes three points <code>a</code>, <code>b</code>, <code>c</code> and an optional <code>color</code> (default <code>\"black\"</code>), with the method <code>perimeter()</code> returning the sum of the three side lengths (a to b, b to c, c to a), rounded to 2 decimal places.</p>\n<p>For example, <code>Triangle(Point(0, 0), Point(3, 0), Point(0, 4)).perimeter()</code> returns <code>12.0</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=self.color)\n\n    def points(self):\n        return [self.p1, self.p2]\n\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"black\"):\n        # write your code here\n\n    def perimeter(self):\n        # write your code here\n",
+   "xml_name": "L11_008_A Line Made Of Points",
+   "display_name": "A Line Made Of Points",
+   "questiontext_html": "<p>A <code>Line</code> is defined by its two end points, so its attributes are <b>two <code>Point</code> objects</b>. An object built from other objects is called <b>composition</b>. The line can use the points' own methods: its length is simply <code>self.p1.distance_to(self.p2)</code>.</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">line : Line</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">p1 = &#x27;Point(0, 0)&#x27;</div><div style=\"font-family:monospace;font-size:13px\">p2 = &#x27;Point(3, 4)&#x27;</div></div></div><div style=\"display:inline-block;padding:22px 8px 0 0;color:#8a939c\">&rarr;</div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p1 : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 0</div><div style=\"font-family:monospace;font-size:13px\">y = 0</div></div></div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">p2 : Point</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">x = 3</div><div style=\"font-family:monospace;font-size:13px\">y = 4</div></div></div></div>\n<p>The complete <code>Point</code> class is given. In <code>Line</code>, <code>__str__</code> and <code>draw</code> are given.</p>\n<p><b>Your task:</b> write the constructor of <code>Line</code> (taking <code>p1</code>, <code>p2</code> and an optional <code>color</code>, default <code>\"blue\"</code>, stored as attributes with the same names) and the method <code>length()</code>, which returns the distance between the two points.</p>\n<p>For example, <code>Line(Point(0, 0), Point(3, 4)).length()</code> returns <code>5.0</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Line:\n    def __init__(self, p1, p2, color=\"blue\"):\n        # write your code here\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def draw(self, ax, color=None):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=color or self.color)\n\n    def length(self):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# Line(Point(0, 0), Point(3, 4)).draw(ax)\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "t = Triangle(Point(0, 0), Point(3, 0), Point(0, 4), 'green')\nprint(t.perimeter(), t.color)",
+     "testcode": "line = Line(Point(0, 0), Point(3, 4))\nprint(line, line.length())",
      "stdin": "",
-     "expected": "12.0 green",
+     "expected": "(0, 0)-(3, 4) 5.0",
      "extra": "",
      "show": true,
      "example": true,
@@ -361,9 +361,9 @@
      "in_check": true
     },
     {
-     "testcode": "print(Triangle(Point(0, 0), Point(1, 0), Point(0, 1)).perimeter())",
+     "testcode": "line = Line(Point(1, 1), Point(4, 1), \"red\")\nprint(line.length(), line.color)",
      "stdin": "",
-     "expected": "3.41",
+     "expected": "3.0 red",
      "extra": "",
      "show": true,
      "example": true,
@@ -371,9 +371,9 @@
      "in_check": true
     },
     {
-     "testcode": "print(Triangle(Point(-1, -1), Point(5, -1), Point(2, 3)).perimeter())",
+     "testcode": "print(Line(Point(2, 2), Point(2, 2)).length())",
      "stdin": "",
-     "expected": "16.0",
+     "expected": "0.0",
      "extra": "",
      "show": false,
      "example": false,
@@ -384,16 +384,16 @@
   },
   {
    "xml_index": 9,
-   "xml_name": "L11_009_Area With The Shoelace Formula",
-   "display_name": "Area With The Shoelace Formula",
-   "questiontext_html": "<p>The area of a triangle with corners <code>(x1, y1)</code>, <code>(x2, y2)</code>, <code>(x3, y3)</code> can be computed directly from the coordinates with the <b>shoelace formula</b>:</p>\n<pre>area = | x1*(y2 - y3) + x2*(y3 - y1) + x3*(y1 - y2) | / 2</pre>\n<p>(<code>| ... |</code> means the absolute value: <code>abs(...)</code> in Python.) If the three points lie on one line, the area is 0.</p>\n<p><b>Your task:</b> add the method <code>area()</code> to <code>Triangle</code>, returning the area rounded to 2 decimal places.</p>\n<p>For example, <code>Triangle(Point(0, 0), Point(4, 0), Point(0, 3)).area()</code> returns <code>6.0</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=self.color)\n\n    def points(self):\n        return [self.p1, self.p2]\n\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"black\"):\n        self.a = a              # three Point objects\n        self.b = b\n        self.c = c\n        self.color = color\n\n    def perimeter(self):\n        return round(self.a.distance_to(self.b) + self.b.distance_to(self.c) + self.c.distance_to(self.a), 2)\n\n    def area(self):\n        # write your code here\n",
+   "xml_name": "L11_009_Moving A Line",
+   "display_name": "Moving A Line",
+   "questiontext_html": "<p>Moving a line means moving <b>both of its points</b>, and each point already knows how to move. So the line simply asks its points to do it: <code>self.p1.move(dx, dy)</code> and <code>self.p2.move(dx, dy)</code>. Passing work on to the objects you are made of is called <b>delegation</b>.</p>\n<p><b>Your task:</b> write the method <code>move(dx, dy)</code> of <code>Line</code>, by calling <code>move</code> on both points.</p>\n<p>For example, after <code>line = Line(Point(0, 0), Point(3, 4))</code> and <code>line.move(1, 2)</code>, <code>print(line)</code> prints <code>(1, 2)-(4, 6)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Line:\n    def __init__(self, p1, p2, color=\"blue\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def draw(self, ax, color=None):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=color or self.color)\n\n    def length(self):\n        return self.p1.distance_to(self.p2)     # ask a point to do the work\n\n    def move(self, dx, dy):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# Line(Point(0, 0), Point(3, 4)).draw(ax, 'grey')\n# line = Line(Point(0, 0), Point(3, 4), \"red\")\n# line.move(1, 2)\n# line.draw(ax)\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "print(Triangle(Point(0, 0), Point(4, 0), Point(0, 3)).area())",
+     "testcode": "line = Line(Point(0, 0), Point(3, 4))\nline.move(1, 2)\nprint(line)",
      "stdin": "",
-     "expected": "6.0",
+     "expected": "(1, 2)-(4, 6)",
      "extra": "",
      "show": true,
      "example": true,
@@ -401,9 +401,9 @@
      "in_check": true
     },
     {
-     "testcode": "print(Triangle(Point(0, 0), Point(1, 1), Point(2, 2)).area())",
+     "testcode": "line = Line(Point(1, 1), Point(2, 2))\nline.move(-1, -1)\nprint(line, line.length())",
      "stdin": "",
-     "expected": "0.0",
+     "expected": "(0, 0)-(1, 1) 1.41",
      "extra": "",
      "show": true,
      "example": true,
@@ -411,19 +411,9 @@
      "in_check": true
     },
     {
-     "testcode": "print(Triangle(Point(1, 1), Point(4, 5), Point(-2, 7)).area())",
+     "testcode": "line = Line(Point(5, 0), Point(0, 5))\nline.move(0, 0)\nprint(line)",
      "stdin": "",
-     "expected": "15.0",
-     "extra": "",
-     "show": false,
-     "example": false,
-     "in_precheck": false,
-     "in_check": true
-    },
-    {
-     "testcode": "print(Triangle(Point(0, 0), Point(0, 3), Point(4, 0)).area())",
-     "stdin": "",
-     "expected": "6.0",
+     "expected": "(5, 0)-(0, 5)",
      "extra": "",
      "show": false,
      "example": false,
@@ -434,16 +424,16 @@
   },
   {
    "xml_index": 10,
-   "xml_name": "L11_010_The Center Of A Triangle",
-   "display_name": "The Center Of A Triangle",
-   "questiontext_html": "<p>The <b>center</b> (centroid) of a triangle is the average of its three corners: <code>((x1 + x2 + x3) / 3, (y1 + y2 + y3) / 3)</code>. It is where a cardboard triangle would balance on a pencil tip.</p>\n<p><b>Your task:</b> add the method <code>center()</code> to <code>Triangle</code>, returning a <b>new</b> <code>Point</code> at the center (each coordinate rounded to 2 decimal places), with the triangle's colour.</p>\n<p>For example, <code>print(Triangle(Point(0, 0), Point(6, 0), Point(0, 3)).center())</code> prints <code>(2.0, 1.0)</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=self.color)\n\n    def points(self):\n        return [self.p1, self.p2]\n\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"black\"):\n        self.a = a              # three Point objects\n        self.b = b\n        self.c = c\n        self.color = color\n\n    def perimeter(self):\n        return round(self.a.distance_to(self.b) + self.b.distance_to(self.c) + self.c.distance_to(self.a), 2)\n\n    def area(self):\n        a, b, c = self.a, self.b, self.c\n        return round(abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2, 2)\n\n    def center(self):\n        # write your code here\n",
+   "xml_name": "L11_010_Turning A Line",
+   "display_name": "Turning A Line",
+   "questiontext_html": "<p>The same idea works for turning: a line turns a quarter turn around the origin when both of its points do.</p>\n<p><b>Your task:</b> write the method <code>rotate90()</code> of <code>Line</code>, by calling <code>rotate90</code> on both points.</p>\n<p>For example, after <code>line = Line(Point(1, 0), Point(3, 0))</code> and <code>line.rotate90()</code>, <code>print(line)</code> prints <code>(0, 1)-(0, 3)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Line:\n    def __init__(self, p1, p2, color=\"blue\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def draw(self, ax, color=None):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=color or self.color)\n\n    def length(self):\n        return self.p1.distance_to(self.p2)     # ask a point to do the work\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)                    # delegate to the two points\n        self.p2.move(dx, dy)\n\n    def rotate90(self):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# line = Line(Point(1, 0), Point(3, 1), \"red\")\n# for i in range(4):\n#     line.draw(ax)\n#     line.rotate90()\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "print(Triangle(Point(0, 0), Point(6, 0), Point(0, 3)).center())",
+     "testcode": "line = Line(Point(1, 0), Point(3, 0))\nline.rotate90()\nprint(line)",
      "stdin": "",
-     "expected": "(2.0, 1.0)",
+     "expected": "(0, 1)-(0, 3)",
      "extra": "",
      "show": true,
      "example": true,
@@ -451,9 +441,9 @@
      "in_check": true
     },
     {
-     "testcode": "c = Triangle(Point(1, 1), Point(2, 2), Point(4, 1), 'red').center()\nprint(c, c.color)",
+     "testcode": "line = Line(Point(1, 2), Point(3, 4))\nline.rotate90()\nline.rotate90()\nprint(line)",
      "stdin": "",
-     "expected": "(2.33, 1.33) red",
+     "expected": "(-1, -2)-(-3, -4)",
      "extra": "",
      "show": true,
      "example": true,
@@ -461,9 +451,9 @@
      "in_check": true
     },
     {
-     "testcode": "print(Triangle(Point(-3, -3), Point(3, -3), Point(0, 6)).center())",
+     "testcode": "line = Line(Point(0, 0), Point(0, 7))\nline.rotate90()\nprint(line)",
      "stdin": "",
-     "expected": "(0.0, 0.0)",
+     "expected": "(0, 0)-(-7, 0)",
      "extra": "",
      "show": false,
      "example": false,
@@ -474,16 +464,16 @@
   },
   {
    "xml_index": 11,
-   "xml_name": "L11_011_Moving And Scaling",
-   "display_name": "Moving And Scaling",
-   "questiontext_html": "<p>Two ways to transform a triangle:</p>\n<ul><li><b>move</b>: shift every corner by <code>(dx, dy)</code> (delegate to the points' <code>move</code>);</li><li><b>scale</b> by a factor <code>k</code> about its center: each corner moves along the line from the center, to <code>center + k * (corner - center)</code>. With <code>k = 2</code> the triangle doubles in size; with <code>k = 0.5</code> it shrinks to half; the center stays where it is.</li></ul>\n<pre>new_x = cx + k * (x - cx)\nnew_y = cy + k * (y - cy)</pre>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> add the methods <code>move(dx, dy)</code> and <code>scale(k)</code> to <code>Triangle</code>. <code>scale</code> computes the center first (with <code>center()</code>), then changes each corner's <code>x</code> and <code>y</code> as above, rounding each new coordinate to 2 decimal places.</p>\n<p>For example, scaling <code>Triangle(Point(0, 0), Point(6, 0), Point(0, 3))</code> by <code>2</code> moves the corner <code>(6, 0)</code> to <code>(10.0, -1.0)</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=self.color)\n\n    def points(self):\n        return [self.p1, self.p2]\n\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"black\"):\n        self.a = a              # three Point objects\n        self.b = b\n        self.c = c\n        self.color = color\n\n    def perimeter(self):\n        return round(self.a.distance_to(self.b) + self.b.distance_to(self.c) + self.c.distance_to(self.a), 2)\n\n    def area(self):\n        a, b, c = self.a, self.b, self.c\n        return round(abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2, 2)\n\n    def center(self):\n        cx = round((self.a.x + self.b.x + self.c.x) / 3, 2)\n        cy = round((self.a.y + self.b.y + self.c.y) / 3, 2)\n        return Point(cx, cy, self.color)\n\n    def move(self, dx, dy):\n        # write your code here\n\n    def scale(self, k):\n        # write your code here\n",
+   "xml_name": "L11_011_A Triangle That Moves",
+   "display_name": "A Triangle That Moves",
+   "questiontext_html": "<p>A <code>Triangle</code> is made of <b>three <code>Point</code> objects</b>, its corners <code>a</code>, <code>b</code> and <code>c</code>. The given method <code>corners()</code> returns them as a list, so a loop can ask every corner to do something:</p>\n<pre>for p in self.corners():\n    p.move(dx, dy)</pre>\n<p>The constructor, <code>__str__</code>, <code>draw</code> and <code>corners</code> are given.</p>\n<p><b>Your task:</b> write the method <code>move(dx, dy)</code> of <code>Triangle</code>, which moves all three corners.</p>\n<p>For example, after <code>t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))</code> and <code>t.move(2, 1)</code>, <code>print(t)</code> prints <code>(3, 2) (6, 2) (3, 4)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"orange\"):\n        self.a = a              # three Point objects (the corners)\n        self.b = b\n        self.c = c\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.a) + \" \" + str(self.b) + \" \" + str(self.c)\n\n    def draw(self, ax, color=None):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=color or self.color, alpha=0.5)\n\n    def corners(self):\n        return [self.a, self.b, self.c]\n\n    def move(self, dx, dy):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# g = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\n# g.draw(ax, 'grey')\n# t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\n# t.move(2, 1)\n# t.draw(ax)\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "t = Triangle(Point(0, 0), Point(6, 0), Point(0, 3))\nt.scale(2)\nprint(t.a, t.b, t.c, t.center())",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nt.move(2, 1)\nprint(t)",
      "stdin": "",
-     "expected": "(-2.0, -1.0) (10.0, -1.0) (-2.0, 5.0) (2.0, 1.0)",
+     "expected": "(3, 2) (6, 2) (3, 4)",
      "extra": "",
      "show": true,
      "example": true,
@@ -491,9 +481,9 @@
      "in_check": true
     },
     {
-     "testcode": "t = Triangle(Point(0, 0), Point(6, 0), Point(0, 3))\nt.move(1, 1)\nprint(t.a, t.b, t.c)",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nt.move(-1, -1)\nt.move(0, 3)\nprint(t)",
      "stdin": "",
-     "expected": "(1, 1) (7, 1) (1, 4)",
+     "expected": "(0, 3) (3, 3) (0, 5)",
      "extra": "",
      "show": true,
      "example": true,
@@ -501,9 +491,9 @@
      "in_check": true
     },
     {
-     "testcode": "t = Triangle(Point(0, 0), Point(4, 0), Point(2, 6))\na = t.area()\nt.scale(0.5)\nprint(t.a, t.b, t.c, t.area(), a)",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nt.move(10, -10)\nprint(t)",
      "stdin": "",
-     "expected": "(1.0, 1.0) (3.0, 1.0) (2.0, 4.0) 3.0 12.0",
+     "expected": "(11, -9) (14, -9) (11, -7)",
      "extra": "",
      "show": false,
      "example": false,
@@ -514,16 +504,16 @@
   },
   {
    "xml_index": 12,
-   "xml_name": "L11_012_Drawing A Triangle",
-   "display_name": "Drawing A Triangle",
-   "questiontext_html": "<p>A filled triangle is drawn with <code>ax.fill</code>, giving the x values and y values of the three corners in order (a, b, c). A see-through colour (<code>alpha=0.4</code>) lets overlapping shapes show.</p>\n<pre>ax.fill([x1, x2, x3], [y1, y2, y3], color=..., alpha=0.4)</pre>\n<p><b>Your task:</b> add the methods <code>draw(ax)</code>, which draws the triangle with <code>ax.fill</code> in its colour with <code>alpha=0.4</code>, and <code>points()</code>, which returns the list <code>[a, b, c]</code>.</p>\n<p>For example, drawing <code>Triangle(Point(0, 0), Point(4, 0), Point(2, 3), \"orange\")</code> records <code>('fill', [0, 4, 2], [0, 0, 3], 'orange')</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=self.color)\n\n    def points(self):\n        return [self.p1, self.p2]\n\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"black\"):\n        self.a = a              # three Point objects\n        self.b = b\n        self.c = c\n        self.color = color\n\n    def perimeter(self):\n        return round(self.a.distance_to(self.b) + self.b.distance_to(self.c) + self.c.distance_to(self.a), 2)\n\n    def area(self):\n        a, b, c = self.a, self.b, self.c\n        return round(abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2, 2)\n\n    def center(self):\n        cx = round((self.a.x + self.b.x + self.c.x) / 3, 2)\n        cy = round((self.a.y + self.b.y + self.c.y) / 3, 2)\n        return Point(cx, cy, self.color)\n\n    def move(self, dx, dy):\n        for p in (self.a, self.b, self.c):\n            p.move(dx, dy)\n\n    def scale(self, k):\n        c = self.center()\n        for p in (self.a, self.b, self.c):\n            p.x = round(c.x + k * (p.x - c.x), 2)\n            p.y = round(c.y + k * (p.y - c.y), 2)\n\n    def draw(self, ax):\n        # write your code here\n\n    def points(self):\n        # write your code here\n\n\n# ---- See your drawing (practice site only; not graded) ----\n# Remove the # in front of the lines below, then press Pre-check.\n# (Put the # back before Check if Check becomes slow.)\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# t = Triangle(Point(0, 0), Point(4, 0), Point(2, 3), \"orange\")\n# t.draw(ax)\n# t.center().draw(ax)\n# t.scale(0.5)\n# t.color = \"purple\"\n# t.draw(ax)\n",
+   "xml_name": "L11_012_Flipping A Triangle",
+   "display_name": "Flipping A Triangle",
+   "questiontext_html": "<p>Flipping a triangle in an axis means flipping each of its corners.</p>\n<p><b>Your task:</b> write the methods <code>flip_x()</code> and <code>flip_y()</code> of <code>Triangle</code>, which flip all three corners (use the points' own <code>flip_x</code> and <code>flip_y</code>).</p>\n<p>For example, after <code>t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))</code> and <code>t.flip_x()</code>, <code>print(t)</code> prints <code>(1, -1) (4, -1) (1, -3)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"orange\"):\n        self.a = a              # three Point objects (the corners)\n        self.b = b\n        self.c = c\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.a) + \" \" + str(self.b) + \" \" + str(self.c)\n\n    def draw(self, ax, color=None):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=color or self.color, alpha=0.5)\n\n    def corners(self):\n        return [self.a, self.b, self.c]\n\n    def move(self, dx, dy):\n        for p in self.corners():        # move every corner\n            p.move(dx, dy)\n\n    def flip_x(self):\n        # write your code here\n\n    def flip_y(self):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\n# t.draw(ax, 'grey')\n# t.flip_x()\n# t.draw(ax)\n# t.flip_y()\n# t.draw(ax, 'green')\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\nTriangle(Point(0, 0), Point(4, 0), Point(2, 3), \"orange\").draw(ax)\nfor c in ax.calls:\n    print(c)",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nt.flip_x()\nprint(t)",
      "stdin": "",
-     "expected": "('fill', [0, 4, 2], [0, 0, 3], 'orange')",
+     "expected": "(1, -1) (4, -1) (1, -3)",
      "extra": "",
      "show": true,
      "example": true,
@@ -531,9 +521,9 @@
      "in_check": true
     },
     {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\nt = Triangle(Point(0, 0), Point(3, 0), Point(0, 3))\nt.draw(ax)\nt.move(1, 2)\nt.draw(ax)\nfor c in ax.calls:\n    print(c)",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nt.flip_y()\nprint(t)",
      "stdin": "",
-     "expected": "('fill', [0, 3, 0], [0, 0, 3], 'black')\n('fill', [1, 4, 1], [2, 2, 5], 'black')",
+     "expected": "(-1, 1) (-4, 1) (-1, 3)",
      "extra": "",
      "show": true,
      "example": true,
@@ -541,9 +531,9 @@
      "in_check": true
     },
     {
-     "testcode": "t = Triangle(Point(1, 1), Point(2, 2), Point(3, 1))\nprint([str(p) for p in t.points()])",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nt.flip_x()\nt.flip_x()\nprint(t)",
      "stdin": "",
-     "expected": "['(1, 1)', '(2, 2)', '(3, 1)']",
+     "expected": "(1, 1) (4, 1) (1, 3)",
      "extra": "",
      "show": false,
      "example": false,
@@ -554,16 +544,16 @@
   },
   {
    "xml_index": 13,
-   "xml_name": "L11_013_A Scene Of Shapes",
-   "display_name": "A Scene Of Shapes",
-   "questiontext_html": "<p>A <code>Scene</code> holds a <b>list of shapes</b> of different kinds: points, lines and triangles. Because every shape class has its own <code>move(dx, dy)</code>, the scene can move everything with one loop, calling <code>move</code> on each shape without caring what kind it is (<b>polymorphism</b>, from Lab 10).</p>\n<div style=\"margin:6px 0 4px\"><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">scene : Scene</div><div style=\"padding:4px 10px\"><div style=\"font-family:monospace;font-size:13px\">shapes = &#x27;[pt, line, tri]&#x27;</div></div></div><div style=\"display:inline-block;padding:22px 8px 0 0;color:#8a939c\">&rarr;</div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">pt : Point</div><div style=\"padding:4px 10px\">&nbsp;</div></div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">line : Line</div><div style=\"padding:4px 10px\">&nbsp;</div></div><div style=\"display:inline-block;vertical-align:top;border:1px solid #2a8c8c;border-radius:10px;margin:4px 10px 4px 0;min-width:120px;background:#eef7f7\"><div style=\"padding:3px 10px;font-family:monospace;font-size:13px;color:#1d6464;border-bottom:1px solid #b9dcdc\">tri : Triangle</div><div style=\"padding:4px 10px\">&nbsp;</div></div></div>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> the classes <code>Point</code>, <code>Line</code> and <code>Triangle</code> are given. Write the class <code>Scene</code> whose constructor starts with an empty list <code>shapes</code>, with methods:</p>\n<ul><li><code>add(shape)</code> adds a shape to the list;</li><li><code>count()</code> returns the number of shapes;</li><li><code>move_all(dx, dy)</code> moves every shape.</li></ul>\n<p>For example, after adding a point and a line to an empty scene, <code>scene.count()</code> returns <code>2</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=self.color)\n\n    def points(self):\n        return [self.p1, self.p2]\n\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"black\"):\n        self.a = a              # three Point objects\n        self.b = b\n        self.c = c\n        self.color = color\n\n    def perimeter(self):\n        return round(self.a.distance_to(self.b) + self.b.distance_to(self.c) + self.c.distance_to(self.a), 2)\n\n    def area(self):\n        a, b, c = self.a, self.b, self.c\n        return round(abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2, 2)\n\n    def center(self):\n        cx = round((self.a.x + self.b.x + self.c.x) / 3, 2)\n        cy = round((self.a.y + self.b.y + self.c.y) / 3, 2)\n        return Point(cx, cy, self.color)\n\n    def move(self, dx, dy):\n        for p in (self.a, self.b, self.c):\n            p.move(dx, dy)\n\n    def scale(self, k):\n        c = self.center()\n        for p in (self.a, self.b, self.c):\n            p.x = round(c.x + k * (p.x - c.x), 2)\n            p.y = round(c.y + k * (p.y - c.y), 2)\n\n    def draw(self, ax):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=self.color, alpha=0.4)\n\n    def points(self):\n        return [self.a, self.b, self.c]\n\n\nclass Scene:\n    def __init__(self):\n        # write your code here\n\n    def add(self, shape):\n        # write your code here\n\n    def count(self):\n        # write your code here\n\n    def move_all(self, dx, dy):\n        # write your code here\n",
+   "xml_name": "L11_013_Scaling And Turning A Triangle",
+   "display_name": "Scaling And Turning A Triangle",
+   "questiontext_html": "<p>Two more transformations, each done corner by corner:</p>\n<ul><li><code>scale(k)</code>: scale every corner by <code>k</code> (the triangle grows <code>k</code> times, away from the origin);</li><li><code>rotate90()</code>: turn every corner a quarter turn around the origin.</li></ul>\n<p><b>Your task:</b> write the methods <code>scale(k)</code> and <code>rotate90()</code> of <code>Triangle</code>.</p>\n<p>For example, after <code>t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))</code> and <code>t.scale(2)</code>, <code>print(t)</code> prints <code>(2, 2) (8, 2) (2, 6)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"orange\"):\n        self.a = a              # three Point objects (the corners)\n        self.b = b\n        self.c = c\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.a) + \" \" + str(self.b) + \" \" + str(self.c)\n\n    def draw(self, ax, color=None):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=color or self.color, alpha=0.5)\n\n    def corners(self):\n        return [self.a, self.b, self.c]\n\n    def move(self, dx, dy):\n        for p in self.corners():        # move every corner\n            p.move(dx, dy)\n\n    def flip_x(self):\n        for p in self.corners():\n            p.flip_x()\n\n    def flip_y(self):\n        for p in self.corners():\n            p.flip_y()\n\n    def scale(self, k):\n        # write your code here\n\n    def rotate90(self):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\n# t.draw(ax, 'grey')\n# t.scale(2)\n# t.draw(ax)\n# for i in range(3):\n#     t.rotate90()\n#     t.draw(ax)\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "s = Scene()\np = Point(1, 1)\nline = Line(Point(0, 0), Point(2, 2))\ns.add(p)\ns.add(line)\ns.move_all(10, 0)\nprint(s.count(), p, line)",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nt.scale(2)\nprint(t)",
      "stdin": "",
-     "expected": "2 (11, 1) (10, 0)-(12, 2)",
+     "expected": "(2, 2) (8, 2) (2, 6)",
      "extra": "",
      "show": true,
      "example": true,
@@ -571,9 +561,9 @@
      "in_check": true
     },
     {
-     "testcode": "s = Scene()\nprint(s.count())\ns.move_all(1, 1)\nprint(s.count())",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nt.rotate90()\nprint(t)",
      "stdin": "",
-     "expected": "0\n0",
+     "expected": "(-1, 1) (-1, 4) (-3, 1)",
      "extra": "",
      "show": true,
      "example": true,
@@ -581,9 +571,9 @@
      "in_check": true
     },
     {
-     "testcode": "s = Scene()\nt = Triangle(Point(0, 0), Point(1, 0), Point(0, 1))\ns.add(t)\ns.move_all(-1, -1)\ns.move_all(0, 5)\nprint(t.a, t.b, t.c)",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nt.rotate90()\nt.rotate90()\nt.scale(3)\nprint(t)",
      "stdin": "",
-     "expected": "(-1, 4) (0, 4) (-1, 5)",
+     "expected": "(-3, -3) (-12, -3) (-3, -9)",
      "extra": "",
      "show": false,
      "example": false,
@@ -594,16 +584,16 @@
   },
   {
    "xml_index": 14,
-   "xml_name": "L11_014_Bounding Box",
-   "display_name": "Bounding Box",
-   "questiontext_html": "<p>To fit a picture on the screen, we need its <b>bounding box</b>: the smallest rectangle, with sides parallel to the axes, containing every point of every shape. It is given by the smallest and largest x and y values: <code>(min_x, min_y, max_x, max_y)</code>.</p>\n<p>Every shape has a method <code>points()</code> returning its points, so the scene can collect all the points of all its shapes in one loop, whatever kinds of shapes they are.</p>\n<p><b>Indentation reminder:</b> the body of an <code>if</code>, loop, function or class must be indented (press Tab or type 4 spaces). Only the spaces at the start of a line matter.</p>\n<p><b>Your task:</b> add the method <code>bounding_box()</code> to <code>Scene</code>, returning the tuple <code>(min_x, min_y, max_x, max_y)</code> over all points of all shapes. The scene has at least one shape.</p>\n<p>For example, a scene with <code>Point(1, 5)</code> and <code>Line(Point(-2, 0), Point(3, 1))</code> has the bounding box <code>(-2, 0, 3, 5)</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=self.color)\n\n    def points(self):\n        return [self.p1, self.p2]\n\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"black\"):\n        self.a = a              # three Point objects\n        self.b = b\n        self.c = c\n        self.color = color\n\n    def perimeter(self):\n        return round(self.a.distance_to(self.b) + self.b.distance_to(self.c) + self.c.distance_to(self.a), 2)\n\n    def area(self):\n        a, b, c = self.a, self.b, self.c\n        return round(abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2, 2)\n\n    def center(self):\n        cx = round((self.a.x + self.b.x + self.c.x) / 3, 2)\n        cy = round((self.a.y + self.b.y + self.c.y) / 3, 2)\n        return Point(cx, cy, self.color)\n\n    def move(self, dx, dy):\n        for p in (self.a, self.b, self.c):\n            p.move(dx, dy)\n\n    def scale(self, k):\n        c = self.center()\n        for p in (self.a, self.b, self.c):\n            p.x = round(c.x + k * (p.x - c.x), 2)\n            p.y = round(c.y + k * (p.y - c.y), 2)\n\n    def draw(self, ax):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=self.color, alpha=0.4)\n\n    def points(self):\n        return [self.a, self.b, self.c]\n\n\nclass Scene:\n    def __init__(self):\n        self.shapes = []\n\n    def add(self, shape):\n        self.shapes.append(shape)\n\n    def count(self):\n        return len(self.shapes)\n\n    def move_all(self, dx, dy):\n        for s in self.shapes:\n            s.move(dx, dy)          # every shape has its own move()\n\n    def bounding_box(self):\n        # write your code here\n",
+   "xml_name": "L11_014_Copying A Triangle",
+   "display_name": "Copying A Triangle",
+   "questiontext_html": "<p>To draw a pattern, we often want a <b>copy</b> of a shape that we can move without changing the original. Remember <b>aliasing</b> from Lab 7: <code>t2 = t</code> does not copy anything; both names refer to the same triangle, so moving <code>t2</code> would move <code>t</code> too.</p>\n<p>A real copy must be a <b>new <code>Triangle</code></b> with <b>new <code>Point</code> objects</b> at the same coordinates (if the copy shared the original's points, moving the copy would still move the original's corners).</p>\n<p><b>Your task:</b> write the method <code>copy()</code> of <code>Triangle</code>, which returns a new triangle with new points at the same coordinates and the same colour.</p>\n<p>For example, after <code>t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))</code>, <code>c = t.copy()</code> and <code>c.move(5, 0)</code>, <code>print(t)</code> still prints <code>(1, 1) (4, 1) (1, 3)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"orange\"):\n        self.a = a              # three Point objects (the corners)\n        self.b = b\n        self.c = c\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.a) + \" \" + str(self.b) + \" \" + str(self.c)\n\n    def draw(self, ax, color=None):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=color or self.color, alpha=0.5)\n\n    def corners(self):\n        return [self.a, self.b, self.c]\n\n    def move(self, dx, dy):\n        for p in self.corners():        # move every corner\n            p.move(dx, dy)\n\n    def flip_x(self):\n        for p in self.corners():\n            p.flip_x()\n\n    def flip_y(self):\n        for p in self.corners():\n            p.flip_y()\n\n    def scale(self, k):\n        for p in self.corners():\n            p.scale(k)\n\n    def rotate90(self):\n        for p in self.corners():\n            p.rotate90()\n\n    def copy(self):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\n# c = t.copy()\n# c.move(5, 0)\n# t.draw(ax, 'grey')\n# c.draw(ax)\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "s = Scene()\ns.add(Point(1, 5))\ns.add(Line(Point(-2, 0), Point(3, 1)))\nprint(s.bounding_box())",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nc = t.copy()\nc.move(5, 0)\nprint(t)\nprint(c)",
      "stdin": "",
-     "expected": "(-2, 0, 3, 5)",
+     "expected": "(1, 1) (4, 1) (1, 3)\n(6, 1) (9, 1) (6, 3)",
      "extra": "",
      "show": true,
      "example": true,
@@ -611,9 +601,9 @@
      "in_check": true
     },
     {
-     "testcode": "s = Scene()\ns.add(Point(4, 4))\nprint(s.bounding_box())",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nc = t.copy()\nprint(c is t, c.a is t.a, c.color)",
      "stdin": "",
-     "expected": "(4, 4, 4, 4)",
+     "expected": "False False orange",
      "extra": "",
      "show": true,
      "example": true,
@@ -621,9 +611,9 @@
      "in_check": true
     },
     {
-     "testcode": "s = Scene()\ns.add(Triangle(Point(0, 0), Point(10, 2), Point(3, -7)))\ns.add(Point(-1, 1))\ns.move_all(1, 1)\nprint(s.bounding_box())",
+     "testcode": "t = Triangle(Point(1, 1), Point(4, 1), Point(1, 3))\nc = t.copy()\nc.flip_x()\nc.a.move(1, 1)\nprint(t)\nprint(c)",
      "stdin": "",
-     "expected": "(0, -6, 11, 3)",
+     "expected": "(1, 1) (4, 1) (1, 3)\n(2, 0) (4, -1) (1, -3)",
      "extra": "",
      "show": false,
      "example": false,
@@ -634,16 +624,16 @@
   },
   {
    "xml_index": 15,
-   "xml_name": "L11_015_Drawing The Whole Scene",
-   "display_name": "Drawing The Whole Scene",
-   "questiontext_html": "<p>Drawing a scene is now easy: ask each shape to draw itself. Each shape calls the right <code>ax</code> method for its kind: that is polymorphism at work.</p>\n<p><b>Your task:</b> add the method <code>draw(ax)</code> to <code>Scene</code>, which calls <code>draw(ax)</code> on every shape, in the order they were added.</p>\n<p>For example, a scene with a red point and then a blue line records a <code>scatter</code> call and then a <code>plot</code> call.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=self.color)\n\n    def points(self):\n        return [self.p1, self.p2]\n\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"black\"):\n        self.a = a              # three Point objects\n        self.b = b\n        self.c = c\n        self.color = color\n\n    def perimeter(self):\n        return round(self.a.distance_to(self.b) + self.b.distance_to(self.c) + self.c.distance_to(self.a), 2)\n\n    def area(self):\n        a, b, c = self.a, self.b, self.c\n        return round(abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2, 2)\n\n    def center(self):\n        cx = round((self.a.x + self.b.x + self.c.x) / 3, 2)\n        cy = round((self.a.y + self.b.y + self.c.y) / 3, 2)\n        return Point(cx, cy, self.color)\n\n    def move(self, dx, dy):\n        for p in (self.a, self.b, self.c):\n            p.move(dx, dy)\n\n    def scale(self, k):\n        c = self.center()\n        for p in (self.a, self.b, self.c):\n            p.x = round(c.x + k * (p.x - c.x), 2)\n            p.y = round(c.y + k * (p.y - c.y), 2)\n\n    def draw(self, ax):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=self.color, alpha=0.4)\n\n    def points(self):\n        return [self.a, self.b, self.c]\n\n\nclass Scene:\n    def __init__(self):\n        self.shapes = []\n\n    def add(self, shape):\n        self.shapes.append(shape)\n\n    def count(self):\n        return len(self.shapes)\n\n    def move_all(self, dx, dy):\n        for s in self.shapes:\n            s.move(dx, dy)          # every shape has its own move()\n\n    def bounding_box(self):\n        pts = []\n        for s in self.shapes:\n            pts = pts + s.points()\n        xs = [p.x for p in pts]\n        ys = [p.y for p in pts]\n        return (min(xs), min(ys), max(xs), max(ys))\n\n    def draw(self, ax):\n        # write your code here\n\n\n# ---- See your drawing (practice site only; not graded) ----\n# Remove the # in front of the lines below, then press Pre-check.\n# (Put the # back before Check if Check becomes slow.)\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# s = Scene()\n# s.add(Triangle(Point(0, 0), Point(4, 0), Point(2, 3), \"orange\"))\n# s.add(Line(Point(0, 0), Point(4, 3), \"blue\"))\n# s.add(Point(2, 1, \"red\"))\n# s.draw(ax)\n",
+   "xml_name": "L11_015_A Scene Of Shapes",
+   "display_name": "A Scene Of Shapes",
+   "questiontext_html": "<p>A <code>Scene</code> holds a <b>list of shapes</b> of different kinds: points, lines and triangles. Every shape class has its own <code>move(dx, dy)</code>, so the scene can move everything with one loop, <b>without caring what kind of shape each one is</b>:</p>\n<pre>for s in self.shapes:\n    s.move(dx, dy)        # a Point, a Line or a Triangle: each uses its own move()</pre>\n<p>This is <b>polymorphism</b> (Lab 10). The constructor and <code>draw</code> are given.</p>\n<p><b>Your task:</b> write the methods <code>add(shape)</code>, which adds a shape to the list <code>shapes</code>, and <code>move_all(dx, dy)</code>, which moves every shape.</p>\n<p>For example, after adding <code>Point(1, 1)</code> to an empty scene and calling <code>move_all(2, 0)</code>, the point is at <code>(3, 1)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Line:\n    def __init__(self, p1, p2, color=\"blue\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def draw(self, ax, color=None):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=color or self.color)\n\n    def length(self):\n        return self.p1.distance_to(self.p2)     # ask a point to do the work\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)                    # delegate to the two points\n        self.p2.move(dx, dy)\n\n    def rotate90(self):\n        self.p1.rotate90()\n        self.p2.rotate90()\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"orange\"):\n        self.a = a              # three Point objects (the corners)\n        self.b = b\n        self.c = c\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.a) + \" \" + str(self.b) + \" \" + str(self.c)\n\n    def draw(self, ax, color=None):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=color or self.color, alpha=0.5)\n\n    def corners(self):\n        return [self.a, self.b, self.c]\n\n    def move(self, dx, dy):\n        for p in self.corners():        # move every corner\n            p.move(dx, dy)\n\n    def flip_x(self):\n        for p in self.corners():\n            p.flip_x()\n\n    def flip_y(self):\n        for p in self.corners():\n            p.flip_y()\n\n    def scale(self, k):\n        for p in self.corners():\n            p.scale(k)\n\n    def rotate90(self):\n        for p in self.corners():\n            p.rotate90()\n\n    def copy(self):\n        # new Point objects, so changing the copy never changes the original\n        return Triangle(Point(self.a.x, self.a.y), Point(self.b.x, self.b.y),\n                        Point(self.c.x, self.c.y), self.color)\n\nclass Scene:\n    def __init__(self):\n        self.shapes = []\n\n    # ---- given: drawing (do not change) ----\n    def draw(self, ax):\n        for s in self.shapes:\n            s.draw(ax)                # every shape draws itself\n\n    def add(self, shape):\n        # write your code here\n\n    def move_all(self, dx, dy):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# s = Scene()\n# s.add(Point(1, 1, \"red\"))\n# s.add(Line(Point(0, 0), Point(2, 3)))\n# s.add(Triangle(Point(3, 0), Point(5, 0), Point(4, 2)))\n# s.draw(ax)\n# s.move_all(1, 4)\n# s.draw(ax)\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\ns = Scene()\ns.add(Point(1, 1, \"red\"))\ns.add(Line(Point(0, 0), Point(2, 0), \"blue\"))\ns.draw(ax)\nfor c in ax.calls:\n    print(c)",
+     "testcode": "s = Scene()\np = Point(1, 1)\ns.add(p)\ns.move_all(2, 0)\nprint(p, len(s.shapes))",
      "stdin": "",
-     "expected": "('scatter', [1], [1], 'red')\n('plot', [0, 2], [0, 0], 'blue')",
+     "expected": "(3, 1) 1",
      "extra": "",
      "show": true,
      "example": true,
@@ -651,9 +641,9 @@
      "in_check": true
     },
     {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\ns = Scene()\ns.draw(ax)\nprint(len(ax.calls))\nfor c in ax.calls:\n    print(c)",
+     "testcode": "s = Scene()\nline = Line(Point(0, 0), Point(1, 1))\nt = Triangle(Point(0, 0), Point(2, 0), Point(0, 2))\ns.add(line)\ns.add(t)\ns.move_all(1, 1)\nprint(line)\nprint(t)",
      "stdin": "",
-     "expected": "0",
+     "expected": "(1, 1)-(2, 2)\n(1, 1) (3, 1) (1, 3)",
      "extra": "",
      "show": true,
      "example": true,
@@ -661,9 +651,9 @@
      "in_check": true
     },
     {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\ns = Scene()\nt = Triangle(Point(0, 0), Point(2, 0), Point(1, 1))\ns.add(t)\ns.add(t.center())\ns.move_all(1, 0)\ns.draw(ax)\nfor c in ax.calls:\n    print(c)",
+     "testcode": "s = Scene()\ns.move_all(1, 1)\nprint(len(s.shapes))",
      "stdin": "",
-     "expected": "('fill', [1, 3, 2], [0, 0, 1], 'black')\n('scatter', [2.0], [0.33], 'black')",
+     "expected": "0",
      "extra": "",
      "show": false,
      "example": false,
@@ -674,16 +664,16 @@
   },
   {
    "xml_index": 16,
-   "xml_name": "L11_016_Draw A House",
-   "display_name": "Draw A House",
-   "questiontext_html": "<p>To finish, use your classes to build a picture: a simple <b>house</b>.</p>\n<p>For a house at position <code>(x, y)</code> (its bottom-left corner) with size <code>s</code>, add these shapes to a new scene, <b>in this order</b>:</p>\n<ol><li>the walls: four <code>Line</code>s, colour <code>\"brown\"</code>: bottom <code>(x, y)</code>-<code>(x + s, y)</code>, right <code>(x + s, y)</code>-<code>(x + s, y + s)</code>, top <code>(x + s, y + s)</code>-<code>(x, y + s)</code>, left <code>(x, y + s)</code>-<code>(x, y)</code>;</li><li>the roof: a <code>Triangle</code> with corners <code>(x, y + s)</code>, <code>(x + s, y + s)</code>, <code>(x + s / 2, y + 1.5 * s)</code>, colour <code>\"red\"</code>;</li><li>a door: a <code>Point</code> at <code>(x + s / 2, y + s / 4)</code>, colour <code>\"black\"</code>.</li></ol>\n<p><b>Careful:</b> give every line its <b>own</b> new <code>Point</code> objects. If two lines shared one <code>Point</code> object, <code>move_all</code> would move that point twice (once for each line). This is aliasing again (Lab 7).</p>\n<p>Uncomment the drawing block at the bottom to see your house (and a second, bigger one next to it).</p>\n<p><b>Your task:</b> the classes <code>Point</code>, <code>Line</code>, <code>Triangle</code> and <code>Scene</code> are given. Write the function <code>make_house(x, y, s)</code> which returns the <code>Scene</code> described above.</p>\n<p>For example, <code>make_house(0, 0, 4).bounding_box()</code> returns <code>(0, 0, 4, 6.0)</code>.</p>",
-   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\n    def draw(self, ax):\n        ax.scatter([self.x], [self.y], color=self.color)\n\n    def points(self):\n        return [self]\n\n\nclass Line:\n    def __init__(self, p1, p2, color=\"black\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    def length(self):\n        return self.p1.distance_to(self.p2)\n\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def midpoint(self):\n        return Point((self.p1.x + self.p2.x) / 2, (self.p1.y + self.p2.y) / 2, self.color)\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)\n        self.p2.move(dx, dy)\n\n    def draw(self, ax):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=self.color)\n\n    def points(self):\n        return [self.p1, self.p2]\n\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"black\"):\n        self.a = a              # three Point objects\n        self.b = b\n        self.c = c\n        self.color = color\n\n    def perimeter(self):\n        return round(self.a.distance_to(self.b) + self.b.distance_to(self.c) + self.c.distance_to(self.a), 2)\n\n    def area(self):\n        a, b, c = self.a, self.b, self.c\n        return round(abs(a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2, 2)\n\n    def center(self):\n        cx = round((self.a.x + self.b.x + self.c.x) / 3, 2)\n        cy = round((self.a.y + self.b.y + self.c.y) / 3, 2)\n        return Point(cx, cy, self.color)\n\n    def move(self, dx, dy):\n        for p in (self.a, self.b, self.c):\n            p.move(dx, dy)\n\n    def scale(self, k):\n        c = self.center()\n        for p in (self.a, self.b, self.c):\n            p.x = round(c.x + k * (p.x - c.x), 2)\n            p.y = round(c.y + k * (p.y - c.y), 2)\n\n    def draw(self, ax):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=self.color, alpha=0.4)\n\n    def points(self):\n        return [self.a, self.b, self.c]\n\n\nclass Scene:\n    def __init__(self):\n        self.shapes = []\n\n    def add(self, shape):\n        self.shapes.append(shape)\n\n    def count(self):\n        return len(self.shapes)\n\n    def move_all(self, dx, dy):\n        for s in self.shapes:\n            s.move(dx, dy)          # every shape has its own move()\n\n    def bounding_box(self):\n        pts = []\n        for s in self.shapes:\n            pts = pts + s.points()\n        xs = [p.x for p in pts]\n        ys = [p.y for p in pts]\n        return (min(xs), min(ys), max(xs), max(ys))\n\n    def draw(self, ax):\n        for s in self.shapes:\n            s.draw(ax)              # each shape draws itself\n\n\ndef make_house(x, y, s):\n    # write your code here\n\n\n# ---- See your drawing (practice site only; not graded) ----\n# Remove the # in front of the lines below, then press Pre-check.\n# (Put the # back before Check if Check becomes slow.)\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# make_house(0, 0, 4).draw(ax)\n# h = make_house(6, 0, 6)\n# h.draw(ax)\n",
+   "xml_name": "L11_016_Turning The Whole Scene",
+   "display_name": "Turning The Whole Scene",
+   "questiontext_html": "<p>Points, lines and triangles all have a <code>rotate90()</code> method, so the scene can turn everything at once, in exactly the same way as <code>move_all</code>.</p>\n<p><b>Your task:</b> write the method <code>rotate_all()</code> of <code>Scene</code>, which turns every shape a quarter turn around the origin.</p>\n<p>For example, a scene with <code>Point(2, 0)</code> turns it to <code>(0, 2)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Line:\n    def __init__(self, p1, p2, color=\"blue\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def draw(self, ax, color=None):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=color or self.color)\n\n    def length(self):\n        return self.p1.distance_to(self.p2)     # ask a point to do the work\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)                    # delegate to the two points\n        self.p2.move(dx, dy)\n\n    def rotate90(self):\n        self.p1.rotate90()\n        self.p2.rotate90()\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"orange\"):\n        self.a = a              # three Point objects (the corners)\n        self.b = b\n        self.c = c\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.a) + \" \" + str(self.b) + \" \" + str(self.c)\n\n    def draw(self, ax, color=None):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=color or self.color, alpha=0.5)\n\n    def corners(self):\n        return [self.a, self.b, self.c]\n\n    def move(self, dx, dy):\n        for p in self.corners():        # move every corner\n            p.move(dx, dy)\n\n    def flip_x(self):\n        for p in self.corners():\n            p.flip_x()\n\n    def flip_y(self):\n        for p in self.corners():\n            p.flip_y()\n\n    def scale(self, k):\n        for p in self.corners():\n            p.scale(k)\n\n    def rotate90(self):\n        for p in self.corners():\n            p.rotate90()\n\n    def copy(self):\n        # new Point objects, so changing the copy never changes the original\n        return Triangle(Point(self.a.x, self.a.y), Point(self.b.x, self.b.y),\n                        Point(self.c.x, self.c.y), self.color)\n\nclass Scene:\n    def __init__(self):\n        self.shapes = []\n\n    # ---- given: drawing (do not change) ----\n    def draw(self, ax):\n        for s in self.shapes:\n            s.draw(ax)                # every shape draws itself\n\n    def add(self, shape):\n        self.shapes.append(shape)\n\n    def move_all(self, dx, dy):\n        for s in self.shapes:\n            s.move(dx, dy)            # each shape uses its own move()\n\n    def rotate_all(self):\n        # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# s = Scene()\n# s.add(Triangle(Point(1, 0), Point(3, 0), Point(3, 1)))\n# s.add(Point(3, 3, \"red\"))\n# for i in range(4):\n#     s.draw(ax)\n#     s.rotate_all()\n",
    "mark": 1.0,
    "tests": [
     {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\nmake_house(0, 0, 4).draw(ax)\nfor c in ax.calls:\n    print(c)",
+     "testcode": "s = Scene()\np = Point(2, 0)\ns.add(p)\ns.rotate_all()\nprint(p)",
      "stdin": "",
-     "expected": "('plot', [0, 4], [0, 0], 'brown')\n('plot', [4, 4], [0, 4], 'brown')\n('plot', [4, 0], [4, 4], 'brown')\n('plot', [0, 0], [4, 0], 'brown')\n('fill', [0, 4, 2.0], [4, 4, 6.0], 'red')\n('scatter', [2.0], [1.0], 'black')",
+     "expected": "(0, 2)",
      "extra": "",
      "show": true,
      "example": true,
@@ -691,9 +681,9 @@
      "in_check": true
     },
     {
-     "testcode": "h = make_house(0, 0, 4)\nprint(h.count(), h.bounding_box())",
+     "testcode": "s = Scene()\nline = Line(Point(1, 0), Point(1, 2))\nt = Triangle(Point(1, 1), Point(2, 1), Point(1, 2))\ns.add(line)\ns.add(t)\ns.rotate_all()\nprint(line)\nprint(t)",
      "stdin": "",
-     "expected": "6 (0, 0, 4, 6.0)",
+     "expected": "(0, 1)-(-2, 1)\n(-1, 1) (-1, 2) (-2, 1)",
      "extra": "",
      "show": true,
      "example": true,
@@ -701,9 +691,49 @@
      "in_check": true
     },
     {
-     "testcode": "class FakeAx:  # records drawing calls instead of drawing\n    def __init__(self): self.calls = []\n    def scatter(self, xs, ys, **kw): self.calls.append(('scatter', list(xs), list(ys), kw.get('color')))\n    def plot(self, xs, ys, **kw): self.calls.append(('plot', list(xs), list(ys), kw.get('color')))\n    def fill(self, xs, ys, **kw): self.calls.append(('fill', list(xs), list(ys), kw.get('color')))\nax = FakeAx()\nh = make_house(10, 5, 2)\nh.move_all(-10, -5)\nh.draw(ax)\nfor c in ax.calls:\n    print(c)",
+     "testcode": "s = Scene()\np = Point(1, 2)\ns.add(p)\nfor i in range(4):\n    s.rotate_all()\nprint(p)",
      "stdin": "",
-     "expected": "('plot', [0, 2], [0, 0], 'brown')\n('plot', [2, 2], [0, 2], 'brown')\n('plot', [2, 0], [2, 2], 'brown')\n('plot', [0, 0], [2, 0], 'brown')\n('fill', [0, 2, 1.0], [2, 2, 3.0], 'red')\n('scatter', [1.0], [0.5], 'black')",
+     "expected": "(1, 2)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "L11_017_A Pinwheel",
+   "display_name": "A Pinwheel",
+   "questiontext_html": "<p>To finish, use your classes to make a picture: a <b>pinwheel</b> of four triangles, each one a quarter turn further than the last.</p>\n<p>Plan: start with one triangle; for each of the four blades, add a <b>copy</b> of the current triangle to the scene, then turn the triangle a quarter turn for the next blade.</p>\n<p>Remove the <code>#</code> signs in the drawing block to see your pinwheel.</p>\n<p><b>Your task:</b> write the function <code>make_pinwheel()</code>, which returns a <code>Scene</code> containing four triangles: the first is <code>Triangle(Point(0, 0), Point(4, 0), Point(4, 2))</code>, and each next one is the previous one turned a quarter turn around the origin (all four keep the default colour).</p>\n<p>For example, the second triangle of the scene prints as <code>(0, 0) (0, 4) (-2, 4)</code>.</p>",
+   "answerpreload": "class Point:\n    def __init__(self, x, y, color=\"black\"):\n        self.x = x\n        self.y = y\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return \"(\" + str(self.x) + \", \" + str(self.y) + \")\"\n\n    def draw(self, ax, color=None):\n        ax.scatter([self.x], [self.y], color=color or self.color, zorder=3)\n\n    def move(self, dx, dy):\n        self.x = self.x + dx\n        self.y = self.y + dy\n\n    def flip_x(self):\n        self.y = -self.y        # mirror in the x-axis\n\n    def flip_y(self):\n        self.x = -self.x        # mirror in the y-axis\n\n    def rotate90(self):\n        # a quarter turn anticlockwise about the origin: (x, y) -> (-y, x)\n        self.x, self.y = -self.y, self.x\n\n    def scale(self, k):\n        self.x = self.x * k\n        self.y = self.y * k\n\n    def rotate90_about(self, cx, cy):\n        # move the centre to the origin, turn, and move back: three existing methods\n        self.move(-cx, -cy)\n        self.rotate90()\n        self.move(cx, cy)\n\n    def distance_to(self, other):\n        return round(((other.x - self.x) ** 2 + (other.y - self.y) ** 2) ** 0.5, 2)\n\nclass Line:\n    def __init__(self, p1, p2, color=\"blue\"):\n        self.p1 = p1            # two Point objects\n        self.p2 = p2\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.p1) + \"-\" + str(self.p2)\n\n    def draw(self, ax, color=None):\n        ax.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], color=color or self.color)\n\n    def length(self):\n        return self.p1.distance_to(self.p2)     # ask a point to do the work\n\n    def move(self, dx, dy):\n        self.p1.move(dx, dy)                    # delegate to the two points\n        self.p2.move(dx, dy)\n\n    def rotate90(self):\n        self.p1.rotate90()\n        self.p2.rotate90()\n\nclass Triangle:\n    def __init__(self, a, b, c, color=\"orange\"):\n        self.a = a              # three Point objects (the corners)\n        self.b = b\n        self.c = c\n        self.color = color\n\n    # ---- given: printing and drawing (do not change) ----\n    def __str__(self):\n        return str(self.a) + \" \" + str(self.b) + \" \" + str(self.c)\n\n    def draw(self, ax, color=None):\n        xs = [self.a.x, self.b.x, self.c.x]\n        ys = [self.a.y, self.b.y, self.c.y]\n        ax.fill(xs, ys, color=color or self.color, alpha=0.5)\n\n    def corners(self):\n        return [self.a, self.b, self.c]\n\n    def move(self, dx, dy):\n        for p in self.corners():        # move every corner\n            p.move(dx, dy)\n\n    def flip_x(self):\n        for p in self.corners():\n            p.flip_x()\n\n    def flip_y(self):\n        for p in self.corners():\n            p.flip_y()\n\n    def scale(self, k):\n        for p in self.corners():\n            p.scale(k)\n\n    def rotate90(self):\n        for p in self.corners():\n            p.rotate90()\n\n    def copy(self):\n        # new Point objects, so changing the copy never changes the original\n        return Triangle(Point(self.a.x, self.a.y), Point(self.b.x, self.b.y),\n                        Point(self.c.x, self.c.y), self.color)\n\nclass Scene:\n    def __init__(self):\n        self.shapes = []\n\n    # ---- given: drawing (do not change) ----\n    def draw(self, ax):\n        for s in self.shapes:\n            s.draw(ax)                # every shape draws itself\n\n    def add(self, shape):\n        self.shapes.append(shape)\n\n    def move_all(self, dx, dy):\n        for s in self.shapes:\n            s.move(dx, dy)            # each shape uses its own move()\n\n    def rotate_all(self):\n        for s in self.shapes:\n            s.rotate90()\n\n\ndef make_pinwheel():\n    # write your code here\n\n\n# ---- See it! (not graded) Remove the # in front of the lines below, then press Pre-check ----\n# import matplotlib.pyplot as plt\n# fig, ax = plt.subplots()\n# ax.set_aspect('equal')\n# ax.axhline(0, color='lightgrey')\n# ax.axvline(0, color='lightgrey')\n# make_pinwheel().draw(ax)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "s = make_pinwheel()\nprint(len(s.shapes))\nprint(s.shapes[1])",
+     "stdin": "",
+     "expected": "4\n(0, 0) (0, 4) (-2, 4)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "s = make_pinwheel()\nfor t in s.shapes:\n    print(t)",
+     "stdin": "",
+     "expected": "(0, 0) (4, 0) (4, 2)\n(0, 0) (0, 4) (-2, 4)\n(0, 0) (-4, 0) (-4, -2)\n(0, 0) (0, -4) (2, -4)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "s = make_pinwheel()\ns.rotate_all()\nprint(s.shapes[3])",
+     "stdin": "",
+     "expected": "(0, 0) (4, 0) (4, 2)",
      "extra": "",
      "show": false,
      "example": false,
@@ -713,5 +743,5 @@
    ]
   }
  ],
- "content_hash": "e33e2831d37cc87c"
+ "content_hash": "a02bccc9d15ee568"
 }
