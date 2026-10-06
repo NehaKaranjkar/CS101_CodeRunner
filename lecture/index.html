@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS101 Lectures</title>
+<link rel="stylesheet" href="../vendor/codemirror/codemirror.css">
+<link rel="stylesheet" href="../static/lecture.css">
+<script src="../vendor/codemirror/codemirror.js"></script>
+<script src="../vendor/codemirror/python.js"></script>
+<script src="../vendor/codemirror/matchbrackets.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+<header class="lbar">
+  <a class="lbar-home" href="#/" id="bar-home">CS101 Lectures</a>
+  <div class="lbar-lec" id="bar-lec" hidden>
+    <span class="lbar-title" id="bar-title"></span>
+    <span class="lbar-date" id="bar-date"></span>
+  </div>
+  <div class="lbar-score" id="bar-score" hidden></div>
+  <div class="lbar-user" id="bar-user" hidden>
+    <span id="bar-email"></span>
+    <button class="linklike" id="btn-signout">Sign out</button>
+  </div>
+</header>
+<div class="banner" id="banner" hidden></div>
+<main id="view" class="view"></main>
+<script src="../static/lecture.js"></script>
+</body>
+</html>
