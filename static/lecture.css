@@ -37,7 +37,11 @@ input[type=text], textarea {
 .lbar-date { font-size: 13px; color: #b9c3cd; }
 .lbar-score { font: 600 20px/1 var(--mono); color: var(--accent); white-space: nowrap; }
 .lbar-user { font-size: 13px; color: #b9c3cd; margin-left: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-.banner { background: #fff4d6; border-bottom: 1px solid #ecd28c; color: #6b4e00; padding: 8px 16px; font-size: 14px; }
+.lbar-guest { color: #1b2530; background: #f2c14e; border-radius: 10px; padding: 1px 8px; margin-right: 10px; font-weight: 600; font-size: 12px; }
+.lbar-pending { font-size: 12px; color: #f2c14e; white-space: nowrap; }
+.modal-back { position: fixed; inset: 0; z-index: 20; background: rgba(22, 32, 43, .5); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.modal { background: var(--panel); border-radius: 10px; padding: 20px; max-width: 440px; box-shadow: 0 8px 30px rgba(0, 0, 0, .25); }
+.modal p { margin: 0 0 10px; }
 
 .lbar-link { color: var(--accent); margin-right: 10px; text-decoration: none; font-weight: 600; }
 .instr { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--rule); }
@@ -54,6 +58,11 @@ input[type=text], textarea {
 .row input { flex: 1; }
 h2 { font-size: 17px; margin: 20px 0 8px; color: var(--ink-soft); }
 
+/* home: course title */
+.welcome { margin: 10px 2px 6px; }
+.welcome h1 { font-size: 24px; margin: 0; color: var(--ink); }
+.welcome p { margin: 2px 0 0; color: var(--ink-soft); font-size: 17px; }
+
 /* lecture list */
 .llist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .lcard {
@@ -62,15 +71,45 @@ h2 { font-size: 17px; margin: 20px 0 8px; color: var(--ink-soft); }
 }
 .lcard .lt { font-weight: 600; color: var(--action-dark); padding-right: 50px; }
 .lcard .lm { font-size: 13px; color: var(--muted); }
+.lnum { display: inline-block; min-width: 2.6em; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .lcard.active { border-left-color: var(--correct); background: #f1f9f4; }
 .lcard.active .lt { color: var(--correct); }
 .lcard.future { border-left-color: var(--rule); background: #f7f8f9; }
 .lcard.future .lt { color: var(--muted); font-weight: 500; }
 .badge { position: absolute; right: 12px; top: 12px; background: var(--correct); color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 10px; }
 
+/* lecture page: question nav (left; a strip at the top on phones) and the content */
+.view.lecview { max-width: 1020px; }
+.lecgrid { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 22px; align-items: start; }
+.lqnav { position: sticky; top: calc(var(--barh, 52px) + 10px); background: var(--panel); border: 1px solid var(--rule); border-radius: 8px;
+  padding: 10px; display: flex; flex-wrap: wrap; gap: 6px; max-height: calc(100vh - var(--barh, 52px) - 30px); overflow-y: auto; }
+.lqnav-head { flex-basis: 100%; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+.qn { width: 36px; height: 32px; padding: 0; border-radius: 6px; font: 600 14px/1 var(--sans); font-variant-numeric: tabular-nums;
+  background: #e3e7eb; border: 2px solid transparent; color: var(--ink); }
+.qn.solved { background: var(--correct); color: #fff; }
+.qn.penalty { background: #d9822b; color: #fff; }
+.qn.wrong { background: var(--wrong); color: #fff; }
+.qn.current { border-color: var(--ink); }
+.lqnav-key { flex-basis: 100%; display: flex; flex-direction: column; gap: 2px; margin-top: 6px; font-size: 11.5px; color: var(--muted); }
+.lqnav-key span { display: flex; align-items: center; gap: 5px; }
+.k { width: 10px; height: 10px; border-radius: 2px; display: inline-block; background: #e3e7eb; }
+.k.solved { background: var(--correct); } .k.penalty { background: #d9822b; } .k.wrong { background: var(--wrong); }
+.lhead { margin: 4px 2px 18px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.lh-num { font-size: 14px; font-weight: 600; color: var(--action); letter-spacing: .02em; }
+.lhead h1 { font-size: 30px; line-height: 1.2; margin: 2px 0 8px; }
+.lh-desc { color: var(--ink-soft); font-size: 17px; }
+.lh-desc p { margin: 0 0 6px; }
+.try-chip { margin-left: auto; font-size: 12.5px; padding: 2px 9px; border-radius: 10px; border: 1px solid var(--rule); background: #f4f6f8; color: var(--ink-soft); white-space: nowrap; }
+.try-chip.warn { background: #fff4d6; border-color: #ecd28c; color: #8a3b12; }
+.try-chip.solved { background: #e5f3ea; border-color: #9cd0ae; color: var(--correct); }
+.tutor { margin-top: 10px; }
+button.linkbtn { border: none; background: none; padding: 0; color: var(--action-dark); text-decoration: underline; font-size: 14px; }
+
 /* teaching text and questions */
 .teach { margin: 18px 2px; }
 .teach p { margin: 0 0 10px; }
+.teach h3 { font-size: 19px; margin: 30px 0 8px; color: var(--action-dark); }
+.teach ul, .teach ol { margin: 0 0 10px; padding-left: 24px; }
 .teach pre, .qtext pre, pre.code { background: #e8ecf0; padding: 8px 12px; border-radius: 6px; overflow-x: auto; font: 14px/1.4 var(--mono); }
 .teach code, .qtext code { font-family: var(--mono); background: #e8ecf0; padding: 0 3px; border-radius: 3px; }
 .teach pre code, .qtext pre code { background: none; padding: 0; }
@@ -79,7 +118,7 @@ h2 { font-size: 17px; margin: 20px 0 8px; color: var(--ink-soft); }
 .qcard { background: var(--panel); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 6px; padding: 14px; margin: 14px 0 22px; }
 .qhead { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
 .qno { font-weight: 700; color: var(--action-dark); }
-.qtype { font-size: 13px; color: var(--muted); flex: 1; }
+.qtype { font-size: 13px; color: var(--muted); }
 .qbadge { font-size: 13px; font-weight: 600; }
 .qbadge.right { color: var(--correct); }
 .qbadge.wrong { color: var(--wrong); }
@@ -114,6 +153,17 @@ table.io td.hid { color: var(--ink-soft); font-style: italic; }
 pre.err { background: #fbe7e5; padding: 8px 12px; border-radius: 6px; white-space: pre-wrap; font: 14px/1.4 var(--mono); }
 .figs img { max-width: 100%; display: block; margin-top: 6px; }
 .endnote { text-align: center; margin-top: 30px; font-size: 14px; }
+
+@media (max-width: 800px) {
+  .lecgrid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .lqnav { top: var(--barh, 52px); z-index: 4; flex-wrap: nowrap; overflow-x: auto; max-height: none; border-radius: 0 0 8px 8px;
+    margin: -12px -10px 0; padding: 6px 10px; border-top: none; }
+  .lqnav-head, .lqnav-key { display: none; }
+  .qn { flex-shrink: 0; }
+  .qcard { scroll-margin-top: calc(var(--barh, 52px) + 54px); }
+  .lhead h1 { font-size: 25px; }
+}
+.qcard { scroll-margin-top: calc(var(--barh, 52px) + 12px); }
 
 @media (max-width: 600px) {
   body { font-size: 15px; }
@@ -156,7 +206,16 @@ td.acts > * { margin: 0 4px 4px 0; }
 /* dashboard */
 .dhead { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; }
 .dh-left { flex: 1; min-width: 220px; }
+.dh-num { font-size: 13px; font-weight: 600; color: var(--action); }
 .dh-title { font-size: 22px; font-weight: 700; }
+.dh-lec { margin: 2px 0; }
+.dh-acts { align-self: flex-start; }
+.tile.wide { min-width: 170px; }
+.t-of { font-size: 18px; color: var(--muted); font-weight: 600; }
+.pbar { height: 8px; background: #e3e7eb; border-radius: 4px; margin: 5px 0 3px; overflow: hidden; }
+.pbar span { display: block; height: 100%; background: var(--action); border-radius: 4px; }
+.lbbox { margin-top: 18px; }
+.lbbox > summary { font-size: 17px; font-weight: 600; color: var(--ink-soft); }
 .tiles { display: flex; gap: 10px; }
 .tile { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 14px; min-width: 110px; background: #fbfcfd; }
 .t-label { font-size: 13px; color: var(--ink-soft); }
