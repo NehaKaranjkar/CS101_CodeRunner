@@ -59,7 +59,7 @@
       if (b.released) held.unshift(el("span", { class: "muted", text: "taught before the system" }));
       const acts = [];
       if (!active) acts.push(el("button", { class: "small primary", text: b.sessions.length ? "Start again" : "Start", onclick: () => startLecture(b, nextNo) }));
-      if (!b.sessions.length) acts.push(el("button", { class: "small", text: b.released ? "Unmark taught" : "Mark as taught",
+      if (b.released || !b.sessions.length) acts.push(el("button", { class: "small", text: b.released ? "Unmark taught" : "Mark as taught",
         title: "Taught before the system: show it to students as a past lecture (practice), without attendance",
         onclick: async () => { await api("POST", "/api/admin/release", { bundles: [b.id], released: !b.released }); route(); } }));
       acts.push(newTab(`#/instructor/preview/${encodeURIComponent(b.id)}`, "Preview", "small"));
@@ -73,6 +73,27 @@
       ov.bundles.length ? el("div", { class: "tablewrap" }, el("table", { class: "grid" },
         el("thead", {}, el("tr", {}, el("th", { text: "Topic" }), el("th", { text: "Bundle" }), el("th", { text: "Held" }), el("th", { text: "" }))),
         el("tbody", {}, rows))) : el("p", { class: "muted", text: "No bundles uploaded yet (tools/lecture_upload.py bundle ...)." }));
+
+    // every lecture instance, with Delete for ones started by mistake
+    const held = ov.sessions.slice().reverse();
+    view.append(el("h2", { text: "Lectures held" }),
+      held.length ? el("div", { class: "tablewrap" }, el("table", { class: "grid" },
+        el("thead", {}, el("tr", {}, ["Lec", "Topic", "Date", "Start - close", "Present", ""].map((h) => el("th", { text: h })))),
+        el("tbody", {}, held.map((s) => el("tr", { class: s.active ? "rowactive" : "" },
+          el("td", { class: "num", text: String(s.lec_no) }),
+          el("td", { text: fullTitle({ number: numberOf[s.bundle], title: s.bundle_title }) }),
+          el("td", { text: `${s.day} ${s.date}` }),
+          el("td", { text: `${s.start} - ${s.close || "now (active)"}` }),
+          el("td", { class: "num", text: String(s.present) }),
+          el("td", { class: "acts" }, newTab(`#/instructor/live/${s.id}`, "Dashboard", "small"),
+            el("button", { class: "small danger", text: "Delete", onclick: () => deleteLecture(s) })))))))
+        : el("p", { class: "muted", text: "None yet." }));
+  }
+
+  async function deleteLecture(s) {
+    if (!confirm(`Delete Lec ${s.lec_no} (${s.bundle_title}, ${s.day} ${s.date}, ${s.present} present)?\n\n`
+      + "Its attendance, joins and results are removed for good. Use this only for a lecture started by mistake.")) return;
+    try { await api("POST", "/api/admin/delete-session", { session: s.id }); route(); } catch (e) { alert(e.message); }
   }
 
   async function startLecture(b, nextNo) {

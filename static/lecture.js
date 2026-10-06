@@ -316,9 +316,8 @@ async function showList() {
   setBar();
   $("view").className = "view";
   const lecs = r.lectures;
-  const latest = (l) => Math.max(0, ...l.held.map((h) => h.started_at));
   const active = lecs.filter((l) => l.state === "active");
-  const past = lecs.filter((l) => l.state === "past").sort((a, b) => latest(b) - latest(a) || b.order - a.order);
+  const past = lecs.filter((l) => l.state === "past");            // in topic order, like the others
   const future = lecs.filter((l) => l.state === "future");
   const card = (l) => {
     const recent = l.held.slice(-3).reverse().map((h) => `Lec ${h.lec_no} (${h.day} ${h.date})`).join(", ");
