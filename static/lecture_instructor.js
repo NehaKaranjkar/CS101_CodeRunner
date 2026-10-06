@@ -59,7 +59,7 @@
       if (b.released) held.unshift(el("span", { class: "muted", text: "taught before the system" }));
       const acts = [];
       if (!active) acts.push(el("button", { class: "small primary", text: b.sessions.length ? "Start again" : "Start", onclick: () => startLecture(b, nextNo) }));
-      if (b.released || !b.sessions.length) acts.push(el("button", { class: "small", text: b.released ? "Unmark taught" : "Mark as taught",
+      acts.push(el("button", { class: "small", text: b.released ? "Unmark taught" : "Mark as taught",
         title: "Taught before the system: show it to students as a past lecture (practice), without attendance",
         onclick: async () => { await api("POST", "/api/admin/release", { bundles: [b.id], released: !b.released }); route(); } }));
       acts.push(newTab(`#/instructor/preview/${encodeURIComponent(b.id)}`, "Preview", "small"));
