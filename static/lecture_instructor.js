@@ -120,7 +120,7 @@
         el("div", { class: "muted", text: `${s.date} · ${s.start}–${s.close || "now"} · ${s.active ? "ACTIVE" : "closed"}` })),
       s.active ? el("div", { class: "dh-pass" }, el("span", { text: "Password" }), pass) : null,
       el("div", { class: "tiles" },
-        tile("Present", `${d.present}`, `of ${d.roster_size} on the roster`),
+        tile("Present", `${d.present}`, `of ${d.roster_size} on the roster` + (d.guests_present ? ` + ${d.guests_present} guest${d.guests_present > 1 ? "s" : ""}` : "")),
         tile("Joined", `${d.joined}`, d.guests.length ? `+ ${d.guests.length} guest${d.guests.length > 1 ? "s" : ""}` : "students"),
         tile("Time", `${elapsed} min`, s.active ? "since start" : "lecture length")));
     const tools = el("div", { class: "actions" },
@@ -152,8 +152,8 @@
         el("td", { class: "num", text: String(i + 1) }), el("td", { text: who(x) }), el("td", { class: "num", text: `${x.solved}/${s.n_questions}` }),
         el("td", { class: "num", text: fmt(x.score) }), el("td", { class: "num", text: x.reached }))))))
       : el("p", { class: "muted", text: "No correct answers yet." });
-    const guests = d.guests.length ? el("details", { class: "guests" }, el("summary", { text: `${d.guests.length} guest${d.guests.length > 1 ? "s" : ""} (not on the roster; not counted)` }),
-      el("ul", {}, d.guests.map((g) => el("li", { text: `${g.name} <${g.email}>` })))) : null;
+    const guests = d.guests.length ? el("details", { class: "guests" }, el("summary", { text: `${d.guests.length} guest${d.guests.length > 1 ? "s" : ""} (iitgoa accounts not on the roster; counted in the bars, not in Present)` }),
+      el("ul", {}, d.guests.map((g) => el("li", { text: `${g.name} <${g.email}> · solved ${g.solved}` })))) : null;
     return [head, tools, el("h2", { text: "Questions" }), legend, ...qrows, el("h2", { text: "Leaderboard (top 20; ties: who got there first)" }), lb, guests].filter(Boolean);
   }
 
@@ -165,21 +165,23 @@
     pageStart("att");
     const sheet = sheetCache = await api("GET", "/api/admin/attendance");
     const view = $("view");
-    const filter = el("input", { type: "text", placeholder: "Filter by name or roll number", class: "filter" });
+    const nGuests = sheet.students.filter((st) => st.guest).length, nRoster = sheet.students.length - nGuests;
+    const filter = el("input", { type: "text", placeholder: "Filter by name, roll number or email", class: "filter" });
     const dl = el("button", { class: "primary", text: "Download CSV", onclick: downloadCsv });
     view.append(el("div", { class: "actions" }, filter, dl,
-      el("span", { class: "muted", text: `${sheet.students.length} students · ${sheet.lectures.length} lectures recorded (Lec ${sheet.lectures.map((l) => l.lec_no).join(", ") || "none yet"})` })));
+      el("span", { class: "muted", text: `${nRoster} students${nGuests ? ` + ${nGuests} guest${nGuests > 1 ? "s" : ""}` : ""} · ${sheet.lectures.length} lectures recorded (Lec ${sheet.lectures.map((l) => l.lec_no).join(", ") || "none yet"})` })));
     const L = sheet.lectures;
     const head = el("tr", {}, el("th", { class: "sticky", text: "Roll" }), el("th", { class: "sticky2", text: "Name" }),
       L.map((l) => el("th", { class: "lcol" }, el("a", { href: `#/instructor/live/${l.session}`, text: `Lec ${l.lec_no}` }),
-        el("div", { class: "small muted", text: `${l.day} ${l.date}` }), el("div", { class: "small", text: `${l.present} present` }))),
+        el("div", { class: "small muted", text: `${l.day} ${l.date}` }), el("div", { class: "small", text: `${l.present} present` }),
+        l.guests ? el("div", { class: "small muted", text: `+ ${l.guests} guest${l.guests > 1 ? "s" : ""}` }) : null)),
       el("th", { text: "Attended" }), el("th", { text: "Avg score" }));
     const body = el("tbody");
     const draw = () => {
       const f = filter.value.trim().toLowerCase();
-      body.replaceChildren(...sheet.students.filter((st) => !f || st.name.toLowerCase().includes(f) || st.roll.includes(f)).map((st) =>
-        el("tr", {}, el("td", { class: "sticky num", text: st.roll }),
-          el("td", { class: "sticky2" }, el("a", { href: `#/instructor/student/${encodeURIComponent(st.email)}`, text: st.name })),
+      body.replaceChildren(...sheet.students.filter((st) => !f || st.name.toLowerCase().includes(f) || st.roll.includes(f) || st.email.includes(f)).map((st) =>
+        el("tr", { class: st.guest ? "guestrow" : "" }, el("td", { class: "sticky num", text: st.guest ? "guest" : st.roll }),
+          el("td", { class: "sticky2" }, el("a", { href: `#/instructor/student/${encodeURIComponent(st.email)}`, text: st.guest ? st.email : st.name, title: st.guest ? st.name : st.email })),
           st.cells.map((c) => el("td", { class: "cell " + (c.present ? "p" : "a"),
             title: c.joined ? `joined ${c.joined_at}, last ${c.last_seen}, IP ${c.ip}, solved ${c.solved}` : "did not join",
             text: c.present ? `P ${fmt(c.score)}` : "A" })),
@@ -188,7 +190,7 @@
     filter.addEventListener("input", draw);
     draw();
     view.append(el("div", { class: "tablewrap sheet" }, el("table", { class: "grid att" }, el("thead", {}, head), body)),
-      el("p", { class: "muted small", text: "P = present (joined the active lecture and attempted at least one question), with the participation score out of 10; A = absent. Hover a cell for join and last-seen times and the IP address." }));
+      el("p", { class: "muted small", text: "P = present (joined the active lecture and attempted at least one question), with the participation score out of 10; A = absent. Hover a cell for join and last-seen times and the IP address. Guests (iitgoa accounts not on the roster) are listed at the end by email." }));
   }
 
   async function downloadCsv() {
@@ -202,8 +204,8 @@
     pageStart("att");
     const sheet = sheetCache || await api("GET", "/api/admin/attendance");
     const st = sheet.students.find((s) => s.email === email);
-    if (!st) return $("view").append(el("p", { class: "err", text: "Not on the roster: " + email }));
-    $("view").append(el("h2", { text: `${st.name} (${st.roll})` }),
+    if (!st) return $("view").append(el("p", { class: "err", text: "Not on the roster and never joined: " + email }));
+    $("view").append(el("h2", { text: st.guest ? `${st.name} (guest, not on the roster)` : `${st.name} (${st.roll})` }),
       el("p", { class: "muted", text: `${st.email} · attended ${st.attended} of ${sheet.lectures.length} · average participation score ${fmt(st.average_score)} / 10` }),
       el("div", { class: "tablewrap" }, el("table", { class: "grid" },
         el("thead", {}, el("tr", {}, ["Lecture", "Date", "Present", "Score", "Solved", "Joined", "Last seen", "IP"].map((h) => el("th", { text: h })))),

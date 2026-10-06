@@ -194,6 +194,8 @@ table.att th.lcol { text-align: center; min-width: 92px; }
 td.cell { text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
 td.cell.p { background: #e5f3ea; color: #1f5a33; font-weight: 600; }
 td.cell.a { color: var(--muted); }
+table.att tr.guestrow td.sticky { font-style: italic; color: var(--muted); }
+table.att tr.guestrow:first-of-type td, table.att tr:not(.guestrow) + tr.guestrow td { border-top: 2px solid #b8c0c8; }
 
 @media (max-width: 600px) {
   .dh-title { font-size: 18px; }

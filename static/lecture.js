@@ -222,6 +222,7 @@ function showSignIn(message) {
   view.replaceChildren(el("section", { class: "card center" },
     el("h1", { text: "CS101 Lectures" }),
     el("p", { text: "Sign in with your iitgoa.ac.in Google account to follow today's lecture and practise past ones." }),
+    el("p", { class: "muted", text: "Use your institute account (name@iitgoa.ac.in), not a personal Gmail account." }),
     box,
     message ? el("p", { class: "err", text: message }) : null));
   if (CFG.devEmail) {
@@ -233,7 +234,7 @@ function showSignIn(message) {
   }
   const render = () => {
     if (!window.google || !google.accounts) return setTimeout(render, 200);
-    google.accounts.id.initialize({ client_id: CFG.clientId, callback: onGoogle, ux_mode: "popup" });
+    google.accounts.id.initialize({ client_id: CFG.clientId, callback: onGoogle, ux_mode: "popup", hd: "iitgoa.ac.in" });
     google.accounts.id.renderButton(box, { theme: "outline", size: "large", text: "signin_with", shape: "pill" });
   };
   render();
