@@ -39,6 +39,11 @@ input[type=text], textarea {
 .lbar-user { font-size: 13px; color: #b9c3cd; margin-left: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
 .banner { background: #fff4d6; border-bottom: 1px solid #ecd28c; color: #6b4e00; padding: 8px 16px; font-size: 14px; }
 
+.lbar-link { color: var(--accent); margin-right: 10px; text-decoration: none; font-weight: 600; }
+.instr { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--rule); }
+.instr .reveal { color: #8a3b12; border-style: dashed; }
+.answerbox { margin-top: 8px; padding: 8px 10px; background: #fff8e6; border-radius: 6px; }
+
 /* layout */
 .view { max-width: 780px; margin: 0 auto; padding: 16px 14px 60px; }
 .card { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 20px; }
@@ -120,3 +125,84 @@ pre.err { background: #fbe7e5; padding: 8px 12px; border-radius: 6px; white-spac
   .card { padding: 16px; }
   .qcard { padding: 12px; }
 }
+
+/* ---------------- instructor pages ---------------- */
+.view.wide { max-width: 1200px; }
+.inav { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.inav a { padding: 6px 12px; border-radius: 6px; text-decoration: none; color: var(--action-dark); background: #e4eaf1; }
+.inav a.on { background: var(--action); color: #fff; }
+a.btn { display: inline-block; padding: 8px 14px; border: 1px solid var(--rule); border-radius: 6px; text-decoration: none; color: var(--ink); background: var(--panel); }
+a.btn.primary { background: var(--action); border-color: var(--action); color: #fff; }
+a.btn.small { padding: 4px 10px; font-size: 14px; }
+button.danger { background: var(--wrong); border-color: var(--wrong); color: #fff; }
+.small { font-size: 13px; }
+.activebox { background: #f1f9f4; border: 1px solid #9cd0ae; border-left: 5px solid var(--correct); border-radius: 8px; padding: 14px 16px; margin: 10px 0 18px; }
+.ab-title { font-size: 20px; font-weight: 700; color: var(--correct); }
+.ab-meta { color: var(--ink-soft); margin: 2px 0 8px; }
+.ab-pass, .dh-pass { display: flex; align-items: baseline; gap: 12px; }
+.ab-pass span, .dh-pass span { color: var(--ink-soft); }
+.ab-pass b, .dh-pass b.pw { font: 700 38px/1.1 var(--mono); letter-spacing: .04em; color: var(--ink); background: #fff; padding: 2px 14px; border-radius: 6px; border: 1px solid var(--rule); }
+table.grid { border-collapse: collapse; width: 100%; background: var(--panel); font-size: 14px; }
+table.grid th, table.grid td { border-bottom: 1px solid var(--rule); padding: 7px 8px; text-align: left; vertical-align: top; }
+table.grid th { background: #e8ecf0; font-weight: 600; }
+table.grid td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.grid tr.rowactive td { background: #f1f9f4; }
+.bt { font-weight: 600; }
+.heldlist { display: flex; flex-direction: column; gap: 2px; }
+a.held { color: var(--action-dark); font-size: 13px; }
+td.acts { white-space: nowrap; }
+td.acts > * { margin: 0 4px 4px 0; }
+
+/* dashboard */
+.dhead { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; }
+.dh-left { flex: 1; min-width: 220px; }
+.dh-title { font-size: 22px; font-weight: 700; }
+.tiles { display: flex; gap: 10px; }
+.tile { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 14px; min-width: 110px; background: #fbfcfd; }
+.t-label { font-size: 13px; color: var(--ink-soft); }
+.t-value { font: 700 30px/1.1 var(--sans); font-variant-numeric: tabular-nums; color: var(--ink); }
+.t-sub { font-size: 12px; color: var(--muted); }
+.toggle { font-size: 14px; color: var(--ink-soft); display: flex; align-items: center; gap: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--ink-soft); margin-bottom: 6px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.sw.right, .seg.right { background: #2e7a48; }
+.sw.wrong, .seg.wrong { background: #b3322a; }
+.sw.none, .seg.none { background: #d3d9df; }
+.qrow { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
+.qr-head { display: flex; gap: 10px; align-items: baseline; }
+.qr-text { color: var(--ink-soft); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; }
+.qr-bar { display: flex; align-items: center; gap: 12px; margin: 6px 0 4px; }
+.bar { flex: 1; display: flex; gap: 2px; height: 16px; }
+.seg { height: 100%; border-radius: 4px; min-width: 4px; }
+.counts { font: 600 15px/1 var(--mono); white-space: pre; color: var(--ink); min-width: 150px; }
+details summary { cursor: pointer; font-size: 14px; color: var(--action-dark); }
+ol.first { margin: 6px 0 0; padding-left: 24px; font-size: 14px; columns: 2; }
+ol.first li.top { font-weight: 700; }
+table.lb tr.top td { font-weight: 700; }
+.guests { margin-top: 14px; }
+
+/* attendance sheet */
+.filter { max-width: 280px; font-family: var(--sans); }
+.sheet { max-height: 75vh; overflow: auto; border: 1px solid var(--rule); border-radius: 6px; }
+table.att th { position: sticky; top: 0; z-index: 2; }
+table.att .sticky, table.att .sticky2 { position: sticky; background: var(--panel); z-index: 1; }
+table.att th.sticky, table.att th.sticky2 { z-index: 3; background: #e8ecf0; }
+table.att .sticky { left: 0; min-width: 80px; }
+table.att .sticky2 { left: 80px; min-width: 190px; }
+table.att th.lcol { text-align: center; min-width: 92px; }
+td.cell { text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.cell.p { background: #e5f3ea; color: #1f5a33; font-weight: 600; }
+td.cell.a { color: var(--muted); }
+
+@media (max-width: 600px) {
+  .dh-title { font-size: 18px; }
+  .ab-pass b, .dh-pass b.pw { font-size: 28px; }
+  .tiles { width: 100%; }
+  .tile { flex: 1; min-width: 0; padding: 6px 8px; }
+  .t-value { font-size: 24px; }
+  .counts { min-width: 0; font-size: 13px; }
+  ol.first { columns: 1; }
+}
+
+table.grid a, table.att a { color: var(--action-dark); }

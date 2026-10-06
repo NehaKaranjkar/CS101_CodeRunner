@@ -45,7 +45,22 @@ const fmt = (x) => String(Math.round(x * 100) / 100);
 
 class ApiError extends Error { constructor(status, msg) { super(msg); this.status = status; } }
 
+const RETRY = /^\/api\/(join|answer|check|lectures|bundle|me)\b/;
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Retries (up to 2 more times) when the network or the server hiccups: answers are safe to resend.
 async function api(method, path, body) {
+  for (let attempt = 0; ; attempt++) {
+    try { return await apiOnce(method, path, body); }
+    catch (e) {
+      const transient = e.status === 0 || e.status >= 500;
+      if (!transient || attempt >= 2 || !(method === "GET" || RETRY.test(path))) throw e;
+      await pause(700 * (attempt + 1));
+    }
+  }
+}
+
+async function apiOnce(method, path, body) {
   const headers = { "Content-Type": "application/json" };
   const tok = store.get(KEY.token);
   if (tok) headers.Authorization = "Bearer " + tok;
@@ -171,6 +186,7 @@ function setBar() {
   const me = state.me, lec = state.lec;
   $("bar-user").hidden = !me;
   if (me) $("bar-email").textContent = me.email;
+  $("bar-instructor").hidden = !(me && me.instructor);
   $("bar-lec").hidden = !lec;
   $("bar-score").hidden = !lec;
   if (lec) {
@@ -252,11 +268,14 @@ async function showList() {
     return el("li", {}, el("a", { class: "lcard " + l.state, href: "#/lec/" + encodeURIComponent(l.id) }, ...inner,
       l.state === "active" ? el("span", { class: "badge", text: "Now" }) : null));
   };
-  $("view").replaceChildren(
+  const parts = [   // (replaceChildren would print a null as the text "null", so filter them out)
     active.length ? el("section", {}, el("h2", { text: "Today" }), el("ul", { class: "llist" }, active.map(card))) : null,
-    el("section", {}, el("h2", { text: "Past lectures (practice)" }),
-      past.length ? el("ul", { class: "llist" }, past.map(card)) : el("p", { class: "muted", text: "None yet." })),
-    future.length ? el("section", {}, el("h2", { text: "Coming up" }), el("ul", { class: "llist" }, future.map(card))) : null);
+    !active.length && !past.length && !future.length
+      ? el("p", { class: "muted", text: "No lectures yet. They will appear here once the course starts using this page." }) : null,
+    past.length ? el("section", {}, el("h2", { text: "Past lectures (practice)" }), el("ul", { class: "llist" }, past.map(card))) : null,
+    future.length ? el("section", {}, el("h2", { text: "Coming up" }), el("ul", { class: "llist" }, future.map(card))) : null,
+  ];
+  $("view").replaceChildren(...parts.filter(Boolean));
 }
 
 /* ------------------------------------------------------------------ opening a lecture */
@@ -306,7 +325,7 @@ async function enterActive(bundleId, password, joinKey) {
   state.me.on_roster = r.on_roster;
   state.lec = { active: true, bundle: bundleId, session: r.session, lec_no: r.lec_no, title: r.title, date: r.date, day: r.day,
     content: r.content, answers: saved.answers, status: r.results || {}, key };
-  renderLecture();
+  await renderLecture();
 }
 
 function saveProgress() {
@@ -322,8 +341,11 @@ function applyServerResults(r) {
 
 /* ------------------------------------------------------------------ the lecture page */
 
-function renderLecture() {
+async function renderLecture() {
   const lec = state.lec;
+  if (state.me.instructor && !lec.full) {       // answer keys and solutions, for "Show answer" (instructor only)
+    try { lec.full = (await api("GET", "/api/admin/bundle?id=" + encodeURIComponent(lec.bundle))).content; } catch (e) { lec.full = null; }
+  }
   setBar();
   const view = $("view");
   view.replaceChildren();
@@ -436,7 +458,28 @@ function questionCard(q, n) {
     card.append(codeArea(q, feedback, report, showStatus));
     card.append(feedback);
   }
+  if (lec.full) card.append(answerBox(q, card));
   return card;
+}
+
+/* ------------------------------------------------------------------ instructor: show the answer */
+
+function answerBox(q, card) {
+  const full = questions(state.lec.full).find((x) => x.qid === q.qid) || {};
+  let shown;
+  if (q.type === "mcq") shown = el("p", { html: "Answer: " + (full.options || [])[full.answer] });
+  else if (q.type === "short") shown = el("p", { text: "Accepted: " + [].concat(full.answer).join("  /  ") });
+  else if (q.type === "predict") shown = el("pre", { class: "code", text: full.answer });
+  else if (q.type === "order") shown = el("pre", { class: "code", text: (full.answer || []).map((i) => (full.lines || [])[i]).join("\n") });
+  else shown = el("div", {}, el("pre", { class: "code", text: full.solution || "(no solution in the bundle)" }),
+    full.solution ? el("button", { class: "small", text: "Put it in the editor", onclick: () => {
+      const cmEl = card.querySelector(".CodeMirror"); if (cmEl) cmEl.CodeMirror.setValue(full.solution);
+    } }) : null);
+  const box = el("div", { class: "answerbox", hidden: true }, shown);
+  const btn = el("button", { class: "small reveal", text: "Show answer", onclick: () => {
+    box.hidden = !box.hidden; btn.textContent = box.hidden ? "Show answer" : "Hide answer";
+  } });
+  return el("div", { class: "instr" }, btn, box);
 }
 
 /* ------------------------------------------------------------------ code questions */
@@ -507,7 +550,8 @@ async function route() {
   try {
     if (!state.me) state.me = await api("GET", "/api/me");
     const m = location.hash.match(/^#\/lec\/(.+)$/);
-    if (m) await openLecture(decodeURIComponent(m[1]));
+    if (location.hash.startsWith("#/instructor") && state.me.instructor && window.Instructor) await window.Instructor.route();
+    else if (m) await openLecture(decodeURIComponent(m[1]));
     else await showList();
   } catch (e) {
     if (e.status === 401) return showSignIn("Please sign in again.");
