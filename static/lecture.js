@@ -459,7 +459,7 @@ async function enterLive(password, g) {
   state.me.on_roster = r.on_roster;
   const old = state.lec && state.lec.mode === "live" && state.lec.session === r.session ? state.lec : null;
   state.lec = { mode: "live", session: r.session, lec_no: r.lec_no, title: r.title, date: r.date, day: r.day, password,
-    parts: r.parts.map((p) => ({ id: p.id, number: p.number, title: p.title, content: p.content, full: old && (old.parts.find((x) => x.id === p.id) || {}).full })),
+    parts: r.parts.map((p) => ({ id: p.id, number: p.number, title: p.title, content: p.content, full: old ? (old.parts.find((x) => x.id === p.id) || {}).full : undefined })),
     open: new Set(r.opened), submitOpen: r.submit_open, submittedAt: r.submitted_at,
     answers: saved.answers || {}, status, cur: old ? old.cur : saved.cur, key };
   saveProgress();
