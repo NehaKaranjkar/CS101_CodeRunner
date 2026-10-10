@@ -268,6 +268,7 @@ function setBar() {
   $("bar-user").hidden = !me;
   if (me) $("bar-email").textContent = me.email;
   $("bar-instructor").hidden = !(me && me.instructor);
+  $("bar-marks").hidden = !(me && me.on_roster);
   $("bar-guest").hidden = !(me && !me.instructor && !me.on_roster);
   $("bar-lec").hidden = !lec;
   $("bar-score").hidden = !lec;
@@ -374,7 +375,8 @@ async function showList() {
     el("span", { class: "lm", text: `${r.now.day} ${r.now.date} · now` }), el("span", { class: "badge", text: "Now" }))) : null;
   const parts = [   // (replaceChildren would print a null as the text "null", so filter them out)
     el("header", { class: "welcome" }, el("h1", { text: r.course || "CS101" }),
-      el("p", { text: "Welcome to the class!" })),
+      el("p", { text: "Welcome to the class!" }),
+      state.me.on_roster ? el("a", { class: "btn", href: "#/marks", text: "My marks and attendance" }) : null),
     now ? el("section", {}, el("h2", { text: "Today" }), el("ul", { class: "llist" }, now)) : null,
     !now && !past.length && !future.length
       ? el("p", { class: "muted", text: "No lectures yet. They will appear here once the course starts using this page." }) : null,
@@ -916,6 +918,58 @@ function resultsTable(r) {
     el("tbody", {}, body)));
 }
 
+/* ------------------------------------------------------------------ my marks (only the student's own) */
+
+async function showMarks() {
+  const g = state.gen;
+  state.lec = null;
+  const r = await api("GET", "/api/my-marks");
+  if (!fresh(g)) return;
+  setBar();
+  $("view").className = "view";
+  const val = (x) => (x === null || x === undefined ? "-" : fmt(x));
+  const parts = [el("header", { class: "welcome" }, el("h1", { text: "My marks" }),
+    el("p", { text: `${r.name} (${r.roll})` }), r.updated ? el("p", { class: "muted small", text: `Marks updated ${r.updated}.` }) : null)];
+  const cats = new Map(r.categories.map((c) => [c.id, c]));
+  const groups = [...new Set(r.items.map((it) => it.category))];
+  for (const cid of groups) {
+    const c = cats.get(cid) || { name: cid, dropped: [] };
+    const rows = r.items.filter((it) => it.category === cid).map((it) => {
+      const src = it.parts.map((p) => p.src).filter(Boolean);
+      const rem = it.parts.map((p) => p.rem).filter(Boolean);
+      const dropped = (c.dropped || []).includes(it.id);
+      return el("tr", { class: dropped ? "dropped" : "" },
+        el("td", {}, el("div", { text: it.title }),
+          it.parts.length > 1 ? el("div", { class: "muted small", text: it.parts.map((p) => `${p.title}: ${val(p.m)} / ${p.max}`).join(" · ") }) : null,
+          src.length ? el("div", { class: "muted small", text: src.map((s) => (s === "late" ? "late submission" : s + " batch")).join(", ") }) : null,
+          rem.length ? el("div", { class: "muted small", text: rem.join("; ") }) : null,
+          dropped ? el("div", { class: "small dropnote", text: "lowest lab: dropped (best of the rest count)" }) : null),
+        el("td", { class: "num", text: it.graded ? `${fmt(it.marks)} / ${it.max}` : `- / ${it.max}` }),
+        el("td", { class: "num muted", text: it.graded ? `${it.percent}%` : "" }));
+    });
+    parts.push(el("section", { class: "mcat" },
+      el("h2", {}, c.name, c.percent !== undefined ? el("span", { class: "mpct", text: ` ${c.percent}%` + (c.note ? ` (${c.note})` : "") }) : null),
+      el("div", { class: "tablewrap" }, el("table", { class: "grid marks" }, el("tbody", {}, rows)))));
+  }
+  if (!r.items.length) parts.push(el("p", { class: "muted", text: "No marks have been uploaded yet." }));
+  const lp = r.categories.find((c) => c.id === "lectures");
+  const a = r.attendance;
+  parts.push(el("section", { class: "mcat" },
+    el("h2", { text: "Lectures" }),
+    el("p", { text: `Attendance: ${a.attended} of ${a.held} lectures (${a.percent}%)` + (a.exempt ? " · exempt from the attendance rule (full marks in the midsem)" : "") }),
+    el("p", { text: `Lecture score: ${fmt(r.lectures.score)} of ${r.lectures.possible} questions` + (lp ? ` (${lp.percent}%)` : "") }),
+    el("details", {}, el("summary", { text: "Lecture by lecture" }),
+      el("div", { class: "tablewrap" }, el("table", { class: "grid" },
+        el("thead", {}, el("tr", {}, ["Lec", "Date", "", "Score", "Topics"].map((h) => el("th", { text: h })))),
+        el("tbody", {}, r.lecture_list.slice().reverse().map((l) => el("tr", {},
+          el("td", { class: "num", text: String(l.lec_no) }), el("td", { text: `${l.day} ${l.date}` }),
+          el("td", { class: "cell " + (l.present ? "p" : "a"), text: l.present ? "P" : "A" }),
+          el("td", { class: "num", text: l.manual ? "" : `${fmt(l.score)} / ${l.out_of}` }),
+          el("td", { class: "small", text: l.manual ? "(attendance on paper)" : l.topics })))))))));
+  parts.push(el("p", { class: "muted small", text: "Only you can see this page. If something looks wrong, please contact the instructor." }));
+  $("view").replaceChildren(...parts.filter(Boolean));
+}
+
 /* ------------------------------------------------------------------ routing */
 
 async function route() {
@@ -930,6 +984,7 @@ async function route() {
     const m = location.hash.match(/^#\/lec\/(.+)$/);
     if (location.hash.startsWith("#/instructor") && state.me.instructor && window.Instructor) await window.Instructor.route(g);
     else if (location.hash === "#/now") await openNow();
+    else if (location.hash === "#/marks") await showMarks();
     else if (m) await openPractice(decodeURIComponent(m[1]));
     else await showList();
   } catch (e) {

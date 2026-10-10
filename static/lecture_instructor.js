@@ -4,7 +4,8 @@
      #/instructor                 Lectures: Start / Close, password, add a topic, Mark as taught, Preview
      #/instructor/live/<session>  dashboard of one lecture: open questions, Final submit, bars, and (with
                                   "Details", off by default, for the instructor's own device) names
-     #/instructor/attendance      Attendance: the sheet (+ CSV download)
+     #/instructor/attendance      Attendance: the sheet (+ CSV download), manual lectures included
+     #/instructor/marks           Marks: the gradebook (items, categories, weighted total, attendance flags)
      #/instructor/student/<email> one student's attendance
      #/instructor/questions       Questions: the active lecture with "Open for students" and "Show answer"
      #/instructor/preview/<id>    any bundle with "Show answer"
@@ -20,6 +21,7 @@
   function nav(current) {
     const link = (href, text, key) => el("a", { href, class: current === key ? "on" : "", target: "_blank", rel: "noopener", text });
     return el("nav", { class: "inav" }, link("#/instructor", "Lectures", "home"), link("#/instructor/attendance", "Attendance", "att"),
+      link("#/instructor/marks", "Marks", "marks"),
       link("#/instructor/questions", "Questions", "questions"));
   }
 
@@ -226,8 +228,9 @@
       el("span", { class: "muted", text: `${nRoster} students${nGuests ? ` + ${plural(nGuests, "guest")}` : ""} · ${sheet.lectures.length} lectures recorded (Lec ${sheet.lectures.map((l) => l.lec_no).join(", ") || "none yet"})` })));
     const L = sheet.lectures;
     const head = el("tr", {}, el("th", { class: "sticky", text: "Roll" }), el("th", { class: "sticky2", text: "Name" }),
-      L.map((l) => el("th", { class: "lcol", title: l.title }, el("a", { href: `#/instructor/live/${l.session}`, target: "_blank", rel: "noopener", text: `Lec ${l.lec_no}` }),
-        el("div", { class: "small muted", text: `${l.day} ${l.date}` }), el("div", { class: "small", text: `${l.present} present · ${l.questions} q` }),
+      L.map((l) => el("th", { class: "lcol" + (l.manual ? " manual" : ""), title: l.title }, l.manual ? el("span", { text: `Lec ${l.lec_no}` })
+        : el("a", { href: `#/instructor/live/${l.session}`, target: "_blank", rel: "noopener", text: `Lec ${l.lec_no}` }),
+        el("div", { class: "small muted", text: `${l.day} ${l.date}` }), el("div", { class: "small", text: l.manual ? `${l.present} present · paper` : `${l.present} present · ${l.questions} q` }),
         l.guests ? el("div", { class: "small muted", text: `+ ${plural(l.guests, "guest")}` }) : null)),
       el("th", { text: "Attended" }), el("th", { text: "Lecture score" }));
     const body = el("tbody");
@@ -237,14 +240,15 @@
         el("tr", { class: st.guest ? "guestrow" : "" }, el("td", { class: "sticky num", text: st.guest ? "guest" : st.roll }),
           el("td", { class: "sticky2" }, el("a", { href: `#/instructor/student/${encodeURIComponent(st.email)}`, text: st.guest ? st.email : st.name, title: st.guest ? st.name : st.email })),
           st.cells.map((c) => el("td", { class: "cell " + (c.present ? "p" : "a"),
-            title: c.joined ? `joined ${c.joined_at}, last ${c.last_seen}${c.submitted ? `, submitted ${c.submitted}` : ", not submitted"}, IP ${c.ip}, solved ${c.solved}` : "did not join",
-            text: c.present ? `P ${fmt(c.score)}/${c.out_of}` : "A" })),
+            title: c.manual ? "paper attendance (before the lecture system)" : c.joined ? `joined ${c.joined_at}, last ${c.last_seen}${c.submitted ? `, submitted ${c.submitted}` : ", not submitted"}, IP ${c.ip}, solved ${c.solved}`
+              : c.manual_only ? "present in the paper record only" : "did not join",
+            text: c.manual ? (c.present ? "P" : "A") : c.manual_only ? "P*" : c.present ? `P ${fmt(c.score)}/${c.out_of}` : "A" })),
           el("td", { class: "num", text: `${st.attended}/${L.length}` }), el("td", { class: "num", text: `${fmt(st.total_score)}/${st.total_possible}` }))));
     };
     filter.addEventListener("input", draw);
     draw();
     view.append(el("div", { class: "tablewrap sheet" }, el("table", { class: "grid att" }, el("thead", {}, head), body)),
-      el("p", { class: "muted small", text: "P = present (answered at least one question before the lecture closed), with the score (penalties applied) out of the questions opened; A = absent. Hover a cell for join, last-seen and submit times and the IP address. Guests (iitgoa accounts not on the roster) are listed at the end by email." }));
+      el("p", { class: "muted small", text: "P = present (answered at least one question before the lecture closed), with the score (penalties applied) out of the questions opened; A = absent; P* = present in the paper record only. Lectures marked \"paper\" were before the lecture system. Hover a cell for join, last-seen and submit times and the IP address. Guests (iitgoa accounts not on the roster) are listed at the end by email." }));
   }
 
   async function downloadCsv() {
@@ -266,11 +270,64 @@
         el("thead", {}, el("tr", {}, ["Lecture", "Date", "Present", "Score", "Solved", "Joined", "Last seen", "Submitted", "IP"].map((h) => el("th", { text: h })))),
         el("tbody", {}, sheet.lectures.map((l, i) => {
           const c = st.cells[i];
-          return el("tr", {}, el("td", {}, el("a", { href: `#/instructor/live/${l.session}`, text: `Lec ${l.lec_no}: ${l.title}` })),
+          return el("tr", {}, el("td", {}, l.manual ? `Lec ${l.lec_no} (paper)` : el("a", { href: `#/instructor/live/${l.session}`, text: `Lec ${l.lec_no}: ${l.title}` })),
             el("td", { text: `${l.day} ${l.date}` }), el("td", { class: "cell " + (c.present ? "p" : "a"), text: c.present ? "P" : "A" }),
             el("td", { class: "num", text: `${fmt(c.score)}/${c.out_of}` }), el("td", { class: "num", text: String(c.solved) }),
             el("td", { text: c.joined_at }), el("td", { text: c.last_seen }), el("td", { text: c.submitted }), el("td", { class: "small", text: c.ip }));
         })))));
+  }
+
+  /* ---------------------------------------------------------------- marks (gradebook) */
+  async function marks(g) {
+    pageStart("marks");
+    const ms = await api("GET", "/api/admin/marks");
+    if (!fresh(g)) return;
+    const view = $("view");
+    if (!ms.items.length) return view.append(el("p", { class: "muted", text: "No gradebook uploaded yet (tools/marks_upload.py)." }));
+    const filter = el("input", { type: "text", placeholder: "Filter by name or roll number", class: "filter" });
+    const dl = el("button", { class: "primary", text: "Download CSV", onclick: async () => {
+      const r = await fetch(CFG.backend + "/api/admin/marks.csv", { headers: { Authorization: "Bearer " + store.get("lec:token") } });
+      if (!r.ok) return alert("Download failed.");
+      const a = el("a", { href: URL.createObjectURL(await r.blob()), download: `marks_${ms.offering}.csv` });
+      document.body.append(a); a.click(); a.remove();
+    } });
+    const low = ms.rows.filter((r) => r.attendance.low).length;
+    view.append(el("div", { class: "actions" }, filter, dl,
+      el("span", { class: "muted", text: `${ms.rows.length} students · uploaded ${ms.uploaded} · ${low} below ${ms.rows[0] ? ms.rows[0].attendance.min_percent : 80}% attendance (not exempt)` })));
+    const cats = ms.categories.filter((c) => ms.rows.some((r) => r.categories.some((x) => x.id === c.id)));
+    const cols = [
+      ["Roll", (r) => r.roll, "sticky"], ["Name", (r) => r.name, "sticky2"],
+      ...ms.items.map((it) => [it.title.split(":")[0], (r) => { const x = r.items.find((i) => i.id === it.id); return x.graded ? x.marks : -1; }, "num", it]),
+      ...cats.map((c) => [`${c.name} (${c.weight})`, (r) => { const x = r.categories.find((y) => y.id === c.id); return x ? x.points : 0; }, "num cat", c]),
+      ["Total", (r) => r.total, "num total"], ["Att. %", (r) => r.attendance.percent, "num"],
+    ];
+    let sortCol = 0, dir = 1;
+    const body = el("tbody");
+    const head = el("tr", {}, cols.map((c, i) => el("th", { class: (c[2] || "") + " sortable", title: c[3] && c[3].parts ? `${c[3].title} (out of ${c[3].parts.reduce((a, p) => a + p.max, 0)})` : "",
+      text: c[0], onclick: () => { dir = sortCol === i ? -dir : (i > 1 ? -1 : 1); sortCol = i; draw(); } })));
+    const draw = () => {
+      const f = filter.value.trim().toLowerCase();
+      const rows = ms.rows.filter((r) => !f || r.name.toLowerCase().includes(f) || r.roll.includes(f))
+        .sort((a, b) => { const x = cols[sortCol][1](a), y = cols[sortCol][1](b); return (x < y ? -1 : x > y ? 1 : 0) * dir; });
+      body.replaceChildren(...rows.map((r) => el("tr", {},
+        el("td", { class: "sticky num", text: r.roll }), el("td", { class: "sticky2", text: r.name, title: r.email }),
+        ms.items.map((it) => {
+          const x = r.items.find((i) => i.id === it.id);
+          const cat = r.categories.find((c) => c.id === it.category);
+          const src = x.parts.map((p) => p.src).filter(Boolean).join("/");
+          return el("td", { class: "num" + (cat && cat.dropped.includes(it.id) ? " dropped" : "") + (x.graded ? "" : " missing"),
+            title: x.parts.map((p) => `${p.title}: ${p.m ?? "-"} / ${p.max}${p.src ? " (" + p.src + ")" : ""}${p.rem ? " - " + p.rem : ""}`).join("\n"),
+            text: (x.graded ? fmt(x.marks) : "-") + (src ? " " + src.split("/").map((v) => (v === "late" ? "L" : v[0].toUpperCase())).join("") : "") });
+        }),
+        cats.map((c) => { const x = r.categories.find((y) => y.id === c.id); return el("td", { class: "num cat", title: x ? `${x.percent}%${x.note ? " (" + x.note + ")" : ""}` : "", text: x ? fmt(x.points) : "" }); }),
+        el("td", { class: "num total", text: `${fmt(r.total)}`, title: `out of ${r.available} (categories with marks so far)` }),
+        el("td", { class: "num " + (r.attendance.exempt ? "exempt" : r.attendance.low ? "low" : ""), title: `${r.attendance.attended} of ${r.attendance.held} lectures` + (r.attendance.exempt ? " (exempt: full marks in the midsem)" : ""),
+          text: `${r.attendance.percent}` + (r.attendance.exempt ? " ex" : "") }))));
+    };
+    filter.addEventListener("input", draw);
+    draw();
+    view.append(el("div", { class: "tablewrap sheet" }, el("table", { class: "grid att marksheet" }, el("thead", {}, head), body)),
+      el("p", { class: "muted small", text: `Item columns: marks (hover for parts, batch and remarks; M / T / L = Mon batch, Tue batch, late submission); struck out = the dropped lowest lab. Category columns: weighted points (hover for the percentage). Total: out of ${ms.rows[0] ? ms.rows[0].available : ""} (the weights of categories with marks so far). Att. %: red = below the minimum; "ex" = exempt. Click a heading to sort. Never show this page on the projector.` }));
   }
 
   /* ---------------------------------------------------------------- preview a bundle (any state) */
@@ -292,6 +349,7 @@
     let m;
     if ((m = h.match(/^#\/instructor\/live\/(\d+)$/))) return live(Number(m[1]), g);
     if (h === "#/instructor/attendance") return attendance(g);
+    if (h === "#/instructor/marks") return marks(g);
     if (h === "#/instructor/questions") return questionsPage(g);
     if ((m = h.match(/^#\/instructor\/student\/(.+)$/))) return student(decodeURIComponent(m[1]), g);
     if ((m = h.match(/^#\/instructor\/preview\/(.+)$/))) return preview(decodeURIComponent(m[1]), g);

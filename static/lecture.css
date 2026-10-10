@@ -303,3 +303,21 @@ h3.dpart { font-size: 16px; margin: 18px 0 4px; color: var(--action-dark); }
 .lists.bottom { margin-top: 16px; }
 p.names { margin: 4px 0 6px 16px; font-size: 14px; }
 .legend .toggle { margin-left: auto; }
+
+/* ---------------- marks (2026-10-11) ---------------- */
+.welcome .btn { margin-top: 10px; }
+.mcat h2 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; color: var(--ink); }
+.mpct { font-size: 15px; font-weight: 600; color: var(--action-dark); }
+table.marks td { vertical-align: top; }
+table.marks td.num { white-space: nowrap; }
+table.marks tr.dropped td { color: var(--muted); }
+.dropnote { color: #8a3b12; }
+table.marksheet td.dropped { text-decoration: line-through; color: var(--muted); }
+table.marksheet td.missing { color: var(--muted); }
+table.marksheet td.cat { background: #f4f7fb; }
+table.marksheet td.total { font-weight: 700; background: #eef3fa; }
+table.marksheet td.low { background: #fbe7e5; color: var(--wrong); font-weight: 600; }
+table.marksheet td.exempt { color: var(--correct); }
+table.marksheet th.sortable { cursor: pointer; white-space: nowrap; }
+table.att th.lcol.manual { background: #eef0f2; }
+table.marksheet td { white-space: nowrap; }
