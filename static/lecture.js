@@ -1,11 +1,13 @@
 "use strict";
 /* lecture.js - student page of the CS101 lecture system (see docs/lecture_support_system.md).
 
-   Sign in with Google (iitgoa.ac.in), list the lectures (active / past / future), join the active
-   lecture with its password, answer the questions. Every question is checked here, in the browser
+   Sign in with Google (iitgoa.ac.in), list the lectures (today's / past / future), join today's
+   lecture with its password, answer the questions one per page. In the live lecture the instructor opens
+   the questions one by one (the page polls for them) and finally opens Final submit; a lecture may cover
+   more than one topic (bundle). Every question is checked here, in the browser
    (code runs in Pyodide); the answer keys come with the questions. Each Check of a changed answer is a
    try, and as in the labs every try after the first failed one costs a penalty (default "10, 20, ...").
-   In the ACTIVE lecture each Check is reported to the backend in the background (tries, solved or not);
+   In the live lecture each Check is reported to the backend in the background (tries, solved or not);
    reports that cannot be sent are kept and re-sent. PAST lectures are practice: nothing is reported.
 
    Testing locally: ?backend=http://localhost:8787&dev=someone@iitgoa.ac.in (a localhost backend with
@@ -20,7 +22,7 @@ const CFG = {
 };
 const TEST_TIMEOUT = 3, PLOT_TIMEOUT = 10;          // seconds per test (same as the practice site)
 const DEFAULT_PENALTY = "10, 20, ...";              // same default as the backend
-const KEY = { token: "lec:token", outbox: "lec:outbox" };
+const KEY = { token: "lec:token", outbox: "lec:outbox", join: "lec:join" };
 
 const $ = (id) => document.getElementById(id);
 const el = (tag, attrs = {}, ...kids) => {
@@ -48,7 +50,7 @@ const fmt1 = (x) => (Math.round(x * 10) / 10).toFixed(1);
 
 class ApiError extends Error { constructor(status, msg) { super(msg); this.status = status; } }
 
-const RETRY = /^\/api\/(join|report|lectures|bundle|me)\b/;
+const RETRY = /^\/api\/(join|report|lectures|bundle|me|state|submit)\b/;
 const pause = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // Retries (up to 2 more times) when the network or the server hiccups: reports are safe to resend.
@@ -81,8 +83,9 @@ async function apiOnce(method, path, body) {
 
 /* Reports of Checks in the active lecture: queued, sent in the background, re-sent after network
    trouble. Only the latest report per question is kept (the server keeps the maximum of the tries). */
+const sameReport = (a, b) => a.session === b.session && (a.bundle || "") === (b.bundle || "") && a.qid === b.qid;
 function queueReport(item) {
-  const box = store.get(KEY.outbox, []).filter((x) => !(x.session === item.session && x.qid === item.qid));
+  const box = store.get(KEY.outbox, []).filter((x) => !(sameReport(x, item)));
   box.push(item);
   store.set(KEY.outbox, box);
   flushOutbox();
@@ -97,7 +100,7 @@ async function flushOutbox() {
       try { await api("POST", "/api/report", item); }
       catch (e) { keep = e.status === 0 || e.status >= 500; }      // a closed lecture (409) is dropped
       const box = store.get(KEY.outbox, []);
-      const i = box.findIndex((x) => x.session === item.session && x.qid === item.qid);
+      const i = box.findIndex((x) => sameReport(x, item));
       if (i >= 0 && !keep && box[i].tries === item.tries && box[i].correct === item.correct) { box.splice(i, 1); store.set(KEY.outbox, box); }
       if (keep) break;                                                   // still offline: try again later
     }
@@ -213,6 +216,7 @@ function penaltyPct(regime, failedBefore) {         // same as common.penalty_pc
   return Math.min(Math.max(p, 0), 100);
 }
 
+
 /* ------------------------------------------------------------------ state and top bar */
 
 const state = { me: null, lec: null, gen: 0 };   // lec: the open lecture; gen: bumped on every page change
@@ -220,11 +224,43 @@ const fresh = (g) => g === state.gen;            // false once the user has move
 
 const questions = (content) => (content.items || []).filter((it) => it.kind === "question");
 const fullTitle = (x) => (x.number ? x.number + " " : "") + x.title;
+const isInstr = () => !!(state.me && state.me.instructor);
+
+/* The open lecture page:
+     lec = { mode: "live" | "practice" | "preview", session, lec_no, day, date, title, password,
+             parts: [{ id, number, title, content, regime, full }],   one per bundle (live: one or more)
+             qs: [{ uid, part, bundle, qid, no, q, pre, post }],       every question, in order, with the
+                                                                      teaching text before (and after the last) it
+             open: Set of uids students may open (live: opened by the instructor; else all),
+             submitOpen, submittedAt, closed, cur (uid shown), answers and status (by uid), key }
+   A question is identified by "<bundle>/<qid>" (question ids repeat across bundles). */
+
+function buildQuestions(parts) {
+  const qs = [];
+  parts.forEach((p, pi) => {
+    let texts = [], seq = 0, last = null;
+    for (const it of p.content.items || []) {
+      if (it.kind !== "question") { texts.push(it); continue; }
+      seq++;
+      last = { uid: p.id + "/" + it.qid, part: pi, bundle: p.id, qid: it.qid, no: it.no || seq, q: it, pre: texts, post: [] };
+      qs.push(last);
+      texts = [];
+    }
+    if (last) last.post = texts;
+  });
+  return qs;
+}
+
+const entry = (uid) => state.lec.qs.find((e) => e.uid === uid);
+const label = (e) => (state.lec.parts.length > 1 && state.lec.parts[e.part].number ? state.lec.parts[e.part].number + " " : "") + "Q" + e.no;
+const openable = (e) => state.lec.mode !== "live" || state.lec.open.has(e.uid) || isInstr();
+const counted = (lec) => lec.qs.filter((e) => lec.mode !== "live" || lec.open.has(e.uid));
+const locked = (lec) => lec.mode === "live" && !isInstr() && !!(lec.submittedAt || lec.closed);
 
 function lecScore(lec) {
-  const qs = questions(lec.content);
-  const sum = qs.reduce((a, q) => a + ((lec.status[q.qid] || {}).correct ? (lec.status[q.qid].score ?? 1) : 0), 0);
-  return { score: qs.length ? 10 * sum / qs.length : 0, solved: qs.filter((q) => (lec.status[q.qid] || {}).correct).length, n: qs.length };
+  const qs = counted(lec);
+  const sum = qs.reduce((a, e) => a + ((lec.status[e.uid] || {}).correct ? (lec.status[e.uid].score ?? 1) : 0), 0);
+  return { score: sum, solved: qs.filter((e) => (lec.status[e.uid] || {}).correct).length, n: qs.length };
 }
 
 function setBar() {
@@ -236,10 +272,11 @@ function setBar() {
   $("bar-lec").hidden = !lec;
   $("bar-score").hidden = !lec;
   if (lec) {
-    $("bar-title").textContent = (lec.active ? `Lec ${lec.lec_no} · ` : "") + fullTitle(lec);
-    $("bar-date").textContent = lec.active ? `${lec.day} ${lec.date}` : lec.preview ? "Preview (not recorded)" : "Practice (not recorded)";
+    const live = lec.mode === "live";
+    $("bar-title").textContent = live ? `Lec ${lec.lec_no} · ${lec.title}` : fullTitle(lec.parts[0]);
+    $("bar-date").textContent = live ? `${lec.day} ${lec.date}` : lec.mode === "preview" ? "Preview (not recorded)" : "Practice (not recorded)";
     const s = lecScore(lec);
-    $("bar-score").textContent = `${fmt1(s.score)} / 10`;
+    $("bar-score").textContent = `${fmt(s.score)} / ${s.n}`;
     $("bar-score").title = `${s.solved} of ${s.n} questions solved (penalties applied)`;
   }
   showPending();
@@ -256,18 +293,22 @@ $("btn-signout").addEventListener("click", () => {
   route();
 });
 
+function modal(...content) {
+  const box = el("div", { class: "modal-back" }, el("div", { class: "modal", role: "dialog", "aria-modal": "true" }, ...content));
+  document.body.append(box);
+  return () => box.remove();
+}
+
 // Accounts that are not on the roster see this once (per browser) after signing in.
 function guestNotice() {
   const me = state.me;
   if (!me || me.instructor || me.on_roster) return;
   const k = "lec:guestnote:" + me.email;
   if (store.get(k)) return;
-  const close = () => { store.set(k, true); box.remove(); };
-  const box = el("div", { class: "modal-back" }, el("div", { class: "modal", role: "dialog", "aria-modal": "true" },
+  const close = modal(
     el("p", { text: "Your login account is not among the registered students for CS101. Please contact the instructor." }),
     el("p", { class: "muted", text: "You can still follow the lectures and solve the questions, but your attendance is not recorded." }),
-    el("div", { class: "actions" }, el("button", { class: "primary", text: "OK", onclick: close }))));
-  document.body.append(box);
+    el("div", { class: "actions" }, el("button", { class: "primary", text: "OK", onclick: () => { store.set(k, true); close(); } })));
 }
 
 /* ------------------------------------------------------------------ sign-in */
@@ -316,25 +357,26 @@ async function showList() {
   setBar();
   $("view").className = "view";
   const lecs = r.lectures;
-  const active = lecs.filter((l) => l.state === "active");
   const past = lecs.filter((l) => l.state === "past");            // in topic order, like the others
   const future = lecs.filter((l) => l.state === "future");
   const card = (l) => {
     const recent = l.held.slice(-3).reverse().map((h) => `Lec ${h.lec_no} (${h.day} ${h.date})`).join(", ");
+    const nq = l.practice_questions < l.questions ? `${l.practice_questions} of ${l.questions} questions so far` : `${l.questions} questions`;
     const meta = l.state === "future" ? "coming up"
-      : l.state === "active" ? `Lec ${l.active.lec_no}, now · ${l.questions} questions`
-      : (recent ? recent + (l.held.length > 3 ? ` and ${l.held.length - 3} earlier` : "") + " · " : "") + `${l.questions} questions`;
+      : (recent ? recent + (l.held.length > 3 ? ` and ${l.held.length - 3} earlier` : "") + " · " : "") + nq;
     const inner = [el("span", { class: "lt" }, l.number ? el("span", { class: "lnum", text: l.number }) : null, l.title),
       el("span", { class: "lm", text: meta })];
     if (l.state === "future") return el("li", { class: "lcard future" }, ...inner);
-    return el("li", {}, el("a", { class: "lcard " + l.state, href: "#/lec/" + encodeURIComponent(l.id) }, ...inner,
-      l.state === "active" ? el("span", { class: "badge", text: "Now" }) : null));
+    return el("li", {}, el("a", { class: "lcard " + l.state, href: "#/lec/" + encodeURIComponent(l.id) }, ...inner));
   };
+  const now = r.now ? el("li", {}, el("a", { class: "lcard active", href: "#/now" },
+    el("span", { class: "lt", text: `Lec ${r.now.lec_no}: ${r.now.title}` }),
+    el("span", { class: "lm", text: `${r.now.day} ${r.now.date} · now` }), el("span", { class: "badge", text: "Now" }))) : null;
   const parts = [   // (replaceChildren would print a null as the text "null", so filter them out)
     el("header", { class: "welcome" }, el("h1", { text: r.course || "CS101" }),
       el("p", { text: "Welcome to the class!" })),
-    active.length ? el("section", {}, el("h2", { text: "Today" }), el("ul", { class: "llist" }, active.map(card))) : null,
-    !active.length && !past.length && !future.length
+    now ? el("section", {}, el("h2", { text: "Today" }), el("ul", { class: "llist" }, now)) : null,
+    !now && !past.length && !future.length
       ? el("p", { class: "muted", text: "No lectures yet. They will appear here once the course starts using this page." }) : null,
     past.length ? el("section", {}, el("h2", { text: "Past lectures (practice)" }), el("ul", { class: "llist" }, past.map(card))) : null,
     future.length ? el("section", {}, el("h2", { text: "Coming up" }), el("ul", { class: "llist" }, future.map(card))) : null,
@@ -344,180 +386,312 @@ async function showList() {
 
 /* ------------------------------------------------------------------ opening a lecture */
 
-async function openLecture(bundleId) {
+// A past lecture (practice): only the questions already taught; graded here, nothing is sent.
+async function openPractice(bundleId) {
   const g = state.gen;
   const r = await api("GET", "/api/lectures");
   if (!fresh(g)) return;
   const l = r.lectures.find((x) => x.id === bundleId);
+  if (l && l.state === "active") { location.hash = "#/now"; return; }
   if (!l || l.state === "future") { location.hash = "#/"; return; }
-  if (l.state === "past") {
-    const b = await api("GET", "/api/bundle?id=" + encodeURIComponent(bundleId));
-    if (!fresh(g)) return;
-    const key = `lec:prog:${bundleId}:practice`;
-    const saved = store.get(key, { answers: {}, status: {} });
-    state.lec = { active: false, bundle: bundleId, number: l.number, title: l.title, content: b.content, answers: saved.answers, status: saved.status || {}, key };
-    return renderLecture(g);
-  }
-  const joinKey = "lec:join:" + bundleId;
-  const remembered = store.get(joinKey);
-  if (remembered && remembered.session === l.active.session) {
-    try { return await enterActive(bundleId, remembered.password, g); } catch (e) { /* fall through to the password form */ }
-  }
+  const b = await api("GET", "/api/bundle?id=" + encodeURIComponent(bundleId));
   if (!fresh(g)) return;
-  showPasswordForm(l, g);
+  const key = `lec:prog:${bundleId}:practice`;
+  const saved = store.get(key, { answers: {}, status: {} });
+  const byUid = (o) => Object.fromEntries(Object.entries(o || {}).map(([k, v]) => [k.includes("/") ? k : bundleId + "/" + k, v]));  // (saved before 2026-10-10: by qid)
+  const parts = [{ id: bundleId, number: l.number, title: l.title, content: b.content }];
+  state.lec = { mode: "practice", parts, answers: byUid(saved.answers), status: byUid(saved.status), cur: saved.cur, key };
+  await renderLecture(g);
 }
 
-function showPasswordForm(l, g) {
+// Today's lecture: the password once (remembered on this phone), then the live page.
+async function openNow() {
+  const g = state.gen;
+  const r = await api("GET", "/api/lectures");
+  if (!fresh(g)) return;
+  if (!r.now) {
+    setBar();
+    $("view").className = "view";
+    $("view").replaceChildren(el("section", { class: "card center" }, el("p", { text: "No lecture is running now." }),
+      el("a", { class: "btn", href: "#/", text: "All lectures" })));
+    return;
+  }
+  const remembered = store.get(KEY.join);
+  if (remembered && remembered.session === r.now.session) {
+    try { return await enterLive(remembered.password, g); } catch (e) { /* fall through to the password form */ }
+  }
+  if (!fresh(g)) return;
+  showPasswordForm(r.now, g);
+}
+
+function showPasswordForm(now, g) {
   setBar();
   $("view").className = "view";
   const input = el("input", { type: "text", autocomplete: "off", autocapitalize: "none", spellcheck: "false", placeholder: "lecture password" });
   const go = async () => {
     btn.disabled = true;
-    try { await enterActive(l.id, input.value, g); }
+    try { await enterLive(input.value, g); }
     catch (e) { btn.disabled = false; err.textContent = e.message; }
   };
   const btn = el("button", { class: "primary", text: "Join", onclick: go });
   const err = el("p", { class: "err", text: "" });
   input.addEventListener("keydown", (e) => { if (e.key === "Enter") go(); });
   $("view").replaceChildren(el("section", { class: "card center" },
-    el("h1", { text: `Lec ${l.active.lec_no}: ${fullTitle(l)}` }),
+    el("h1", { text: `Lec ${now.lec_no}: ${now.title}` }),
     el("p", { text: "Enter the password announced in class." }),
     el("div", { class: "row" }, input, btn), err));
   input.focus();
 }
 
-async function enterActive(bundleId, password, g) {
-  const r = await api("POST", "/api/join", { bundle: bundleId, password });
+async function enterLive(password, g) {
+  const r = await api("POST", "/api/join", { password });
   if (!fresh(g)) return;
-  store.set("lec:join:" + bundleId, { session: r.session, password });
-  const key = `lec:prog:${bundleId}:s${r.session}`;
+  store.set(KEY.join, { session: r.session, password });
+  const key = `lec:prog:s${r.session}`;
   const saved = store.get(key, { answers: {}, status: {} });
   // the server's record and this browser's are merged (a student may switch phones mid-lecture)
   const status = { ...(saved.status || {}) };
-  for (const [qid, s] of Object.entries(r.results || {})) {
-    const mine = status[qid] || { tries: 0, correct: false };
-    if (s.correct && !mine.correct) status[qid] = { ...mine, tries: s.tries, correct: true, score: s.score };
-    else if (!mine.correct && s.tries > mine.tries) status[qid] = { ...mine, tries: s.tries };
+  for (const [uid, s] of Object.entries(r.results || {})) {
+    const mine = status[uid] || { tries: 0, correct: false };
+    if (s.correct && !mine.correct) status[uid] = { ...mine, tries: s.tries, correct: true, score: s.score };
+    else if (!mine.correct && s.tries > mine.tries) status[uid] = { ...mine, tries: s.tries };
   }
   state.me.on_roster = r.on_roster;
-  state.lec = { active: true, bundle: bundleId, session: r.session, lec_no: r.lec_no, number: r.content.number || "", title: r.title,
-    date: r.date, day: r.day, content: r.content, answers: saved.answers || {}, status, key };
+  const old = state.lec && state.lec.mode === "live" && state.lec.session === r.session ? state.lec : null;
+  state.lec = { mode: "live", session: r.session, lec_no: r.lec_no, title: r.title, date: r.date, day: r.day, password,
+    parts: r.parts.map((p) => ({ id: p.id, number: p.number, title: p.title, content: p.content, full: old && (old.parts.find((x) => x.id === p.id) || {}).full })),
+    open: new Set(r.opened), submitOpen: r.submit_open, submittedAt: r.submitted_at,
+    answers: saved.answers || {}, status, cur: old ? old.cur : saved.cur, key };
   saveProgress();
   await renderLecture(g);
+  startPolling();
 }
 
 function saveProgress() {
   const lec = state.lec;
-  if (lec) store.set(lec.key, { answers: lec.answers, status: lec.status });
+  if (lec) store.set(lec.key, { answers: lec.answers, status: lec.status, cur: lec.cur });
 }
 
-/* ------------------------------------------------------------------ the lecture page */
+/* ------------------------------------------------------------------ polling the live lecture */
+
+const POLL_MS = 10000;            // 160 phones every 10 s stays well inside the backend's free quota
+let pollTimer = null;
+const stopPolling = () => { clearInterval(pollTimer); pollTimer = null; };
+const startPolling = () => { stopPolling(); pollTimer = setInterval(poll, POLL_MS); };
+document.addEventListener("visibilitychange", () => { if (!document.hidden && pollTimer) poll(); });
+
+async function poll() {
+  const lec = state.lec;
+  if (!lec || lec.mode !== "live" || document.hidden) return;
+  let r;
+  try { r = await api("GET", "/api/state?session=" + lec.session); }
+  catch (e) { if (e.status !== 404) return; r = { active: false }; }      // 404: the lecture was deleted
+  if (state.lec !== lec) return;
+  if (!r.active) {
+    lec.closed = true;
+    stopPolling();
+    return redraw();
+  }
+  if (r.bundles.join("|") !== lec.parts.map((p) => p.id).join("|")) {      // a topic was added: load it
+    try { await enterLive(lec.password, state.gen); } catch (e) { /* next poll */ }
+    return;
+  }
+  const newly = r.opened.filter((u) => !lec.open.has(u));
+  lec.open = new Set(r.opened);
+  lec.submitOpen = r.submit_open;
+  if (r.submitted_at) lec.submittedAt = r.submitted_at;
+  redraw();
+  if (newly.length && !isInstr()) announce(newly[newly.length - 1]);
+}
+
+// A newly opened question: shown at once if the student is waiting, else a small notice with Go.
+function announce(uid) {
+  const lec = state.lec;
+  const e = entry(uid);
+  if (!e || locked(lec)) return;
+  if (!lec.cur || !openable(entry(lec.cur) || {})) return showPage(uid);
+  const old = document.querySelector(".toast");
+  if (old) old.remove();
+  const t = el("div", { class: "toast", role: "status" }, el("span", { text: `${label(e)} is open now.` }),
+    el("button", { class: "small primary", text: "Go", onclick: () => { t.remove(); showPage(uid); } }),
+    el("button", { class: "small", "aria-label": "dismiss", text: "✕", onclick: () => t.remove() }));
+  document.body.append(t);
+  setTimeout(() => t.remove(), 20000);
+}
+
+/* ------------------------------------------------------------------ the lecture page: one question per page */
 
 async function renderLecture(g) {
   const lec = state.lec;
-  if (state.me.instructor && !lec.full) {       // answer keys and solutions, for "Show answer" (instructor only)
-    try { lec.full = (await api("GET", "/api/admin/bundle?id=" + encodeURIComponent(lec.bundle))).content; } catch (e) { lec.full = null; }
+  if (isInstr()) {             // answer keys and solutions, for "Show answer" (instructor only)
+    for (const p of lec.parts) {
+      if (p.full === undefined) {
+        try { p.full = (await api("GET", "/api/admin/bundle?id=" + encodeURIComponent(p.id))).content; } catch (e) { p.full = null; }
+      }
+    }
     if (!fresh(g)) return;
   }
-  lec.regime = parsePenalty(lec.content.penalty);
+  for (const p of lec.parts) p.regime = parsePenalty(p.content.penalty);
+  lec.qs = buildQuestions(lec.parts);
+  if (lec.mode !== "live") lec.open = new Set(lec.qs.map((e) => e.uid));
+  lec.cards = {};
   setBar();
   const view = $("view");
   view.className = "view lecview";
-  const main = el("div", { class: "lecmain" });
   const nav = el("nav", { class: "lqnav", "aria-label": "Questions" });
   lec.navItems = {};
-  main.append(el("header", { class: "lhead" },
-    lec.number ? el("div", { class: "lh-num", text: "Topic " + lec.number }) : null,
-    el("h1", { text: lec.title }),
-    lec.content.description ? el("div", { class: "lh-desc", html: lec.content.description }) : null));
-  let qn = 0;
-  for (const it of lec.content.items || []) {
-    if (it.kind === "text") main.append(el("section", { class: "teach", html: it.html }));
-    else if (it.kind === "question") {
-      const n = ++qn;
-      main.append(questionCard(it, n));
-      const item = el("button", { class: "qn", title: `Question ${n}`, text: String(n),
-        onclick: () => document.getElementById("q-" + it.qid).scrollIntoView({ behavior: "smooth", block: "start" }) });
-      lec.navItems[it.qid] = item;
+  nav.append(el("div", { class: "lqnav-head", text: "Questions" }));
+  lec.parts.forEach((p, pi) => {
+    if (lec.parts.length > 1) nav.append(el("div", { class: "lqnav-part", text: p.number || p.title }));
+    for (const e of lec.qs.filter((x) => x.part === pi)) {
+      const item = el("button", { class: "qn", text: String(e.no), onclick: () => showPage(e.uid) });
+      lec.navItems[e.uid] = item;
       nav.append(item);
     }
-  }
-  main.append(el("p", { class: "muted endnote", text: lec.active
-    ? "Your results are recorded for this lecture. Keep going at your own pace."
-    : "This lecture is for practice: nothing is recorded." }));
-  nav.prepend(el("div", { class: "lqnav-head", text: "Questions" }));
+  });
   nav.append(el("div", { class: "lqnav-key" },
     el("span", {}, el("i", { class: "k solved" }), "solved"), el("span", {}, el("i", { class: "k penalty" }), "solved with penalty"),
-    el("span", {}, el("i", { class: "k wrong" }), "not yet right"), el("span", {}, el("i", { class: "k none" }), "not tried")));
+    el("span", {}, el("i", { class: "k wrong" }), "not yet right"), el("span", {}, el("i", { class: "k none" }), "not tried"),
+    lec.mode === "live" ? el("span", {}, el("i", { class: "k off" }), "not open yet") : null));
+  const one = lec.parts.length === 1 ? lec.parts[0] : null;
+  const head = el("header", { class: "lhead" },
+    lec.mode === "live" ? el("div", { class: "lh-num", text: `Lec ${lec.lec_no} · ${lec.day} ${lec.date}` })
+      : one && one.number ? el("div", { class: "lh-num", text: "Topic " + one.number }) : null,
+    el("h1", { text: one ? one.title : lec.title }),
+    one && one.content.description ? el("div", { class: "lh-desc", html: one.content.description }) : null);
+  lec.banner = el("div", { class: "lbanner" });
+  lec.page = el("div", { class: "lpage" });
+  lec.prev = el("button", { text: "← Previous", onclick: () => step(-1) });
+  lec.next = el("button", { text: "Next →", onclick: () => step(1) });
+  lec.submitBtn = el("button", { class: "submit", onclick: openSummary });
+  const main = el("div", { class: "lecmain" }, head, lec.banner, lec.page, el("div", { class: "pager" }, lec.prev, lec.next, lec.submitBtn));
+  lec.main = main;
   view.replaceChildren(el("div", { class: "lecgrid" }, nav, main));
-  for (const q of questions(lec.content)) refreshQuestion(q.qid);
-  watchCurrent(main);
-  window.scrollTo(0, 0);
+  const start = lec.cur && entry(lec.cur) && openable(entry(lec.cur)) ? lec.cur : (lec.qs.find(openable) || {}).uid;
+  if (start) showPage(start, true); else { lec.cur = null; redraw(); }
 }
 
-// Marks the question being read in the nav.
-let observer = null;
-function watchCurrent(main) {
-  if (observer) observer.disconnect();
-  if (!("IntersectionObserver" in window)) return;
-  observer = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      const item = state.lec && state.lec.navItems[e.target.id.slice(2)];
-      if (item) item.classList.toggle("current", e.isIntersecting);
-    }
-  }, { rootMargin: "-30% 0px -50% 0px" });
-  main.querySelectorAll(".qcard").forEach((c) => observer.observe(c));
+// Shows one question (with its teaching text) on the page.
+function showPage(uid, quiet) {
+  const lec = state.lec;
+  const e = entry(uid);
+  if (!e || !openable(e)) return;
+  lec.cur = uid;
+  saveProgress();
+  if (!lec.cards[uid]) lec.cards[uid] = questionCard(e);
+  lec.page.replaceChildren(...e.pre.map((t) => el("section", { class: "teach", html: t.html })), lec.cards[uid],
+    ...e.post.map((t) => el("section", { class: "teach", html: t.html })));
+  lec.page.querySelectorAll(".CodeMirror").forEach((c) => c.CodeMirror.refresh());
+  const toast = document.querySelector(".toast");
+  if (toast && toast.textContent.startsWith(label(e) + " ")) toast.remove();
+  redraw();
+  if (!quiet) window.scrollTo({ top: 0, behavior: "smooth" });
+  const item = lec.navItems[uid];
+  if (item && item.scrollIntoView && window.matchMedia("(max-width: 800px)").matches) item.scrollIntoView({ block: "nearest", inline: "center" });
+}
+
+function step(d) {
+  const lec = state.lec;
+  const list = lec.qs.filter(openable);
+  const i = list.findIndex((e) => e.uid === lec.cur);
+  const to = list[i + d];
+  if (to) showPage(to.uid);
+}
+
+// Updates the nav, the pager, the banner and the Submit button after any change.
+function redraw() {
+  const lec = state.lec;
+  if (!lec || !lec.main) return;
+  for (const e of lec.qs) refreshQuestion(e.uid);
+  const list = lec.qs.filter(openable);
+  const i = list.findIndex((e) => e.uid === lec.cur);
+  lec.prev.disabled = i <= 0;
+  lec.next.disabled = i < 0 || i >= list.length - 1;
+  lec.main.classList.toggle("locked", locked(lec));
+  // Submit: practice and preview show the summary any time; live: Final submit once the instructor opens it
+  const b = lec.submitBtn;
+  if (lec.mode !== "live") { b.textContent = "Submit"; b.disabled = false; b.className = "submit"; b.title = "See a summary (practice: nothing is recorded)"; }
+  else if (isInstr()) { b.hidden = true; }
+  else {
+    b.textContent = lec.submittedAt ? "Submitted ✓" : "Final submit";
+    b.disabled = !!lec.submittedAt || lec.closed || !lec.submitOpen;
+    b.className = "submit" + (lec.submitOpen && !lec.submittedAt && !lec.closed ? " primary" : "");
+    b.title = lec.submittedAt ? "You have submitted this lecture." : lec.submitOpen ? "Submit your answers for this lecture." : "The instructor opens Final submit near the end of the lecture.";
+  }
+  const msgs = [];
+  if (lec.mode === "live" && !isInstr()) {
+    if (lec.closed) msgs.push(["info", "This lecture has been closed. Your results are saved; it will appear under past lectures for practice."]);
+    else if (lec.submittedAt) msgs.push(["ok", `Submitted at ${new Date(lec.submittedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}. Your answers for this lecture are recorded. You can still read the questions.`]);
+    else if (lec.submitOpen) msgs.push(["warn", "Final submit is open: press Final submit (below) before you leave."]);
+  }
+  if (!lec.cur && lec.mode === "live") msgs.push(["wait", "Waiting for the instructor to open the first question. Keep this page open: it updates by itself."]);
+  lec.banner.replaceChildren(...msgs.map(([cls, text]) => el("p", { class: "banner " + cls, text })));
+  setBar();
 }
 
 const qState = (s) => (!s || !s.tries ? "none" : !s.correct ? "wrong" : (s.score ?? 1) < 1 ? "penalty" : "solved");
+const STATE_TEXT = { none: "not tried", wrong: "not yet right", penalty: "solved with a penalty", solved: "solved" };
 
 // Updates the nav item, the tries chip and the badge of one question.
-function refreshQuestion(qid) {
+function refreshQuestion(uid) {
   const lec = state.lec;
-  const s = lec.status[qid];
+  const e = entry(uid);
+  const s = lec.status[uid];
   const st = qState(s);
-  const item = lec.navItems[qid];
-  if (item) item.className = "qn " + st + (item.classList.contains("current") ? " current" : "");
-  if (item) item.title = `Question ${item.textContent}: ` + { none: "not tried", wrong: "not yet right", penalty: "solved with a penalty", solved: "solved" }[st];
-  const card = document.getElementById("q-" + qid);
+  const item = lec.navItems[uid];
+  const isOpen = lec.mode !== "live" || lec.open.has(uid);
+  if (item) {
+    item.className = "qn " + (isOpen ? st : "off") + (lec.cur === uid ? " current" : "");
+    item.disabled = !openable(e);
+    item.title = `${label(e)}: ` + (isOpen ? STATE_TEXT[st] : "not open yet");
+  }
+  const card = lec.cards[uid];
   if (!card) return;
   const chip = card.querySelector(".try-chip");
   const tries = s ? s.tries : 0;
+  const regime = lec.parts[e.part].regime;
   if (s && s.correct) {
     const pct = Math.round(100 - 100 * (s.score ?? 1));
     chip.textContent = `Tries: ${tries} · ` + (pct > 0 ? `Penalty: ${pct}%` : "No penalty");
     chip.className = "try-chip solved";
     chip.title = "Solved" + (pct > 0 ? `: this question counts ${100 - pct}%.` : ": full credit.");
   } else {
-    const pct = penaltyPct(lec.regime, tries);
+    const pct = penaltyPct(regime, tries);
     chip.textContent = `Tries: ${tries} · ` + (pct > 0 ? `Penalty: ${pct}%` : "No penalty");
     chip.className = "try-chip" + (pct > 0 ? " warn" : "");
     chip.title = (pct > 0 ? `If your next Check is right, this question counts ${100 - pct}%.` : "Your next Check can earn full credit.")
-      + " Each Check of a changed answer is a try" + (questions(lec.content).find((q) => q.qid === qid).type === "code" ? "; Pre-check is free." : ".");
+      + " Each Check of a changed answer is a try" + (e.q.type === "code" ? "; Pre-check is free." : ".");
   }
   const badge = card.querySelector(".qbadge");
   badge.className = "qbadge " + (st === "none" ? "" : st === "wrong" ? "wrong" : "right");
   badge.textContent = st === "none" ? "" : st === "wrong" ? "✗ try again" : "✓ solved";
+  const io = card.querySelector(".instr-open");
+  if (io) {
+    io.querySelector("span").textContent = isOpen ? "Open for students ✓" : "Not open for students yet";
+    io.querySelector("button").hidden = isOpen;
+  }
 }
 
 /* One Check: counts a try unless the question is solved or the answer is the one checked last time.
-   Returns { correct, repeat, solvedBefore }. */
-function recordCheck(q, canonical, correct) {
+   Returns { correct, repeat, solvedBefore } (or { locked } after Final submit or Close). */
+function recordCheck(e, canonical, correct) {
   const lec = state.lec;
-  const prev = lec.status[q.qid] || { tries: 0, correct: false };
+  if (locked(lec)) return { locked: true, correct };
+  const prev = lec.status[e.uid] || { tries: 0, correct: false };
   if (prev.correct) return { correct, solvedBefore: true };
   if (prev.last === canonical) return { correct: prev.lastCorrect, repeat: true };
   const tries = prev.tries + 1;
-  const score = correct ? 1 - penaltyPct(lec.regime, tries - 1) / 100 : 0;
-  lec.status[q.qid] = { tries, correct, score, last: canonical, lastCorrect: correct };
+  const score = correct ? 1 - penaltyPct(lec.parts[e.part].regime, tries - 1) / 100 : 0;
+  lec.status[e.uid] = { tries, correct, score, last: canonical, lastCorrect: correct };
   saveProgress();
-  if (lec.active) queueReport({ session: lec.session, qid: q.qid, tries, correct });
-  refreshQuestion(q.qid);
+  if (lec.mode === "live") queueReport({ session: lec.session, bundle: e.bundle, qid: e.qid, tries, correct });
+  refreshQuestion(e.uid);
   setBar();
   return { correct };
 }
 
 function verdictText(r, isCode) {
+  if (r.locked) return el("p", { class: "muted", text: "This lecture is submitted or closed: Checks are no longer recorded." });
   if (r.solvedBefore) return el("p", { class: r.correct ? "ok" : "bad", text: r.correct
     ? "Correct. (You had already solved this one; your score for it stays.)"
     : "Not quite, but you had already solved this one; your score for it stays." });
@@ -528,24 +702,25 @@ function verdictText(r, isCode) {
 
 const TYPE_LABEL = { mcq: "Choose one", short: "Short answer", predict: "What does it print?", order: "Put in order", code: "Code" };
 
-function questionCard(q, n) {
+function questionCard(e) {
   const lec = state.lec;
+  const q = e.q, uid = e.uid;
   const feedback = el("div", { class: "feedback", "aria-live": "polite" });
-  const card = el("section", { class: "qcard", id: "q-" + q.qid },
-    el("div", { class: "qhead" }, el("span", { class: "qno", text: `Q${n}` }), el("span", { class: "qtype", text: TYPE_LABEL[q.type] || q.type }),
+  const card = el("section", { class: "qcard", id: "q-" + uid },
+    el("div", { class: "qhead" }, el("span", { class: "qno", text: label(e) }), el("span", { class: "qtype", text: TYPE_LABEL[q.type] || q.type }),
       el("span", { class: "qbadge" }), el("span", { class: "try-chip" })),
     el("div", { class: "qtext", html: q.html || "" }));
-  const check = (answer, canonical) => feedback.replaceChildren(verdictText(recordCheck(q, canonical, grade(q, answer)), false));
+  const check = (answer, canonical) => feedback.replaceChildren(verdictText(recordCheck(e, canonical, grade(q, answer)), false));
 
   if (q.type === "mcq") {
-    const name = "mcq-" + q.qid;
+    const name = "mcq-" + uid;
     const opts = (q.options || []).map((o, i) => el("label", { class: "opt" },
-      el("input", { type: "radio", name, value: String(i), checked: String(lec.answers[q.qid]) === String(i),
-        onchange: () => { lec.answers[q.qid] = i; saveProgress(); } }),
+      el("input", { type: "radio", name, value: String(i), checked: String(lec.answers[uid]) === String(i),
+        onchange: () => { lec.answers[uid] = i; saveProgress(); } }),
       el("span", { html: o })));
     const btn = el("button", { class: "primary", text: "Check", onclick: () => {
-      if (lec.answers[q.qid] === undefined) return feedback.replaceChildren(el("p", { class: "bad", text: "Choose an answer first." }));
-      check(lec.answers[q.qid], String(lec.answers[q.qid]));
+      if (lec.answers[uid] === undefined) return feedback.replaceChildren(el("p", { class: "bad", text: "Choose an answer first." }));
+      check(lec.answers[uid], String(lec.answers[uid]));
     } });
     card.append(el("div", { class: "opts" }, opts), el("div", { class: "actions" }, btn), feedback);
   } else if (q.type === "short" || q.type === "predict") {
@@ -553,9 +728,9 @@ function questionCard(q, n) {
     const input = q.type === "predict"
       ? el("textarea", { rows: String(Math.max(2, (q.lines_hint || 2))), spellcheck: "false", autocapitalize: "none", placeholder: "Type the exact output" })
       : el("input", { type: "text", spellcheck: "false", autocapitalize: "none", placeholder: "Your answer" });
-    input.value = lec.answers[q.qid] || "";
-    input.addEventListener("input", () => { lec.answers[q.qid] = input.value; saveProgress(); });
-    if (q.type === "short") input.addEventListener("keydown", (e) => { if (e.key === "Enter") btn.click(); });
+    input.value = lec.answers[uid] || "";
+    input.addEventListener("input", () => { lec.answers[uid] = input.value; saveProgress(); });
+    if (q.type === "short") input.addEventListener("keydown", (ev) => { if (ev.key === "Enter") btn.click(); });
     const btn = el("button", { class: "primary", text: "Check", onclick: () => {
       if (!input.value.trim()) return feedback.replaceChildren(el("p", { class: "bad", text: "Type an answer first." }));
       check(input.value, q.type === "short" ? squash(input.value) : normalise(input.value));
@@ -563,7 +738,7 @@ function questionCard(q, n) {
     card.append(el("div", { class: "answer" }, input), el("div", { class: "actions" }, btn), feedback);
   } else if (q.type === "order") {
     const lines = q.lines || [];
-    let order = Array.isArray(lec.answers[q.qid]) ? lec.answers[q.qid] : lines.map((_, i) => i);
+    let order = Array.isArray(lec.answers[uid]) ? lec.answers[uid] : lines.map((_, i) => i);
     const list = el("ol", { class: "order" });
     const draw = () => {
       list.replaceChildren(...order.map((idx, pos) => el("li", {},
@@ -575,22 +750,89 @@ function questionCard(q, n) {
     const move = (pos, d) => {
       order = order.slice();
       [order[pos], order[pos + d]] = [order[pos + d], order[pos]];
-      lec.answers[q.qid] = order; saveProgress(); draw();
+      lec.answers[uid] = order; saveProgress(); draw();
     };
     draw();
     const btn = el("button", { class: "primary", text: "Check", onclick: () => check(order, JSON.stringify(order)) });
     card.append(list, el("div", { class: "actions" }, btn), feedback);
   } else if (q.type === "code") {
-    card.append(codeArea(q, feedback), feedback);
+    card.append(codeArea(e, feedback), feedback);
   }
-  if (lec.full) card.append(answerBox(q, card));
+  if (isInstr() && lec.mode === "live") card.prepend(openStrip(e));
+  const full = lec.parts[e.part].full;
+  if (full) card.append(answerBox(e, full, card));
   return card;
 }
 
-/* ------------------------------------------------------------------ instructor: show the answer */
+/* ------------------------------------------------------------------ Submit: the summary (live: Final submit) */
 
-function answerBox(q, card) {
-  const full = questions(state.lec.full).find((x) => x.qid === q.qid) || {};
+function summaryTable(lec) {
+  const rows = counted(lec).map((e) => {
+    const s = lec.status[e.uid];
+    const st = qState(s);
+    return el("tr", { class: st }, el("td", { text: label(e) }), el("td", { text: STATE_TEXT[st] }),
+      el("td", { class: "num", text: s ? String(s.tries) : "0" }), el("td", { class: "num", text: s && s.correct ? fmt(s.score ?? 1) : "0" }));
+  });
+  const t = lecScore(lec);
+  return el("div", { class: "tablewrap" }, el("table", { class: "summary" },
+    el("thead", {}, el("tr", {}, ["Question", "Result", "Tries", "Score"].map((h) => el("th", { text: h })))),
+    el("tbody", {}, rows),
+    el("tfoot", {}, el("tr", {}, el("td", { colspan: "3", text: `Total (${t.solved} of ${t.n} solved)` }), el("td", { class: "num", text: `${fmt(t.score)} / ${t.n}` })))));
+}
+
+function openSummary() {
+  const lec = state.lec;
+  if (lec.mode !== "live") {
+    const close = modal(el("h2", { text: "Summary" }), summaryTable(lec),
+      el("p", { class: "muted", text: "Practice: nothing is recorded. You can keep working on the questions." }),
+      el("div", { class: "actions" }, el("button", { class: "primary", text: "Close", onclick: () => close() })));
+    return;
+  }
+  if (!lec.submitOpen || lec.submittedAt || lec.closed) return;
+  const notOpenYet = lec.qs.length - counted(lec).length;
+  const err = el("p", { class: "err" });
+  const go = el("button", { class: "primary", text: "Submit", onclick: async () => {
+    go.disabled = true;
+    await flushOutbox();
+    if (store.get(KEY.outbox, []).some((x) => x.session === lec.session)) {
+      go.disabled = false;
+      err.textContent = "Some of your results have not reached the server yet. Check your internet connection and try again.";
+      return;
+    }
+    try {
+      const r = await api("POST", "/api/submit", { session: lec.session });
+      lec.submittedAt = r.submitted_at;
+      close();
+      const toast = document.querySelector(".toast");
+      if (toast) toast.remove();
+      redraw();
+    } catch (e) { go.disabled = false; err.textContent = e.message; }
+  } });
+  const close = modal(el("h2", { text: "Final submit" }), summaryTable(lec),
+    notOpenYet ? el("p", { class: "muted", text: `(${notOpenYet} more question${notOpenYet > 1 ? "s" : ""} of these topics will come in a later lecture.)` }) : null,
+    el("p", { text: "After you submit, your answers for this lecture are final." }), err,
+    el("div", { class: "actions" }, go, el("button", { text: "Not yet", onclick: () => close() })));
+}
+
+/* ------------------------------------------------------------------ instructor: open a question, show the answer */
+
+function openStrip(e) {
+  const lec = state.lec;
+  const btn = el("button", { class: "small primary", text: "Open for students", onclick: async () => {
+    btn.disabled = true;
+    try {
+      await api("POST", "/api/admin/open", { session: lec.session, bundle: e.bundle, qid: e.qid });
+      lec.open.add(e.uid);
+      redraw();
+    } catch (err) { alert(err.message); }
+    btn.disabled = false;
+  } });
+  return el("div", { class: "instr-open" }, el("span"), btn);
+}
+
+function answerBox(e, fullContent, card) {
+  const full = questions(fullContent).find((x) => x.qid === e.qid) || {};
+  const q = e.q;
   let shown;
   if (q.type === "mcq") shown = el("p", { html: "Answer: " + (full.options || [])[full.answer] });
   else if (q.type === "short") shown = el("p", { text: "Accepted: " + [].concat(full.answer).join("  /  ") });
@@ -611,16 +853,17 @@ function answerBox(q, card) {
 
 const KEYS = [["Tab", "    "], [":", ":"], ["(", "("], [")", ")"], ["[", "["], ["]", "]"], ['"', '"'], ["'", "'"], ["=", "="], ["#", "# "]];
 
-function codeArea(q, feedback) {
+function codeArea(e, feedback) {
   const lec = state.lec;
+  const q = e.q, uid = e.uid;
   const holder = el("div", { class: "editor" });
   const wrap = el("div", { class: "codearea" }, holder);
   const cm = CodeMirror(holder, {
-    value: lec.answers[q.qid] !== undefined ? lec.answers[q.qid] : (q.preload || ""),
+    value: lec.answers[uid] !== undefined ? lec.answers[uid] : (q.preload || ""),
     mode: "python", lineNumbers: true, indentUnit: 4, tabSize: 4, matchBrackets: true, viewportMargin: Infinity,
     extraKeys: { Tab: (c) => c.replaceSelection("    ") },
   });
-  cm.on("change", () => { lec.answers[q.qid] = cm.getValue(); saveProgress(); });
+  cm.on("change", () => { lec.answers[uid] = cm.getValue(); saveProgress(); });
   setTimeout(() => cm.refresh(), 0);
   const keys = el("div", { class: "keys" }, KEYS.map(([label, text]) =>
     el("button", { class: "small key", text: label, onclick: () => { cm.replaceSelection(text); cm.focus(); } })));
@@ -634,8 +877,8 @@ function codeArea(q, feedback) {
       if (r.syntax) out.push(el("pre", { class: "err", text: r.syntax }));
       else out.push(resultsTable(r));
       if (mode === "all") {
-        const res = recordCheck(q, normalise(code), !r.syntax && r.passed);
-        out.unshift(r.syntax && !res.solvedBefore ? el("p", { class: "bad", text: "Your code has a syntax error (see below)." + (res.repeat ? " (Same code as your last Check: not counted as a new try.)" : "") })
+        const res = recordCheck(e, normalise(code), !r.syntax && r.passed);
+        out.unshift(r.syntax && !res.solvedBefore && !res.locked ? el("p", { class: "bad", text: "Your code has a syntax error (see below)." + (res.repeat ? " (Same code as your last Check: not counted as a new try.)" : "") })
           : verdictText({ ...res, correct: !r.syntax && r.passed }, true));
       } else {
         out.unshift(el("p", { class: "muted", text: r.syntax ? "Pre-check: your code has a syntax error (see below)."
@@ -643,7 +886,7 @@ function codeArea(q, feedback) {
       }
       if (r.figures) out.push(el("div", { class: "figs" }, r.figures.map((b) => el("img", { src: "data:image/png;base64," + b, alt: "your drawing" }))));
       feedback.replaceChildren(...out);
-    } catch (e) { feedback.replaceChildren(el("p", { class: "bad", text: e.message })); }
+    } catch (err) { feedback.replaceChildren(el("p", { class: "bad", text: err.message })); }
     finally { btn.disabled = false; }
   };
   const preBtn = el("button", { text: "Pre-check", title: "Runs the examples only. Free: not a try." });
@@ -677,14 +920,17 @@ function resultsTable(r) {
 
 async function route() {
   const g = ++state.gen;
-  if (observer) { observer.disconnect(); observer = null; }
+  stopPolling();
+  const toast = document.querySelector(".toast");
+  if (toast) toast.remove();
   if (!store.get(KEY.token)) return showSignIn();
   try {
     if (!state.me) { state.me = await api("GET", "/api/me"); guestNotice(); }
     if (!fresh(g)) return;
     const m = location.hash.match(/^#\/lec\/(.+)$/);
     if (location.hash.startsWith("#/instructor") && state.me.instructor && window.Instructor) await window.Instructor.route(g);
-    else if (m) await openLecture(decodeURIComponent(m[1]));
+    else if (location.hash === "#/now") await openNow();
+    else if (m) await openPractice(decodeURIComponent(m[1]));
     else await showList();
   } catch (e) {
     if (!fresh(g)) return;
