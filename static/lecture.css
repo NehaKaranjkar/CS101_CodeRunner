@@ -310,8 +310,7 @@ p.names { margin: 4px 0 6px 16px; font-size: 14px; }
 .mpct { font-size: 15px; font-weight: 600; color: var(--action-dark); }
 table.marks td { vertical-align: top; }
 table.marks td.num { white-space: nowrap; }
-table.marks tr.dropped td { color: var(--muted); }
-.dropnote { color: #8a3b12; }
+.lowalert { background: #fbe7e5; color: var(--wrong); border: 1px solid var(--wrong); border-radius: 8px; padding: 10px 14px; font-weight: 600; }
 table.marksheet td.dropped { text-decoration: line-through; color: var(--muted); }
 table.marksheet td.missing { color: var(--muted); }
 table.marksheet td.cat { background: #f4f7fb; }

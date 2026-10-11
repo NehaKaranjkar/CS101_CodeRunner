@@ -930,34 +930,28 @@ async function showMarks() {
   const val = (x) => (x === null || x === undefined ? "-" : fmt(x));
   const parts = [el("header", { class: "welcome" }, el("h1", { text: "My marks" }),
     el("p", { text: `${r.name} (${r.roll})` }), r.updated ? el("p", { class: "muted small", text: `Marks updated ${r.updated}.` }) : null)];
-  const cats = new Map(r.categories.map((c) => [c.id, c]));
+  if (r.attendance.low) parts.push(el("p", { class: "lowalert", text: "Your attendance is below the required threshold! Please attend all the remaining lectures." }));
   const groups = [...new Set(r.items.map((it) => it.category))];
+  const names = Object.fromEntries(r.categories.map((c) => [c.id, c.name]));
   for (const cid of groups) {
-    const c = cats.get(cid) || { name: cid, dropped: [] };
     const rows = r.items.filter((it) => it.category === cid).map((it) => {
       const src = it.parts.map((p) => p.src).filter(Boolean);
       const rem = it.parts.map((p) => p.rem).filter(Boolean);
-      const dropped = (c.dropped || []).includes(it.id);
-      return el("tr", { class: dropped ? "dropped" : "" },
+      return el("tr", {},
         el("td", {}, el("div", { text: it.title }),
           it.parts.length > 1 ? el("div", { class: "muted small", text: it.parts.map((p) => `${p.title}: ${val(p.m)} / ${p.max}`).join(" · ") }) : null,
           src.length ? el("div", { class: "muted small", text: src.map((s) => (s === "late" ? "late submission" : s + " batch")).join(", ") }) : null,
-          rem.length ? el("div", { class: "muted small", text: rem.join("; ") }) : null,
-          dropped ? el("div", { class: "small dropnote", text: "lowest lab: dropped (best of the rest count)" }) : null),
-        el("td", { class: "num", text: it.graded ? `${fmt(it.marks)} / ${it.max}` : `- / ${it.max}` }),
-        el("td", { class: "num muted", text: it.graded ? `${it.percent}%` : "" }));
+          rem.length ? el("div", { class: "muted small", text: rem.join("; ") }) : null),
+        el("td", { class: "num", text: it.graded ? `${fmt(it.marks)} / ${it.max}` : `- / ${it.max}` }));
     });
-    parts.push(el("section", { class: "mcat" },
-      el("h2", {}, c.name, c.percent !== undefined ? el("span", { class: "mpct", text: ` ${c.percent}%` + (c.note ? ` (${c.note})` : "") }) : null),
+    parts.push(el("section", { class: "mcat" }, el("h2", { text: names[cid] || cid }),
       el("div", { class: "tablewrap" }, el("table", { class: "grid marks" }, el("tbody", {}, rows)))));
   }
   if (!r.items.length) parts.push(el("p", { class: "muted", text: "No marks have been uploaded yet." }));
-  const lp = r.categories.find((c) => c.id === "lectures");
-  const a = r.attendance;
   parts.push(el("section", { class: "mcat" },
     el("h2", { text: "Lectures" }),
-    el("p", { text: `Attendance: ${a.attended} of ${a.held} lectures (${a.percent}%)` + (a.exempt ? " · exempt from the attendance rule (full marks in the midsem)" : "") }),
-    el("p", { text: `Lecture score: ${fmt(r.lectures.score)} of ${r.lectures.possible} questions` + (lp ? ` (${lp.percent}%)` : "") }),
+    el("p", { text: `Lectures attended: ${r.attendance.attended}` }),
+    el("p", { text: `Lecture score: ${fmt(r.lectures.score)} of ${r.lectures.possible} questions` }),
     el("details", {}, el("summary", { text: "Lecture by lecture" }),
       el("div", { class: "tablewrap" }, el("table", { class: "grid" },
         el("thead", {}, el("tr", {}, ["Lec", "Date", "", "Score", "Topics"].map((h) => el("th", { text: h })))),
