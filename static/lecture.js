@@ -927,6 +927,11 @@ async function showMarks() {
   if (!fresh(g)) return;
   setBar();
   $("view").className = "view";
+  $("view").replaceChildren(...marksParts(r));
+}
+
+// The "My marks" page content for a /api/my-marks reply (also used by the instructor's student view).
+function marksParts(r) {
   const val = (x) => (x === null || x === undefined ? "-" : fmt(x));
   const parts = [el("header", { class: "welcome" }, el("h1", { text: "My marks" }),
     el("p", { text: `${r.name} (${r.roll})` }), r.updated ? el("p", { class: "muted small", text: `Marks updated ${r.updated}.` }) : null)];
@@ -961,7 +966,7 @@ async function showMarks() {
           el("td", { class: "num", text: l.manual ? "" : `${fmt(l.score)} / ${l.out_of}` }),
           el("td", { class: "small", text: l.manual ? "(attendance on paper)" : l.topics })))))))));
   parts.push(el("p", { class: "muted small", text: "Only you can see this page. If something looks wrong, please contact the instructor." }));
-  $("view").replaceChildren(...parts.filter(Boolean));
+  return parts.filter(Boolean);
 }
 
 /* ------------------------------------------------------------------ routing */

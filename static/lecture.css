@@ -320,3 +320,22 @@ table.marksheet td.exempt { color: var(--correct); }
 table.marksheet th.sortable { cursor: pointer; white-space: nowrap; }
 table.att th.lcol.manual { background: #eef0f2; }
 table.marksheet td { white-space: nowrap; }
+.marksbar { align-items: flex-start; }
+.marksbar .filter { flex: 1 1 200px; padding: 7px 10px; font-size: 15px; }
+details.colpick { position: relative; }
+details.colpick summary { padding: 7px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); color: var(--ink); list-style-position: inside; }
+.colpanel { position: absolute; z-index: 10; margin-top: 4px; width: min(340px, calc(100vw - 32px)); background: var(--panel); border: 1px solid var(--rule);
+  border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.15); padding: 10px; }
+.colpanel .filter { max-width: none; width: 100%; box-sizing: border-box; }
+.colbtns { display: flex; gap: 6px; margin: 8px 0; flex-wrap: wrap; }
+.collist { max-height: 50vh; overflow-y: auto; display: flex; flex-direction: column; }
+label.colopt { padding: 5px 2px; font-size: 14px; cursor: pointer; }
+table.marksheet td.sname { max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
+table.marksheet th.sorted { color: var(--action-dark); }
+.studentview { border: 2px dashed var(--rule); border-radius: 10px; padding: 4px 14px 10px; margin: 10px 0 20px; max-width: 760px; background: var(--paper); }
+.svlabel { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 8px 0 0; }
+@media (max-width: 600px) {
+  .sheet { max-height: none; -webkit-overflow-scrolling: touch; }
+  table.marksheet td.sname { max-width: 120px; }
+  table.marksheet th, table.marksheet td { padding: 6px 7px; font-size: 14px; }
+}

@@ -6,7 +6,7 @@
                                   "Details", off by default, for the instructor's own device) names
      #/instructor/attendance      Attendance: the sheet (+ CSV download), manual lectures included
      #/instructor/marks           Marks: the gradebook (items, categories, weighted total, attendance flags)
-     #/instructor/student/<email> one student's attendance
+     #/instructor/student/<email> one student: their "My marks" page as they see it, and attendance details
      #/instructor/questions       Questions: the active lecture with "Open for students" and "Show answer"
      #/instructor/preview/<id>    any bundle with "Show answer"
    Uses the helpers of lecture.js (api, el, $, state, fresh, store, setBar, fmt, fmt1, questions, fullTitle,
@@ -258,13 +258,18 @@
     document.body.append(a); a.click(); a.remove();
   }
 
+  // One student: what they see on "My marks" (roster students), then their lecture attendance details.
   async function student(email, g) {
     pageStart("att");
-    const sheet = sheetCache || await api("GET", "/api/admin/attendance");
+    const [sheet, mine] = await Promise.all([sheetCache || api("GET", "/api/admin/attendance"),
+      api("GET", "/api/admin/student-marks?email=" + encodeURIComponent(email)).catch(() => null)]);
     if (!fresh(g)) return;
     const st = sheet.students.find((s) => s.email === email);
     if (!st) return $("view").append(el("p", { class: "err", text: "Not on the roster and never joined: " + email }));
-    $("view").append(el("h2", { text: st.guest ? `${st.name} (guest, not on the roster)` : `${st.name} (${st.roll})` }),
+    $("view").append(el("p", {}, el("a", { href: "#/instructor/marks", text: "← Marks" }), " · ", el("a", { href: "#/instructor/attendance", text: "Attendance" })),
+      el("h2", { text: st.guest ? `${st.name} (guest, not on the roster)` : `${st.name} (${st.roll})` }),
+      mine ? el("section", { class: "studentview" }, el("p", { class: "svlabel", text: "What this student sees on \"My marks\"" }), ...marksParts(mine)) : null,
+      el("h3", { text: "Lecture attendance details" }),
       el("p", { class: "muted", text: `${st.email} · attended ${st.attended} of ${sheet.lectures.length} · lecture score ${fmt(st.total_score)} / ${st.total_possible}` }),
       el("div", { class: "tablewrap" }, el("table", { class: "grid" },
         el("thead", {}, el("tr", {}, ["Lecture", "Date", "Present", "Score", "Solved", "Joined", "Last seen", "Submitted", "IP"].map((h) => el("th", { text: h })))),
@@ -278,13 +283,14 @@
   }
 
   /* ---------------------------------------------------------------- marks (gradebook) */
+  const COLS_KEY = "lec:markcols";         // per device: hidden columns of the Marks page
   async function marks(g) {
     pageStart("marks");
     const ms = await api("GET", "/api/admin/marks");
     if (!fresh(g)) return;
     const view = $("view");
     if (!ms.items.length) return view.append(el("p", { class: "muted", text: "No gradebook uploaded yet (tools/marks_upload.py)." }));
-    const filter = el("input", { type: "text", placeholder: "Filter by name or roll number", class: "filter" });
+    const filter = el("input", { type: "search", placeholder: "Search student (name or roll)", class: "filter" });
     const dl = el("button", { class: "primary", text: "Download CSV", onclick: async () => {
       const r = await fetch(CFG.backend + "/api/admin/marks.csv", { headers: { Authorization: "Bearer " + store.get("lec:token") } });
       if (!r.ok) return alert("Download failed.");
@@ -292,42 +298,80 @@
       document.body.append(a); a.click(); a.remove();
     } });
     const low = ms.rows.filter((r) => r.attendance.low).length;
-    view.append(el("div", { class: "actions" }, filter, dl,
-      el("span", { class: "muted", text: `${ms.rows.length} students · uploaded ${ms.uploaded} · ${low} below ${ms.rows[0] ? ms.rows[0].attendance.min_percent : 80}% attendance (not exempt)` })));
     const cats = ms.categories.filter((c) => ms.rows.some((r) => r.categories.some((x) => x.id === c.id)));
-    const cols = [
-      ["Roll", (r) => r.roll, "sticky"], ["Name", (r) => r.name, "sticky2"],
-      ...ms.items.map((it) => [it.title.split(":")[0], (r) => { const x = r.items.find((i) => i.id === it.id); return x.graded ? x.marks : -1; }, "num", it]),
-      ...cats.map((c) => [`${c.name} (${c.weight})`, (r) => { const x = r.categories.find((y) => y.id === c.id); return x ? x.points : 0; }, "num cat", c]),
-      ["Total", (r) => r.total, "num total"], ["Att. %", (r) => r.attendance.percent, "num"],
-    ];
-    let sortCol = 0, dir = 1;
-    const body = el("tbody");
-    const head = el("tr", {}, cols.map((c, i) => el("th", { class: (c[2] || "") + " sortable", title: c[3] && c[3].parts ? `${c[3].title} (out of ${c[3].parts.reduce((a, p) => a + p.max, 0)})` : "",
-      text: c[0], onclick: () => { dir = sortCol === i ? -dir : (i > 1 ? -1 : 1); sortCol = i; draw(); } })));
-    const draw = () => {
-      const f = filter.value.trim().toLowerCase();
-      const rows = ms.rows.filter((r) => !f || r.name.toLowerCase().includes(f) || r.roll.includes(f))
-        .sort((a, b) => { const x = cols[sortCol][1](a), y = cols[sortCol][1](b); return (x < y ? -1 : x > y ? 1 : 0) * dir; });
-      body.replaceChildren(...rows.map((r) => el("tr", {},
-        el("td", { class: "sticky num", text: r.roll }), el("td", { class: "sticky2", text: r.name, title: r.email }),
-        ms.items.map((it) => {
-          const x = r.items.find((i) => i.id === it.id);
-          const cat = r.categories.find((c) => c.id === it.category);
-          const src = x.parts.map((p) => p.src).filter(Boolean).join("/");
-          return el("td", { class: "num" + (cat && cat.dropped.includes(it.id) ? " dropped" : "") + (x.graded ? "" : " missing"),
-            title: x.parts.map((p) => `${p.title}: ${p.m ?? "-"} / ${p.max}${p.src ? " (" + p.src + ")" : ""}${p.rem ? " - " + p.rem : ""}`).join("\n"),
-            text: (x.graded ? fmt(x.marks) : "-") + (src ? " " + src.split("/").map((v) => (v === "late" ? "L" : v[0].toUpperCase())).join("") : "") });
-        }),
-        cats.map((c) => { const x = r.categories.find((y) => y.id === c.id); return el("td", { class: "num cat", title: x ? `${x.percent}%${x.note ? " (" + x.note + ")" : ""}` : "", text: x ? fmt(x.points) : "" }); }),
-        el("td", { class: "num total", text: `${fmt(r.total)}`, title: `out of ${r.available} (categories with marks so far)` }),
-        el("td", { class: "num " + (r.attendance.exempt ? "exempt" : r.attendance.low ? "low" : ""), title: `${r.attendance.attended} of ${r.attendance.held} lectures` + (r.attendance.exempt ? " (exempt: full marks in the midsem)" : ""),
-          text: `${r.attendance.percent}` + (r.attendance.exempt ? " ex" : "") }))));
+    // columns: [key, heading, title, sort value, class, cell]
+    const itemCell = (r, it) => {
+      const x = r.items.find((i) => i.id === it.id);
+      const cat = r.categories.find((c) => c.id === it.category);
+      const src = x.parts.map((p) => p.src).filter(Boolean).join("/");
+      return el("td", { class: "num" + (cat && cat.dropped.includes(it.id) ? " dropped" : "") + (x.graded ? "" : " missing"),
+        title: x.parts.map((p) => `${p.title}: ${p.m ?? "-"} / ${p.max}${p.src ? " (" + p.src + ")" : ""}${p.rem ? " - " + p.rem : ""}`).join("\n"),
+        text: (x.graded ? fmt(x.marks) : "-") + (src ? " " + src.split("/").map((v) => (v === "late" ? "L" : v[0].toUpperCase())).join("") : "") });
     };
+    const cols = [
+      ...ms.items.map((it) => ({ key: "i:" + it.id, head: it.title.split(":")[0], title: `${it.title} (out of ${it.parts.reduce((a, p) => a + p.max, 0)})`,
+        val: (r) => { const x = r.items.find((i) => i.id === it.id); return x.graded ? x.marks : -1; }, cls: "num", cell: (r) => itemCell(r, it) })),
+      ...cats.map((c) => ({ key: "c:" + c.id, head: `${c.name} (${c.weight})`, title: `${c.name}: weighted points out of ${c.weight}`, cls: "num cat",
+        val: (r) => { const x = r.categories.find((y) => y.id === c.id); return x ? x.points : 0; },
+        cell: (r) => { const x = r.categories.find((y) => y.id === c.id); return el("td", { class: "num cat", title: x ? `${x.percent}%${x.note ? " (" + x.note + ")" : ""}` : "", text: x ? fmt(x.points) : "" }); } })),
+      { key: "total", head: "Total", title: "weighted total", val: (r) => r.total, cls: "num total",
+        cell: (r) => el("td", { class: "num total", text: fmt(r.total), title: `out of ${r.available} (categories with marks so far)` }) },
+      { key: "att", head: "Att. %", title: "lecture attendance", val: (r) => r.attendance.percent, cls: "num",
+        cell: (r) => el("td", { class: "num " + (r.attendance.exempt ? "exempt" : r.attendance.low ? "low" : ""),
+          title: `${r.attendance.attended} of ${r.attendance.held} lectures` + (r.attendance.exempt ? " (exempt: full marks in the midsem)" : ""),
+          text: `${r.attendance.percent}` + (r.attendance.exempt ? " ex" : "") }) },
+    ];
+    let hidden = new Set(store.get(COLS_KEY, []));
+    let sortKey = "name", dir = 1;
+    // column picker: a checkbox per column, with its own search
+    const boxes = cols.map((c) => {
+      const cb = el("input", { type: "checkbox" });
+      cb.checked = !hidden.has(c.key);
+      cb.addEventListener("change", () => { cb.checked ? hidden.delete(c.key) : hidden.add(c.key); save(); });
+      return { c, row: el("label", { class: "colopt", title: c.title }, cb, " " + (c.title.split(" (out of")[0])), cb };
+    });
+    const colFilter = el("input", { type: "search", placeholder: "Search activity", class: "filter" });
+    colFilter.addEventListener("input", () => {
+      const f = colFilter.value.trim().toLowerCase();
+      for (const b of boxes) b.row.hidden = !!f && !b.c.title.toLowerCase().includes(f) && !b.c.head.toLowerCase().includes(f);
+    });
+    const setAll = (on, onlyShown) => { for (const b of boxes) if (!onlyShown || !b.row.hidden) { b.cb.checked = on; on ? hidden.delete(b.c.key) : hidden.add(b.c.key); } save(); };
+    const summary = el("summary");
+    const picker = el("details", { class: "colpick" }, summary,
+      el("div", { class: "colpanel" }, colFilter,
+        el("div", { class: "colbtns" }, el("button", { class: "small", text: "Show all", onclick: () => setAll(true, false) }),
+          el("button", { class: "small", text: "Only these", title: "show only the activities matching the search", onclick: () => { setAll(false, false); setAll(true, true); } }),
+          el("button", { class: "small", text: "Hide all", onclick: () => setAll(false, false) })),
+        el("div", { class: "collist" }, boxes.map((b) => b.row))));
+    function save() { store.set(COLS_KEY, [...hidden]); draw(); }
+    const table = el("table", { class: "grid att marksheet" });
+    const wrap = el("div", { class: "tablewrap sheet" }, table);
+    const count = el("span", { class: "muted small" });
+    function draw() {
+      const shown = cols.filter((c) => !hidden.has(c.key));
+      summary.textContent = `Activities: ${shown.length} of ${cols.length} shown`;
+      const f = filter.value.trim().toLowerCase();
+      const val = sortKey === "name" ? (r) => r.name.toLowerCase() : sortKey === "roll" ? (r) => r.roll : (cols.find((c) => c.key === sortKey) || cols[0]).val;
+      const rows = ms.rows.filter((r) => !f || r.name.toLowerCase().includes(f) || r.roll.includes(f) || r.email.includes(f))
+        .sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : 0) * dir; });
+      count.textContent = `${rows.length} of ${ms.rows.length} students`;
+      const th = (key, text, cls, title) => el("th", { class: cls + " sortable" + (sortKey === key ? " sorted" : ""), title,
+        text: text + (sortKey === key ? (dir > 0 ? " ▲" : " ▼") : ""),
+        onclick: () => { dir = sortKey === key ? -dir : (key === "name" || key === "roll" ? 1 : -1); sortKey = key; draw(); } });
+      table.replaceChildren(
+        el("thead", {}, el("tr", {}, th("name", "Student", "sticky", "sort by name"), th("roll", "Roll", "num", "sort by roll number"),
+          shown.map((c) => th(c.key, c.head, c.cls, c.title)))),
+        el("tbody", {}, rows.map((r) => el("tr", {},
+          el("td", { class: "sticky sname" }, el("a", { href: `#/instructor/student/${encodeURIComponent(r.email)}`, text: r.name, title: `${r.email}: what this student sees` })),
+          el("td", { class: "num muted", text: r.roll }),
+          shown.map((c) => c.cell(r))))));
+    }
     filter.addEventListener("input", draw);
+    view.append(el("div", { class: "actions marksbar" }, filter, picker, dl),
+      el("p", { class: "muted small" }, count, ` · uploaded ${ms.uploaded} · ${low} below ${ms.rows[0] ? ms.rows[0].attendance.min_percent : 80}% attendance (not exempt)`),
+      wrap,
+      el("p", { class: "muted small", text: `Click a name to see that student's "My marks" page. Item columns: marks (hover for parts, batch and remarks; M / T / L = Mon batch, Tue batch, late submission); struck out = the dropped lowest lab. Category columns: weighted points (hover for the percentage). Total: out of ${ms.rows[0] ? ms.rows[0].available : ""} (the weights of categories with marks so far). Att. %: red = below the minimum; "ex" = exempt. Click a heading to sort. Never show this page on the projector.` }));
     draw();
-    view.append(el("div", { class: "tablewrap sheet" }, el("table", { class: "grid att marksheet" }, el("thead", {}, head), body)),
-      el("p", { class: "muted small", text: `Item columns: marks (hover for parts, batch and remarks; M / T / L = Mon batch, Tue batch, late submission); struck out = the dropped lowest lab. Category columns: weighted points (hover for the percentage). Total: out of ${ms.rows[0] ? ms.rows[0].available : ""} (the weights of categories with marks so far). Att. %: red = below the minimum; "ex" = exempt. Click a heading to sort. Never show this page on the projector.` }));
   }
 
   /* ---------------------------------------------------------------- preview a bundle (any state) */
