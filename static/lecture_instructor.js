@@ -277,7 +277,9 @@
           const c = st.cells[i];
           return el("tr", {}, el("td", {}, l.manual ? `Lec ${l.lec_no} (paper)` : el("a", { href: `#/instructor/live/${l.session}`, text: `Lec ${l.lec_no}: ${l.title}` })),
             el("td", { text: `${l.day} ${l.date}` }), el("td", { class: "cell " + (c.present ? "p" : "a"), text: c.present ? "P" : "A" }),
-            el("td", { class: "num", text: `${fmt(c.score)}/${c.out_of}` }), el("td", { class: "num", text: String(c.solved) }),
+            el("td", { class: "num" + (mine && (mine.dropped_lectures || []).includes(l.lec_no) ? " dropped" : ""),
+              title: mine && (mine.dropped_lectures || []).includes(l.lec_no) ? "dropped from the lecture score (one of the lowest)" : "",
+              text: `${fmt(c.score)}/${c.out_of}` }), el("td", { class: "num", text: String(c.solved) }),
             el("td", { text: c.joined_at }), el("td", { text: c.last_seen }), el("td", { text: c.submitted }), el("td", { class: "small", text: c.ip }));
         })))));
   }
@@ -370,7 +372,7 @@
     view.append(el("div", { class: "actions marksbar" }, filter, picker, dl),
       el("p", { class: "muted small" }, count, ` · uploaded ${ms.uploaded} · ${low} below ${ms.rows[0] ? ms.rows[0].attendance.min_percent : 80}% attendance (not exempt)`),
       wrap,
-      el("p", { class: "muted small", text: `Click a name to see that student's "My marks" page. Item columns: marks (hover for parts, batch and remarks; M / T / L = Mon batch, Tue batch, late submission); struck out = the dropped lowest lab. Category columns: weighted points (hover for the percentage). Total: out of ${ms.rows[0] ? ms.rows[0].available : ""} (the weights of categories with marks so far). Att. %: red = below the minimum; "ex" = exempt. Click a heading to sort. Never show this page on the projector.` }));
+      el("p", { class: "muted small", text: `Click a name to see that student's "My marks" page. Item columns: marks (hover for parts, batch and remarks; M / T / L = Mon batch, Tue batch, late submission); struck out = the dropped lowest lab. Category columns: weighted points (hover for the percentage). Lecture Participation: each lecture with questions as a percentage, all lectures weighing the same, the 2 lowest dropped (hover to see which; struck out on the student's page); students see only the plain average. Total: out of ${ms.rows[0] ? ms.rows[0].available : ""} (the weights of categories with marks so far). Att. %: red = below the minimum; "ex" = exempt. Click a heading to sort. Never show this page on the projector.` }));
     draw();
   }
 

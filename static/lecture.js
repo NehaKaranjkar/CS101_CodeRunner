@@ -956,14 +956,15 @@ function marksParts(r) {
   parts.push(el("section", { class: "mcat" },
     el("h2", { text: "Lectures" }),
     el("p", { text: `Lectures attended: ${r.attendance.attended}` }),
-    el("p", { text: `Lecture score: ${fmt(r.lectures.score)} of ${r.lectures.possible} questions` }),
+    el("p", { text: r.lectures.percent === null || r.lectures.percent === undefined ? "Lecture score: no lecture questions yet"
+      : `Lecture score: ${r.lectures.percent}% (${fmt(r.lectures.score)} of ${r.lectures.possible} questions solved)` }),
     el("details", {}, el("summary", { text: "Lecture by lecture" }),
       el("div", { class: "tablewrap" }, el("table", { class: "grid" },
         el("thead", {}, el("tr", {}, ["Lec", "Date", "", "Score", "Topics"].map((h) => el("th", { text: h })))),
         el("tbody", {}, r.lecture_list.slice().reverse().map((l) => el("tr", {},
           el("td", { class: "num", text: String(l.lec_no) }), el("td", { text: `${l.day} ${l.date}` }),
           el("td", { class: "cell " + (l.present ? "p" : "a"), text: l.present ? "P" : "A" }),
-          el("td", { class: "num", text: l.manual ? "" : `${fmt(l.score)} / ${l.out_of}` }),
+          el("td", { class: "num lscore", text: l.manual ? "" : l.out_of ? `${l.percent}% (${fmt(l.score)}/${l.out_of} solved)` : "no questions" }),
           el("td", { class: "small", text: l.manual ? "(attendance on paper)" : l.topics })))))))));
   parts.push(el("p", { class: "muted small", text: "Only you can see this page. If something looks wrong, please contact the instructor." }));
   return parts.filter(Boolean);
