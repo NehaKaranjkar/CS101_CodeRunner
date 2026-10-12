@@ -119,6 +119,38 @@
    "questions": 50,
    "marks": 50.0,
    "duration_minutes": null
+  },
+  {
+   "file": "Practice_Set_3.qbank",
+   "title": "Practice Set 3: Easy",
+   "description": "Short warm-up programs: printing, reading input with input(), converting text to numbers with int(), arithmetic with //, % and round(), and if-elif-else decisions.",
+   "questions": 10,
+   "marks": 10.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Practice_Set_4.qbank",
+   "title": "Practice Set 4: Debug It",
+   "description": "Each question gives a complete function with a hidden logical mistake: find and fix it. Conditions, loops, accumulators, off-by-one ranges, early returns and recursion.",
+   "questions": 10,
+   "marks": 10.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Practice_Set_5.qbank",
+   "title": "Practice Set 5: Medium",
+   "description": "Functions with conditions, loops, digits, strings and lists, then recursion on numbers, lists and strings.",
+   "questions": 20,
+   "marks": 20.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Practice_Set_6.qbank",
+   "title": "Practice Set 6: Difficult",
+   "description": "Challenging problems: recursion, nested lists, counting, games and string puzzles.",
+   "questions": 10,
+   "marks": 10.0,
+   "duration_minutes": null
   }
  ]
 }

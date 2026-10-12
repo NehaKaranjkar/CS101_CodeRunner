@@ -1,0 +1,842 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Practice_Set_6",
+ "encrypted": false,
+ "source_xml": "Practice_Set_6.xml",
+ "built_at": "2026-10-12T16:57:02",
+ "settings": {
+  "title": "Practice Set 6: Difficult",
+  "description": "Challenging problems: recursion, nested lists, counting, games and string puzzles.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Difficult",
+    "start": 1,
+    "count": 10
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "PS6_001_Collatz Path Printed Backwards",
+   "display_name": "Collatz Path Printed Backwards",
+   "questiontext_html": "<p>Start with any positive integer <code>n</code> and repeat this rule: if the number is even, divide it by 2; if it is odd, multiply it by 3 and add 1. Keep going until you reach 1. For example, starting from 6 you visit:</p>\n<pre>6, 3, 10, 5, 16, 8, 4, 2, 1</pre>\n<p>Write a function <code>collatz_path(n)</code> that takes a positive integer (int &gt; 0) <code>n</code>, at most 1000, and <b>prints</b> this path <b>backwards</b>, from 1 back to <code>n</code>, all on one line, with the characters <code>&lt;-</code> between the numbers and no spaces anywhere. If <code>n</code> is 1, it prints just <code>1</code>.</p>\n<p><b>Rules for this question:</b></p>\n<ul>\n<li>You must simply use <b>recursion</b> (the function calls itself) and <b>print</b> inside the function. The function does not need to return anything.</li>\n<li><b>Do not</b> save the numbers anywhere temporarily (such as in a list) to reverse them later.</li>\n</ul>\n<p><i>Python fact you may use:</i> normally each <code>print()</code> starts a new line. <code>print(x, end=\"\")</code> prints <code>x</code> and stays on the same line, so the next print continues right after it. For example, <code>print(\"ab\", end=\"\")</code> followed by <code>print(\"cd\", end=\"\")</code> shows <code>abcd</code>.</p>\n<p><b>Examples:</b></p>\n<ul>\n<li><code>collatz_path(6)</code> prints <code>1&lt;-2&lt;-4&lt;-8&lt;-16&lt;-5&lt;-10&lt;-3&lt;-6</code></li>\n<li><code>collatz_path(1)</code> prints <code>1</code></li>\n<li><code>collatz_path(2)</code> prints <code>1&lt;-2</code></li>\n<li><code>collatz_path(5)</code> prints <code>1&lt;-2&lt;-4&lt;-8&lt;-16&lt;-5</code></li>\n</ul>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "collatz_path(6)",
+     "stdin": "",
+     "expected": "1<-2<-4<-8<-16<-5<-10<-3<-6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "collatz_path(1)",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "collatz_path(2)",
+     "stdin": "",
+     "expected": "1<-2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "collatz_path(5)",
+     "stdin": "",
+     "expected": "1<-2<-4<-8<-16<-5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "collatz_path(7)",
+     "stdin": "",
+     "expected": "1<-2<-4<-8<-16<-5<-10<-20<-40<-13<-26<-52<-17<-34<-11<-22<-7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "collatz_path(27)",
+     "stdin": "",
+     "expected": "1<-2<-4<-8<-16<-5<-10<-20<-40<-80<-160<-53<-106<-35<-70<-23<-46<-92<-184<-61<-122<-244<-488<-976<-325<-650<-1300<-433<-866<-1732<-577<-1154<-2308<-4616<-9232<-3077<-6154<-2051<-4102<-1367<-2734<-911<-1822<-3644<-7288<-2429<-4858<-1619<-3238<-1079<-2158<-719<-1438<-479<-958<-319<-638<-1276<-425<-850<-283<-566<-1132<-377<-754<-251<-502<-167<-334<-668<-1336<-445<-890<-1780<-593<-1186<-395<-790<-263<-526<-175<-350<-700<-233<-466<-155<-310<-103<-206<-412<-137<-274<-91<-182<-364<-121<-242<-484<-161<-322<-107<-214<-71<-142<-47<-94<-31<-62<-124<-41<-82<-27",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "collatz_path(64)",
+     "stdin": "",
+     "expected": "1<-2<-4<-8<-16<-32<-64",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "PS6_002_Climbing The Stairs",
+   "display_name": "Climbing The Stairs",
+   "questiontext_html": "<p>Imagine Frodo has to climb a staircase of <code>n</code> steps up a mountain. At each move, he can climb <b>1, 2 or 3</b> steps at once. He must land exactly on the top step (he cannot go past it).</p>\n<p>Two ways of climbing are <b>different</b> if the sequence of moves is different, so climbing 1 then 2 is different from climbing 2 then 1.</p>\n<p>For example, a staircase of 3 steps can be climbed in 4 different ways:</p>\n<pre>1 + 1 + 1\n1 + 2\n2 + 1\n3</pre>\n<p>Write a function <code>climb_ways(n)</code> that takes a positive integer (int &gt; 0) <code>n</code>, at most 20, and <b>returns</b> the number of different ways to climb a staircase of <code>n</code> steps.</p>\n<p><b>Examples:</b> <code>climb_ways(1)</code> returns <code>1</code>. <code>climb_ways(2)</code> returns <code>2</code> (1+1, or 2). <code>climb_ways(3)</code> returns <code>4</code>. <code>climb_ways(4)</code> returns <code>7</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(climb_ways(3))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(climb_ways(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(climb_ways(2))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(climb_ways(4))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(climb_ways(5))",
+     "stdin": "",
+     "expected": "13",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(climb_ways(10))",
+     "stdin": "",
+     "expected": "274",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(climb_ways(20))",
+     "stdin": "",
+     "expected": "121415",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "PS6_003_Nested List Sum",
+   "display_name": "Nested List Sum",
+   "questiontext_html": "<p>A <b>nested list</b> is a list whose elements can be integers <b>or other lists</b>, and those inner lists can again contain integers or lists, to any depth. For example:</p>\n<pre>[1, [2, 3], [[4]], 5]</pre>\n<p>Here the elements are: the integer 1, the list [2, 3], the list [[4]] (a list containing the list [4]), and the integer 5.</p>\n<p>Write a function <code>nested_sum(lst)</code> that takes such a nested list and <b>returns</b> the sum of <b>all</b> the integers inside it, at every level. Empty lists (at any level) add 0.</p>\n<p><i>Python fact you may use:</i> <code>type(x) == list</code> is <code>True</code> if <code>x</code> is a list, and <code>False</code> if <code>x</code> is an integer.</p>\n<p><b>Examples:</b></p>\n<ul>\n<li><code>nested_sum([1, [2, 3], [[4]], 5])</code> returns <code>15</code></li>\n<li><code>nested_sum([1, 2, 3])</code> returns <code>6</code></li>\n<li><code>nested_sum([])</code> returns <code>0</code></li>\n<li><code>nested_sum([[[]], [7, [-2]]])</code> returns <code>5</code></li>\n</ul>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(nested_sum([1, [2, 3], [[4]], 5]))",
+     "stdin": "",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_sum([1, 2, 3]))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_sum([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_sum([[[]], [7, [-2]]]))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_sum([[1, [2, [3, [4]]]], -10]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_sum([[5], [5, [5]], [[[[5]]]]]))",
+     "stdin": "",
+     "expected": "20",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_sum([[], [[]], 9]))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "PS6_004_Stone Game Winner",
+   "display_name": "Stone Game Winner",
+   "questiontext_html": "<p>Harry and Ron play a game with a pile of <code>n</code> stones. They take turns, and <b>Harry always moves first</b>. On each turn, a player must remove <b>1, 2 or 3</b> stones from the pile (not more than the stones left). The player who removes the <b>last stone wins</b>.</p>\n<p>Both players are very clever and always play perfectly: whenever a player has a move that guarantees a win no matter what the other player does later, they take it.</p>\n<p>Some small cases:</p>\n<ul>\n<li>n = 1, 2 or 3: Harry takes all the stones at once and wins.</li>\n<li>n = 4: whether Harry takes 1, 2 or 3 stones, Ron is left with 3, 2 or 1 stones and takes them all. So Ron wins.</li>\n<li>n = 5: Harry takes 1 stone, leaving 4 for Ron. Now Ron is in the same bad situation Harry was in with 4 stones, so Harry wins.</li>\n</ul>\n<p>Write a function <code>winner(n)</code> that takes a positive integer (int &gt; 0) <code>n</code>, at most 15, and <b>returns</b> the string <code>\"Harry\"</code> or <code>\"Ron\"</code>: the name of the player who wins when both play perfectly.</p>\n<p><b>Examples:</b> <code>winner(1)</code> returns <code>\"Harry\"</code>. <code>winner(4)</code> returns <code>\"Ron\"</code>. <code>winner(5)</code> returns <code>\"Harry\"</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(winner(1))",
+     "stdin": "",
+     "expected": "Harry",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner(4))",
+     "stdin": "",
+     "expected": "Ron",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner(5))",
+     "stdin": "",
+     "expected": "Harry",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner(8))",
+     "stdin": "",
+     "expected": "Ron",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner(7))",
+     "stdin": "",
+     "expected": "Harry",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner(12))",
+     "stdin": "",
+     "expected": "Ron",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner(14))",
+     "stdin": "",
+     "expected": "Harry",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "PS6_005_Look And Say",
+   "display_name": "Look And Say",
+   "questiontext_html": "<p>The <b>look-and-say</b> game works like this: you read a string of digits aloud from left to right, describing each group of <b>consecutive equal digits</b> by saying how many there are, followed by the digit. Writing down what you said gives the next string.</p>\n<p>For example, <code>\"1211\"</code> is read as \"one 1, one 2, two 1s\", which is written <code>\"111221\"</code>. And <code>\"3322251\"</code> is read as \"two 3s, three 2s, one 5, one 1\", which is written <code>\"23321511\"</code>.</p>\n<p>The count is written in full, so a group of ten 1s (<code>\"1111111111\"</code>) becomes <code>\"101\"</code> (ten, then 1).</p>\n<p>Write a function <code>look_and_say(s)</code> that takes a non-empty string <code>s</code> made only of digit characters, and <b>returns</b> the next string in the look-and-say game, as a string.</p><p><i>Python facts you may use:</i> a string can be indexed just like a list, so if <code>s = \"hello\"</code> then <code>s[0]</code> is <code>\"h\"</code>, <code>s[4]</code> is <code>\"o\"</code>, and <code>len(s)</code> is 5. You can build up a new string step by step with <code>+</code>, and <code>str(3)</code> gives the string <code>\"3\"</code>.</p>\n<p><b>Examples:</b></p>\n<ul>\n<li><code>look_and_say(\"1\")</code> returns <code>\"11\"</code></li>\n<li><code>look_and_say(\"21\")</code> returns <code>\"1211\"</code></li>\n<li><code>look_and_say(\"1211\")</code> returns <code>\"111221\"</code></li>\n<li><code>look_and_say(\"3322251\")</code> returns <code>\"23321511\"</code></li>\n</ul>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(look_and_say(\"1\"))",
+     "stdin": "",
+     "expected": "11",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(look_and_say(\"21\"))",
+     "stdin": "",
+     "expected": "1211",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(look_and_say(\"1211\"))",
+     "stdin": "",
+     "expected": "111221",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(look_and_say(\"3322251\"))",
+     "stdin": "",
+     "expected": "23321511",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(look_and_say(\"111221\"))",
+     "stdin": "",
+     "expected": "312211",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(look_and_say(\"1111111111\"))",
+     "stdin": "",
+     "expected": "101",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(look_and_say(\"9\"))",
+     "stdin": "",
+     "expected": "19",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(look_and_say(\"5566778\"))",
+     "stdin": "",
+     "expected": "25262718",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "PS6_006_Print In Binary",
+   "display_name": "Print In Binary",
+   "questiontext_html": "<p>Computers store numbers in <b>binary</b>. In binary, numbers are written using only the digits <b>0</b> and <b>1</b>. Each place is worth <b>double</b> the place to its right: counting from the right, the places are worth 1, 2, 4, 8, 16, and so on. To find the value of a binary number, add up the place values that have a 1.</p>\n<table border=\"1\" cellpadding=\"4\" cellspacing=\"0\">\n<tr><th>Number</th><th>Binary</th><th>Why</th></tr>\n<tr><td>0</td><td>0</td><td></td></tr>\n<tr><td>1</td><td>1</td><td>1</td></tr>\n<tr><td>5</td><td>101</td><td>4 + 0 + 1</td></tr>\n<tr><td>6</td><td>110</td><td>4 + 2 + 0</td></tr>\n<tr><td>8</td><td>1000</td><td>8 + 0 + 0 + 0</td></tr>\n<tr><td>13</td><td>1101</td><td>8 + 4 + 0 + 1</td></tr>\n</table>\n<p><b>A clue:</b> the <b>last</b> binary digit of a number tells you whether the number is even or odd (it is 0 for even numbers and 1 for odd numbers).</p>\n<p>Write a function <code>print_binary(n)</code> that takes a non-negative integer (int &gt;= 0) <code>n</code>, at most 100000, and <b>prints</b> its binary representation on one line (with no extra zeros at the start).</p>\n<p><b>Rules for this question:</b></p>\n<ul>\n<li>You must simply use <b>recursion</b> (the function calls itself) and <b>print</b> inside the function. The function does not need to return anything.</li>\n<li><b>Do not</b> save the digits anywhere temporarily (such as in a list) to reverse them later.</li>\n</ul>\n<p><i>Python fact you may use:</i> normally each <code>print()</code> starts a new line. <code>print(x, end=\"\")</code> prints <code>x</code> and stays on the same line, so the next print continues right after it. For example, <code>print(\"ab\", end=\"\")</code> followed by <code>print(\"cd\", end=\"\")</code> shows <code>abcd</code>.</p>\n<p><b>Examples:</b> <code>print_binary(13)</code> prints <code>1101</code>. <code>print_binary(8)</code> prints <code>1000</code>. <code>print_binary(0)</code> prints <code>0</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print_binary(13)",
+     "stdin": "",
+     "expected": "1101",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print_binary(8)",
+     "stdin": "",
+     "expected": "1000",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print_binary(0)",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print_binary(1)",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print_binary(5)",
+     "stdin": "",
+     "expected": "101",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print_binary(255)",
+     "stdin": "",
+     "expected": "11111111",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print_binary(1000)",
+     "stdin": "",
+     "expected": "1111101000",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print_binary(100000)",
+     "stdin": "",
+     "expected": "11000011010100000",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "PS6_007_Choosing A Crew",
+   "display_name": "Choosing A Crew",
+   "questiontext_html": "<p>Captain Luffy has <code>n</code> crew members and must choose exactly <code>k</code> of them for a secret mission. Only <b>who</b> is chosen matters, not the order in which they are chosen. So choosing Zoro and Nami is the same choice as choosing Nami and Zoro.</p>\n<p>For example, with 4 crew members (Zoro, Nami, Usopp, Sanji) and k = 2, there are 6 different choices:</p>\n<pre>Zoro + Nami\nZoro + Usopp\nZoro + Sanji\nNami + Usopp\nNami + Sanji\nUsopp + Sanji</pre>\n<p>Write a function <code>choose_crew(n, k)</code> that takes two non-negative integers <code>n</code> and <code>k</code>, with <code>k &lt;= n</code> and <code>n</code> at most 20, and <b>returns</b> the number of different ways to choose <code>k</code> crew members out of <code>n</code>. Choosing 0 people (or choosing everybody) can be done in exactly 1 way.</p>\n<p><b>Examples:</b> <code>choose_crew(4, 2)</code> returns <code>6</code>. <code>choose_crew(5, 3)</code> returns <code>10</code>. <code>choose_crew(5, 0)</code> returns <code>1</code>. <code>choose_crew(5, 5)</code> returns <code>1</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(choose_crew(4, 2))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(choose_crew(5, 3))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(choose_crew(5, 0))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(choose_crew(5, 5))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(choose_crew(10, 3))",
+     "stdin": "",
+     "expected": "120",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(choose_crew(20, 10))",
+     "stdin": "",
+     "expected": "184756",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(choose_crew(7, 1))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "PS6_008_Nested List Max",
+   "display_name": "Nested List Max",
+   "questiontext_html": "<p>A <b>nested list</b> is a list whose elements can be integers <b>or other lists</b>, and those inner lists can again contain integers or lists, to any depth. For example:</p>\n<pre>[3, [8, [1, 9]], 2]</pre>\n<p>Here the elements are: the integer 3, the list [8, [1, 9]] (which itself contains the list [1, 9]), and the integer 2.</p>\n<p>Write a function <code>nested_max(lst)</code> that takes such a nested list and <b>returns</b> the <b>largest</b> integer found anywhere inside it, at any level.</p>\n<p>You can assume that <b>no list is empty</b>, at any level, so every list contains at least one integer somewhere inside it. The integers may be negative.</p>\n<p><i>Python fact you may use:</i> <code>type(x) == list</code> is <code>True</code> if <code>x</code> is a list, and <code>False</code> if <code>x</code> is an integer.</p>\n<p><b>Examples:</b></p>\n<ul>\n<li><code>nested_max([3, [8, [1, 9]], 2])</code> returns <code>9</code></li>\n<li><code>nested_max([1, [2, 30], [[4]], 5])</code> returns <code>30</code></li>\n<li><code>nested_max([[[7]]])</code> returns <code>7</code></li>\n<li><code>nested_max([-5, [-2, [-9]]])</code> returns <code>-2</code></li>\n</ul>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(nested_max([3, [8, [1, 9]], 2]))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_max([1, [2, 30], [[4]], 5]))",
+     "stdin": "",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_max([[[7]]]))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_max([-5, [-2, [-9]]]))",
+     "stdin": "",
+     "expected": "-2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_max([[1, [2, [3, [40]]]], -10]))",
+     "stdin": "",
+     "expected": "40",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_max([[-7], [-3, [-8]], -4]))",
+     "stdin": "",
+     "expected": "-3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nested_max([100, [[5]], [6, 7]]))",
+     "stdin": "",
+     "expected": "100",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "PS6_009_Worst Case Guessing Game",
+   "display_name": "Worst Case Guessing Game",
+   "questiontext_html": "<p>Hermione secretly picks an integer between 1 and <code>n</code> (both included). Ron tries to guess it, always using the same strategy:</p>\n<ol>\n<li>Ron keeps track of the smallest possible value <code>low</code> (starting at 1) and the largest possible value <code>high</code> (starting at <code>n</code>).</li>\n<li>Ron guesses <code>(low + high) // 2</code>.</li>\n<li>If the guess is correct, the game ends. If Hermione says the secret is <b>larger</b>, Ron sets <code>low</code> to guess + 1. If she says it is <b>smaller</b>, Ron sets <code>high</code> to guess - 1. Then Ron guesses again.</li>\n</ol>\n<p>For example, with n = 10 and secret 7: Ron guesses 5 (too small), then 8 (too large), then 6 (too small), then 7 (correct). That game took <b>4</b> guesses, counting the final correct guess.</p>\n<p>How many guesses Ron needs depends on which secret Hermione picked. Write a function <code>max_guesses(n)</code> that takes a positive integer (int &gt; 0) <code>n</code>, at most 500, and <b>returns</b> the <b>largest</b> number of guesses Ron could ever need, over all possible secrets from 1 to <code>n</code>.</p>\n<p><b>Examples:</b> <code>max_guesses(1)</code> returns <code>1</code>. <code>max_guesses(3)</code> returns <code>2</code> (secret 2 takes 1 guess, secrets 1 and 3 take 2 guesses). <code>max_guesses(10)</code> returns <code>4</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(max_guesses(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(max_guesses(3))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(max_guesses(10))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(max_guesses(7))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(max_guesses(8))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(max_guesses(100))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(max_guesses(500))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "PS6_010_Decrypt The Secret Message",
+   "display_name": "Decrypt The Secret Message",
+   "questiontext_html": "<p>In the Hogwarts library, you find an old piece of paper with this secret message:</p>\n<pre>pa kvlz uva kv av kdlss vu kylhtz huk mvynla av spcl</pre>\n<p>A note next to it explains how the message was made: every letter of the original message was replaced by the letter a fixed number of places <b>later</b> in the alphabet. If counting forward goes past <code>z</code>, it continues from <code>a</code> again. Spaces were not changed. The note does not say what the fixed number is.</p>\n<p>Someone before you has already worked out that the first word, <code>pa</code>, decodes to <code>it</code>.</p>\n<p>Write a function <code>decrypt(text)</code> that takes any message encrypted in this same way (with the same fixed number), and <b>returns</b> the original message. You can assume <code>text</code> contains only lowercase letters and spaces.</p><p><i>Python facts you may use:</i> a string can be indexed just like a list, so if <code>s = \"hello\"</code> then <code>s[0]</code> is <code>\"h\"</code>, <code>s[4]</code> is <code>\"o\"</code>, and <code>len(s)</code> is 5. You may also use the string <code>\"abcdefghijklmnopqrstuvwxyz\"</code> in your code. You can build up a new string step by step with <code>+</code>, and <code>str(3)</code> gives the string <code>\"3\"</code>.</p>\n<p><b>Example:</b> <code>decrypt(\"pa kvlz uva kv av kdlss vu kylhtz huk mvynla av spcl\")</code> returns the original message, which is a well-known quote. Your function must also work on other messages encrypted the same way.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(decrypt(\"pa kvlz uva kv av kdlss vu kylhtz huk mvynla av spcl\"))",
+     "stdin": "",
+     "expected": "it does not do to dwell on dreams and forget to live",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(decrypt(\"pa\"))",
+     "stdin": "",
+     "expected": "it",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(decrypt(\"hmaly hss aopz aptl hsdhfz\"))",
+     "stdin": "",
+     "expected": "after all this time always",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(decrypt(\"tpzjoplm thuhnlk\"))",
+     "stdin": "",
+     "expected": "mischief managed",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(decrypt(\"gliyh\"))",
+     "stdin": "",
+     "expected": "zebra",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(decrypt(\"ohwwpulzz jhu il mvbuk lclu pu aol khyrlza vm aptlz\"))",
+     "stdin": "",
+     "expected": "happiness can be found even in the darkest of times",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "940bf68aad0e4613"
+}

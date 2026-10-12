@@ -1,0 +1,547 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Practice_Set_4",
+ "encrypted": false,
+ "source_xml": "Practice_Set_4.xml",
+ "built_at": "2026-10-12T16:57:02",
+ "settings": {
+  "title": "Practice Set 4: Debug It",
+  "description": "Each question gives a complete function with a hidden logical mistake: find and fix it. Conditions, loops, accumulators, off-by-one ranges, early returns and recursion.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Conditions and digits",
+    "start": 1,
+    "count": 3
+   },
+   {
+    "heading": "Loops, strings and lists",
+    "start": 4,
+    "count": 3
+   },
+   {
+    "heading": "Logic",
+    "start": 7,
+    "count": 2
+   },
+   {
+    "heading": "Recursion",
+    "start": 9,
+    "count": 2
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "PS4_001_DEBUG Discount For Kids And Seniors",
+   "display_name": "Discount For Kids And Seniors",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>gets_discount(age)</code> takes a person's age (a non-negative integer, int &gt;= 0) and <b>returns</b> <code>True</code> if the person gets a discount, or <code>False</code> if not. A person gets a discount if they are <b>younger than 12</b>, or if they are <b>60 or older</b>.</p>\n<p><b>Your fixed function must work for:</b> any non-negative integer <code>age</code>.</p>\n<p><b>Example test (already passes):</b> <code>gets_discount(30)</code> returns <code>False</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef gets_discount(age):\n    if age < 12 and age >= 60:\n        return True\n    else:\n        return False\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(gets_discount(30))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(gets_discount(8))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(gets_discount(65))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(gets_discount(60))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "PS4_002_DEBUG Exam Grade",
+   "display_name": "Exam Grade",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>exam_grade(marks)</code> takes a student's marks (an integer from 0 to 100) and <b>returns</b> the grade:</p>\n<ul><li><code>\"D\"</code> for marks below 40</li><li><code>\"C\"</code> for 40 to 59</li><li><code>\"B\"</code> for 60 to 79</li><li><code>\"A\"</code> for 80 or more</li></ul>\n<p><b>Your fixed function must work for:</b> any integer <code>marks</code> from 0 to 100.</p>\n<p><b>Example test (already passes):</b> <code>exam_grade(90)</code> returns <code>\"A\"</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef exam_grade(marks):\n    result = \"A\"\n    if marks < 40:\n        result = \"D\"\n    if marks < 60:\n        result = \"C\"\n    if marks < 80:\n        result = \"B\"\n    return result\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(exam_grade(90))",
+     "stdin": "",
+     "expected": "A",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(exam_grade(20))",
+     "stdin": "",
+     "expected": "D",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(exam_grade(55))",
+     "stdin": "",
+     "expected": "C",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(exam_grade(0))",
+     "stdin": "",
+     "expected": "D",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "PS4_003_DEBUG Smallest Digit",
+   "display_name": "Smallest Digit",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>smallest_digit(n)</code> takes a positive integer (int &gt; 0) <code>n</code> and <b>returns</b> its smallest digit. For example, the digits of 382 are 3, 8 and 2, so the answer is 2.</p>\n<p><b>Your fixed function must work for:</b> any positive integer <code>n</code>.</p>\n<p><b>Example test (already passes):</b> <code>smallest_digit(507)</code> returns <code>0</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef smallest_digit(n):\n    smallest = 0\n    while n > 0:\n        digit = n % 10\n        if digit < smallest:\n            smallest = digit\n        n = n // 10\n    return smallest\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(smallest_digit(507))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(smallest_digit(382))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(smallest_digit(9))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(smallest_digit(4567))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "PS4_004_DEBUG Sum Of Positives",
+   "display_name": "Sum Of Positives",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>sum_of_positives(lst)</code> takes a list of integers <code>lst</code> and <b>returns</b> the sum of the elements that are positive (greater than 0). For example, for <code>[3, -1, 4]</code> the answer is 7.</p>\n<p><b>Your fixed function must work for:</b> any list of integers, including an empty list (the answer for an empty list, or a list with no positive elements, is 0).</p>\n<p><b>Example test (already passes):</b> <code>sum_of_positives([-2, -5, 7])</code> returns <code>7</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef sum_of_positives(lst):\n    for value in lst:\n        total = 0\n        if value > 0:\n            total = total + value\n    return total\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_of_positives([-2, -5, 7]))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_positives([3, 4, -1]))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_positives([1, 2, 3]))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_positives([]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "PS4_005_DEBUG Count Vowels",
+   "display_name": "Count Vowels",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>count_vowels(word)</code> takes a string <code>word</code> made of lowercase letters and <b>returns</b> how many vowels it contains. The vowels are <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code> and <code>u</code>. For example, <code>\"banana\"</code> has 3 vowels.</p>\n<p><b>Your fixed function must work for:</b> any string of lowercase letters, including an empty string (the answer for it is 0).</p>\n<p><b>Example test (already passes):</b> <code>count_vowels(\"python\")</code> returns <code>1</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef count_vowels(word):\n    count = 0\n    for i in range(len(word) - 1):\n        if word[i] in \"aeiou\":\n            count = count + 1\n    return count\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_vowels(\"python\"))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_vowels(\"banana\"))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_vowels(\"a\"))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_vowels(\"idea\"))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "PS4_006_DEBUG Has Even",
+   "display_name": "Has Even",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>has_even(lst)</code> takes a list of integers <code>lst</code> and <b>returns</b> <code>True</code> if at least one element of the list is even, or <code>False</code> if none of them is even.</p>\n<p><b>Your fixed function must work for:</b> any list of integers, including an empty list (an empty list has no even elements, so the answer for it is <code>False</code>).</p>\n<p><b>Example test (already passes):</b> <code>has_even([4, 7, 9])</code> returns <code>True</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef has_even(lst):\n    for value in lst:\n        if value % 2 == 0:\n            return True\n        else:\n            return False\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(has_even([4, 7, 9]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(has_even([7, 4, 9]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(has_even([1, 3, 8]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(has_even([]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "PS4_007_DEBUG Is Sorted",
+   "display_name": "Is Sorted",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>is_sorted(lst)</code> takes a non-empty list of integers <code>lst</code> and <b>returns</b> <code>True</code> if every element is less than or equal to the element after it (the list is in increasing order, equal neighbours allowed), or <code>False</code> otherwise. For example, <code>[1, 2, 2, 5]</code> is sorted, but <code>[1, 3, 2]</code> is not.</p>\n<p><b>Your fixed function must work for:</b> any list of integers with at least one element (a list with one element is sorted).</p>\n<p><b>Example test (already passes):</b> <code>is_sorted([1, 2, 3])</code> returns <code>True</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef is_sorted(lst):\n    for i in range(len(lst) - 1):\n        if lst[i] > lst[i + 1]:\n            return False\n        else:\n            return True\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_sorted([1, 2, 3]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_sorted([1, 3, 2]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_sorted([5, 6, 7, 1]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_sorted([7]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "PS4_008_DEBUG Weather Advice",
+   "display_name": "Weather Advice",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>weather_advice(temp, raining)</code> takes the temperature in degrees (an integer) and whether it is raining (<code>True</code> or <code>False</code>), and <b>returns</b> what to take when you go out:</p>\n<ul><li><code>\"Umbrella and jacket\"</code> if it is raining and the temperature is below 15</li><li><code>\"Umbrella\"</code> if it is raining and the temperature is 15 or more</li><li><code>\"Jacket\"</code> if it is not raining and the temperature is below 15</li><li><code>\"Nothing\"</code> otherwise</li></ul>\n<p><b>Your fixed function must work for:</b> any integer <code>temp</code> and either value of <code>raining</code>.</p>\n<p><b>Example test (already passes):</b> <code>weather_advice(25, True)</code> returns <code>\"Umbrella\"</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef weather_advice(temp, raining):\n    if raining:\n        return \"Umbrella\"\n    elif temp < 15:\n        return \"Jacket\"\n    elif raining and temp < 15:\n        return \"Umbrella and jacket\"\n    else:\n        return \"Nothing\"\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(weather_advice(25, True))",
+     "stdin": "",
+     "expected": "Umbrella",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(weather_advice(10, True))",
+     "stdin": "",
+     "expected": "Umbrella and jacket",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(weather_advice(0, True))",
+     "stdin": "",
+     "expected": "Umbrella and jacket",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(weather_advice(14, True))",
+     "stdin": "",
+     "expected": "Umbrella and jacket",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "PS4_009_DEBUG Recursive Count Digits",
+   "display_name": "Recursive Count Digits",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>count_digits(n)</code> takes a positive integer (int &gt; 0) <code>n</code> and <b>returns</b> how many digits it has, using recursion. For example, 4567 has 4 digits.</p>\n<p><b>Your fixed function must work for:</b> any positive integer <code>n</code>.</p>\n<p><b>Example test (already passes):</b> <code>count_digits(45)</code> returns <code>2</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef count_digits(n):\n    if n < 10:\n        return 1\n    else:\n        return 1 + count_digits(n % 10)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_digits(45))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(123))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(10000))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_digits(4567))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "PS4_010_DEBUG Recursive Lucas Numbers",
+   "display_name": "Recursive Lucas Numbers",
+   "questiontext_html": "<p><b>This is a DEBUG-TYPE question. Please read this carefully, it works differently from the other questions.</b></p>\n<p>The answer box below already contains a complete function. For the one example test shown below, this function gives the correct output.</p>\n<p><b>But the function has a logical mistake</b> (possibly more than one). For some other valid inputs, which we have <b>not</b> shown you, it gives a wrong answer or stops with an error.</p>\n<p><b>What you need to do:</b></p>\n<ol><li>Read the code carefully and trace it in your head for different valid inputs, to find the inputs where it goes wrong.</li><li>Fix the mistake(s), so that the function works correctly for <b>all</b> valid inputs described below.</li><li>Add a short comment in the code saying which line(s) you changed and why.</li></ol>\n<p><b>How this question is checked:</b> this question has some <b>hidden tests</b> that check exactly those inputs. When you click <b>Check</b>, we run your code on the example test and on the hidden tests. The pre-filled code will fail at least one hidden test; once you have fixed the mistake(s) correctly, all tests will pass.</p>\n<hr>\n<p><b>The function:</b> <code>lucas(n)</code> takes a non-negative integer (int &gt;= 0) <code>n</code> and <b>returns</b> the n-th <b>Lucas number</b>, using recursion. The Lucas numbers start with 2 and 1, and each number after that is the sum of the two before it:</p>\n<p><code>2, 1, 3, 4, 7, 11, 18, 29, ...</code></p>\n<p>Counting starts from 0, so <code>lucas(0)</code> is 2, <code>lucas(1)</code> is 1, <code>lucas(2)</code> is 3 and <code>lucas(6)</code> is 18.</p>\n<p><b>Your fixed function must work for:</b> any integer <code>n</code> from 0 to 20 (both included).</p>\n<p><b>Example test (already passes):</b> <code>lucas(0)</code> returns <code>2</code>.</p>",
+   "answerpreload": "# The code below has a logical bug. It will not work correctly for some\n# valid inputs other than the one shown in the example.\n# Identify the BUG and CORRECT it. Add a comment saying what you changed.\n\ndef lucas(n):\n    if n == 0:\n        return 2\n    else:\n        return lucas(n - 1) + lucas(n - 2)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(lucas(0))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lucas(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lucas(2))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lucas(6))",
+     "stdin": "",
+     "expected": "18",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "727c2ebb9f64fee2"
+}

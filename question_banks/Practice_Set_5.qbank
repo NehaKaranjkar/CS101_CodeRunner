@@ -1,0 +1,1737 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Practice_Set_5",
+ "encrypted": false,
+ "source_xml": "Practice_Set_5.xml",
+ "built_at": "2026-10-12T16:57:02",
+ "settings": {
+  "title": "Practice Set 5: Medium",
+  "description": "Functions with conditions, loops, digits, strings and lists, then recursion on numbers, lists and strings.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Functions",
+    "start": 1,
+    "count": 14
+   },
+   {
+    "heading": "Recursion",
+    "start": 15,
+    "count": 6
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "PS5_001_Function Shirt Size",
+   "display_name": "Shirt Size",
+   "questiontext_html": "<p>A shop chooses a shirt size from the chest measurement in cm:</p>\n<ul><li><b>S</b>: below 90</li><li><b>M</b>: 90 to 99 (both included)</li><li><b>L</b>: 100 to 109 (both included)</li><li><b>XL</b>: 110 or more</li></ul>\n<p>Write a function <code>shirt_size(chest)</code> that takes a chest measurement (a positive integer, int &gt; 0) and <b>returns</b> the size as a string: <code>\"S\"</code>, <code>\"M\"</code>, <code>\"L\"</code> or <code>\"XL\"</code>.</p>\n<p><b>Examples:</b> <code>shirt_size(85)</code> returns <code>\"S\"</code>. <code>shirt_size(90)</code> returns <code>\"M\"</code>. <code>shirt_size(110)</code> returns <code>\"XL\"</code>.</p>",
+   "answerpreload": "def shirt_size(chest):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(shirt_size(85))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(shirt_size(85))",
+     "stdin": "",
+     "expected": "S",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(shirt_size(90))",
+     "stdin": "",
+     "expected": "M",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(shirt_size(100))",
+     "stdin": "",
+     "expected": "L",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(shirt_size(110))",
+     "stdin": "",
+     "expected": "XL",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(shirt_size(99))",
+     "stdin": "",
+     "expected": "M",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(shirt_size(109))",
+     "stdin": "",
+     "expected": "L",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(shirt_size(60))",
+     "stdin": "",
+     "expected": "S",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(shirt_size(130))",
+     "stdin": "",
+     "expected": "XL",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "PS5_002_Function Middle Of Three",
+   "display_name": "Middle Of Three",
+   "questiontext_html": "<p>Write a function <code>middle_of_three(a, b, c)</code> that takes three integers and <b>returns</b> the middle one: the value that would be in the middle if you wrote the three numbers in increasing order. If two or more of them are equal, the middle value is still one of them (for example, the middle of 4, 4 and 1 is 4).</p>\n<p><b>Examples:</b> <code>middle_of_three(3, 9, 5)</code> returns <code>5</code>. <code>middle_of_three(10, 2, 7)</code> returns <code>7</code>. <code>middle_of_three(4, 4, 1)</code> returns <code>4</code>. <code>middle_of_three(6, 6, 6)</code> returns <code>6</code>.</p>",
+   "answerpreload": "def middle_of_three(a, b, c):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(middle_of_three(3, 9, 5))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(middle_of_three(3, 9, 5))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle_of_three(10, 2, 7))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle_of_three(4, 4, 1))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle_of_three(6, 6, 6))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle_of_three(-2, -8, 0))",
+     "stdin": "",
+     "expected": "-2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle_of_three(1, 2, 3))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle_of_three(9, 1, 5))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle_of_three(7, 3, 7))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(middle_of_three(0, -5, 5))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "PS5_003_Function Days In Month",
+   "display_name": "Days In Month",
+   "questiontext_html": "<p>Write a function <code>days_in_month(month, year)</code> that takes a month (an integer from 1 to 12, where 1 is January) and a year (a positive integer, int &gt; 0), and <b>returns</b> how many days that month has in that year:</p>\n<ul><li>April (4), June (6), September (9) and November (11) have <b>30</b> days.</li><li>February (2) has <b>29</b> days in a leap year, and <b>28</b> days otherwise.</li><li>All other months have <b>31</b> days.</li></ul>\n<p><b>Leap year rule:</b> the year must be divisible by 4, and if the year is also divisible by 100, then it is a leap year only if it is also divisible by 400. For example, 2024 and 2000 are leap years, but 2023 and 1900 are not.</p>\n<p><b>Examples:</b> <code>days_in_month(1, 2025)</code> returns <code>31</code>. <code>days_in_month(4, 2025)</code> returns <code>30</code>. <code>days_in_month(2, 2024)</code> returns <code>29</code>. <code>days_in_month(2, 1900)</code> returns <code>28</code>.</p>",
+   "answerpreload": "def days_in_month(month, year):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(days_in_month(2, 2024))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(days_in_month(1, 2025))",
+     "stdin": "",
+     "expected": "31",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(days_in_month(4, 2025))",
+     "stdin": "",
+     "expected": "30",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(days_in_month(2, 2024))",
+     "stdin": "",
+     "expected": "29",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(days_in_month(2, 2023))",
+     "stdin": "",
+     "expected": "28",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(days_in_month(2, 1900))",
+     "stdin": "",
+     "expected": "28",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(days_in_month(2, 2000))",
+     "stdin": "",
+     "expected": "29",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(days_in_month(12, 1999))",
+     "stdin": "",
+     "expected": "31",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(days_in_month(9, 2020))",
+     "stdin": "",
+     "expected": "30",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(days_in_month(2, 2100))",
+     "stdin": "",
+     "expected": "28",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(days_in_month(2, 2400))",
+     "stdin": "",
+     "expected": "29",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "PS5_004_Function First Digit",
+   "display_name": "First Digit",
+   "questiontext_html": "<p>Write a function <code>first_digit(n)</code> that takes a positive integer (int &gt; 0) <code>n</code> and <b>returns</b> its first (leftmost) digit.</p>\n<p><b>Examples:</b> <code>first_digit(4721)</code> returns <code>4</code>. <code>first_digit(9)</code> returns <code>9</code>. <code>first_digit(100)</code> returns <code>1</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(first_digit(4721))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_digit(9))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_digit(100))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_digit(58))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_digit(3000007))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "PS5_005_Function Product Of Nonzero Digits",
+   "display_name": "Product Of Nonzero Digits",
+   "questiontext_html": "<p>Write a function <code>nonzero_product(n)</code> that takes a positive integer (int &gt; 0) <code>n</code> and <b>returns</b> the product of its digits, <b>skipping the zeros</b>.</p>\n<p><b>Examples:</b> <code>nonzero_product(2043)</code> returns <code>24</code> (2 * 4 * 3). <code>nonzero_product(7)</code> returns <code>7</code>. <code>nonzero_product(1000)</code> returns <code>1</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(nonzero_product(2043))",
+     "stdin": "",
+     "expected": "24",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nonzero_product(7))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nonzero_product(1000))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nonzero_product(999))",
+     "stdin": "",
+     "expected": "729",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nonzero_product(105))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nonzero_product(2222))",
+     "stdin": "",
+     "expected": "16",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(nonzero_product(50060))",
+     "stdin": "",
+     "expected": "30",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "PS5_006_Function Armstrong Number",
+   "display_name": "Armstrong Number",
+   "questiontext_html": "<p>A three-digit number is an <b>Armstrong number</b> if the sum of the <b>cubes</b> of its digits is equal to the number itself. For example, 153 is an Armstrong number, because 1 * 1 * 1 + 5 * 5 * 5 + 3 * 3 * 3 = 1 + 125 + 27 = 153.</p>\n<p>Write a function <code>is_armstrong(n)</code> that takes a three-digit positive integer <code>n</code> (from 100 to 999) and <b>returns</b> <code>True</code> if it is an Armstrong number, or <code>False</code> otherwise.</p>\n<p><b>Examples:</b> <code>is_armstrong(153)</code> returns <code>True</code>. <code>is_armstrong(370)</code> returns <code>True</code>. <code>is_armstrong(100)</code> returns <code>False</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_armstrong(153))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_armstrong(370))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_armstrong(100))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_armstrong(999))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_armstrong(371))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_armstrong(407))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_armstrong(152))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_armstrong(500))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "PS5_007_Function Sum Of Multiples",
+   "display_name": "Sum Of Multiples",
+   "questiontext_html": "<p>Write a function <code>sum_of_multiples(n, k)</code> that takes two positive integers (int &gt; 0) <code>n</code> and <code>k</code>, and <b>returns</b> the sum of all the multiples of <code>k</code> from 1 to <code>n</code> (both included).</p>\n<p><b>Examples:</b> <code>sum_of_multiples(10, 3)</code> returns <code>18</code> (3 + 6 + 9). <code>sum_of_multiples(10, 5)</code> returns <code>15</code> (5 + 10). <code>sum_of_multiples(4, 7)</code> returns <code>0</code> (there are no multiples of 7 up to 4).</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_of_multiples(10, 3))",
+     "stdin": "",
+     "expected": "18",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_multiples(10, 5))",
+     "stdin": "",
+     "expected": "15",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_multiples(4, 7))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_multiples(7, 7))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_multiples(100, 10))",
+     "stdin": "",
+     "expected": "550",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_multiples(20, 4))",
+     "stdin": "",
+     "expected": "60",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_of_multiples(1, 1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "PS5_008_Function Largest Proper Divisor",
+   "display_name": "Largest Proper Divisor",
+   "questiontext_html": "<p>A <b>divisor</b> of a positive integer <code>n</code> is a positive integer that divides <code>n</code> with no remainder. A <b>proper divisor</b> is a divisor smaller than <code>n</code> itself. For example, the proper divisors of 12 are 1, 2, 3, 4 and 6.</p>\n<p>Write a function <code>largest_proper_divisor(n)</code> that takes an integer <code>n</code> greater than 1, and <b>returns</b> its largest proper divisor.</p>\n<p><b>Examples:</b> <code>largest_proper_divisor(12)</code> returns <code>6</code>. <code>largest_proper_divisor(7)</code> returns <code>1</code>. <code>largest_proper_divisor(2)</code> returns <code>1</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(largest_proper_divisor(12))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_proper_divisor(7))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_proper_divisor(2))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_proper_divisor(49))",
+     "stdin": "",
+     "expected": "7",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_proper_divisor(15))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_proper_divisor(97))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_proper_divisor(64))",
+     "stdin": "",
+     "expected": "32",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_proper_divisor(81))",
+     "stdin": "",
+     "expected": "27",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "PS5_009_Function Least Common Multiple",
+   "display_name": "Least Common Multiple",
+   "questiontext_html": "<p>The <b>least common multiple</b> of two positive integers is the smallest positive integer that is a multiple of <b>both</b> of them. For example, the multiples of 4 are 4, 8, <b>12</b>, 16, ... and the multiples of 6 are 6, <b>12</b>, 18, ..., so the least common multiple of 4 and 6 is 12.</p>\n<p>Write a function <code>lcm(a, b)</code> that takes two positive integers (int &gt; 0) and <b>returns</b> their least common multiple.</p>\n<p><b>Examples:</b> <code>lcm(4, 6)</code> returns <code>12</code>. <code>lcm(5, 7)</code> returns <code>35</code>. <code>lcm(3, 9)</code> returns <code>9</code>. <code>lcm(8, 8)</code> returns <code>8</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(lcm(4, 6))",
+     "stdin": "",
+     "expected": "12",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lcm(5, 7))",
+     "stdin": "",
+     "expected": "35",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lcm(3, 9))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lcm(8, 8))",
+     "stdin": "",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lcm(1, 1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lcm(12, 18))",
+     "stdin": "",
+     "expected": "36",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lcm(21, 6))",
+     "stdin": "",
+     "expected": "42",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lcm(13, 1))",
+     "stdin": "",
+     "expected": "13",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "PS5_010_Function Count Primes",
+   "display_name": "Count Primes",
+   "questiontext_html": "<p>A <b>prime number</b> is an integer greater than 1 whose only divisors are 1 and itself. For example, 2, 3, 5 and 7 are prime, but 1, 4 and 9 are not.</p>\n<p>Write a function <code>count_primes(n)</code> that takes a positive integer (int &gt; 0) <code>n</code> and <b>returns</b> how many prime numbers there are from 1 to <code>n</code> (both included).</p>\n<p><b>Tip:</b> you may write a second function, for example <code>is_prime(k)</code>, and call it from <code>count_primes</code>. A function can call another function you have written.</p>\n<p><b>Examples:</b> <code>count_primes(10)</code> returns <code>4</code> (2, 3, 5 and 7). <code>count_primes(2)</code> returns <code>1</code>. <code>count_primes(1)</code> returns <code>0</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_primes(10))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_primes(2))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_primes(1))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_primes(20))",
+     "stdin": "",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_primes(30))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_primes(100))",
+     "stdin": "",
+     "expected": "25",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_primes(3))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "PS5_011_Function Count Double Letters",
+   "display_name": "Count Double Letters",
+   "questiontext_html": "<p>Write a function <code>count_doubles(text)</code> that takes a string <code>text</code> and <b>returns</b> how many times a character is <b>the same as the character right after it</b>.</p>\n<p><b>Python facts you may use:</b> <code>len(text)</code> gives the number of characters in a string, and <code>text[i]</code> gives the character at position <code>i</code> (positions start from 0).</p>\n<p><b>Examples:</b> <code>count_doubles(\"balloon\")</code> returns <code>2</code> (<code>ll</code> and <code>oo</code>). <code>count_doubles(\"aaa\")</code> returns <code>2</code> (positions 0-1 and 1-2). <code>count_doubles(\"abc\")</code> returns <code>0</code>. <code>count_doubles(\"\")</code> returns <code>0</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_doubles(\"balloon\"))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_doubles(\"aaa\"))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_doubles(\"abc\"))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_doubles(\"\"))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_doubles(\"a\"))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_doubles(\"mississippi\"))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_doubles(\"bookkeeper\"))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_doubles(\"zz\"))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "PS5_012_Function Remove Vowels",
+   "display_name": "Remove Vowels",
+   "questiontext_html": "<p>Write a function <code>remove_vowels(text)</code> that takes a string <code>text</code> of lowercase letters and spaces, and <b>returns</b> a new string with all the vowels (<code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, <code>u</code>) removed. Everything else (including spaces) stays, in the same order.</p>\n<p><b>Python facts you may use:</b> <code>for ch in text:</code> goes through the characters of a string one by one, and <code>+</code> joins two strings: <code>\"ab\" + \"c\"</code> is <code>\"abc\"</code>. An empty string is written <code>\"\"</code>.</p>\n<p><b>Examples:</b> <code>remove_vowels(\"hello world\")</code> returns <code>\"hll wrld\"</code>. <code>remove_vowels(\"rhythm\")</code> returns <code>\"rhythm\"</code>. <code>remove_vowels(\"aeiou\")</code> returns <code>\"\"</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(remove_vowels(\"hello world\"))",
+     "stdin": "",
+     "expected": "hll wrld",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(remove_vowels(\"rhythm\"))",
+     "stdin": "",
+     "expected": "rhythm",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(len(remove_vowels(\"aeiou\")))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(remove_vowels(\"programming is fun\"))",
+     "stdin": "",
+     "expected": "prgrmmng s fn",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(remove_vowels(\"queue\"))",
+     "stdin": "",
+     "expected": "q",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(remove_vowels(\"sky is blue\"))",
+     "stdin": "",
+     "expected": "sky s bl",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "PS5_013_Function Count Above Average",
+   "display_name": "Count Above Average",
+   "questiontext_html": "<p>Write a function <code>count_above_average(lst)</code> that takes a non-empty list of integers <code>lst</code> and <b>returns</b> how many elements are <b>greater than</b> the average of the list. (The average is the sum of the elements divided by how many there are.)</p>\n<p><b>Python facts you may use:</b> <code>len(lst)</code> gives the number of elements in a list, and <code>lst[i]</code> gives the element at position <code>i</code> (positions start from 0, so the last position is <code>len(lst) - 1</code>).</p>\n<p><b>Examples:</b> <code>count_above_average([1, 2, 3, 4])</code> returns <code>2</code> (the average is 2.5, and 3 and 4 are above it). <code>count_above_average([5, 5, 5])</code> returns <code>0</code>. <code>count_above_average([-3, 0, 9])</code> returns <code>1</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_above_average([1, 2, 3, 4]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above_average([5, 5, 5]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above_average([-3, 0, 9]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above_average([10]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_above_average(lst))",
+     "stdin": "1 1 1 1 10",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_above_average(lst))",
+     "stdin": "4 8 15 16 23 42",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(count_above_average(lst))",
+     "stdin": "7 3",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "PS5_014_Function First Index Above",
+   "display_name": "First Index Above",
+   "questiontext_html": "<p>Write a function <code>first_index_above(lst, x)</code> that takes a list of integers <code>lst</code> and an integer <code>x</code>, and <b>returns</b> the position of the <b>first</b> element that is greater than <code>x</code>. If no element is greater than <code>x</code> (or the list is empty), it returns <code>-1</code>.</p>\n<p><b>Python facts you may use:</b> <code>len(lst)</code> gives the number of elements in a list, and <code>lst[i]</code> gives the element at position <code>i</code> (positions start from 0, so the last position is <code>len(lst) - 1</code>).</p>\n<p><b>Examples:</b> <code>first_index_above([3, 8, 1, 9], 5)</code> returns <code>1</code>. <code>first_index_above([3, 8, 1, 9], 10)</code> returns <code>-1</code>. <code>first_index_above([6, 2], 5)</code> returns <code>0</code>. <code>first_index_above([], 0)</code> returns <code>-1</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(first_index_above([3, 8, 1, 9], 5))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_index_above([3, 8, 1, 9], 10))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_index_above([6, 2], 5))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_index_above([], 0))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(first_index_above(lst, 3))",
+     "stdin": "1 2 3 4 5",
+     "expected": "3",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(first_index_above(lst, -3))",
+     "stdin": "-5 -2 -9",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(first_index_above(lst, 4))",
+     "stdin": "4 4 4",
+     "expected": "-1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "PS5_015_Recursive Sum Of Squares",
+   "display_name": "Recursive Sum Of Squares",
+   "questiontext_html": "<p>Write a recursive function <code>sum_squares(n)</code> that takes a non-negative integer (int &gt;= 0) <code>n</code> and <b>returns</b> the sum of the squares of all integers from 1 to <code>n</code>: 1 * 1 + 2 * 2 + ... + n * n. For <code>n</code> = 0 the sum is 0.</p>\n<p>Your function <b>must be recursive</b> (it must call itself), and must <b>not</b> use any loop.</p>\n<p><b>Examples:</b> <code>sum_squares(3)</code> returns <code>14</code> (1 + 4 + 9). <code>sum_squares(1)</code> returns <code>1</code>. <code>sum_squares(0)</code> returns <code>0</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_squares(3))",
+     "stdin": "",
+     "expected": "14",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_squares(1))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_squares(0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_squares(10))",
+     "stdin": "",
+     "expected": "385",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_squares(5))",
+     "stdin": "",
+     "expected": "55",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_squares(20))",
+     "stdin": "",
+     "expected": "2870",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_squares(2))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "PS5_016_Recursive Count Halvings",
+   "display_name": "Recursive Count Halvings",
+   "questiontext_html": "<p>Start with a positive integer and keep halving it with integer division (<code>// 2</code>) until it becomes 1. For example, 10 becomes 5, then 2, then 1: that is <b>3</b> halvings.</p>\n<p>Write a recursive function <code>count_halvings(n)</code> that takes a positive integer (int &gt; 0) <code>n</code> and <b>returns</b> how many halvings it takes to reach 1. (For <code>n</code> = 1 the answer is 0.)</p>\n<p>Your function <b>must be recursive</b> (it must call itself), and must <b>not</b> use any loop.</p>\n<p><b>Examples:</b> <code>count_halvings(10)</code> returns <code>3</code>. <code>count_halvings(8)</code> returns <code>3</code>. <code>count_halvings(1)</code> returns <code>0</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_halvings(10))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_halvings(8))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_halvings(1))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_halvings(2))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_halvings(1000))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_halvings(1024))",
+     "stdin": "",
+     "expected": "10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_halvings(3))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "PS5_017_Recursive Largest Digit",
+   "display_name": "Recursive Largest Digit",
+   "questiontext_html": "<p>Write a recursive function <code>largest_digit(n)</code> that takes a positive integer (int &gt; 0) <code>n</code> and <b>returns</b> its largest digit.</p>\n<p>Your function <b>must be recursive</b> (it must call itself), and must <b>not</b> use any loop.</p>\n<p><b>Examples:</b> <code>largest_digit(4729)</code> returns <code>9</code>. <code>largest_digit(5)</code> returns <code>5</code>. <code>largest_digit(1000)</code> returns <code>1</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(largest_digit(4729))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_digit(5))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_digit(1000))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_digit(3203))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_digit(98))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_digit(11111))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(largest_digit(60504))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "PS5_018_Recursive Integer Division",
+   "display_name": "Recursive Integer Division",
+   "questiontext_html": "<p>Division is repeated subtraction: 17 divided by 5 is 3 (with 2 left over), because you can take 5 away from 17 three times before less than 5 is left.</p>\n<p>Write a recursive function <code>int_divide(a, b)</code> that takes a non-negative integer (int &gt;= 0) <code>a</code> and a positive integer (int &gt; 0) <code>b</code>, and <b>returns</b> <code>a // b</code>, <b>without</b> using <code>//</code>, <code>/</code> or <code>%</code>.</p>\n<p>Your function <b>must be recursive</b> (it must call itself), and must <b>not</b> use any loop.</p>\n<p><b>Examples:</b> <code>int_divide(17, 5)</code> returns <code>3</code>. <code>int_divide(4, 5)</code> returns <code>0</code>. <code>int_divide(0, 3)</code> returns <code>0</code>. <code>int_divide(20, 4)</code> returns <code>5</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(int_divide(17, 5))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(int_divide(4, 5))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(int_divide(0, 3))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(int_divide(20, 4))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(int_divide(9, 1))",
+     "stdin": "",
+     "expected": "9",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(int_divide(100, 7))",
+     "stdin": "",
+     "expected": "14",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(int_divide(6, 6))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(int_divide(50, 3))",
+     "stdin": "",
+     "expected": "16",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "PS5_019_Recursive List Product",
+   "display_name": "Recursive List Product",
+   "questiontext_html": "<p>Write a recursive function <code>list_product(lst, index)</code> that takes a list of integers <code>lst</code> and a position <code>index</code> (where <code>0 &lt;= index &lt;= len(lst)</code>), and <b>returns</b> the product of the elements from position <code>index</code> up to the end. If there are no elements left (<code>index</code> is equal to <code>len(lst)</code>), the product is 1.</p>\n<p>Your function <b>must be recursive</b> (it must call itself), and must <b>not</b> use any loop.</p>\n<p><b>Python facts you may use:</b> <code>len(lst)</code> gives the number of elements in a list, and <code>lst[i]</code> gives the element at position <code>i</code> (positions start from 0, so the last position is <code>len(lst) - 1</code>).</p>\n<p><b>Examples:</b> <code>list_product([2, 3, 4], 0)</code> returns <code>24</code>. <code>list_product([2, 3, 4], 2)</code> returns <code>4</code>. <code>list_product([2, 3, 4], 3)</code> returns <code>1</code>. <code>list_product([5, -2, 0, 7], 0)</code> returns <code>0</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(list_product([2, 3, 4], 0))",
+     "stdin": "",
+     "expected": "24",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_product([2, 3, 4], 2))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_product([2, 3, 4], 3))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_product([5, -2, 0, 7], 0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(list_product([], 0))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_product(lst, 0))",
+     "stdin": "1 2 3 4 5",
+     "expected": "120",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_product(lst, 0))",
+     "stdin": "-1 -1 -1",
+     "expected": "-1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lst = list(map(int, input().split()))\nprint(list_product(lst, 1))",
+     "stdin": "6 7",
+     "expected": "7",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "PS5_020_Recursive Count Character",
+   "display_name": "Recursive Count Character",
+   "questiontext_html": "<p>Write a recursive function <code>count_char(text, ch, index)</code> that takes a string <code>text</code>, a single character <code>ch</code>, and a position <code>index</code> (where <code>0 &lt;= index &lt;= len(text)</code>), and <b>returns</b> how many times <code>ch</code> appears in <code>text</code> from position <code>index</code> up to the end.</p>\n<p>Your function <b>must be recursive</b> (it must call itself), and must <b>not</b> use any loop.</p>\n<p><b>Python facts you may use:</b> <code>len(text)</code> gives the number of characters in a string, and <code>text[i]</code> gives the character at position <code>i</code> (positions start from 0).</p>\n<p><b>Examples:</b> <code>count_char(\"banana\", \"a\", 0)</code> returns <code>3</code>. <code>count_char(\"banana\", \"a\", 4)</code> returns <code>1</code>. <code>count_char(\"banana\", \"z\", 0)</code> returns <code>0</code>. <code>count_char(\"\", \"a\", 0)</code> returns <code>0</code>.</p>",
+   "answerpreload": "",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_char(\"banana\", \"a\", 0))",
+     "stdin": "",
+     "expected": "3",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_char(\"banana\", \"a\", 4))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_char(\"banana\", \"z\", 0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_char(\"\", \"a\", 0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_char(\"aaa\", \"a\", 3))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_char(\"mississippi\", \"s\", 0))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_char(\"hello\", \"l\", 3))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_char(\"abcabc\", \"c\", 0))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "9c8f644ba5b0ff44"
+}
