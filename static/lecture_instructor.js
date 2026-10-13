@@ -391,7 +391,8 @@
     if (!fresh(g)) return;
     const view = $("view");
     view.append(el("p", { class: "muted small", text: "Online labs are attempted on the practice site and graded in the student's browser; " +
-      "only each student's best total is recorded (any number of Final submits until the lab closes). Students see open labs on their lecture page. " +
+      "only each student's best total is recorded (any number of Final submits until the lab closes). Students see open labs on their lecture page " +
+      "and need the instance's password (share it with them; guests and TAs may attempt with it, nothing is recorded for them). " +
       "Upload a lab with: python3 tools/lab_upload.py practice/Lab8/Lab8.xml" }));
     if (!r.banks.length) return view.append(el("p", { class: "muted", text: "No lab uploaded yet." }));
     for (const b of r.banks) {
@@ -402,30 +403,32 @@
         const msg = open ? `Restart ${b.title}? The open instance closes now and a new, empty one opens until ${new Date(t).toLocaleString()}. Scores already recorded stay (the best counts).`
           : `Start ${b.title} now, open until ${new Date(t).toLocaleString()}?`;
         if (!confirm(msg)) return;
-        if (await act("/api/admin/lab-start", { bank: b.bank, close_at: t })) route(++state.gen);
+        const res = await act("/api/admin/lab-start", { bank: b.bank, close_at: t });
+        if (res) { alert(`${b.title} is open. Password: ${res.password}\nShare it with the students (and guests or TAs who want to attempt it).`); route(++state.gen); }
       } });
       const rows = b.instances.map((i) => {
         const dl = whenInput(i.close_epoch * 1000);
         return el("tr", {},
-          el("td", {}, el("a", { href: `#/instructor/lab/${i.id}`, text: `Lab ${i.id}` })),
+          el("td", {}, el("a", { href: `#/instructor/lab/${i.id}`, text: `#${i.id}` })),
           el("td", { text: i.started }), el("td", { text: i.closes }),
           el("td", { class: "cell " + (i.open ? "p" : "a"), text: i.open ? "Open" : i.closed_early ? "Closed early" : "Closed" }),
+          el("td", { class: "pw", text: i.password || "" }),
           el("td", { class: "num", text: `${i.submitted} / ${r.students}` }),
           el("td", { class: "num", text: i.average === null ? "" : `${fmt(i.average)} / ${fmt(b.max_marks)}` }),
           el("td", { class: "acts" },
             i.open ? el("button", { class: "small", text: "Close now", onclick: async () => {
-              if (confirm(`Close Lab ${i.id} (${b.title}) now? Students can no longer submit.`) && await act("/api/admin/lab-close", { lab: i.id })) route(++state.gen);
+              if (confirm(`Close ${b.title} (#${i.id}) now? Students can no longer submit.`) && await act("/api/admin/lab-close", { lab: i.id })) route(++state.gen);
             } }) : null,
             dl, el("button", { class: "small", text: i.open ? "Change deadline" : "Reopen until", onclick: async () => {
               const t = new Date(dl.value).getTime();
-              if (confirm(`Lab ${i.id} will be open until ${new Date(t).toLocaleString()}.`) && await act("/api/admin/lab-deadline", { lab: i.id, close_at: t })) route(++state.gen);
+              if (confirm(`${b.title} (#${i.id}) will be open until ${new Date(t).toLocaleString()}.`) && await act("/api/admin/lab-deadline", { lab: i.id, close_at: t })) route(++state.gen);
             } })));
       });
       view.append(el("section", { class: "card labcard" },
         el("h2", {}, b.title, el("span", { class: "muted small", text: `  ${b.bank} · ${b.questions} questions · ${fmt(b.max_marks)} marks · uploaded ${b.uploaded}` })),
         el("div", { class: "actions" }, el("label", { class: "small" }, "Open until ", when), startBtn),
         rows.length ? el("div", { class: "tablewrap" }, el("table", { class: "grid labtable" },
-          el("thead", {}, el("tr", {}, ["Instance", "Started", "Closes", "Status", "Submitted", "Average", ""].map((h) => el("th", { text: h })))),
+          el("thead", {}, el("tr", {}, ["Instance", "Started", "Closes", "Status", "Password", "Submitted", "Average", ""].map((h) => el("th", { text: h })))),
           el("tbody", {}, rows))) : el("p", { class: "muted small", text: "Not started yet." })));
     }
   }
@@ -453,8 +456,8 @@
     filter.addEventListener("input", draw);
     draw();
     $("view").append(el("p", {}, el("a", { href: "#/instructor/labs", text: "← Labs" })),
-      el("h2", { text: `${L.title} (Lab ${L.id})` }),
-      el("p", { class: "muted", text: `${L.open ? "Open" : "Closed"} · started ${L.started} · closes ${L.closes} · ${done.length} of ${r.rows.length} students submitted` +
+      el("h2", { text: `${L.title} (#${L.id})` }),
+      el("p", { class: "muted", text: `${L.open ? "Open" : "Closed"} · password: ${L.password || "none"} · started ${L.started} · closes ${L.closes} · ${done.length} of ${r.rows.length} students submitted` +
         (done.length ? ` · average ${fmt(done.reduce((a, x) => a + x.best, 0) / done.length)} / ${fmt(L.max_marks)}` : "") }),
       el("div", { class: "actions" }, filter, dl),
       el("div", { class: "tablewrap" }, el("table", { class: "grid" },

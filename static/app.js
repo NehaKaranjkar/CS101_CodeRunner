@@ -46,13 +46,26 @@ let sessionNote = "";
 async function init() {
   if (WEB && typeof LAB_ID === "string" && LAB_ID) {          // an online lab (index.html?lab=<id>)
     try { await WebBackend.openLab(LAB_ID); }
-    catch (e) { return showLabError(e.message); }
+    catch (e) { return e.needPassword ? showLabPassword(e.message) : showLabError(e.message); }
   }
   const st = await api("/api/state").catch((e) => ({ phase: "choose_bank", error: e.message }));
   await route(st);
 }
 
 const PORTAL = "lecture/";                    // the lecture page (sign-in, open labs, My marks)
+// An online lab asks for its password (remembered on this device afterwards).
+function showLabPassword(msg) {
+  show("screen-bank");
+  $("choose-part").hidden = true;
+  $("password-part").hidden = false;
+  document.title = "Online lab";
+  $("password-title").textContent = "Online lab";
+  $("password-file").textContent = "Enter the lab password shared by your instructor.";
+  $("password").previousSibling.textContent = "Lab password ";
+  $("btn-back-pw").textContent = "Lecture page";
+  $("bank-error").textContent = /Wrong/.test(msg) ? msg : "";
+  $("password").focus();
+}
 function showLabError(msg) {
   show("screen-bank");
   $("choose-part").hidden = false;
@@ -128,6 +141,14 @@ function showPassword(st) {
 
 async function unlock() {
   $("bank-error").textContent = "";
+  if (WEB && typeof LAB_ID === "string" && LAB_ID) {            // online lab password
+    try {
+      await WebBackend.openLab(LAB_ID, $("password").value.trim());
+      $("password").value = "";
+      await route(await api("/api/state"));
+    } catch (e) { if (e.needPassword) $("bank-error").textContent = e.message; else showLabError(e.message); }
+    return;
+  }
   try {
     const st = await api("/api/unlock", { password: $("password").value });
     $("password").value = "";
@@ -161,6 +182,7 @@ $("btn-login").addEventListener("click", login);
 $("name").addEventListener("keydown", (e) => { if (e.key === "Enter") login(); });
 
 async function backToChoose() {
+  if (WEB && typeof LAB_ID === "string" && LAB_ID) { location.href = PORTAL; return; }
   await api("/api/reset", {}).catch(() => {});
   location.reload();
 }
@@ -539,7 +561,8 @@ $("btn-submit").addEventListener("click", () => {
   const lines = [`Correct: ${s.correct}, wrong: ${s.wrong}, not attempted: ${s.not_attempted}. Marks so far: ${fmt(s.marks)} / ${fmt(s.max_marks)}.`];
   if (pending) lines.push(`${pending} answer(s) were changed after their last Check. They will be graded now` +
     (EXAM.penalty_on ? ", and this counts as a try (like pressing Check) for each of them." : "."));
-  if (EXAM.mode === "lab") lines.push("Your total is recorded for this lab. You can resume and submit again until the lab closes; your best total counts.");
+  if (EXAM.mode === "lab") lines.push(STATUS.lab && (STATUS.lab.guest || STATUS.lab.preview) ? "Nothing is recorded for you (guest or preview)."
+    : "Your total is recorded for this lab. You can resume and submit again until the lab closes; your best total counts.");
   else if (EXAM.deadline_epoch != null) lines.push("You can resume working until the time is up.");
   else lines.push(EXAM.mode === "practice" ? "You can resume or start over afterwards." : "You can resume working afterwards.");
   confirmBox("Submit?", lines, "Submit now", () => submitExam("student"));
@@ -697,6 +720,7 @@ function showDone(status) {
   if (lab) {
     const best = lab.best === null || lab.best === undefined ? "" : ` Your best total for this lab: ${fmt(lab.best)} / ${fmt(lab.max_marks)}.`;
     $("done-path").textContent = (lab.preview ? "Instructor preview: nothing is recorded."
+      : lab.guest ? "You are signed in as a guest (not on the course roster), so nothing is recorded."
       : lab.pending ? `Your total could not be recorded yet (${lab.error || "no connection"}). It will be sent again when you open this lab; or press "Send again".`
       : lab.error ? `Your total was not recorded: ${lab.error}` + best
       : `Recorded: ${fmt(lab.recorded)} / ${fmt(lab.max_marks)}.` + best) +

@@ -190,7 +190,7 @@ const WebBackend = (() => {
       submit_reason: sol.submit_reason, submitted_at: sol.submitted_at, last_saved_at: sol.last_saved_at,
       extension: null,                           // time extensions exist only in lab exams (exam.py)
       lab: lab ? { best: lab.best, max_marks: lab.max_marks, closes: lab.closes, recorded: sol.lab_recorded,
-                   pending: !!sol.lab_pending, error: sol.lab_error || null, preview: !!lab.preview,
+                   pending: !!sol.lab_pending, error: sol.lab_error || null, preview: !!lab.preview, guest: !!lab.guest,
                    closed: Date.now() / 1000 > lab.close_epoch } : null,
     };
   }
@@ -236,7 +236,7 @@ const WebBackend = (() => {
     sol.submitted = true; sol.submitted_at = nowIso(); sol.submit_reason = reason;
     sol.submits = (sol.submits || 0) + 1;
     logEvent("submit", { reason });
-    if (lab && !lab.preview) sol.lab_pending = true;
+    if (lab && !lab.preview && !lab.guest) sol.lab_pending = true;
     persist();
     if (lab) await sendLabScore();
   }
@@ -256,7 +256,7 @@ const WebBackend = (() => {
     } catch (e) { throw new Error("Cannot reach the server. Check your internet connection and try again."); }
     const data = await res.json().catch(() => ({}));
     if (res.status === 401) throw new Error("Please sign in again on the lecture page, then open this lab from there.");
-    if (!res.ok) { const err = new Error(data.error || "Request failed."); err.status = res.status; throw err; }
+    if (!res.ok) { const err = new Error(data.error || "Request failed."); err.status = res.status; err.needPassword = !!data.need_password; throw err; }
     return data;
   }
 
@@ -265,7 +265,7 @@ const WebBackend = (() => {
     if (!lab || !sol || !sol.lab_pending) return;
     const marks = summary().marks;
     try {
-      const r = await lectureApi("POST", "/api/lab-submit", { lab: lab.id, score: marks });
+      const r = await lectureApi("POST", "/api/lab-submit", { lab: lab.id, score: marks, password: lab.password });
       lab.best = r.best;
       sol.lab_recorded = r.recorded; sol.lab_pending = false; sol.lab_error = null;
     } catch (e) {
@@ -275,11 +275,18 @@ const WebBackend = (() => {
     persist();
   }
 
-  async function openLab(id) {
-    const r = await lectureApi("GET", "/api/lab-bank?lab=" + encodeURIComponent(id));
+  // password: as typed by the student, or (if not given) the one remembered for this lab on this device
+  async function openLab(id, password) {
+    const pwKey = `crlabpw:${id}`;
+    let pw = password;
+    if (pw === undefined) { try { pw = localStorage.getItem(pwKey) || ""; } catch (e) { pw = ""; } }
+    const r = await lectureApi("GET", "/api/lab-bank?lab=" + encodeURIComponent(id) + "&password=" + encodeURIComponent(pw));
     if (r.bank.format !== "qbank-1") throw new Error("This lab could not be loaded.");
+    try { localStorage.setItem(pwKey, pw); } catch (e) { /* storage disabled */ }
     lab = r.lab; student = r.student; bank = r.bank;
+    lab.password = pw;
     lab.preview = student.roll === "instructor";   // the instructor may open any lab; nothing is recorded
+    lab.guest = student.roll === "guest";          // not on the roster: may attempt, nothing is recorded
     let saved = null;
     try { saved = JSON.parse(localStorage.getItem(storeKey()) || "null"); } catch (e) { saved = null; }
     sol = saved && saved.questions && saved.questions.length === bank.questions.length ? saved : newSol();

@@ -353,8 +353,8 @@ async function onGoogle(resp) {
 async function showList() {
   const g = state.gen;
   state.lec = null;
-  const [r, labs] = await Promise.all([api("GET", "/api/lectures"),
-    api("GET", "/api/labs").then((x) => x.labs).catch(() => [])]);
+  const [r, labsR] = await Promise.all([api("GET", "/api/lectures"), api("GET", "/api/labs").catch(() => ({ labs: [] }))]);
+  const labs = labsR.labs || [], guestLab = !!labsR.guest;
   if (!fresh(g)) return;
   setBar();
   $("view").className = "view";
@@ -363,7 +363,7 @@ async function showList() {
   const labHref = (l) => `../index.html?lab=${l.id}` + (LOCAL_BACKEND ? "&backend=" + encodeURIComponent(CFG.backend) : "");
   const labCard = (l) => el("li", {}, el("a", { class: "lcard active", href: labHref(l) },
     el("span", { class: "lt", text: l.title }),
-    el("span", { class: "lm", text: `Open until ${l.closes}` + (l.best === null || l.best === undefined
+    el("span", { class: "lm", text: `Open until ${l.closes}` + (guestLab ? " · guest: nothing is recorded" : l.best === null || l.best === undefined
       ? " · not submitted yet" : ` · your best: ${fmt(l.best)} / ${fmt(l.max_marks)}`) }),
     el("span", { class: "badge", text: "Lab" })));
   const past = lecs.filter((l) => l.state === "past");            // in topic order, like the others
@@ -387,7 +387,7 @@ async function showList() {
       state.me.on_roster ? el("a", { class: "btn", href: "#/marks", text: "My marks and attendance" }) : null),
     now ? el("section", {}, el("h2", { text: "Today" }), el("ul", { class: "llist" }, now)) : null,
     labs.length ? el("section", {}, el("h2", { text: "Labs open now" }),
-      el("p", { class: "muted small", text: "Solve the lab and press Final submit; your total is recorded. You may submit again until the lab closes; your best total counts." }),
+      el("p", { class: "muted small", text: "You need the lab password from your instructor. Solve the lab and press Final submit; your total is recorded. You may submit again until the lab closes; your best total counts." }),
       el("ul", { class: "llist" }, labs.map(labCard))) : null,
     !now && !past.length && !future.length
       ? el("p", { class: "muted", text: "No lectures yet. They will appear here once the course starts using this page." }) : null,
