@@ -44,8 +44,25 @@ function show(screen) {
 let sessionNote = "";
 
 async function init() {
+  if (WEB && typeof LAB_ID === "string" && LAB_ID) {          // an online lab (index.html?lab=<id>)
+    try { await WebBackend.openLab(LAB_ID); }
+    catch (e) { return showLabError(e.message); }
+  }
   const st = await api("/api/state").catch((e) => ({ phase: "choose_bank", error: e.message }));
   await route(st);
+}
+
+const PORTAL = "lecture/";                    // the lecture page (sign-in, open labs, My marks)
+function showLabError(msg) {
+  show("screen-bank");
+  $("choose-part").hidden = false;
+  $("password-part").hidden = true;
+  document.title = "Online lab";
+  $("choose-title").textContent = "Online lab";
+  $("file-help").hidden = true;
+  for (const e of $("choose-part").querySelectorAll("label.field")) e.hidden = true;
+  $("bank-error").textContent = msg;
+  $("bank-error").after(el("p", {}, el("a", { href: PORTAL, text: "Go to the lecture page" })));
 }
 
 async function route(st) {
@@ -166,7 +183,7 @@ let submitting = false;
 let ticker = null;
 let pinger = null;
 
-const MODE_LABEL = { exam: "Exam in progress", preview: "Preview (nothing is saved)", practice: "Practice" };
+const MODE_LABEL = { exam: "Exam in progress", preview: "Preview (nothing is saved)", practice: "Practice", lab: "Online lab" };
 
 async function loadExam() {
   EXAM = await api("/api/exam");
@@ -185,8 +202,8 @@ async function loadExam() {
   $("tb-desc").textContent = EXAM.description || "";
   $("tb-desc").title = EXAM.description || "";
   $("tb-desc").hidden = !EXAM.description;
-  $("tb-student").textContent = EXAM.mode === "exam" ? `${EXAM.roll}, ${EXAM.name}` : "";
-  $("tb-student").hidden = EXAM.mode !== "exam";
+  $("tb-student").textContent = EXAM.mode === "exam" || EXAM.mode === "lab" ? `${EXAM.roll}, ${EXAM.name}` : "";
+  $("tb-student").hidden = EXAM.mode !== "exam" && EXAM.mode !== "lab";
   $("tb-start").textContent = new Date(EXAM.started_epoch * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   $("tb-start-wrap").hidden = EXAM.mode !== "exam";
   $("mb-penalty").textContent = EXAM.penalty_text;
@@ -207,12 +224,13 @@ async function loadExam() {
 function buildTools() {
   const t = $("mb-tools");
   t.textContent = "";
-  if (EXAM.mode === "practice") {
+  if (EXAM.mode === "practice" || EXAM.mode === "lab") {
     t.append(
       el("button", { class: "small", text: "Download progress", title: "Save your answers to a file on this computer", onclick: downloadProgress }),
       el("button", { class: "small", text: "Open progress", title: "Continue from a progress file", onclick: () => $("progress-file").click() }),
       el("button", { class: "small", text: "Start over", onclick: startOver }),
-      el("button", { class: "small", text: "Other question sets", onclick: backToChoose }));
+      EXAM.mode === "lab" ? el("button", { class: "small", text: "Lecture page", onclick: () => { location.href = PORTAL; } })
+        : el("button", { class: "small", text: "Other question sets", onclick: backToChoose }));
   } else if (EXAM.mode === "preview") {
     t.append(el("button", { class: "small", text: "Open another bank", onclick: backToChoose }));
   }
@@ -521,7 +539,8 @@ $("btn-submit").addEventListener("click", () => {
   const lines = [`Correct: ${s.correct}, wrong: ${s.wrong}, not attempted: ${s.not_attempted}. Marks so far: ${fmt(s.marks)} / ${fmt(s.max_marks)}.`];
   if (pending) lines.push(`${pending} answer(s) were changed after their last Check. They will be graded now` +
     (EXAM.penalty_on ? ", and this counts as a try (like pressing Check) for each of them." : "."));
-  if (EXAM.deadline_epoch != null) lines.push("You can resume working until the time is up.");
+  if (EXAM.mode === "lab") lines.push("Your total is recorded for this lab. You can resume and submit again until the lab closes; your best total counts.");
+  else if (EXAM.deadline_epoch != null) lines.push("You can resume working until the time is up.");
   else lines.push(EXAM.mode === "practice" ? "You can resume or start over afterwards." : "You can resume working afterwards.");
   confirmBox("Submit?", lines, "Submit now", () => submitExam("student"));
 });
@@ -561,7 +580,8 @@ function tick() {
   const h = Math.floor(left / 3600), m = Math.floor((left % 3600) / 60), s = left % 60;
   const ext = STATUS.extension;
   $("tb-clock-label").textContent = "Time left" + (ext && ext.minutes ? ` (+${fmt(ext.minutes)} min)` : "");
-  t.textContent = `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  t.textContent = h >= 24 ? `${Math.floor(h / 24)}d ${h % 24}h ${String(m).padStart(2, "0")}m`   // a deadline days away
+    : `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
   t.className = left <= 120 ? "urgent" : left <= 600 ? "soon" : "";
   if (left === 0) submitExam("time_up");
 }
@@ -640,7 +660,8 @@ function showDone(status) {
   if (old) old.remove();
   const s = status.summary;
   const exam = EXAM && EXAM.mode === "exam";
-  $("done-heading").textContent = exam ? "Exam submitted" : "Finished";
+  const lab = status.lab;
+  $("done-heading").textContent = exam ? "Exam submitted" : lab ? "Lab submitted" : "Finished";
   $("done-who").textContent = EXAM ? (exam ? `${EXAM.title}: ${EXAM.roll}, ${EXAM.name}` : EXAM.title) : "";
   $("done-reason").textContent = (status.submit_reason === "time_up" ? "Submitted automatically when time ran out" : "Submitted") +
     (status.submitted_at ? " at " + status.submitted_at.replace("T", " ") : "") + ".";
@@ -673,7 +694,17 @@ function showDone(status) {
       $("done-path").textContent += (exam && EXAM.sol_path ? " " : "") + `You can resume until ${until}.`;
     }
   }
-  if (EXAM && EXAM.mode === "practice") {
+  if (lab) {
+    const best = lab.best === null || lab.best === undefined ? "" : ` Your best total for this lab: ${fmt(lab.best)} / ${fmt(lab.max_marks)}.`;
+    $("done-path").textContent = (lab.preview ? "Instructor preview: nothing is recorded."
+      : lab.pending ? `Your total could not be recorded yet (${lab.error || "no connection"}). It will be sent again when you open this lab; or press "Send again".`
+      : lab.error ? `Your total was not recorded: ${lab.error}` + best
+      : `Recorded: ${fmt(lab.recorded)} / ${fmt(lab.max_marks)}.` + best) +
+      (lab.closed ? " This lab has closed." : ` The lab closes ${lab.closes}; you can resume or start over and submit again until then.`);
+    if (lab.pending) acts.append(el("button", { text: "Send again", onclick: async () => { await WebBackend.sendLabScore(); showDone((await api("/api/ping", {})).status); } }));
+    if (!lab.closed) acts.append(el("button", { text: "Start over", onclick: startOver }));
+    acts.append(el("button", { text: "Lecture page", onclick: () => { location.href = PORTAL; } }));
+  } else if (EXAM && EXAM.mode === "practice") {
     acts.append(el("button", { text: "Start over", onclick: startOver }), el("button", { text: "Other question sets", onclick: backToChoose }));
   } else if (EXAM && EXAM.mode === "preview") {
     acts.append(el("button", { text: "Open another bank", onclick: backToChoose }));

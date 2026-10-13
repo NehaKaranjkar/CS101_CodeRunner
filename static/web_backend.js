@@ -5,12 +5,21 @@
      - student code runs in Pyodide inside a Web Worker (pyworker.js),
      - progress is kept in the browser's localStorage, and can be downloaded
        to / opened from a file.
-   The marking rules mirror exam.py and runner.py; keep them in step. */
+   The marking rules mirror exam.py and runner.py; keep them in step.
+   Online labs (index.html?lab=<id>): the question set comes from the lecture backend (signed in on the
+   lecture page), progress stays in this browser, the deadline is the lab's closing time, and after each
+   Final submit (or at time-up) the total is sent to the backend, which keeps the best. */
 
 const WEB_TIMEOUT_SECONDS = 3;   // per test; Pyodide is a little slower than native Python
 const PLOT_TIMEOUT_SECONDS = 10; // per test, for programs that use matplotlib (drawing is slow)
 // an import line (not a comment) of matplotlib; same rule as runner.py uses_matplotlib
 const usesMatplotlib = (code) => /^[ \t]*(?:import|from)[ \t]+matplotlib/m.test(code);
+
+const LAB_PARAMS = new URLSearchParams(location.search);
+const LAB_ID = LAB_PARAMS.get("lab");
+// the lecture backend; a localhost one only for local tests (same rule as lecture.js)
+const LECTURE_BACKEND = /^http:\/\/localhost(:\d+)?$/.test(LAB_PARAMS.get("backend") || "") ? LAB_PARAMS.get("backend")
+  : "https://cs101-lectures.nehak.workers.dev";
 
 const WebBackend = (() => {
   /* ---------------- helpers ---------------- */
@@ -135,17 +144,19 @@ const WebBackend = (() => {
   }
 
   /* ---------------- practice session ---------------- */
-  let bank = null, sol = null;
-  // progress survives republishing as long as the questions/settings are unchanged
-  const storeKey = () => `crpractice:${bank.bank_name}:${bank.content_hash || bank.built_at}`;
+  let bank = null, sol = null, lab = null, student = null;
+  // progress survives republishing as long as the questions/settings are unchanged; each online lab
+  // instance has its own progress (separate from practising the same set)
+  const storeKey = () => lab ? `crlab:${lab.id}:${bank.content_hash || bank.built_at}`
+    : `crpractice:${bank.bank_name}:${bank.content_hash || bank.built_at}`;
   const persist = () => { sol.last_saved_at = nowIso(); try { localStorage.setItem(storeKey(), JSON.stringify(sol)); } catch (e) { /* storage full or disabled */ } };
 
   function newSol() {
     const start = Date.now() / 1000, st = bank.settings;
     return {
       format: "qsol-2", bank_name: bank.bank_name, bank_built_at: bank.built_at, title: st.title,
-      roll: "PRACTICE", name: "", started_at: nowIso(), started_epoch: start,
-      deadline_epoch: st.time_limit ? start + st.duration_seconds : null,   // own start in practice
+      roll: student ? student.roll : "PRACTICE", name: student ? student.name : "", started_at: nowIso(), started_epoch: start,
+      deadline_epoch: lab ? lab.close_epoch : st.time_limit ? start + st.duration_seconds : null,   // own start in practice
       last_saved_at: null, submitted: false, submitted_at: null, submit_reason: null, submits: 0,
       events: [{ event: "start", at: nowIso() }],
       questions: bank.questions.map((q, i) => ({
@@ -178,6 +189,9 @@ const WebBackend = (() => {
       submitted: sol.submitted, can_resume: canResume(), deadline_epoch: sol.deadline_epoch,
       submit_reason: sol.submit_reason, submitted_at: sol.submitted_at, last_saved_at: sol.last_saved_at,
       extension: null,                           // time extensions exist only in lab exams (exam.py)
+      lab: lab ? { best: lab.best, max_marks: lab.max_marks, closes: lab.closes, recorded: sol.lab_recorded,
+                   pending: !!sol.lab_pending, error: sol.lab_error || null, preview: !!lab.preview,
+                   closed: Date.now() / 1000 > lab.close_epoch } : null,
     };
   }
 
@@ -222,7 +236,59 @@ const WebBackend = (() => {
     sol.submitted = true; sol.submitted_at = nowIso(); sol.submit_reason = reason;
     sol.submits = (sol.submits || 0) + 1;
     logEvent("submit", { reason });
+    if (lab && !lab.preview) sol.lab_pending = true;
     persist();
+    if (lab) await sendLabScore();
+  }
+
+  /* ---------------- online labs ---------------- */
+  function lectureToken() {
+    try { return JSON.parse(localStorage.getItem("lec:token") || "null"); } catch (e) { return null; }
+  }
+
+  async function lectureApi(method, path, body) {
+    const tok = lectureToken();
+    if (!tok) throw new Error("Please sign in on the lecture page first, then open this lab from there.");
+    let res;
+    try {
+      res = await fetch(LECTURE_BACKEND + path, { method, headers: { Authorization: "Bearer " + tok, ...(body ? { "Content-Type": "application/json" } : {}) },
+        body: body ? JSON.stringify(body) : undefined });
+    } catch (e) { throw new Error("Cannot reach the server. Check your internet connection and try again."); }
+    const data = await res.json().catch(() => ({}));
+    if (res.status === 401) throw new Error("Please sign in again on the lecture page, then open this lab from there.");
+    if (!res.ok) { const err = new Error(data.error || "Request failed."); err.status = res.status; throw err; }
+    return data;
+  }
+
+  // Sends the total of the last Final submit; kept as pending (and retried) if the network fails.
+  async function sendLabScore() {
+    if (!lab || !sol || !sol.lab_pending) return;
+    const marks = summary().marks;
+    try {
+      const r = await lectureApi("POST", "/api/lab-submit", { lab: lab.id, score: marks });
+      lab.best = r.best;
+      sol.lab_recorded = r.recorded; sol.lab_pending = false; sol.lab_error = null;
+    } catch (e) {
+      sol.lab_error = e.message;
+      if (e.status === 409 || e.status === 403) sol.lab_pending = false;   // closed, or not a registered student: retrying cannot help
+    }
+    persist();
+  }
+
+  async function openLab(id) {
+    const r = await lectureApi("GET", "/api/lab-bank?lab=" + encodeURIComponent(id));
+    if (r.bank.format !== "qbank-1") throw new Error("This lab could not be loaded.");
+    lab = r.lab; student = r.student; bank = r.bank;
+    lab.preview = student.roll === "instructor";   // the instructor may open any lab; nothing is recorded
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(storeKey()) || "null"); } catch (e) { saved = null; }
+    sol = saved && saved.questions && saved.questions.length === bank.questions.length ? saved : newSol();
+    sol.deadline_epoch = lab.close_epoch;      // the deadline may have been moved since
+    sol.roll = student.roll; sol.name = student.name;
+    persist();
+    python();
+    await sendLabScore();                      // a submission that could not be sent last time
+    return lab;
   }
 
   function loadBank(buf, name) {
@@ -244,7 +310,7 @@ const WebBackend = (() => {
   function view() {
     const st = bank.settings;
     return {
-      mode: "practice", title: st.title, description: st.description || "", bank_name: bank.bank_name, roll: sol.roll, name: sol.name,
+      mode: lab ? "lab" : "practice", title: st.title, description: st.description || "", bank_name: bank.bank_name, roll: sol.roll, name: sol.name,
       started_at: sol.started_at, started_epoch: sol.started_epoch, deadline_epoch: sol.deadline_epoch,
       server_now: Date.now() / 1000, penalty_text: st.penalty_text, penalty_on: !!(st.penalty.steps || []).length,
       sections: st.sections || [], submitted: sol.submitted, sol_path: null,
@@ -261,7 +327,7 @@ const WebBackend = (() => {
     switch (path) {
       case "/api/state":
         if (!bank) return { phase: "choose_bank", mode: "practice" };
-        return { phase: sol.submitted ? "done" : "exam", mode: "practice", title: bank.settings.title };
+        return { phase: sol.submitted ? "done" : "exam", mode: lab ? "lab" : "practice", title: bank.settings.title };
       case "/api/bank":
         loadBank(body, rawName);
         return request("/api/state");
@@ -297,6 +363,7 @@ const WebBackend = (() => {
         return { status: status() };
       case "/api/ping":
         if (!sol.submitted && timeUp()) await finalize("time_up");
+        await sendLabScore();
         return { status: status(), server_now: Date.now() / 1000 };
       case "/api/extend":
         throw new Error("Time extensions are only available in lab exams.");
@@ -338,5 +405,5 @@ const WebBackend = (() => {
 
   function restart() { sol = newSol(); persist(); }
 
-  return { request, exportProgress, importProgress, restart };
+  return { request, exportProgress, importProgress, restart, openLab, sendLabScore };
 })();

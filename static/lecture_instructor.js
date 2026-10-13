@@ -5,6 +5,8 @@
      #/instructor/live/<session>  dashboard of one lecture: open questions, Final submit, bars, and (with
                                   "Details", off by default, for the instructor's own device) names
      #/instructor/attendance      Attendance: the sheet (+ CSV download), manual lectures included
+     #/instructor/labs            Labs: online labs (Start with a deadline, Close, move the deadline, Restart)
+     #/instructor/lab/<id>        one online lab instance: every student's best score (+ CSV download)
      #/instructor/marks           Marks: the gradebook (items, categories, weighted total, attendance flags)
      #/instructor/student/<email> one student: their "My marks" page as they see it, and attendance details
      #/instructor/questions       Questions: the active lecture with "Open for students" and "Show answer"
@@ -21,7 +23,7 @@
   function nav(current) {
     const link = (href, text, key) => el("a", { href, class: current === key ? "on" : "", target: "_blank", rel: "noopener", text });
     return el("nav", { class: "inav" }, link("#/instructor", "Lectures", "home"), link("#/instructor/attendance", "Attendance", "att"),
-      link("#/instructor/marks", "Marks", "marks"),
+      link("#/instructor/labs", "Labs", "labs"), link("#/instructor/marks", "Marks", "marks"),
       link("#/instructor/questions", "Questions", "questions"));
   }
 
@@ -376,6 +378,89 @@
     draw();
   }
 
+  /* ---------------------------------------------------------------- online labs */
+  // datetime-local value <-> epoch ms (in this browser's time zone)
+  const pad2 = (n) => String(n).padStart(2, "0");
+  const localValue = (ms) => { const d = new Date(ms); return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}T${pad2(d.getHours())}:${pad2(d.getMinutes())}`; };
+  const whenInput = (ms) => el("input", { type: "datetime-local", value: localValue(ms) });
+  const nextWeek2300 = () => { const d = new Date(Date.now() + 7 * 86400000); d.setHours(23, 0, 0, 0); return d.getTime(); };
+
+  async function labs(g) {
+    pageStart("labs");
+    const r = await api("GET", "/api/admin/labs");
+    if (!fresh(g)) return;
+    const view = $("view");
+    view.append(el("p", { class: "muted small", text: "Online labs are attempted on the practice site and graded in the student's browser; " +
+      "only each student's best total is recorded (any number of Final submits until the lab closes). Students see open labs on their lecture page. " +
+      "Upload a lab with: python3 tools/lab_upload.py practice/Lab8/Lab8.xml" }));
+    if (!r.banks.length) return view.append(el("p", { class: "muted", text: "No lab uploaded yet." }));
+    for (const b of r.banks) {
+      const open = b.instances.find((i) => i.open);
+      const when = whenInput(open ? open.close_epoch * 1000 : nextWeek2300());
+      const startBtn = el("button", { class: open ? "" : "primary", text: open ? "Restart (new, empty instance)" : "Start", onclick: async () => {
+        const t = new Date(when.value).getTime();
+        const msg = open ? `Restart ${b.title}? The open instance closes now and a new, empty one opens until ${new Date(t).toLocaleString()}. Scores already recorded stay (the best counts).`
+          : `Start ${b.title} now, open until ${new Date(t).toLocaleString()}?`;
+        if (!confirm(msg)) return;
+        if (await act("/api/admin/lab-start", { bank: b.bank, close_at: t })) route(++state.gen);
+      } });
+      const rows = b.instances.map((i) => {
+        const dl = whenInput(i.close_epoch * 1000);
+        return el("tr", {},
+          el("td", {}, el("a", { href: `#/instructor/lab/${i.id}`, text: `Lab ${i.id}` })),
+          el("td", { text: i.started }), el("td", { text: i.closes }),
+          el("td", { class: "cell " + (i.open ? "p" : "a"), text: i.open ? "Open" : i.closed_early ? "Closed early" : "Closed" }),
+          el("td", { class: "num", text: `${i.submitted} / ${r.students}` }),
+          el("td", { class: "num", text: i.average === null ? "" : `${fmt(i.average)} / ${fmt(b.max_marks)}` }),
+          el("td", { class: "acts" },
+            i.open ? el("button", { class: "small", text: "Close now", onclick: async () => {
+              if (confirm(`Close Lab ${i.id} (${b.title}) now? Students can no longer submit.`) && await act("/api/admin/lab-close", { lab: i.id })) route(++state.gen);
+            } }) : null,
+            dl, el("button", { class: "small", text: i.open ? "Change deadline" : "Reopen until", onclick: async () => {
+              const t = new Date(dl.value).getTime();
+              if (confirm(`Lab ${i.id} will be open until ${new Date(t).toLocaleString()}.`) && await act("/api/admin/lab-deadline", { lab: i.id, close_at: t })) route(++state.gen);
+            } })));
+      });
+      view.append(el("section", { class: "card labcard" },
+        el("h2", {}, b.title, el("span", { class: "muted small", text: `  ${b.bank} · ${b.questions} questions · ${fmt(b.max_marks)} marks · uploaded ${b.uploaded}` })),
+        el("div", { class: "actions" }, el("label", { class: "small" }, "Open until ", when), startBtn),
+        rows.length ? el("div", { class: "tablewrap" }, el("table", { class: "grid labtable" },
+          el("thead", {}, el("tr", {}, ["Instance", "Started", "Closes", "Status", "Submitted", "Average", ""].map((h) => el("th", { text: h })))),
+          el("tbody", {}, rows))) : el("p", { class: "muted small", text: "Not started yet." })));
+    }
+  }
+
+  async function labPage(id, g) {
+    pageStart("labs");
+    const r = await api("GET", "/api/admin/lab?id=" + id);
+    if (!fresh(g)) return;
+    const L = r.lab, done = r.rows.filter((x) => x.best !== null);
+    const filter = el("input", { type: "search", placeholder: "Search student (name or roll)", class: "filter" });
+    const dl = el("button", { class: "primary", text: "Download CSV", onclick: async () => {
+      const res = await fetch(CFG.backend + "/api/admin/lab.csv?id=" + id, { headers: { Authorization: "Bearer " + store.get("lec:token") } });
+      if (!res.ok) return alert("Download failed.");
+      const a = el("a", { href: URL.createObjectURL(await res.blob()), download: `${L.bank}_lab${L.id}.csv` });
+      document.body.append(a); a.click(); a.remove();
+    } });
+    const body = el("tbody");
+    const draw = () => {
+      const f = filter.value.trim().toLowerCase();
+      body.replaceChildren(...r.rows.filter((x) => !f || x.name.toLowerCase().includes(f) || x.roll.includes(f)).map((x) => el("tr", {},
+        el("td", { class: "num muted", text: x.roll }), el("td", { text: x.name }),
+        el("td", { class: "num" + (x.best === null ? " missing" : ""), text: x.best === null ? "-" : `${fmt(x.best)} / ${fmt(L.max_marks)}` }),
+        el("td", { class: "num", text: String(x.submits) }), el("td", { class: "small", text: x.first }), el("td", { class: "small", text: x.last }))));
+    };
+    filter.addEventListener("input", draw);
+    draw();
+    $("view").append(el("p", {}, el("a", { href: "#/instructor/labs", text: "← Labs" })),
+      el("h2", { text: `${L.title} (Lab ${L.id})` }),
+      el("p", { class: "muted", text: `${L.open ? "Open" : "Closed"} · started ${L.started} · closes ${L.closes} · ${done.length} of ${r.rows.length} students submitted` +
+        (done.length ? ` · average ${fmt(done.reduce((a, x) => a + x.best, 0) / done.length)} / ${fmt(L.max_marks)}` : "") }),
+      el("div", { class: "actions" }, filter, dl),
+      el("div", { class: "tablewrap" }, el("table", { class: "grid" },
+        el("thead", {}, el("tr", {}, ["Roll", "Name", "Best", "Submits", "First submit", "Last submit"].map((h) => el("th", { text: h })))), body)));
+  }
+
   /* ---------------------------------------------------------------- preview a bundle (any state) */
   async function preview(bundleId, g) {
     const full = (await api("GET", "/api/admin/bundle?id=" + encodeURIComponent(bundleId))).content;
@@ -396,6 +481,8 @@
     if ((m = h.match(/^#\/instructor\/live\/(\d+)$/))) return live(Number(m[1]), g);
     if (h === "#/instructor/attendance") return attendance(g);
     if (h === "#/instructor/marks") return marks(g);
+    if (h === "#/instructor/labs") return labs(g);
+    if ((m = h.match(/^#\/instructor\/lab\/(\d+)$/))) return labPage(Number(m[1]), g);
     if (h === "#/instructor/questions") return questionsPage(g);
     if ((m = h.match(/^#\/instructor\/student\/(.+)$/))) return student(decodeURIComponent(m[1]), g);
     if ((m = h.match(/^#\/instructor\/preview\/(.+)$/))) return preview(decodeURIComponent(m[1]), g);
