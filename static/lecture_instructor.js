@@ -45,19 +45,26 @@
     const off = ov.offering;
     const nextNo = Math.max(ov.first_lec_no - 1, ...ov.sessions.map((s) => s.lec_no)) + 1;
     view.append(el("p", { class: "muted", text: off
-      ? `${off.title} · ${ov.roster_size} students on the roster · next lecture will be Lec ${nextNo} · auto-close after ${ov.auto_close_minutes} min`
+      ? `${off.title} · ${ov.roster_size} students on the roster · next lecture will be Lec ${nextNo} · auto-close after ${ov.auto_close_minutes} min (can be changed)`
       : "No course offering set up yet (upload a roster)." }));
     const active = ov.sessions.find((s) => s.active);
     if (active) {
+      const closeAt = whenInput(active.closes_at);
       view.append(el("section", { class: "activebox" },
         el("div", { class: "ab-title", text: `Now: Lec ${active.lec_no} · ${active.title}` }),
         el("div", { class: "ab-meta", text: `started ${active.start} · ${active.n_open} question${active.n_open === 1 ? "" : "s"} open · ${active.present} present so far`
-          + (active.submit_open ? " · Final submit open" : "") }),
+          + (active.submit_open ? " · Final submit open" : "") + ` · closes by itself ${active.closes}` }),
         el("div", { class: "ab-pass" }, el("span", { text: "Password" }), el("b", { text: active.password })),
         el("div", { class: "actions" },
           newTab(`#/instructor/live/${active.id}`, "Open dashboard", "primary"),
           newTab("#/instructor/questions", "Questions"),
-          el("button", { class: "danger", text: "Close lecture", onclick: () => closeLecture(active) }))));
+          el("button", { class: "danger", text: "Close lecture", onclick: () => closeLecture(active) })),
+        el("div", { class: "actions" }, el("label", { class: "small" }, "Closes by itself at ", closeAt),
+          el("button", { class: "small", text: "Change close time", onclick: async () => {
+            const t = new Date(closeAt.value).getTime();
+            if (confirm(`Lec ${active.lec_no} will stay open until ${new Date(t).toLocaleString()} (unless you close it earlier).`)
+              && await act("/api/admin/close-at", { session: active.id, close_at: t })) route();
+          } }))));
     }
     const rows = ov.bundles.map((b) => {
       const inActive = active && active.parts.some((p) => p.bundle === b.id);
@@ -174,7 +181,7 @@
         el("div", { class: "dh-title", text: s.title }),
         el("div", { class: "dh-lec" }, el("b", { text: `Lec ${s.lec_no}` }),
           s.other_lec_nos.length ? el("span", { class: "muted", text: ` · these topics also in Lec ${s.other_lec_nos.join(", ")}` }) : null),
-        el("div", { class: "muted", text: `${s.date} · started ${s.start}${s.close ? ` · closed ${s.close}` : ""} · ${s.active ? "ACTIVE" : "closed"}` })),
+        el("div", { class: "muted", text: `${s.date} · started ${s.start}${s.close ? ` · closed ${s.close}` : ""} · ${s.active ? `ACTIVE (closes by itself ${s.closes})` : "closed"}` })),
       el("div", { class: "tiles" },
         presentTile,
         tile("Joined", `${d.joined}`, d.guests.length ? `+ ${plural(d.guests.length, "guest")}` : "students"),
