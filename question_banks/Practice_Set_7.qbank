@@ -1,0 +1,1757 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Practice_Set_7",
+ "encrypted": false,
+ "source_xml": "Practice_Set_7.xml",
+ "built_at": "2026-10-28T10:16:42",
+ "settings": {
+  "title": "Practice Set 7: Medium (Lists and Tuples)",
+  "description": "Functions on lists and tuples: averages, positions, sorting, grouping, nested lists, zip and records.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Lists",
+    "start": 1,
+    "count": 16
+   },
+   {
+    "heading": "Tuples",
+    "start": 17,
+    "count": 12
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "PS7_001_Function Spread Of Marks",
+   "display_name": "Spread Of Marks",
+   "questiontext_html": "<p>A teacher wants to know how spread out the marks of a class are. A simple measure is the <b>spread</b>: the highest mark minus the lowest mark.</p>\n<p><b>Python facts you may use:</b> <code>len(L)</code>, <code>sum(L)</code>, <code>min(L)</code>, <code>max(L)</code>, <code>sorted(L)</code> (a new sorted list; <code>sorted(L, reverse=True)</code> sorts from largest to smallest), <code>L.count(x)</code>, <code>L.index(x)</code>, <code>L.append(x)</code>, slices.</p>\n<p><b>Your task:</b> write a function <code>spread(marks)</code> that takes a non-empty list of integers <code>marks</code> and <b>returns</b> the highest mark minus the lowest mark.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>spread([45, 80, 62, 91])</code> returns <code>46</code> (91 - 45)</li><li><code>spread([70, 70, 70])</code> returns <code>0</code> (everybody got the same)</li><li><code>spread([5])</code> returns <code>0</code></li></ul>",
+   "answerpreload": "def spread(marks):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(spread([45, 80, 62, 91]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(spread([45, 80, 62, 91]))",
+     "stdin": "",
+     "expected": "46",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(spread([70, 70, 70]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(spread([5]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(spread([-4, 10, -20, 3]))",
+     "stdin": "",
+     "expected": "30",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(spread([100, 0]))",
+     "stdin": "",
+     "expected": "100",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "PS7_002_Function Count Above Average",
+   "display_name": "Count Above Average",
+   "questiontext_html": "<p>The <b>average</b> of a list of numbers is their sum divided by how many there are: <code>sum(L) / len(L)</code>.</p>\n<p><b>Python facts you may use:</b> <code>len(L)</code>, <code>sum(L)</code>, <code>min(L)</code>, <code>max(L)</code>, <code>sorted(L)</code> (a new sorted list; <code>sorted(L, reverse=True)</code> sorts from largest to smallest), <code>L.count(x)</code>, <code>L.index(x)</code>, <code>L.append(x)</code>, slices.</p>\n<p><b>Your task:</b> write a function <code>count_above_average(L)</code> that takes a non-empty list of integers <code>L</code> and <b>returns</b> how many items are <b>strictly greater</b> than the average.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>count_above_average([2, 4, 6, 8])</code> returns <code>2</code> (the average is 5.0; 6 and 8 are above it)</li><li><code>count_above_average([5, 5, 5])</code> returns <code>0</code> (the average is 5.0; nothing is strictly above it)</li><li><code>count_above_average([1, 1, 1, 9])</code> returns <code>1</code></li></ul>",
+   "answerpreload": "def count_above_average(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(count_above_average([2, 4, 6, 8]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_above_average([2, 4, 6, 8]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above_average([5, 5, 5]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above_average([1, 1, 1, 9]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above_average([7]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above_average([-3, 0, 3, 10]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_above_average([1, 2]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "PS7_003_Function Top Three Scores",
+   "display_name": "Top Three Scores",
+   "questiontext_html": "<p>In a quiz contest, the three highest scores win prizes.</p>\n<p><b>Python facts you may use:</b> <code>len(L)</code>, <code>sum(L)</code>, <code>min(L)</code>, <code>max(L)</code>, <code>sorted(L)</code> (a new sorted list; <code>sorted(L, reverse=True)</code> sorts from largest to smallest), <code>L.count(x)</code>, <code>L.index(x)</code>, <code>L.append(x)</code>, slices.</p>\n<p><b>Your task:</b> write a function <code>top_three(scores)</code> that takes a list of integers <code>scores</code> and <b>returns</b> a new list with the three highest scores, from highest to lowest. If there are fewer than three scores, return all of them, from highest to lowest. Equal scores are kept (two people may have the same score). Do not change <code>scores</code> itself.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>top_three([40, 95, 70, 88, 60])</code> returns <code>[95, 88, 70]</code></li><li><code>top_three([50, 90, 90, 20])</code> returns <code>[90, 90, 50]</code></li><li><code>top_three([12, 30])</code> returns <code>[30, 12]</code></li></ul>",
+   "answerpreload": "def top_three(scores):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(top_three([40, 95, 70, 88, 60]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(top_three([40, 95, 70, 88, 60]))",
+     "stdin": "",
+     "expected": "[95, 88, 70]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(top_three([50, 90, 90, 20]))",
+     "stdin": "",
+     "expected": "[90, 90, 50]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(top_three([12, 30]))",
+     "stdin": "",
+     "expected": "[30, 12]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(top_three([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "s = [3, 1, 2, 5]\nprint(top_three(s))\nprint(s)",
+     "stdin": "",
+     "expected": "[5, 3, 2]\n[3, 1, 2, 5]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(top_three([-1, -5, -3, -2]))",
+     "stdin": "",
+     "expected": "[-1, -2, -3]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "PS7_004_Function All Positions Of An Item",
+   "display_name": "All Positions Of An Item",
+   "questiontext_html": "<p><code>L.index(x)</code> tells you where the <b>first</b> <code>x</code> is in a list. But sometimes you want <b>all</b> the places where <code>x</code> appears.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(74,163,223);color:#fff;border-radius:2px\">&#x27;a&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">&#x27;a&#x27; is at indexes 0, 2 and 4</div>\n<p><b>Hint:</b> loop over the indexes with <code>for i in range(len(L)):</code> and look at <code>L[i]</code>.</p>\n<p><b>Your task:</b> write a function <code>positions(L, x)</code> that <b>returns</b> a list of all the indexes <code>i</code> where <code>L[i]</code> is equal to <code>x</code>, from smallest to largest. If <code>x</code> is not in <code>L</code>, return an empty list.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>positions([\"a\", \"b\", \"a\", \"c\", \"a\"], \"a\")</code> returns <code>[0, 2, 4]</code></li><li><code>positions([5, 6, 7], 6)</code> returns <code>[1]</code></li><li><code>positions([5, 6, 7], 9)</code> returns <code>[]</code></li></ul>",
+   "answerpreload": "def positions(L, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(positions([\"a\", \"b\", \"a\", \"c\", \"a\"], \"a\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(positions([\"a\", \"b\", \"a\", \"c\", \"a\"], \"a\"))",
+     "stdin": "",
+     "expected": "[0, 2, 4]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(positions([5, 6, 7], 6))",
+     "stdin": "",
+     "expected": "[1]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(positions([5, 6, 7], 9))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(positions([], 1))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(positions([2, 2, 2], 2))",
+     "stdin": "",
+     "expected": "[0, 1, 2]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(positions([1, 2, 3, 1], 1))",
+     "stdin": "",
+     "expected": "[0, 3]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "PS7_005_Function Split Into Groups",
+   "display_name": "Split Into Groups",
+   "questiontext_html": "<p>A teacher wants to split a list of students into groups of <code>n</code>, in order. The last group may be smaller if the students do not divide evenly.</p>\n<p>For example, with <code>n = 3</code>:</p>\n<pre>[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;]   -&gt;   [[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], [&quot;D&quot;, &quot;E&quot;, &quot;F&quot;], [&quot;G&quot;]]</pre>\n<p><b>Hint:</b> the slice <code>L[i:i + n]</code> is the group that starts at index <code>i</code> (a slice never goes out of range). The groups start at indexes <code>0, n, 2n, ...</code>, which is exactly <code>range(0, len(L), n)</code>.</p>\n<p><b>Your task:</b> write a function <code>groups(L, n)</code> that takes a list <code>L</code> and a positive integer <code>n</code>, and <b>returns</b> a list of the groups (each group is a list). An empty <code>L</code> gives an empty list of groups.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>groups([\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\"], 3)</code> returns <code>[['A', 'B', 'C'], ['D', 'E', 'F'], ['G']]</code></li><li><code>groups([1, 2, 3, 4], 2)</code> returns <code>[[1, 2], [3, 4]]</code></li><li><code>groups([1, 2], 5)</code> returns <code>[[1, 2]]</code></li></ul>",
+   "answerpreload": "def groups(L, n):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(groups([\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\"], 3))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(groups([\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\"], 3))",
+     "stdin": "",
+     "expected": "[['A', 'B', 'C'], ['D', 'E', 'F'], ['G']]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(groups([1, 2, 3, 4], 2))",
+     "stdin": "",
+     "expected": "[[1, 2], [3, 4]]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(groups([1, 2], 5))",
+     "stdin": "",
+     "expected": "[[1, 2]]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(groups([], 3))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(groups([1, 2, 3], 1))",
+     "stdin": "",
+     "expected": "[[1], [2], [3]]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(groups([1, 2, 3, 4, 5], 2))",
+     "stdin": "",
+     "expected": "[[1, 2], [3, 4], [5]]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "PS7_006_Function Insert In Sorted Order",
+   "display_name": "Insert In Sorted Order",
+   "questiontext_html": "<p><b>Remember:</b> a list can be <b>changed</b> (it is mutable): <code>L[i] = x</code>, <code>L.append(x)</code>, <code>L.remove(x)</code>, <code>L.sort()</code> and <code>del L[i]</code> all change the list itself, and everybody who refers to that list sees the change.</p>\n<p><code>L.insert(i, x)</code> puts <code>x</code> <b>at index</b> <code>i</code>, and moves the items from there one place to the right:</p>\n<pre>L = [10, 20, 40]\nL.insert(2, 30)\nprint(L)</pre>\n<p>Output:</p>\n<pre>[10, 20, 30, 40]</pre>\n<p><b>Your task:</b> write a function <code>insert_sorted(L, x)</code>. The list <code>L</code> is already sorted from smallest to largest. The function must <b>change</b> <code>L</code> by putting <code>x</code> in the right place, so that <code>L</code> is still sorted. It returns nothing.</p>\n<p><b>Hint:</b> the right index is the position of the first item that is greater than <code>x</code>; if there is none, it is <code>len(L)</code> (the end).</p>\n<p><b>Examples:</b> after <code>L = [10, 20, 40]</code> and <code>insert_sorted(L, 30)</code>, <code>L</code> is <code>[10, 20, 30, 40]</code>. After <code>L = [5, 8]</code> and <code>insert_sorted(L, 1)</code>, <code>L</code> is <code>[1, 5, 8]</code>.</p>",
+   "answerpreload": "def insert_sorted(L, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# L = [10, 20, 40]\n# insert_sorted(L, 30)\n# print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [10, 20, 40]\ninsert_sorted(L, 30)\nprint(L)",
+     "stdin": "",
+     "expected": "[10, 20, 30, 40]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [5, 8]\ninsert_sorted(L, 1)\nprint(L)",
+     "stdin": "",
+     "expected": "[1, 5, 8]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [5, 8]\ninsert_sorted(L, 9)\nprint(L)",
+     "stdin": "",
+     "expected": "[5, 8, 9]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = []\ninsert_sorted(L, 4)\nprint(L)",
+     "stdin": "",
+     "expected": "[4]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [1, 3, 3, 7]\ninsert_sorted(L, 3)\nprint(L)",
+     "stdin": "",
+     "expected": "[1, 3, 3, 3, 7]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [2, 4]\nprint(insert_sorted(L, 3))\nprint(L)",
+     "stdin": "",
+     "expected": "None\n[2, 3, 4]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 7,
+   "xml_name": "PS7_007_Function Best So Far",
+   "display_name": "Best So Far",
+   "questiontext_html": "<p>A shop records its sales every day. The owner wants to see, for each day, the <b>best day so far</b>: the highest sale from the first day up to and including that day.</p>\n<pre>sales:        [3, 7, 5, 9, 2]\nbest so far:  [3, 7, 7, 9, 9]</pre>\n<p><b>Your task:</b> write a function <code>best_so_far(L)</code> that takes a list of integers <code>L</code> and <b>returns</b> a new list of the same length, where the item at index <code>i</code> is the largest of <code>L[0]</code>, <code>L[1]</code>, ..., <code>L[i]</code>. An empty <code>L</code> gives an empty list.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>best_so_far([3, 7, 5, 9, 2])</code> returns <code>[3, 7, 7, 9, 9]</code></li><li><code>best_so_far([5, 4, 3])</code> returns <code>[5, 5, 5]</code></li><li><code>best_so_far([])</code> returns <code>[]</code></li></ul>",
+   "answerpreload": "def best_so_far(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(best_so_far([3, 7, 5, 9, 2]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(best_so_far([3, 7, 5, 9, 2]))",
+     "stdin": "",
+     "expected": "[3, 7, 7, 9, 9]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_so_far([5, 4, 3]))",
+     "stdin": "",
+     "expected": "[5, 5, 5]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_so_far([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_so_far([-5, -9, -1, -3]))",
+     "stdin": "",
+     "expected": "[-5, -5, -1, -1]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_so_far([1, 2, 3]))",
+     "stdin": "",
+     "expected": "[1, 2, 3]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 8,
+   "xml_name": "PS7_008_Function Column Total",
+   "display_name": "Column Total",
+   "questiontext_html": "<p>A <b>table</b> can be stored as a list of rows, where each row is a list. <code>table[r][c]</code> is the item in row <code>r</code>, column <code>c</code>:</p>\n<pre>table = [[3, 1, 4],\n         [1, 5, 9],\n         [2, 6, 5]]</pre>\n<p>Here <code>table[1]</code> is the whole row <code>[1, 5, 9]</code>, and <code>table[1][2]</code> is <code>9</code>.</p>\n<p><b>Your task:</b> write a function <code>column_total(table, c)</code> that <b>returns</b> the sum of the items in column <code>c</code> of the table (one item from every row). All rows have the same length, and <code>c</code> is a valid column index. A table with no rows gives <code>0</code>.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>column_total([[3, 1, 4], [1, 5, 9], [2, 6, 5]], 0)</code> returns <code>6</code> (3 + 1 + 2)</li><li><code>column_total([[3, 1, 4], [1, 5, 9], [2, 6, 5]], 2)</code> returns <code>18</code> (4 + 9 + 5)</li><li><code>column_total([[7, 8]], 1)</code> returns <code>8</code></li></ul>",
+   "answerpreload": "def column_total(table, c):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(column_total([[3, 1, 4], [1, 5, 9], [2, 6, 5]], 0))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(column_total([[3, 1, 4], [1, 5, 9], [2, 6, 5]], 0))",
+     "stdin": "",
+     "expected": "6",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(column_total([[3, 1, 4], [1, 5, 9], [2, 6, 5]], 2))",
+     "stdin": "",
+     "expected": "18",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(column_total([[7, 8]], 1))",
+     "stdin": "",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(column_total([], 0))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(column_total([[1, -1], [2, -2], [3, -3], [4, -4]], 1))",
+     "stdin": "",
+     "expected": "-10",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 9,
+   "xml_name": "PS7_009_Function Middle Value",
+   "display_name": "Middle Value",
+   "questiontext_html": "<p>The <b>median</b> of a list of numbers is the value in the middle once the numbers are sorted. For example, for <code>[7, 2, 9, 4, 5]</code>, sorting gives <code>[2, 4, 5, 7, 9]</code>, and the middle value is <code>5</code>.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">sorted:</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">2</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(52,129,188);color:#fff;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">7</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">9</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">5 items: the middle one has index 5 // 2 = 2</div>\n<p><b>Python facts you may use:</b> <code>len(L)</code>, <code>sum(L)</code>, <code>min(L)</code>, <code>max(L)</code>, <code>sorted(L)</code> (a new sorted list; <code>sorted(L, reverse=True)</code> sorts from largest to smallest), <code>L.count(x)</code>, <code>L.index(x)</code>, <code>L.append(x)</code>, slices.</p>\n<p><b>Your task:</b> write a function <code>median(L)</code> that takes a list of integers <code>L</code> with an <b>odd</b> number of items, and <b>returns</b> its median. Do not change <code>L</code> itself.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>median([7, 2, 9, 4, 5])</code> returns <code>5</code></li><li><code>median([3, 1, 2])</code> returns <code>2</code></li><li><code>median([8])</code> returns <code>8</code></li></ul>",
+   "answerpreload": "def median(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(median([7, 2, 9, 4, 5]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(median([7, 2, 9, 4, 5]))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(median([3, 1, 2]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(median([8]))",
+     "stdin": "",
+     "expected": "8",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [10, -2, 7, 7, 1]\nprint(median(L))\nprint(L)",
+     "stdin": "",
+     "expected": "7\n[10, -2, 7, 7, 1]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(median([5, 5, 1, 9, 9, 9, 0]))",
+     "stdin": "",
+     "expected": "5",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 10,
+   "xml_name": "PS7_010_Function Count Below Average",
+   "display_name": "Count Below Average",
+   "questiontext_html": "<p>The <b>average</b> of a list of numbers is their sum divided by how many there are: <code>sum(L) / len(L)</code>.</p>\n<p><b>Python facts you may use:</b> <code>len(L)</code>, <code>sum(L)</code>, <code>min(L)</code>, <code>max(L)</code>, <code>sorted(L)</code> (a new sorted list; <code>sorted(L, reverse=True)</code> sorts from largest to smallest), <code>L.count(x)</code>, <code>L.index(x)</code>, <code>L.append(x)</code>, slices.</p>\n<p><b>Your task:</b> write a function <code>count_below_average(L)</code> that takes a non-empty list of integers <code>L</code> and <b>returns</b> how many items are <b>strictly less</b> than the average.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>count_below_average([2, 4, 6, 8])</code> returns <code>2</code> (the average is 5.0; 2 and 4 are below it)</li><li><code>count_below_average([5, 5, 5])</code> returns <code>0</code> (the average is 5.0; nothing is strictly below it)</li><li><code>count_below_average([9, 9, 9, 1])</code> returns <code>1</code></li></ul>",
+   "answerpreload": "def count_below_average(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(count_below_average([2, 4, 6, 8]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(count_below_average([2, 4, 6, 8]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_below_average([5, 5, 5]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_below_average([9, 9, 9, 1]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_below_average([7]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_below_average([-3, 0, 3, 10]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(count_below_average([1, 2]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 11,
+   "xml_name": "PS7_011_Function Bottom Two Times",
+   "display_name": "Bottom Two Times",
+   "questiontext_html": "<p>In a running race, the <b>two smallest</b> times (in seconds) get the gold and silver medals.</p>\n<p><b>Python facts you may use:</b> <code>len(L)</code>, <code>sum(L)</code>, <code>min(L)</code>, <code>max(L)</code>, <code>sorted(L)</code> (a new sorted list; <code>sorted(L, reverse=True)</code> sorts from largest to smallest), <code>L.count(x)</code>, <code>L.index(x)</code>, <code>L.append(x)</code>, slices.</p>\n<p><b>Your task:</b> write a function <code>best_two(times)</code> that takes a list of integers <code>times</code> and <b>returns</b> a new list with the two smallest times, from smallest to largest. If there are fewer than two times, return all of them. Equal times are kept (two runners may tie). Do not change <code>times</code> itself.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>best_two([62, 55, 71, 58])</code> returns <code>[55, 58]</code></li><li><code>best_two([60, 50, 50, 70])</code> returns <code>[50, 50]</code></li><li><code>best_two([66])</code> returns <code>[66]</code></li></ul>",
+   "answerpreload": "def best_two(times):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(best_two([62, 55, 71, 58]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(best_two([62, 55, 71, 58]))",
+     "stdin": "",
+     "expected": "[55, 58]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_two([60, 50, 50, 70]))",
+     "stdin": "",
+     "expected": "[50, 50]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_two([66]))",
+     "stdin": "",
+     "expected": "[66]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_two([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = [9, 3, 7]\nprint(best_two(t))\nprint(t)",
+     "stdin": "",
+     "expected": "[3, 7]\n[9, 3, 7]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_two([5, 4, 3, 2, 1]))",
+     "stdin": "",
+     "expected": "[1, 2]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 12,
+   "xml_name": "PS7_012_Function Last Position Of An Item",
+   "display_name": "Last Position Of An Item",
+   "questiontext_html": "<p><code>L.index(x)</code> tells you where the <b>first</b> <code>x</code> is in a list. Here we want the <b>last</b> place where <code>x</code> appears.</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">L =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">9</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(65,149,209);color:#fff;border-radius:2px\">4</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">7</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">the last 4 is at index 4</div>\n<p><b>Hint:</b> loop over the indexes with <code>for i in range(len(L)):</code> and remember the latest <code>i</code> where <code>L[i]</code> is <code>x</code>.</p>\n<p><b>Your task:</b> write a function <code>last_position(L, x)</code> that <b>returns</b> the index of the <b>last</b> item of <code>L</code> that is equal to <code>x</code>. If <code>x</code> is not in <code>L</code> at all, return <code>-1</code>.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>last_position([4, 9, 4, 1, 4, 7], 4)</code> returns <code>4</code></li><li><code>last_position([\"p\", \"q\"], \"p\")</code> returns <code>0</code></li><li><code>last_position([1, 2, 3], 8)</code> returns <code>-1</code></li></ul>",
+   "answerpreload": "def last_position(L, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(last_position([4, 9, 4, 1, 4, 7], 4))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(last_position([4, 9, 4, 1, 4, 7], 4))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(last_position([\"p\", \"q\"], \"p\"))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(last_position([1, 2, 3], 8))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(last_position([], 1))",
+     "stdin": "",
+     "expected": "-1",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(last_position([2, 2, 2], 2))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(last_position([7, 1, 1, 3], 7))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 13,
+   "xml_name": "PS7_013_Function Pair Up",
+   "display_name": "Pair Up",
+   "questiontext_html": "<p>For a lab, students sit in pairs, in the order of the list. If the number of students is odd, the last student sits alone.</p>\n<pre>[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]   -&gt;   [[&quot;A&quot;, &quot;B&quot;], [&quot;C&quot;, &quot;D&quot;], [&quot;E&quot;]]</pre>\n<p><b>Hint:</b> the slice <code>L[i:i + 2]</code> is the pair that starts at index <code>i</code> (a slice never goes out of range, so at the end it simply gives one item). The pairs start at indexes <code>0, 2, 4, ...</code>, which is exactly <code>range(0, len(L), 2)</code>.</p>\n<p><b>Your task:</b> write a function <code>pair_up(L)</code> that takes a list <code>L</code> and <b>returns</b> a list of the pairs (each pair is a list). An empty <code>L</code> gives an empty list.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>pair_up([\"A\", \"B\", \"C\", \"D\", \"E\"])</code> returns <code>[['A', 'B'], ['C', 'D'], ['E']]</code></li><li><code>pair_up([1, 2, 3, 4])</code> returns <code>[[1, 2], [3, 4]]</code></li><li><code>pair_up([9])</code> returns <code>[[9]]</code></li></ul>",
+   "answerpreload": "def pair_up(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(pair_up([\"A\", \"B\", \"C\", \"D\", \"E\"]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(pair_up([\"A\", \"B\", \"C\", \"D\", \"E\"]))",
+     "stdin": "",
+     "expected": "[['A', 'B'], ['C', 'D'], ['E']]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pair_up([1, 2, 3, 4]))",
+     "stdin": "",
+     "expected": "[[1, 2], [3, 4]]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pair_up([9]))",
+     "stdin": "",
+     "expected": "[[9]]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pair_up([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pair_up([1, 2, 3, 4, 5, 6, 7]))",
+     "stdin": "",
+     "expected": "[[1, 2], [3, 4], [5, 6], [7]]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 14,
+   "xml_name": "PS7_014_Function Remove The Smallest",
+   "display_name": "Remove The Smallest",
+   "questiontext_html": "<p><b>Remember:</b> a list can be <b>changed</b> (it is mutable): <code>L[i] = x</code>, <code>L.append(x)</code>, <code>L.remove(x)</code>, <code>L.sort()</code> and <code>del L[i]</code> all change the list itself, and everybody who refers to that list sees the change.</p>\n<p><code>L.remove(x)</code> removes the <b>first</b> item equal to <code>x</code>:</p>\n<pre>L = [5, 2, 9, 2]\nL.remove(2)\nprint(L)</pre>\n<p>Output:</p>\n<pre>[5, 9, 2]</pre>\n<p><b>Your task:</b> write a function <code>remove_smallest(L)</code> that takes a non-empty list of integers <code>L</code> and <b>changes</b> it by removing its smallest item. If the smallest value appears more than once, remove only the <b>first</b> one. The function returns nothing.</p>\n<p><b>Examples:</b> after <code>L = [5, 2, 9, 2]</code> and <code>remove_smallest(L)</code>, <code>L</code> is <code>[5, 9, 2]</code>. After <code>L = [7]</code> and <code>remove_smallest(L)</code>, <code>L</code> is <code>[]</code>.</p>",
+   "answerpreload": "def remove_smallest(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# L = [5, 2, 9, 2]\n# remove_smallest(L)\n# print(L)\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "L = [5, 2, 9, 2]\nremove_smallest(L)\nprint(L)",
+     "stdin": "",
+     "expected": "[5, 9, 2]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [7]\nremove_smallest(L)\nprint(L)",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [3, 1, 2]\nremove_smallest(L)\nprint(L)",
+     "stdin": "",
+     "expected": "[3, 2]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [-1, -5, 0, -5]\nremove_smallest(L)\nprint(L)",
+     "stdin": "",
+     "expected": "[-1, 0, -5]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "L = [4, 6]\nprint(remove_smallest(L))\nprint(L)",
+     "stdin": "",
+     "expected": "None\n[6]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 15,
+   "xml_name": "PS7_015_Function Lowest So Far",
+   "display_name": "Lowest So Far",
+   "questiontext_html": "<p>A weather station records the temperature every hour. For each hour, we want the <b>lowest temperature so far</b>: the smallest reading from the first hour up to and including that hour.</p>\n<pre>temperatures:   [24, 21, 23, 18, 20]\nlowest so far:  [24, 21, 21, 18, 18]</pre>\n<p><b>Your task:</b> write a function <code>lowest_so_far(L)</code> that takes a list of integers <code>L</code> and <b>returns</b> a new list of the same length, where the item at index <code>i</code> is the smallest of <code>L[0]</code>, <code>L[1]</code>, ..., <code>L[i]</code>. An empty <code>L</code> gives an empty list.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>lowest_so_far([24, 21, 23, 18, 20])</code> returns <code>[24, 21, 21, 18, 18]</code></li><li><code>lowest_so_far([1, 2, 3])</code> returns <code>[1, 1, 1]</code></li><li><code>lowest_so_far([])</code> returns <code>[]</code></li></ul>",
+   "answerpreload": "def lowest_so_far(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(lowest_so_far([24, 21, 23, 18, 20]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(lowest_so_far([24, 21, 23, 18, 20]))",
+     "stdin": "",
+     "expected": "[24, 21, 21, 18, 18]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lowest_so_far([1, 2, 3]))",
+     "stdin": "",
+     "expected": "[1, 1, 1]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lowest_so_far([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lowest_so_far([-5, -9, -1, -30]))",
+     "stdin": "",
+     "expected": "[-5, -9, -9, -30]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(lowest_so_far([9, 8, 7]))",
+     "stdin": "",
+     "expected": "[9, 8, 7]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 16,
+   "xml_name": "PS7_016_Function Row With The Largest Sum",
+   "display_name": "Row With The Largest Sum",
+   "questiontext_html": "<p>A <b>table</b> can be stored as a list of rows, where each row is a list. <code>table[r]</code> is row <code>r</code>:</p>\n<pre>table = [[3, 1, 4],\n         [1, 5, 9],\n         [2, 6, 5]]</pre>\n<p>Here <code>table[1]</code> is the whole row <code>[1, 5, 9]</code>, and <code>sum(table[1])</code> is <code>15</code>.</p>\n<p><b>Your task:</b> write a function <code>best_row(table)</code> that takes a table with at least one row and <b>returns</b> the <b>index</b> of the row with the largest sum. If several rows share the largest sum, return the <b>smallest</b> such index.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>best_row([[3, 1, 4], [1, 5, 9], [2, 6, 5]])</code> returns <code>1</code> (the sums are 8, 15 and 13)</li><li><code>best_row([[5, 5], [10, 0]])</code> returns <code>0</code> (both sums are 10: the first one wins)</li><li><code>best_row([[7]])</code> returns <code>0</code></li></ul>",
+   "answerpreload": "def best_row(table):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(best_row([[3, 1, 4], [1, 5, 9], [2, 6, 5]]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(best_row([[3, 1, 4], [1, 5, 9], [2, 6, 5]]))",
+     "stdin": "",
+     "expected": "1",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_row([[5, 5], [10, 0]]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_row([[7]]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_row([[-1, -2], [-3], [-1, -1, 0]]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_row([[1], [2], [3], [3]]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 17,
+   "xml_name": "PS7_017_Function Lowest And Highest",
+   "display_name": "Lowest And Highest",
+   "questiontext_html": "<p>A function can return <b>several values at once</b> by returning a tuple. The caller can unpack it straight away:</p>\n<pre>def first_two(L):\n    return (L[0], L[1])\n\na, b = first_two([8, 3, 5])\nprint(a, b)</pre>\n<p>Output:</p>\n<pre>8 3</pre>\n<p><b>Your task:</b> write a function <code>low_high(L)</code> that takes a non-empty list of integers <code>L</code> and <b>returns</b> a tuple <code>(lowest, highest)</code>: the smallest and the largest item.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>low_high([4, 9, 1, 7])</code> returns <code>(1, 9)</code></li><li><code>low_high([5])</code> returns <code>(5, 5)</code></li></ul>",
+   "answerpreload": "def low_high(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(low_high([4, 9, 1, 7]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(low_high([4, 9, 1, 7]))",
+     "stdin": "",
+     "expected": "(1, 9)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(low_high([5]))",
+     "stdin": "",
+     "expected": "(5, 5)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(low_high([-2, -8, 0]))",
+     "stdin": "",
+     "expected": "(-8, 0)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "lo, hi = low_high([3, 3, 1, 3])\nprint(hi - lo)",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(type(low_high([1, 2])) == tuple)",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 18,
+   "xml_name": "PS7_018_Function First And Last Name",
+   "display_name": "First And Last Name",
+   "questiontext_html": "<p><code>s.split()</code> breaks a string into a <b>list of words</b> (wherever there are spaces):</p>\n<pre>words = &quot;Sachin Ramesh Tendulkar&quot;.split()\nprint(words)\nprint(words[0], words[-1])</pre>\n<p>Output:</p>\n<pre>[&#x27;Sachin&#x27;, &#x27;Ramesh&#x27;, &#x27;Tendulkar&#x27;]\nSachin Tendulkar</pre>\n<p><b>Your task:</b> write a function <code>first_and_last(full_name)</code> that takes a full name (one or more words separated by spaces) and <b>returns</b> a tuple <code>(first, last)</code>: the first word and the last word. A name with only one word gives that word twice.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>first_and_last(\"Sachin Ramesh Tendulkar\")</code> returns <code>('Sachin', 'Tendulkar')</code></li><li><code>first_and_last(\"Mary Kom\")</code> returns <code>('Mary', 'Kom')</code></li><li><code>first_and_last(\"Rekha\")</code> returns <code>('Rekha', 'Rekha')</code></li></ul>",
+   "answerpreload": "def first_and_last(full_name):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(first_and_last(\"Sachin Ramesh Tendulkar\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(first_and_last(\"Sachin Ramesh Tendulkar\"))",
+     "stdin": "",
+     "expected": "('Sachin', 'Tendulkar')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_and_last(\"Mary Kom\"))",
+     "stdin": "",
+     "expected": "('Mary', 'Kom')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_and_last(\"Rekha\"))",
+     "stdin": "",
+     "expected": "('Rekha', 'Rekha')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(first_and_last(\"A B C D E\"))",
+     "stdin": "",
+     "expected": "('A', 'E')",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(type(first_and_last(\"x y\")) == tuple)",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 19,
+   "xml_name": "PS7_019_Function Pass And Fail Count",
+   "display_name": "Pass And Fail Count",
+   "questiontext_html": "<p><b>Your task:</b> write a function <code>pass_fail(marks, cutoff)</code> that takes a list of integers <code>marks</code> and an integer <code>cutoff</code>, and <b>returns</b> a tuple <code>(passed, failed)</code>: how many marks are <b>at least</b> <code>cutoff</code>, and how many are below it.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>pass_fail([35, 72, 40, 18, 90], 40)</code> returns <code>(3, 2)</code> (72, 40 and 90 pass; 35 and 18 fail)</li><li><code>pass_fail([], 40)</code> returns <code>(0, 0)</code></li><li><code>pass_fail([10, 20], 5)</code> returns <code>(2, 0)</code></li></ul>",
+   "answerpreload": "def pass_fail(marks, cutoff):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(pass_fail([35, 72, 40, 18, 90], 40))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(pass_fail([35, 72, 40, 18, 90], 40))",
+     "stdin": "",
+     "expected": "(3, 2)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pass_fail([], 40))",
+     "stdin": "",
+     "expected": "(0, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pass_fail([10, 20], 5))",
+     "stdin": "",
+     "expected": "(2, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pass_fail([39, 40, 41], 40))",
+     "stdin": "",
+     "expected": "(2, 1)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(pass_fail([0, 0, 0], 1))",
+     "stdin": "",
+     "expected": "(0, 3)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 20,
+   "xml_name": "PS7_020_Function Students From A City",
+   "display_name": "Students From A City",
+   "questiontext_html": "<p>A list of <b>records</b> can be stored as a list of tuples, one tuple per student. A <code>for</code> loop can unpack each tuple directly:</p>\n<pre>records = [(&quot;Asha&quot;, &quot;Goa&quot;), (&quot;Ravi&quot;, &quot;Pune&quot;)]\nfor name, city in records:\n    print(name, &quot;lives in&quot;, city)</pre>\n<p>Output:</p>\n<pre>Asha lives in Goa\nRavi lives in Pune</pre>\n<p><b>Your task:</b> write a function <code>from_city(records, city)</code> that takes a list of <code>(name, city)</code> tuples and a city, and <b>returns</b> a list of the names of the students from that city, in the original order.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>from_city([(\"Asha\", \"Goa\"), (\"Ravi\", \"Pune\"), (\"Meera\", \"Goa\")], \"Goa\")</code> returns <code>['Asha', 'Meera']</code></li><li><code>from_city([(\"Asha\", \"Goa\")], \"Delhi\")</code> returns <code>[]</code></li></ul>",
+   "answerpreload": "def from_city(records, city):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(from_city([(\"Asha\", \"Goa\"), (\"Ravi\", \"Pune\"), (\"Meera\", \"Goa\")], \"Goa\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(from_city([(\"Asha\", \"Goa\"), (\"Ravi\", \"Pune\"), (\"Meera\", \"Goa\")], \"Goa\"))",
+     "stdin": "",
+     "expected": "['Asha', 'Meera']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(from_city([(\"Asha\", \"Goa\")], \"Delhi\"))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(from_city([], \"Goa\"))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(from_city([(\"A\", \"X\"), (\"B\", \"X\"), (\"C\", \"X\")], \"X\"))",
+     "stdin": "",
+     "expected": "['A', 'B', 'C']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 21,
+   "xml_name": "PS7_021_Function Total Bill With Zip",
+   "display_name": "Total Bill With Zip",
+   "questiontext_html": "<p><code>zip(a, b)</code> pairs up the items of two lists, position by position, giving tuples:</p>\n<pre>items = [&quot;pen&quot;, &quot;book&quot;]\ncounts = [3, 2]\nprint(list(zip(items, counts)))\nfor item, count in zip(items, counts):\n    print(count, item)</pre>\n<p>Output:</p>\n<pre>[(&#x27;pen&#x27;, 3), (&#x27;book&#x27;, 2)]\n3 pen\n2 book</pre>\n<p><b>Your task:</b> write a function <code>total_bill(prices, quantities)</code> that takes two lists of integers of the same length: <code>prices[i]</code> is the price of item <code>i</code> and <code>quantities[i]</code> is how many of it were bought. <b>Return</b> the total amount to pay (the sum of price times quantity for every item).</p>\n<p><b>Examples:</b></p>\n<ul><li><code>total_bill([10, 25, 5], [3, 2, 4])</code> returns <code>100</code> (30 + 50 + 20)</li><li><code>total_bill([], [])</code> returns <code>0</code></li></ul>",
+   "answerpreload": "def total_bill(prices, quantities):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(total_bill([10, 25, 5], [3, 2, 4]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(total_bill([10, 25, 5], [3, 2, 4]))",
+     "stdin": "",
+     "expected": "100",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(total_bill([], []))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(total_bill([7], [0]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(total_bill([1, 2, 3, 4], [4, 3, 2, 1]))",
+     "stdin": "",
+     "expected": "20",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 22,
+   "xml_name": "PS7_022_Function Add To A Tuple",
+   "display_name": "Add To A Tuple",
+   "questiontext_html": "<p>A tuple <b>cannot be changed</b>: there is no <code>append</code>, and <code>t[0] = 5</code> gives a <code>TypeError</code>. To \"add\" an item, we build a <b>new</b> tuple with <code>+</code>. Note that a tuple with one item needs a comma: <code>(x,)</code></p>\n<pre>t = (1, 2)\nnew = t + (3,)\nprint(new)\nprint(t)</pre>\n<p>Output:</p>\n<pre>(1, 2, 3)\n(1, 2)</pre>\n<p>The original <code>t</code> is still <code>(1, 2)</code>: only the new tuple has the extra item.</p>\n<p><b>Your task:</b> write a function <code>add_item(t, x)</code> that takes a tuple <code>t</code> and a value <code>x</code>, and <b>returns</b> a new tuple with all the items of <code>t</code> followed by <code>x</code>.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>add_item((1, 2), 3)</code> returns <code>(1, 2, 3)</code></li><li><code>add_item((), \"a\")</code> returns <code>('a',)</code></li></ul>",
+   "answerpreload": "def add_item(t, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(add_item((1, 2), 3))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(add_item((1, 2), 3))",
+     "stdin": "",
+     "expected": "(1, 2, 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(add_item((), \"a\"))",
+     "stdin": "",
+     "expected": "('a',)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = (5, 6)\nn = add_item(t, 7)\nprint(t, n)",
+     "stdin": "",
+     "expected": "(5, 6) (5, 6, 7)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(type(add_item((1,), 2)) == tuple)",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(add_item(((1, 2),), (3, 4)))",
+     "stdin": "",
+     "expected": "((1, 2), (3, 4))",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 23,
+   "xml_name": "PS7_023_Function Sum And Average",
+   "display_name": "Sum And Average",
+   "questiontext_html": "<p>A function can return <b>several values at once</b> by returning a tuple. The caller can unpack it straight away:</p>\n<pre>def first_two(L):\n    return (L[0], L[1])\n\na, b = first_two([8, 3, 5])\nprint(a, b)</pre>\n<p>Output:</p>\n<pre>8 3</pre>\n<p><b>Your task:</b> write a function <code>sum_and_average(L)</code> that takes a non-empty list of integers <code>L</code> and <b>returns</b> a tuple <code>(total, average)</code>: the sum of the items, and their average rounded to 2 decimal places with <code>round(value, 2)</code>.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>sum_and_average([4, 9, 1, 7])</code> returns <code>(21, 5.25)</code></li><li><code>sum_and_average([1, 2, 2])</code> returns <code>(5, 1.67)</code></li><li><code>sum_and_average([6])</code> returns <code>(6, 6.0)</code></li></ul>",
+   "answerpreload": "def sum_and_average(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(sum_and_average([4, 9, 1, 7]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(sum_and_average([4, 9, 1, 7]))",
+     "stdin": "",
+     "expected": "(21, 5.25)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_and_average([1, 2, 2]))",
+     "stdin": "",
+     "expected": "(5, 1.67)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_and_average([6]))",
+     "stdin": "",
+     "expected": "(6, 6.0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(sum_and_average([-3, 3, 10]))",
+     "stdin": "",
+     "expected": "(10, 3.33)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(type(sum_and_average([1, 2])) == tuple)",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 24,
+   "xml_name": "PS7_024_Function Initials",
+   "display_name": "Initials",
+   "questiontext_html": "<p><code>s.split()</code> breaks a string into a <b>list of words</b> (wherever there are spaces), and <code>tuple(...)</code> turns a list into a tuple:</p>\n<pre>words = &quot;Virat Kohli&quot;.split()\nprint(words)\nprint(tuple(words))\nprint(words[0][0])</pre>\n<p>Output:</p>\n<pre>[&#x27;Virat&#x27;, &#x27;Kohli&#x27;]\n(&#x27;Virat&#x27;, &#x27;Kohli&#x27;)\nV</pre>\n<p><b>Your task:</b> write a function <code>initials(full_name)</code> that takes a full name (one or more words separated by spaces) and <b>returns</b> a tuple with the <b>first letter</b> of every word, in order.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>initials(\"Virat Kohli\")</code> returns <code>('V', 'K')</code></li><li><code>initials(\"Mahendra Singh Dhoni\")</code> returns <code>('M', 'S', 'D')</code></li><li><code>initials(\"Rekha\")</code> returns <code>('R',)</code> (a tuple with one item is written with a comma)</li></ul>",
+   "answerpreload": "def initials(full_name):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(initials(\"Virat Kohli\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(initials(\"Virat Kohli\"))",
+     "stdin": "",
+     "expected": "('V', 'K')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(initials(\"Mahendra Singh Dhoni\"))",
+     "stdin": "",
+     "expected": "('M', 'S', 'D')",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(initials(\"Rekha\"))",
+     "stdin": "",
+     "expected": "('R',)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(initials(\"a b c d\"))",
+     "stdin": "",
+     "expected": "('a', 'b', 'c', 'd')",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(type(initials(\"x y\")) == tuple)",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 25,
+   "xml_name": "PS7_025_Function Even And Odd Count",
+   "display_name": "Even And Odd Count",
+   "questiontext_html": "<p>A number is <b>even</b> if <code>n % 2 == 0</code>, and odd otherwise.</p>\n<p><b>Your task:</b> write a function <code>even_odd(L)</code> that takes a list of integers <code>L</code> and <b>returns</b> a tuple <code>(evens, odds)</code>: how many items are even, and how many are odd.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>even_odd([4, 7, 10, 3, 3])</code> returns <code>(2, 3)</code></li><li><code>even_odd([])</code> returns <code>(0, 0)</code></li><li><code>even_odd([0, -2])</code> returns <code>(2, 0)</code> (0 and -2 are even)</li></ul>",
+   "answerpreload": "def even_odd(L):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(even_odd([4, 7, 10, 3, 3]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(even_odd([4, 7, 10, 3, 3]))",
+     "stdin": "",
+     "expected": "(2, 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(even_odd([]))",
+     "stdin": "",
+     "expected": "(0, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(even_odd([0, -2]))",
+     "stdin": "",
+     "expected": "(2, 0)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(even_odd([-3, 5, 7]))",
+     "stdin": "",
+     "expected": "(0, 3)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(even_odd([1, 2, 3, 4, 5, 6]))",
+     "stdin": "",
+     "expected": "(3, 3)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 26,
+   "xml_name": "PS7_026_Function Players Older Than",
+   "display_name": "Players Older Than",
+   "questiontext_html": "<p>A list of <b>records</b> can be stored as a list of tuples, one tuple per person. A <code>for</code> loop can unpack each tuple directly:</p>\n<pre>team = [(&quot;Kavya&quot;, 19), (&quot;Arjun&quot;, 22)]\nfor name, age in team:\n    print(name, &quot;is&quot;, age)</pre>\n<p>Output:</p>\n<pre>Kavya is 19\nArjun is 22</pre>\n<p><b>Your task:</b> write a function <code>older_than(team, age)</code> that takes a list of <code>(name, age)</code> tuples and an integer <code>age</code>, and <b>returns</b> a list of the names of the players who are <b>strictly older</b> than <code>age</code>, in the original order.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>older_than([(\"Kavya\", 19), (\"Arjun\", 22), (\"Dev\", 25)], 20)</code> returns <code>['Arjun', 'Dev']</code></li><li><code>older_than([(\"Kavya\", 19)], 19)</code> returns <code>[]</code></li></ul>",
+   "answerpreload": "def older_than(team, age):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(older_than([(\"Kavya\", 19), (\"Arjun\", 22), (\"Dev\", 25)], 20))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(older_than([(\"Kavya\", 19), (\"Arjun\", 22), (\"Dev\", 25)], 20))",
+     "stdin": "",
+     "expected": "['Arjun', 'Dev']",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(older_than([(\"Kavya\", 19)], 19))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(older_than([], 10))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(older_than([(\"A\", 30), (\"B\", 18), (\"C\", 31)], 18))",
+     "stdin": "",
+     "expected": "['A', 'C']",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 27,
+   "xml_name": "PS7_027_Function Matching Answers With Zip",
+   "display_name": "Matching Answers With Zip",
+   "questiontext_html": "<p><code>zip(a, b)</code> pairs up the items of two lists, position by position, giving tuples:</p>\n<pre>key = [&quot;A&quot;, &quot;C&quot;, &quot;B&quot;]\nmine = [&quot;A&quot;, &quot;B&quot;, &quot;B&quot;]\nprint(list(zip(key, mine)))\nfor k, m in zip(key, mine):\n    print(k, m, k == m)</pre>\n<p>Output:</p>\n<pre>[(&#x27;A&#x27;, &#x27;A&#x27;), (&#x27;C&#x27;, &#x27;B&#x27;), (&#x27;B&#x27;, &#x27;B&#x27;)]\nA A True\nC B False\nB B True</pre>\n<p><b>Your task:</b> a quiz has a list of correct answers <code>key</code>, and a student's answers <code>mine</code> (a list of the same length). Write a function <code>score(key, mine)</code> that <b>returns</b> how many of the student's answers match the correct answer at the same position.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>score([\"A\", \"C\", \"B\"], [\"A\", \"B\", \"B\"])</code> returns <code>2</code></li><li><code>score([], [])</code> returns <code>0</code></li></ul>",
+   "answerpreload": "def score(key, mine):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(score([\"A\", \"C\", \"B\"], [\"A\", \"B\", \"B\"]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(score([\"A\", \"C\", \"B\"], [\"A\", \"B\", \"B\"]))",
+     "stdin": "",
+     "expected": "2",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(score([], []))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(score([\"D\", \"D\"], [\"A\", \"B\"]))",
+     "stdin": "",
+     "expected": "0",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(score([\"A\", \"B\", \"C\", \"D\"], [\"A\", \"B\", \"C\", \"D\"]))",
+     "stdin": "",
+     "expected": "4",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 28,
+   "xml_name": "PS7_028_Function Replace In A Tuple",
+   "display_name": "Replace In A Tuple",
+   "questiontext_html": "<p>A tuple <b>cannot be changed</b>: <code>t[1] = 5</code> gives a <code>TypeError</code>. To get a tuple with one item replaced, we build a <b>new</b> tuple from slices and <code>+</code>. Note that a tuple with one item needs a comma: <code>(x,)</code></p>\n<pre>t = (10, 20, 30, 40)\nnew = t[:1] + (99,) + t[2:]\nprint(new)\nprint(t)</pre>\n<p>Output:</p>\n<pre>(10, 99, 30, 40)\n(10, 20, 30, 40)</pre>\n<p>The original <code>t</code> is unchanged: only the new tuple has <code>99</code>.</p>\n<p><b>Your task:</b> write a function <code>replace_at(t, i, x)</code> that takes a tuple <code>t</code>, a valid index <code>i</code> (0 or more) and a value <code>x</code>, and <b>returns</b> a new tuple that is the same as <code>t</code> except that the item at index <code>i</code> is <code>x</code>.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>replace_at((10, 20, 30, 40), 1, 99)</code> returns <code>(10, 99, 30, 40)</code></li><li><code>replace_at((\"a\",), 0, \"b\")</code> returns <code>('b',)</code></li></ul>",
+   "answerpreload": "def replace_at(t, i, x):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(replace_at((10, 20, 30, 40), 1, 99))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(replace_at((10, 20, 30, 40), 1, 99))",
+     "stdin": "",
+     "expected": "(10, 99, 30, 40)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(replace_at((\"a\",), 0, \"b\"))",
+     "stdin": "",
+     "expected": "('b',)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "t = (1, 2, 3)\nn = replace_at(t, 2, 0)\nprint(t, n)",
+     "stdin": "",
+     "expected": "(1, 2, 3) (1, 2, 0)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(replace_at((1, 2, 3), 0, 7))",
+     "stdin": "",
+     "expected": "(7, 2, 3)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(type(replace_at((1, 2), 1, 5)) == tuple)",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "b8f8fbb6cc6f4076"
+}

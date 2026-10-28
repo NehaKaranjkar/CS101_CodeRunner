@@ -1,0 +1,632 @@
+{
+ "format": "qbank-1",
+ "bank_name": "Practice_Set_9",
+ "encrypted": false,
+ "source_xml": "Practice_Set_9.xml",
+ "built_at": "2026-10-28T10:16:42",
+ "settings": {
+  "title": "Practice Set 9: Difficult (Lists and Tuples)",
+  "description": "Challenging problems on lists, nested lists and tuples: games, encodings, intervals and sequences.",
+  "time_limit": false,
+  "duration_seconds": null,
+  "start_time": null,
+  "start_epoch": null,
+  "penalty": {
+   "text": "",
+   "steps": [],
+   "extend": false
+  },
+  "penalty_text": "Marking: no penalty for repeated Checks. Pre-check is always free.",
+  "sections": [
+   {
+    "heading": "Difficult",
+    "start": 1,
+    "count": 6
+   }
+  ],
+  "extension": null
+ },
+ "questions": [
+  {
+   "xml_index": 1,
+   "xml_name": "PS9_001_Tic Tac Toe Winner",
+   "display_name": "Tic Tac Toe Winner",
+   "questiontext_html": "<p>In <b>tic-tac-toe</b>, two players take turns writing <code>X</code> and <code>O</code> on a 3 by 3 board. A player <b>wins</b> if they have three of their marks in a line: a whole <b>row</b>, a whole <b>column</b>, or one of the two <b>diagonals</b>.</p>\n<p>We store the board as a list of 3 rows, where each row is a list of 3 strings: <code>\"X\"</code>, <code>\"O\"</code>, or <code>\".\"</code> for an empty square. For example:</p>\n<pre>board = [[&quot;X&quot;, &quot;O&quot;, &quot;X&quot;],\n         [&quot;O&quot;, &quot;X&quot;, &quot;O&quot;],\n         [&quot;O&quot;, &quot;.&quot;, &quot;X&quot;]]</pre>\n<table style=\"border-collapse:collapse;margin:6px 0 4px\"><tr><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#c9e7cf\">X</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">O</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">X</td></tr><tr><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">O</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#c9e7cf\">X</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">O</td></tr><tr><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">O</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\"></td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#c9e7cf\">X</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">X has the diagonal from top-left to bottom-right, so X wins</div>\n<p>Here <code>board[r][c]</code> is the square in row <code>r</code> and column <code>c</code>, and the two diagonals are <code>board[0][0], board[1][1], board[2][2]</code> and <code>board[0][2], board[1][1], board[2][0]</code>.</p>\n<p><b>Your task:</b> write a function <code>winner(board)</code> that <b>returns</b> <code>\"X\"</code> if X has three in a line, <code>\"O\"</code> if O has three in a line, and <code>\"Nobody\"</code> if neither has. Three empty squares <code>\".\"</code> in a line do <b>not</b> count as a win. You may assume that at most one player has a line.</p>\n<p><b>Hint:</b> write down the 8 possible lines (3 rows, 3 columns, 2 diagonals) and check each of them: are the three squares equal, and not <code>\".\"</code>?</p>\n<p><b>Examples:</b></p>\n<ul><li><code>winner([[\"X\", \"O\", \"X\"], [\"O\", \"X\", \"O\"], [\"O\", \".\", \"X\"]])</code> returns <code>\"X\"</code> (the diagonal)</li><li><code>winner([[\"O\", \"O\", \"O\"], [\"X\", \"X\", \".\"], [\".\", \".\", \"X\"]])</code> returns <code>\"O\"</code> (the top row)</li><li><code>winner([[\"X\", \"O\", \"X\"], [\"X\", \"O\", \"O\"], [\"O\", \"X\", \"X\"]])</code> returns <code>\"Nobody\"</code></li></ul>",
+   "answerpreload": "def winner(board):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(winner([[\"X\", \"O\", \"X\"], [\"O\", \"X\", \"O\"], [\"O\", \".\", \"X\"]]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(winner([[\"X\", \"O\", \"X\"], [\"O\", \"X\", \"O\"], [\"O\", \".\", \"X\"]]))",
+     "stdin": "",
+     "expected": "X",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner([[\"O\", \"O\", \"O\"], [\"X\", \"X\", \".\"], [\".\", \".\", \"X\"]]))",
+     "stdin": "",
+     "expected": "O",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner([[\"X\", \"O\", \"X\"], [\"X\", \"O\", \"O\"], [\"O\", \"X\", \"X\"]]))",
+     "stdin": "",
+     "expected": "Nobody",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner([[\".\", \".\", \".\"], [\".\", \".\", \".\"], [\".\", \".\", \".\"]]))",
+     "stdin": "",
+     "expected": "Nobody",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner([[\"X\", \"O\", \".\"], [\"X\", \"O\", \".\"], [\".\", \"O\", \"X\"]]))",
+     "stdin": "",
+     "expected": "O",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner([[\"X\", \".\", \"O\"], [\"X\", \"O\", \".\"], [\"O\", \".\", \"X\"]]))",
+     "stdin": "",
+     "expected": "O",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner([[\"X\", \"X\", \".\"], [\"O\", \"O\", \"O\"], [\"X\", \".\", \".\"]]))",
+     "stdin": "",
+     "expected": "O",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner([[\"O\", \"X\", \".\"], [\"O\", \"X\", \".\"], [\"X\", \"X\", \"O\"]]))",
+     "stdin": "",
+     "expected": "X",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(winner([[\".\", \".\", \".\"], [\".\", \".\", \".\"], [\"X\", \"X\", \"X\"]]))",
+     "stdin": "",
+     "expected": "X",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 2,
+   "xml_name": "PS9_002_Run Length Encoding",
+   "display_name": "Run Length Encoding",
+   "questiontext_html": "<p>Long strings with many repeated letters can be stored in a shorter way: instead of writing every letter, we write each <b>run</b> of equal letters once, together with how many times it repeats. This is called <b>run-length encoding</b>.</p>\n<p>For example, <code>\"aaabccdddd\"</code> has the runs <code>aaa</code>, <code>b</code>, <code>cc</code> and <code>dddd</code>:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">s =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(31,95,153);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(36,103,161);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(41,110,169);color:#fff;border-radius:2px\">&#x27;a&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;b&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(55,133,192);color:#fff;border-radius:2px\">&#x27;c&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(60,140,200);color:#fff;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;d&#x27;</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">&#x27;d&#x27;</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">8</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">9</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">runs: aaa (3), b (1), cc (2), dddd (4)</div>\n<p>so its encoding is the list of tuples</p>\n<pre>[(&quot;a&quot;, 3), (&quot;b&quot;, 1), (&quot;c&quot;, 2), (&quot;d&quot;, 4)]</pre>\n<p><b>Your task:</b> write a function <code>encode(s)</code> that takes a string <code>s</code> and <b>returns</b> its run-length encoding: a list of <code>(letter, count)</code> tuples, one for each run, in order. Upper-case and lower-case letters are different (<code>\"A\"</code> and <code>\"a\"</code> are not the same), and spaces and digits are characters like any other. An empty string gives an empty list.</p>\n<p><b>Hint:</b> go through the string one character at a time, keeping track of the <b>current</b> character and how many times you have seen it in a row. When a different character arrives, the current run has ended: save it as a tuple and start a new run. Do not forget to save the very last run after the loop!</p>\n<p><b>Examples:</b></p>\n<ul><li><code>encode(\"aaabccdddd\")</code> returns <code>[('a', 3), ('b', 1), ('c', 2), ('d', 4)]</code></li><li><code>encode(\"abc\")</code> returns <code>[('a', 1), ('b', 1), ('c', 1)]</code></li><li><code>encode(\"zzzz\")</code> returns <code>[('z', 4)]</code></li><li><code>encode(\"\")</code> returns <code>[]</code></li></ul>",
+   "answerpreload": "def encode(s):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(encode(\"aaabccdddd\"))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(encode(\"aaabccdddd\"))",
+     "stdin": "",
+     "expected": "[('a', 3), ('b', 1), ('c', 2), ('d', 4)]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(encode(\"abc\"))",
+     "stdin": "",
+     "expected": "[('a', 1), ('b', 1), ('c', 1)]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(encode(\"zzzz\"))",
+     "stdin": "",
+     "expected": "[('z', 4)]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(encode(\"\"))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(encode(\"a\"))",
+     "stdin": "",
+     "expected": "[('a', 1)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(encode(\"aabbaa\"))",
+     "stdin": "",
+     "expected": "[('a', 2), ('b', 2), ('a', 2)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(encode(\"AaaA\"))",
+     "stdin": "",
+     "expected": "[('A', 1), ('a', 2), ('A', 1)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(encode(\"  11 \"))",
+     "stdin": "",
+     "expected": "[(' ', 2), ('1', 2), (' ', 1)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(encode(\"abbbbbbbbbbbbc\"))",
+     "stdin": "",
+     "expected": "[('a', 1), ('b', 12), ('c', 1)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 3,
+   "xml_name": "PS9_003_Merge Booking Slots",
+   "display_name": "Merge Booking Slots",
+   "questiontext_html": "<p>A meeting room is booked for several <b>slots</b> during the day. Each slot is a tuple <code>(start, end)</code> of whole hours, for example <code>(9, 11)</code> means from 9 o'clock to 11 o'clock. Some slots <b>overlap</b>, and the manager wants to know the times when the room is actually busy, as a short list of slots that do not overlap.</p>\n<p>Two slots must be <b>merged</b> into one if they overlap or <b>touch</b> (one ends exactly when the other starts, like <code>(9, 11)</code> and <code>(11, 12)</code>). For example, for the slots <code>[(9, 11), (13, 15), (10, 12), (16, 17)]</code>:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 4px\"><tr><td></td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">8</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">9</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">10</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">11</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">12</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">13</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">14</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">15</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">16</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">17</td><td style=\"width:26px;font-size:11px;color:#8a939c;text-align:left\">18</td></tr><tr><td style=\"font-family:monospace;font-size:13px;padding-right:8px;white-space:nowrap\">(9, 11)</td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#4a90c8;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#4a90c8;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td></tr><tr><td style=\"font-family:monospace;font-size:13px;padding-right:8px;white-space:nowrap\">(13, 15)</td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#4a90c8;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#4a90c8;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td></tr><tr><td style=\"font-family:monospace;font-size:13px;padding-right:8px;white-space:nowrap\">(10, 12)</td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#4a90c8;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#4a90c8;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td></tr><tr><td style=\"font-family:monospace;font-size:13px;padding-right:8px;white-space:nowrap\">(16, 17)</td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#4a90c8;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td></tr><tr><td style=\"height:8px\"></td></tr><tr><td style=\"font-family:monospace;font-size:13px;padding-right:8px;white-space:nowrap\">merged (9, 12)</td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#2e7a48;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#2e7a48;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#2e7a48;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td></tr><tr><td style=\"font-family:monospace;font-size:13px;padding-right:8px;white-space:nowrap\">merged (13, 15)</td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#2e7a48;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#2e7a48;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td></tr><tr><td style=\"font-family:monospace;font-size:13px;padding-right:8px;white-space:nowrap\">merged (16, 17)</td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:#2e7a48;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td><td style=\"width:26px;height:16px;background:transparent;border-left:1px solid #d3d9df\"></td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">blue: the slots as given; green: after merging</div>\n<p><code>(9, 11)</code> and <code>(10, 12)</code> overlap, so they become one slot <code>(9, 12)</code>; the others stay as they are. The answer is <code>[(9, 12), (13, 15), (16, 17)]</code>.</p>\n<p><b>Your task:</b> write a function <code>merge(slots)</code> that takes a list of <code>(start, end)</code> tuples (in any order; in each slot <code>start &lt; end</code>) and <b>returns</b> the list of merged slots, sorted by start time.</p>\n<p><b>Hint:</b> first sort the slots with <code>sorted(slots)</code> (tuples are sorted by their first item, then the second). Then go through them in order, keeping the <b>current</b> merged slot <code>(start, end)</code>: if the next slot starts at or before the current <code>end</code>, it joins the current slot (and the end becomes the later of the two ends); otherwise the current slot is finished, and the next slot becomes the current one.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>merge([(9, 11), (13, 15), (10, 12), (16, 17)])</code> returns <code>[(9, 12), (13, 15), (16, 17)]</code></li><li><code>merge([(9, 11), (11, 12)])</code> returns <code>[(9, 12)]</code> (they touch)</li><li><code>merge([(8, 18), (10, 11)])</code> returns <code>[(8, 18)]</code> (the second slot is inside the first one)</li><li><code>merge([])</code> returns <code>[]</code></li></ul>",
+   "answerpreload": "def merge(slots):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(merge([(9, 11), (13, 15), (10, 12), (16, 17)]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(merge([(9, 11), (13, 15), (10, 12), (16, 17)]))",
+     "stdin": "",
+     "expected": "[(9, 12), (13, 15), (16, 17)]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([(9, 11), (11, 12)]))",
+     "stdin": "",
+     "expected": "[(9, 12)]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([(8, 18), (10, 11)]))",
+     "stdin": "",
+     "expected": "[(8, 18)]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([]))",
+     "stdin": "",
+     "expected": "[]",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([(14, 15)]))",
+     "stdin": "",
+     "expected": "[(14, 15)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([(15, 17), (9, 10), (12, 13), (10, 11)]))",
+     "stdin": "",
+     "expected": "[(9, 11), (12, 13), (15, 17)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([(1, 3), (2, 6), (5, 9), (12, 14)]))",
+     "stdin": "",
+     "expected": "[(1, 9), (12, 14)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([(10, 12), (10, 11), (10, 15)]))",
+     "stdin": "",
+     "expected": "[(10, 15)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(merge([(1, 2), (3, 4), (5, 6)]))",
+     "stdin": "",
+     "expected": "[(1, 2), (3, 4), (5, 6)]",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 4,
+   "xml_name": "PS9_004_Magic Square",
+   "display_name": "Magic Square",
+   "questiontext_html": "<p>A <b>magic square</b> is a square table of numbers where <b>every row</b>, <b>every column</b>, and <b>both diagonals</b> add up to the <b>same</b> total. Here is a famous one, where every line adds up to 15:</p>\n<table style=\"border-collapse:collapse;margin:6px 0 4px\"><tr><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#c9e7cf\">2</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">7</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">6</td></tr><tr><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">9</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#c9e7cf\">5</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">1</td></tr><tr><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">4</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#eef3fa\">3</td><td style=\"width:34px;height:34px;text-align:center;vertical-align:middle;font-family:monospace;font-size:17px;border:2px solid #2b4c7e;background:#c9e7cf\">8</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">rows: 2+7+6, 9+5+1, 4+3+8; columns: 2+9+4, 7+5+3, 6+1+8; diagonals: 2+5+8 (green), 6+5+4: all are 15</div>\n<p>We store the square as a list of rows, where each row is a list of integers:</p>\n<pre>square = [[2, 7, 6],\n          [9, 5, 1],\n          [4, 3, 8]]</pre>\n<p>Here <code>square[r][c]</code> is the number in row <code>r</code> and column <code>c</code>. The square has <code>n</code> rows and <code>n</code> columns, where <code>n = len(square)</code> can be any size from 1 upwards. The two diagonals are the numbers <code>square[i][i]</code> (top-left to bottom-right) and <code>square[i][n - 1 - i]</code> (top-right to bottom-left), for <code>i</code> from <code>0</code> to <code>n - 1</code>.</p>\n<p><b>Your task:</b> write a function <code>is_magic(square)</code> that <b>returns</b> <code>True</code> if all <code>n</code> rows, all <code>n</code> columns and both diagonals have the same sum, and <code>False</code> otherwise. (In this question the numbers may repeat; only the sums matter.)</p>\n<p><b>Hint:</b> compute the sum of the first row, then check that every other line has that same sum.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>is_magic([[2, 7, 6], [9, 5, 1], [4, 3, 8]])</code> returns <code>True</code></li><li><code>is_magic([[1, 2], [2, 1]])</code> returns <code>False</code> (the rows and columns add up to 3, but the diagonals give 2 and 4)</li><li><code>is_magic([[5]])</code> returns <code>True</code></li></ul>",
+   "answerpreload": "def is_magic(square):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(is_magic([[2, 7, 6], [9, 5, 1], [4, 3, 8]]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(is_magic([[2, 7, 6], [9, 5, 1], [4, 3, 8]]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_magic([[1, 2], [2, 1]]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_magic([[5]]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_magic([[2, 2], [2, 2]]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_magic([[16, 3, 2, 13], [5, 10, 11, 8], [9, 6, 7, 12], [4, 15, 14, 1]]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_magic([[2, 7, 6], [9, 5, 1], [4, 8, 3]]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_magic([[1, 2, 3], [3, 1, 2], [2, 3, 1]]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_magic([[4, 9, 2], [3, 5, 7], [8, 1, 6]]))",
+     "stdin": "",
+     "expected": "True",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(is_magic([[8, 1, 6], [3, 5, 7], [4, 9, 3]]))",
+     "stdin": "",
+     "expected": "False",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 5,
+   "xml_name": "PS9_005_Longest Rising Stretch",
+   "display_name": "Longest Rising Stretch",
+   "questiontext_html": "<p>A weather station writes down the temperature at noon every day. A <b>rising stretch</b> is a group of <b>consecutive</b> days where each day is <b>strictly warmer</b> than the day before. One single day on its own counts as a rising stretch of length 1.</p>\n<p>For example, for these temperatures the longest rising stretch is the 5 days <code>20, 21, 24, 26, 30</code>, starting at index <code>1</code>:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">temps =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">25</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(37,105,163);color:#fff;border-radius:2px\">20</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(43,114,173);color:#fff;border-radius:2px\">21</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(49,124,183);color:#fff;border-radius:2px\">24</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(56,134,193);color:#fff;border-radius:2px\">26</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(62,144,203);color:#fff;border-radius:2px\">30</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">28</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">29</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">6</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">7</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">the blue days: 20 &lt; 21 &lt; 24 &lt; 26 &lt; 30, starting at index 1, length 5</div>\n<p><b>Your task:</b> write a function <code>longest_rise(temps)</code> that takes a <b>non-empty</b> list of integers and <b>returns</b> a tuple <code>(start, length)</code>: the index where the longest rising stretch starts, and how many days it has. If several stretches are equally long, return the one that starts <b>first</b>. Note that equal temperatures (like <code>20, 20</code>) do <b>not</b> count as rising.</p>\n<p><b>Hint:</b> go through the days from index 1, keeping track of where the <b>current</b> rising stretch started. If today is warmer than yesterday, the current stretch goes on; otherwise a new stretch starts today. Each time, check if the current stretch is longer than the best one so far.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>longest_rise([25, 20, 21, 24, 26, 30, 28, 29])</code> returns <code>(1, 5)</code></li><li><code>longest_rise([5, 4, 3])</code> returns <code>(0, 1)</code> (it never rises: every day is a stretch of 1, and the first one wins)</li><li><code>longest_rise([1, 2, 3])</code> returns <code>(0, 3)</code></li><li><code>longest_rise([7])</code> returns <code>(0, 1)</code></li></ul>",
+   "answerpreload": "def longest_rise(temps):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(longest_rise([25, 20, 21, 24, 26, 30, 28, 29]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(longest_rise([25, 20, 21, 24, 26, 30, 28, 29]))",
+     "stdin": "",
+     "expected": "(1, 5)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(longest_rise([5, 4, 3]))",
+     "stdin": "",
+     "expected": "(0, 1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(longest_rise([1, 2, 3]))",
+     "stdin": "",
+     "expected": "(0, 3)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(longest_rise([7]))",
+     "stdin": "",
+     "expected": "(0, 1)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(longest_rise([3, 3, 3]))",
+     "stdin": "",
+     "expected": "(0, 1)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(longest_rise([1, 2, 1, 2, 3, 0, 1, 2, 3]))",
+     "stdin": "",
+     "expected": "(5, 4)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(longest_rise([9, 1, 2, 3, 4]))",
+     "stdin": "",
+     "expected": "(1, 4)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(longest_rise([1, 2, 2, 3]))",
+     "stdin": "",
+     "expected": "(0, 2)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(longest_rise([-5, -3, -4, -2, 0, 2, 1]))",
+     "stdin": "",
+     "expected": "(2, 4)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  },
+  {
+   "xml_index": 6,
+   "xml_name": "PS9_006_Best Days To Buy And Sell",
+   "display_name": "Best Days To Buy And Sell",
+   "questiontext_html": "<p>Riya follows the price of one share of a company for several days. She wants to know on which day she <b>should have bought</b> one share, and on which <b>later</b> day she should have sold it, to make the <b>biggest profit</b> (selling price minus buying price).</p>\n<p>The days are numbered <b>from 1</b>: <code>prices[0]</code> is the price on day 1, <code>prices[1]</code> on day 2, and so on. For example:</p>\n<table style=\"border-collapse:separate;border-spacing:2px 0;margin:6px 0 4px\"><tr><td style=\"padding-right:10px;white-space:nowrap;font-family:monospace\">prices =</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">7</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(40,109,167);color:#fff;border-radius:2px\">1</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">5</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">3</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:rgb(65,149,209);color:#fff;border-radius:2px\">6</td><td style=\"text-align:center;padding:5px 7px;white-space:nowrap;font-family:monospace;font-size:14px;background:#e2e6ea;color:#8a939c;border-radius:2px\">4</td></tr><tr><td style=\"padding-right:10px\"></td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">0</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">1</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">2</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">3</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">4</td><td style=\"text-align:center;padding:1px 6px;font-size:12px;color:#8a939c\">5</td></tr></table><div style=\"font-size:13px;color:#8a939c;margin:0 0 10px\">buy on day 2 at 1, sell on day 5 at 6: a profit of 5 (index 1 is day 2, index 4 is day 5)</div>\n<p><b>Your task:</b> write a function <code>best_trade(prices)</code> that <b>returns</b> a tuple <code>(buy_day, sell_day)</code> with the biggest profit, where the sell day must come <b>after</b> the buy day. Rules:</p>\n<ul><li>If several pairs of days give the same biggest profit, choose the <b>earliest buy day</b>, and for that buy day the <b>earliest sell day</b>.</li><li>If <b>no</b> profit is possible at all (the price never goes up, or there are fewer than 2 days), return <code>None</code>.</li></ul>\n<p><b>Hint:</b> the simplest way is to try every pair: every buy day <code>i</code>, and every later sell day <code>j</code>, keeping the best pair found so far. If you change the best pair only when the profit is <b>strictly</b> bigger, the earliest pair wins on ties automatically.</p>\n<p><b>Examples:</b></p>\n<ul><li><code>best_trade([7, 1, 5, 3, 6, 4])</code> returns <code>(2, 5)</code></li><li><code>best_trade([3, 8, 1, 6])</code> returns <code>(1, 2)</code> (days 1 to 2 and days 3 to 4 both give 5: the earlier buy day wins)</li><li><code>best_trade([9, 7, 7, 2])</code> returns <code>None</code></li></ul>",
+   "answerpreload": "def best_trade(prices):\n    # write your code here\n\n\n# ---- Use this space to test your code; comment it out before Check ----\n# print(best_trade([7, 1, 5, 3, 6, 4]))\n",
+   "mark": 1.0,
+   "tests": [
+    {
+     "testcode": "print(best_trade([7, 1, 5, 3, 6, 4]))",
+     "stdin": "",
+     "expected": "(2, 5)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": true,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_trade([3, 8, 1, 6]))",
+     "stdin": "",
+     "expected": "(1, 2)",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_trade([9, 7, 7, 2]))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": true,
+     "example": true,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_trade([5]))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_trade([]))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_trade([1, 2]))",
+     "stdin": "",
+     "expected": "(1, 2)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_trade([4, 4, 4]))",
+     "stdin": "",
+     "expected": "None",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_trade([2, 9, 1, 8, 1, 9]))",
+     "stdin": "",
+     "expected": "(3, 6)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    },
+    {
+     "testcode": "print(best_trade([10, 3, 5, 1, 4, 2]))",
+     "stdin": "",
+     "expected": "(4, 5)",
+     "extra": "",
+     "show": false,
+     "example": false,
+     "in_precheck": false,
+     "in_check": true
+    }
+   ]
+  }
+ ],
+ "content_hash": "761a4835f8072b36"
+}

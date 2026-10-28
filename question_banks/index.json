@@ -151,6 +151,30 @@
    "questions": 10,
    "marks": 10.0,
    "duration_minutes": null
+  },
+  {
+   "file": "Practice_Set_7.qbank",
+   "title": "Practice Set 7: Medium (Lists and Tuples)",
+   "description": "Functions on lists and tuples: averages, positions, sorting, grouping, nested lists, zip and records.",
+   "questions": 28,
+   "marks": 28.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Practice_Set_8.qbank",
+   "title": "Practice Set 8: Debug It (Lists and Tuples)",
+   "description": "Each question gives code with a mistake about lists and tuples: aliasing, changing a list while looping over it, append vs extend, immutable tuples and more. Find and fix it.",
+   "questions": 16,
+   "marks": 16.0,
+   "duration_minutes": null
+  },
+  {
+   "file": "Practice_Set_9.qbank",
+   "title": "Practice Set 9: Difficult (Lists and Tuples)",
+   "description": "Challenging problems on lists, nested lists and tuples: games, encodings, intervals and sequences.",
+   "questions": 6,
+   "marks": 6.0,
+   "duration_minutes": null
   }
  ]
 }
