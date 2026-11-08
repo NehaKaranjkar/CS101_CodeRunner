@@ -7,12 +7,13 @@
      #/instructor/attendance      Attendance: the sheet (+ CSV download), manual lectures included
      #/instructor/labs            Labs: online labs (Start with a deadline, Close, move the deadline, Restart)
      #/instructor/lab/<id>        one online lab instance: every student's best score (+ CSV download)
+     #/instructor/project         Team project: open/close submissions, schedule, PDFs, rubric grading, contributions, release
      #/instructor/marks           Marks: the gradebook (items, categories, weighted total, attendance flags)
      #/instructor/student/<email> one student: their "My marks" page as they see it, and attendance details
      #/instructor/questions       Questions: the active lecture with "Open for students" and "Show answer"
      #/instructor/preview/<id>    any bundle with "Show answer"
    Uses the helpers of lecture.js (api, el, $, state, fresh, store, setBar, fmt, fmt1, questions, fullTitle,
-   CFG, enterLive, renderLecture, showList, modal). */
+   CFG, enterLive, renderLecture, showList, modal, openPdf). */
 
 (() => {
   let timer = null;
@@ -23,7 +24,7 @@
   function nav(current) {
     const link = (href, text, key) => el("a", { href, class: current === key ? "on" : "", target: "_blank", rel: "noopener", text });
     return el("nav", { class: "inav" }, link("#/instructor", "Lectures", "home"), link("#/instructor/attendance", "Attendance", "att"),
-      link("#/instructor/labs", "Labs", "labs"), link("#/instructor/marks", "Marks", "marks"),
+      link("#/instructor/labs", "Labs", "labs"), link("#/instructor/project", "Team project", "project"), link("#/instructor/marks", "Marks", "marks"),
       link("#/instructor/questions", "Questions", "questions"));
   }
 
@@ -471,6 +472,92 @@
         el("thead", {}, el("tr", {}, ["Roll", "Name", "Best", "Submits", "First submit", "Last submit"].map((h) => el("th", { text: h })))), body)));
   }
 
+  /* ---------------------------------------------------------------- team project */
+  async function project(g) {
+    pageStart("project");
+    const r = await api("GET", "/api/admin/project");
+    if (!fresh(g)) return;
+    const view = $("view"), st = r.state;
+    if (!r.teams.length) return view.append(el("p", { class: "muted", text: "No teams uploaded yet: python3 tools/project_upload.py" }));
+    const defaultDeadline = () => { const d = new Date(2026, 10, 15, 23, 59); return d.getTime(); };
+    const when = whenInput(st.deadline_epoch ? st.deadline_epoch * 1000 : defaultDeadline());
+    const setState = async (body, msg) => { if ((!msg || confirm(msg)) && await act("/api/admin/project-state", body)) route(++state.gen); };
+    const all = r.teams.flatMap((t) => t.members);
+    const multi = r.teams.filter((t) => !t.individual);
+    const count = (k) => r.teams.filter((t) => t.files[k]).length;
+    const csv = el("button", { text: "Download CSV", onclick: async () => {
+      const res = await fetch(CFG.backend + "/api/admin/project.csv", { headers: { Authorization: "Bearer " + store.get("lec:token") } });
+      if (!res.ok) return alert("Download failed.");
+      const a = el("a", { href: URL.createObjectURL(await res.blob()), download: `team_project_${r.offering}.csv` });
+      document.body.append(a); a.click(); a.remove();
+    } });
+    view.append(el("section", { class: "card" },
+      el("h2", { text: "Team project" }),
+      el("p", { text: st.accepting ? `Submissions OPEN until ${st.deadline}.` : st.open ? `Submissions closed (deadline ${st.deadline} passed).` : "Submissions are not open." }),
+      el("p", { class: "muted small", text: `${r.teams.filter((t) => t.title).length} of ${r.teams.length} titles, ${count("slides")} slides, ${count("report")} reports; ` +
+        `contribution splits from ${multi.flatMap((t) => t.members).filter((m) => m.split).length} of ${multi.flatMap((t) => t.members).length} students; ` +
+        `${r.teams.filter((t) => t.grade && t.grade.mark !== null).length} of ${r.teams.length} teams graded. ` +
+        `Grades are ${st.released ? "RELEASED (students see their individual marks under My marks)" : "not released"}.` }),
+      el("div", { class: "ptools" },
+        el("label", { class: "small" }, "Deadline ", when),
+        el("button", { class: st.open ? "" : "primary", text: st.open ? "Close submissions" : "Open submissions", onclick: () => {
+          const d = new Date(when.value).getTime();
+          if (st.open) setState({ open: false }, "Close submissions now? Students can no longer upload or change their title and splits.");
+          else setState({ open: true, deadline: d }, `Open submissions until ${new Date(d).toLocaleString()}?`);
+        } }),
+        el("button", { text: "Save deadline", onclick: () => setState({ deadline: new Date(when.value).getTime() }) }),
+        el("button", { text: st.released ? "Hide grades" : "Release grades", onclick: () => setState({ released: !st.released },
+          st.released ? "Hide the project marks from students?" : "Release the project marks? Students see their individual marks under My marks.") }),
+        csv),
+      el("p", { class: "muted small", text: "Team mark (out of 10) = " + r.rubric.map((c) => `${Math.round(c.weight * 100)}% ${c.title}`).join(" + ") +
+        ` (each 1-10). Individual mark = team mark x min(contribution / 100, ${r.max_factor}), at most 10; contribution 100 = an equal share ` +
+        "(from the teammates' splits, without their own share; 100 if nobody rated). " +
+        "For the gradebook add {\"project\": true} as the source of the Team project item and run tools/marks_upload.py once." })));
+    for (const batch of [...new Set(r.teams.map((t) => t.batch))]) {
+      const ts = r.teams.filter((t) => t.batch === batch);
+      view.append(el("h2", { text: `${batch}: ${ts[0].slot_date}` }), ...ts.map(teamCard));
+    }
+
+    function teamCard(t) {
+      const sc = (t.grade && t.grade.scores) || {};
+      const ins = Object.fromEntries(r.rubric.map((c) => [c.key, el("input", { type: "number", min: "1", max: "10", step: "0.5", class: "rub",
+        value: sc[c.key] !== undefined ? String(sc[c.key]) : "" })]));
+      const comment = el("textarea", { rows: "2", placeholder: "Comment (private)" });
+      comment.value = t.grade ? t.grade.comment : "";
+      const markEl = el("strong", { text: t.grade && t.grade.mark !== null ? `${fmt(t.grade.mark)} / 10` : "- / 10" });
+      const live = () => {
+        const v = r.rubric.map((c) => Number(ins[c.key].value));
+        markEl.textContent = r.rubric.every((c) => ins[c.key].value !== "")
+          ? `${fmt(r.rubric.reduce((a, c, i) => a + c.weight * v[i], 0))} / 10 (not saved)` : "- / 10";
+      };
+      Object.values(ins).forEach((i) => i.addEventListener("input", live));
+      const save = el("button", { class: "primary", text: "Save", onclick: async () => {
+        const res = await act("/api/admin/project-grade", { team: t.team, scores: Object.fromEntries(r.rubric.map((c) => [c.key, ins[c.key].value])), comment: comment.value });
+        if (res) route(++state.gen);
+      } });
+      const fileLink = (k) => t.files[k] ? el("span", {}, el("a", { href: "#", text: r.limits[k].label, onclick: (ev) => { ev.preventDefault(); openPdf(`/api/project/file?kind=${k}&team=${encodeURIComponent(t.team)}`); } }),
+        el("span", { class: "muted small", text: ` (${t.files[k].pages} p., ${t.files[k].by_name}, ${t.files[k].uploaded})` }))
+        : el("span", { class: "missing", text: `no ${r.limits[k].label.toLowerCase()}` });
+      const members = el("table", { class: "grid" },
+        el("thead", {}, el("tr", {}, ["Roll", "Name", "Contribution", "Individual mark", "Split given", "Comment"].map((h) => el("th", { text: h })))),
+        el("tbody", {}, t.members.map((m) => el("tr", {},
+          el("td", { class: "num muted", text: m.roll }),
+          el("td", {}, el("a", { href: `#/instructor/student/${encodeURIComponent(m.email)}`, target: "_blank", rel: "noopener", text: m.name })),
+          el("td", { class: "num", text: t.individual ? "-" : `${fmt(m.score)} (${m.raters} rater${m.raters === 1 ? "" : "s"})` }),
+          el("td", { class: "num", text: m.mark === null ? "-" : fmt(m.mark) }),
+          el("td", { class: "small", text: m.split ? t.members.map((x) => `${x.roll.slice(-3)}: ${fmt(m.split.split[x.roll] || 0)}`).join(", ") : (t.individual ? "" : "not given") }),
+          el("td", { class: "small", text: m.split ? m.split.comment : "" })))));
+      return el("section", { class: "card" },
+        el("h3", {}, `${t.slot}  ·  ${t.team}${t.individual ? " (individual)" : ""}  ·  `, t.title ? t.title : el("span", { class: "missing", text: "no title" })),
+        el("p", { class: "small" }, fileLink("slides"), " · ", fileLink("report"), ` · ${t.members.length} member${t.members.length === 1 ? "" : "s"}`,
+          t.individual ? "" : `, ${t.members.filter((m) => m.split).length} splits`),
+        el("div", { class: "tablewrap" }, el("table", { class: "grid ptable" },
+          el("thead", {}, el("tr", {}, [...r.rubric.map((c) => `${c.title} (${Math.round(c.weight * 100)}%)`), "Team mark", "Comment", ""].map((h) => el("th", { text: h })))),
+          el("tbody", {}, el("tr", {}, ...r.rubric.map((c) => el("td", {}, ins[c.key])), el("td", { class: "num" }, markEl), el("td", {}, comment), el("td", {}, save))))),
+        el("details", {}, el("summary", { text: "Members and contributions" }), el("div", { class: "tablewrap" }, members)));
+    }
+  }
+
   /* ---------------------------------------------------------------- preview a bundle (any state) */
   async function preview(bundleId, g) {
     const full = (await api("GET", "/api/admin/bundle?id=" + encodeURIComponent(bundleId))).content;
@@ -492,6 +579,7 @@
     if (h === "#/instructor/attendance") return attendance(g);
     if (h === "#/instructor/marks") return marks(g);
     if (h === "#/instructor/labs") return labs(g);
+    if (h === "#/instructor/project") return project(g);
     if ((m = h.match(/^#\/instructor\/lab\/(\d+)$/))) return labPage(Number(m[1]), g);
     if (h === "#/instructor/questions") return questionsPage(g);
     if ((m = h.match(/^#\/instructor\/student\/(.+)$/))) return student(decodeURIComponent(m[1]), g);

@@ -347,3 +347,13 @@ table.marksheet th.sorted { color: var(--action-dark); }
 .labcard input[type="datetime-local"], table.labtable input[type="datetime-local"] { font: inherit; font-size: 14px; padding: 4px 6px; }
 table.labtable td.acts { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 table.labtable td.pw { font-family: var(--mono, monospace); font-size: 16px; font-weight: 600; color: var(--action-dark); }
+
+/* team project */
+input.ptitle { flex: 1 1 260px; min-width: 0; }
+input.pct { width: 76px; text-align: right; }
+.missing { color: var(--muted); }
+.card textarea { width: 100%; box-sizing: border-box; margin-top: 8px; }
+table.ptable td { vertical-align: top; }
+table.ptable input.rub { width: 58px; text-align: right; }
+table.ptable textarea { width: 100%; min-width: 160px; box-sizing: border-box; }
+.ptools { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }

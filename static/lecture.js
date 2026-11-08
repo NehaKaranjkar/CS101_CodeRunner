@@ -384,7 +384,8 @@ async function showList() {
   const parts = [   // (replaceChildren would print a null as the text "null", so filter them out)
     el("header", { class: "welcome" }, el("h1", { text: r.course || "CS101" }),
       el("p", { text: "Welcome to the class!" }),
-      state.me.on_roster ? el("a", { class: "btn", href: "#/marks", text: "My marks and attendance" }) : null),
+      state.me.on_roster ? el("div", { class: "actions" }, el("a", { class: "btn", href: "#/marks", text: "My marks and attendance" }),
+        el("a", { class: "btn", href: "#/project", text: "Team project" })) : null),
     now ? el("section", {}, el("h2", { text: "Today" }), el("ul", { class: "llist" }, now)) : null,
     labs.length ? el("section", {}, el("h2", { text: "Labs open now" }),
       el("p", { class: "muted small", text: "You need the lab password from your instructor. Solve the lab and press Final submit; your total is recorded. You may submit again until the lab closes; your best total counts." }),
@@ -981,6 +982,146 @@ function marksParts(r) {
   return parts.filter(Boolean);
 }
 
+/* ------------------------------------------------------------------ team project */
+
+// pdf.js (loaded only on this page) counts the pages of a PDF before upload.
+const PDFJS = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+let pdfjsLoading = null;
+function loadPdfjs() {
+  return pdfjsLoading = pdfjsLoading || new Promise((ok, fail) => {
+    const s = el("script", { src: PDFJS + "pdf.min.js" });
+    s.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS + "pdf.worker.min.js"; ok(window.pdfjsLib); };
+    s.onerror = () => { pdfjsLoading = null; fail(new Error("Could not load the PDF reader. Check your internet and try again.")); };
+    document.head.append(s);
+  });
+}
+async function pdfPages(buf) {
+  const lib = await loadPdfjs();
+  const doc = await lib.getDocument({ data: buf.slice(0) }).promise;
+  const n = doc.numPages;
+  doc.destroy();
+  return n;
+}
+
+// Opens a PDF of the backend (sent with the sign-in token) in a new tab.
+async function openPdf(path) {
+  const w = window.open("", "_blank");
+  try {
+    const res = await fetch(CFG.backend + path, { headers: { Authorization: "Bearer " + store.get(KEY.token) } });
+    if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "Download failed.");
+    const url = URL.createObjectURL(new Blob([await res.blob()], { type: "application/pdf" }));
+    if (w) w.location = url; else location.href = url;
+  } catch (e) { if (w) w.close(); alert(e.message); }
+}
+
+async function showProject() {
+  const g = state.gen;
+  state.lec = null;
+  const r = await api("GET", "/api/project");
+  if (!fresh(g)) return;
+  setBar();
+  $("view").className = "view";
+  const t = r.team, st = r.state;
+  const parts = [el("p", {}, el("a", { href: "#/", text: "← Lectures" })),
+    el("header", { class: "welcome" }, el("h1", { text: "Team project" }))];
+  if (!t) {
+    parts.push(el("p", { class: "muted", text: "You are not in a project team yet. If this is wrong, please contact the instructor." }));
+    return $("view").replaceChildren(...parts);
+  }
+  const can = st.accepting;
+  parts.push(el("section", { class: "card" },
+    el("h2", { text: t.individual ? `${t.team} (individual project)` : `Team ${t.team}` }),
+    el("p", { text: `Presentation: ${t.slot_date}, ${t.slot} (${t.batch} batch)` }),
+    el("p", { class: can ? "" : "muted", text: can ? `Submissions are open until ${st.deadline}.`
+      : st.open && st.deadline ? `Submissions closed on ${st.deadline}.` : "Submissions are not open yet." }),
+    t.individual ? null : el("details", {}, el("summary", { text: `Members (${t.members.length})` }),
+      el("ul", {}, t.members.map((m) => el("li", { text: `${m.name} (${m.roll})` + (m.roll === r.roll ? " - you" : "") }))))));
+  // title
+  const title = el("input", { type: "text", maxlength: "150", value: t.title, placeholder: "Project title", class: "ptitle", disabled: !can });
+  const saveTitle = el("button", { text: "Save title", disabled: !can, onclick: async () => {
+    try { await api("POST", "/api/project/title", { title: title.value }); route(); } catch (e) { alert(e.message); }
+  } });
+  parts.push(el("section", { class: "card" }, el("h2", { text: "Project title" }),
+    el("div", { class: "actions" }, title, saveTitle),
+    t.title ? el("p", { class: "muted small", text: `Saved by ${t.title_by}, ${t.title_at}.` }) : el("p", { class: "muted small", text: "Not given yet." })));
+  // files
+  const fileRow = (kind) => {
+    const lim = r.limits[kind], f = t.files[kind];
+    const input = el("input", { type: "file", accept: "application/pdf,.pdf", hidden: true });
+    const msg = el("span", { class: "small" });
+    input.addEventListener("change", async () => {
+      const file = input.files[0];
+      input.value = "";
+      if (!file) return;
+      try {
+        if (!/\.pdf$/i.test(file.name)) throw new Error("Only PDF files are accepted.");
+        if (file.size > lim.max_mb * 1024 * 1024) throw new Error(`The file is ${(file.size / 1048576).toFixed(1)} MB; at most ${lim.max_mb} MB is allowed.`);
+        msg.textContent = "Checking the file...";
+        const buf = await file.arrayBuffer();
+        const pages = await pdfPages(buf).catch((e) => { throw new Error(e.message.includes("PDF reader") ? e.message : "This is not a readable PDF file."); });
+        if (pages > lim.max_pages) throw new Error(`The file has ${pages} pages; at most ${lim.max_pages} are allowed.`);
+        msg.textContent = "Uploading...";
+        const q = `kind=${kind}&pages=${pages}&name=${encodeURIComponent(file.name)}`;
+        const res = await fetch(`${CFG.backend}/api/project/file?${q}`, { method: "PUT", body: buf,
+          headers: { "Content-Type": "application/pdf", Authorization: "Bearer " + store.get(KEY.token) } });
+        if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "Upload failed.");
+        route();
+      } catch (e) { msg.textContent = ""; alert(e.message); }
+    });
+    return el("tr", {},
+      el("td", {}, el("div", { text: lim.label }), el("div", { class: "muted small", text: `PDF, at most ${lim.max_mb} MB and ${lim.max_pages} pages` })),
+      el("td", {}, f ? el("div", {}, el("a", { href: "#", text: f.filename, onclick: (ev) => { ev.preventDefault(); openPdf(`/api/project/file?kind=${kind}`); } }),
+        el("div", { class: "muted small", text: `${f.pages} pages, ${(f.size / 1048576).toFixed(1)} MB · uploaded by ${f.by_name}, ${f.uploaded}` }))
+        : el("span", { class: "missing", text: "Not uploaded" })),
+      el("td", {}, input, el("button", { text: f ? "Replace" : "Upload", disabled: !can, onclick: () => input.click() }), msg));
+  };
+  parts.push(el("section", { class: "card" }, el("h2", { text: "Slides and report" }),
+    el("p", { class: "muted small", text: t.individual ? "Upload your slides and report." :
+      "Only one member needs to upload; every member sees the files here. A new upload replaces the old file." }),
+    el("div", { class: "tablewrap" }, el("table", { class: "grid" }, el("tbody", {}, fileRow("slides"), fileRow("report"))))));
+  // contribution split (teams only)
+  if (!t.individual) {
+    const mine = r.my_split ? r.my_split.split : {};
+    const inputs = {};
+    const sum = el("strong");
+    const upd = () => {
+      const s = Object.values(inputs).reduce((a, i) => a + (Number(i.value) || 0), 0);
+      sum.textContent = `Total: ${Math.round(100 * s) / 100}%`;
+      sum.className = Math.abs(s - 100) <= 0.05 ? "ok" : "err";
+    };
+    const rows = t.members.map((m) => {
+      const i = inputs[m.roll] = el("input", { type: "number", min: "0", max: "100", step: "any", class: "pct", disabled: !can,
+        value: mine[m.roll] !== undefined ? String(mine[m.roll]) : "" });
+      i.addEventListener("input", upd);
+      return el("tr", {}, el("td", { text: m.name + (m.roll === r.roll ? " (you)" : "") }), el("td", { class: "num muted", text: m.roll }),
+        el("td", { class: "num" }, i, " %"));
+    });
+    const comment = el("textarea", { rows: "3", maxlength: "1000", placeholder: "Optional comment (only the instructor sees it)", disabled: !can });
+    comment.value = r.my_split ? r.my_split.comment : "";
+    const equal = el("button", { class: "small", text: "Fill equal shares", disabled: !can, onclick: () => {
+      const n = t.members.length, base = Math.floor(10000 / n) / 100;
+      t.members.forEach((m, k) => { inputs[m.roll].value = String(k === 0 ? Math.round(100 * (100 - base * (n - 1))) / 100 : base); });
+      upd();
+    } });
+    const save = el("button", { class: "primary", text: "Save my split", disabled: !can, onclick: async () => {
+      const split = Object.fromEntries(Object.entries(inputs).map(([k, i]) => [k, i.value === "" ? NaN : Number(i.value)]));
+      if (Object.values(split).some((v) => !Number.isFinite(v))) return alert("Give a percentage for every member (0 if none).");
+      try { await api("POST", "/api/project/split", { split, comment: comment.value }); route(); } catch (e) { alert(e.message); }
+    } });
+    upd();
+    parts.push(el("section", { class: "card" }, el("h2", { text: "Contribution of each member (your view)" }),
+      el("p", { class: "small", text: "Split 100% among all the members of your team (including yourself) according to how much each one contributed. " +
+        "Every member fills this in separately; only the instructor sees the answers. Your individual mark is the team's mark adjusted by your " +
+        "teammates' views of your contribution. You can change your split until the deadline." }),
+      el("div", { class: "tablewrap" }, el("table", { class: "grid" }, el("tbody", {}, rows))),
+      el("p", {}, sum), comment,
+      el("div", { class: "actions" }, equal, save),
+      el("p", { class: "muted small", text: r.my_split ? `Your split was saved ${r.my_split.updated}.` : "You have not saved your split yet." })));
+  }
+  parts.push(el("p", { class: "muted small", text: "Your marks will appear under \"My marks\" once the projects are graded." }));
+  $("view").replaceChildren(...parts.filter(Boolean));
+}
+
 /* ------------------------------------------------------------------ routing */
 
 async function route() {
@@ -996,6 +1137,7 @@ async function route() {
     if (location.hash.startsWith("#/instructor") && state.me.instructor && window.Instructor) await window.Instructor.route(g);
     else if (location.hash === "#/now") await openNow();
     else if (location.hash === "#/marks") await showMarks();
+    else if (location.hash === "#/project") await showProject();
     else if (m) await openPractice(decodeURIComponent(m[1]));
     else await showList();
   } catch (e) {
