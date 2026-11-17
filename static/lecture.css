@@ -357,3 +357,5 @@ table.ptable td { vertical-align: top; }
 table.ptable input.rub { width: 58px; text-align: right; }
 table.ptable textarea { width: 100%; min-width: 160px; box-sizing: border-box; }
 .ptools { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+td.nowrap { white-space: nowrap; }
+td.nowrap input.rub { width: 64px; text-align: right; }
