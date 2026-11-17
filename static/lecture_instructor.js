@@ -516,25 +516,63 @@
         `${Math.round((1 - r.team_weight) * 100)}% effort. ` +
         "Final mark (out of " + r.out_of + ") = the individual mark unless overridden; it goes to the gradebook. " +
         "For the gradebook add {\"project\": true} as the source of the Team project item (max " + r.out_of + ") and run tools/marks_upload.py once." })));
+    // One "Save all" for every team's rubric scores and comment and every final mark: nothing is saved
+    // (and nothing re-drawn) until it is clicked, so marks can be entered for all teams, compared and adjusted.
+    const teamEds = [], finalEds = [];
+    const status = el("span", { class: "small" });
+    const dirtyCount = () => [teamEds.filter((e) => e.changed()).length, finalEds.filter((e) => e.changed()).length];
+    const refresh = () => {
+      const [nt, nf] = dirtyCount();
+      status.textContent = nt + nf ? `Unsaved: ${plural(nt, "team")}, ${plural(nf, "final mark")}` : "All saved";
+      status.className = nt + nf ? "missing small" : "muted small";
+    };
+    const saveAll = el("button", { class: "primary", text: "Save all", onclick: async () => {
+      const bad = teamEds.map((e) => e.problem()).find((x) => x);
+      if (bad) return alert(bad);
+      const todo = [...teamEds.filter((e) => e.changed()), ...finalEds.filter((e) => e.changed())];
+      if (!todo.length) return;
+      saveAll.disabled = true;
+      for (const e of todo) {
+        status.textContent = `Saving ${e.label}...`;
+        if (!(await act(e.path, e.body()))) { saveAll.disabled = false; e.mark(); refresh(); return; }
+        e.saved();
+      }
+      window.onbeforeunload = null;
+      route(++state.gen);
+    } });
+    window.onbeforeunload = () => (location.hash === "#/instructor/project" && dirtyCount().some((x) => x) ? "unsaved" : undefined);
+    view.append(el("div", { class: "savebar" }, saveAll, status));
     for (const batch of [...new Set(r.teams.map((t) => t.batch))]) {
       const ts = r.teams.filter((t) => t.batch === batch);
       view.append(el("h2", { text: `${batch}: ${ts[0].slot_date}` }), ...ts.map(teamCard));
     }
+    refresh();
 
     // Final mark (goes to the gradebook): a copy of the individual mark until the instructor overrides it.
-    // Saving the computed value again (or Reset) removes the override, so later rubric changes flow through.
-    function finalCell(m) {
+    // Typing a value makes it an override; a value equal to the computed mark (or Reset) removes the override,
+    // so later rubric changes flow through. computed() is the live individual mark from the rubric inputs.
+    function finalCell(m, computed) {
       const inp = el("input", { type: "number", min: "0", max: String(r.out_of), step: "0.01", class: "rub", value: m.final === null ? "" : String(m.final) });
-      const send = async (mark) => { if (await act("/api/admin/project-override", { roll: m.roll, mark })) route(++state.gen); };
-      const save = el("button", { text: "Save", title: "Use this as the final mark", onclick: () => {
-        const v = inp.value.trim();
-        if (v === "") return send(null);
-        send(m.mark !== null && Math.abs(Number(v) - m.mark) < 0.005 ? null : v);
-      } });
-      const parts = [inp, " ", save];
-      if (m.overridden) parts.push(" ", el("button", { text: "Reset", title: "Back to the computed individual mark", onclick: () => send(null) }),
-        el("span", { class: "missing small", text: " overridden" }));
-      return el("span", {}, ...parts);
+      let edited = false, reset = false;
+      const note = el("span", { class: "missing small", text: m.overridden ? " overridden" : "" });
+      const ed = { label: m.roll, path: "/api/admin/project-override",
+        target: () => {                                   // what to send: null = no override
+          if (reset) return null;
+          const v = inp.value.trim(), c = computed();
+          return v === "" || (c !== null && Math.abs(Number(v) - c) < 0.005) ? null : Number(v);
+        },
+        changed: () => (edited || reset) && (ed.target() !== null || m.overridden),
+        body: () => ({ roll: m.roll, mark: ed.target() }),
+        mark: () => inp.classList.add("err"), saved: () => {},
+        follow: () => { if (!edited && !reset && !m.overridden) { const c = computed(); inp.value = c === null ? "" : String(c); } } };
+      inp.addEventListener("input", () => { edited = true; reset = false; inp.classList.remove("err"); refresh(); });
+      finalEds.push(ed);
+      const parts = [inp];
+      if (m.overridden) parts.push(" ", el("button", { text: "Reset", title: "Back to the computed individual mark (saved with Save all)", onclick: () => {
+        reset = true; edited = false; const c = computed(); inp.value = c === null ? "" : String(c); note.textContent = " reset (not saved)"; refresh();
+      } }));
+      parts.push(note);
+      return { cell: el("span", {}, ...parts), ed };
     }
 
     function teamCard(t) {
@@ -544,16 +582,30 @@
       const comment = el("textarea", { rows: "2", placeholder: "Comment (private)" });
       comment.value = t.grade ? t.grade.comment : "";
       const markEl = el("strong", { text: t.grade && t.grade.mark !== null ? `${fmt(t.grade.mark)} / ${r.out_of}` : `- / ${r.out_of}` });
+      const init = JSON.stringify([r.rubric.map((c) => ins[c.key].value), comment.value]);
+      const cur = () => JSON.stringify([r.rubric.map((c) => ins[c.key].value), comment.value]);
+      const tmark = () => r.rubric.every((c) => ins[c.key].value !== "")
+        ? Math.round(100 * r.rubric.reduce((a, c) => a + c.weight * Number(ins[c.key].value), 0)) / 100 : null;
+      const indOf = (m) => { const T = tmark(); return T === null ? null : Math.round(100 * (r.team_weight * T + (1 - r.team_weight) * m.effort)) / 100; };
+      const rows = [];
       const live = () => {
-        const v = r.rubric.map((c) => Number(ins[c.key].value));
-        markEl.textContent = r.rubric.every((c) => ins[c.key].value !== "")
-          ? `${fmt(r.rubric.reduce((a, c, i) => a + c.weight * v[i], 0))} / ${r.out_of} (not saved)` : `- / ${r.out_of}`;
+        const T = tmark(), dirty = cur() !== init;
+        markEl.textContent = T === null ? `- / ${r.out_of}` : `${fmt(T)} / ${r.out_of}${dirty ? " (not saved)" : ""}`;
+        for (const x of rows) { const c = indOf(x.m); x.indEl.textContent = c === null ? "-" : fmt(c); x.ed.follow(); }
+        refresh();
       };
-      Object.values(ins).forEach((i) => i.addEventListener("input", live));
-      const save = el("button", { class: "primary", text: "Save", onclick: async () => {
-        const res = await act("/api/admin/project-grade", { team: t.team, scores: Object.fromEntries(r.rubric.map((c) => [c.key, ins[c.key].value])), comment: comment.value });
-        if (res) route(++state.gen);
-      } });
+      Object.values(ins).forEach((i) => i.addEventListener("input", () => { i.classList.remove("err"); live(); }));
+      comment.addEventListener("input", live);
+      teamEds.push({ label: t.team, path: "/api/admin/project-grade", changed: () => cur() !== init,
+        problem: () => {
+          for (const c of r.rubric) {
+            const v = ins[c.key].value.trim();
+            if (v !== "" && !(Number(v) >= 0 && Number(v) <= r.out_of)) { ins[c.key].classList.add("err"); return `${t.team}, ${c.title}: give a score from 0 to ${r.out_of}.`; }
+          }
+          return null;
+        },
+        body: () => ({ team: t.team, scores: Object.fromEntries(r.rubric.map((c) => [c.key, ins[c.key].value])), comment: comment.value }),
+        mark: () => markEl.classList.add("missing"), saved: () => {} });
       const fileLink = (k) => t.files[k] ? el("span", {}, el("a", { href: "#", text: r.limits[k].label, onclick: (ev) => { ev.preventDefault(); openPdf(`/api/project/file?kind=${k}&team=${encodeURIComponent(t.team)}`); } }),
         el("span", { class: "muted small", text: ` (${t.files[k].pages} p., ${t.files[k].by_name}, ${t.files[k].uploaded})` }))
         : el("span", { class: "missing", text: `no ${r.limits[k].label.toLowerCase()}` });
@@ -563,8 +615,9 @@
           el("td", { class: "num muted", text: m.roll }),
           el("td", {}, el("a", { href: `#/instructor/student/${encodeURIComponent(m.email)}`, target: "_blank", rel: "noopener", text: m.name })),
           el("td", { class: "num", title: `effort ${fmt(m.effort)}`, text: t.individual ? "100" : `${fmt(m.share)} (${m.raters} rater${m.raters === 1 ? "" : "s"})` }),
-          el("td", { class: "num", text: m.mark === null ? "-" : fmt(m.mark) }),
-          el("td", { class: "nowrap" }, finalCell(m)),
+          (() => { const indEl = el("td", { class: "num", text: m.mark === null ? "-" : fmt(m.mark) });
+            const f = finalCell(m, () => indOf(m)); rows.push({ m, indEl, ed: f.ed });
+            return [indEl, el("td", { class: "nowrap" }, f.cell)]; })(),
           el("td", { class: "small", text: m.split ? t.members.map((x) => `${x.roll.slice(-3)}: ${fmt(m.split.split[x.roll] || 0)}`).join(", ") : (t.individual ? "" : "not given") }),
           el("td", { class: "small", text: m.split ? m.split.comment : "" })))));
       return el("section", { class: "card" },
@@ -572,8 +625,8 @@
         el("p", { class: "small" }, fileLink("slides"), " · ", fileLink("report"), ` · ${t.members.length} member${t.members.length === 1 ? "" : "s"}`,
           t.individual ? "" : `, ${t.members.filter((m) => m.split).length} splits`),
         el("div", { class: "tablewrap" }, el("table", { class: "grid ptable" },
-          el("thead", {}, el("tr", {}, [...r.rubric.map((c) => `${c.title} (${Math.round(c.weight * 100)}%, 0-${r.out_of})`), "Team mark", "Comment", ""].map((h) => el("th", { text: h })))),
-          el("tbody", {}, el("tr", {}, ...r.rubric.map((c) => el("td", {}, ins[c.key])), el("td", { class: "num" }, markEl), el("td", {}, comment), el("td", {}, save))))),
+          el("thead", {}, el("tr", {}, [...r.rubric.map((c) => `${c.title} (${Math.round(c.weight * 100)}%, 0-${r.out_of})`), "Team mark", "Comment"].map((h) => el("th", { text: h })))),
+          el("tbody", {}, el("tr", {}, ...r.rubric.map((c) => el("td", {}, ins[c.key])), el("td", { class: "num" }, markEl), el("td", {}, comment))))),
         el("details", {}, el("summary", { text: "Members and contributions" }), el("div", { class: "tablewrap" }, members)));
     }
   }
